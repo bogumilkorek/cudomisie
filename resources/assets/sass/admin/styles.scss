@@ -1,0 +1,21 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 50px;
+}
+
+th {
+  background: #F3F3F3;
+}
+
+th, td {
+  font-size: $font-size-base;
+}
+
+.btn-icon {
+  padding: 10px 12px;
+  margin: 0px;
+}
+
+input:invalid {
+    color: #FF0000;
+}
