@@ -24,9 +24,7 @@ class DatabaseSeeder extends Seeder
     );
 
     // Image creates also Pages and Products
-  //  factory(App\Image::class, 50)->create();
-  factory(App\Page::class, 9)->create();
-    factory(App\Product::class, 9)->create();
+    factory(App\Image::class, 50)->create();
     factory(App\User::class, 9)->create();
     factory(App\BlogPost::class, 30)->create();
     factory(App\Category::class, 10)->create();
@@ -36,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
     // Fill pivot tables, I'm doing it this way
     // to prevent creating models for pivot tables
-    for($i = 0; $i < App\Product::all()->count(); $i++)
+    for($i = 1; $i <= App\Product::all()->count(); $i++)
     {
       $category_id = App\Category::select('id')->orderByRaw("RAND()")->first()->id;
       $product_id = $i;
@@ -53,7 +51,7 @@ class DatabaseSeeder extends Seeder
     {
       $order_id = App\Order::select('id')->orderByRaw("RAND()")->first()->id;
       $product_id = App\Product::select('id')->orderByRaw("RAND()")->first()->id;
-      $product_name = App\Product::find($product_id)->name;
+      $product_title = App\Product::find($product_id)->title;
       $product_price = App\Product::find($product_id)->price;
       $product_quantity = rand(1, 9);
 
@@ -61,7 +59,7 @@ class DatabaseSeeder extends Seeder
         [
           'order_id' => $order_id,
           'product_id' => $product_id,
-          'product_name' => $product_name,
+          'product_title' => $product_title,
           'product_price' => $product_price,
           'product_quantity' => $product_quantity,
         ]

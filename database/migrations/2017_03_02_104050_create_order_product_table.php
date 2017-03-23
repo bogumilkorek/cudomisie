@@ -19,7 +19,7 @@ class CreateOrderProductTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->string('product_name');
+            $table->string('product_title');
             $table->integer('product_quantity')->unsigned();
             $table->float('product_price')->unsigned();
         });

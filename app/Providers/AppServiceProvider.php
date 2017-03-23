@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
 
     // Create slug before adding and updating page, product, category and blog post
-    $this->createSlugs();
+    $this->createSlugs(['Page', 'Product', 'Category', 'BlogPost']);
 
     // Get latest products and share it to all views
     $this->getLatestProducts();
@@ -62,62 +62,20 @@ class AppServiceProvider extends ServiceProvider
     }
   }
 
-  public function createSlugs() {
-    Page::creating(function($page) {
-      $page->slug = str_slug($page->title, '-');
-      return true;
-    });
+  public function createSlugs($modelNames) {
+    foreach($modelNames as $modelName)
+    {
+      $model = app("App\\$modelName");
 
-    Page::updating(function($page) {
-      $page->slug = str_slug($page->title, '-');
-      return true;
-    });
+      $model::creating(function($instance) {
+        $instance->slug = str_slug($instance->title, '-');
+        return true;
+      });
 
-    Product::creating(function($product) {
-      $product->slug = str_slug($product->title, '-');
-      return true;
-    });
-
-    Product::updating(function($product) {
-      $product->slug = str_slug($product->title, '-');
-      return true;
-    });
-
-    Category::creating(function($category) {
-      $category->slug = str_slug($category->title, '-');
-      return true;
-    });
-
-    Category::updating(function($category) {
-      $category->slug = str_slug($category->title, '-');
-      return true;
-    });
-
-    BlogPost::creating(function($blogPost) {
-      $blogPost->slug = str_slug($blogPost->title, '-');
-      return true;
-    });
-
-    BlogPost::updating(function($blogPost) {
-      $blogPost->slug = str_slug($blogPost->title, '-');
-      return true;
-    });
-
-
-    // foreach($modelNames as $modelName)
-    // {
-    //   $model = app("App\\$modelName");
-    //
-    //   $model::creating(function($instance) {
-    //     $instance->slug = str_slug($instance->title, '-');
-    //     return true;
-    //   });
-    //
-    //   $model::updating(function($instance) {
-    //     $instance->slug = str_slug($instance->title, '-');
-    //     return true;
-    //   });
-    //
-    // }
+      $model::updating(function($instance) {
+        $instance->slug = str_slug($instance->title, '-');
+        return true;
+      });
+    }
   }
 }
