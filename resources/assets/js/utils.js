@@ -1,11 +1,13 @@
 let bootstrap = require('bootstrap-sass');
 let baguetteBox = require('baguettebox.js');
 let jqueryEasing = require('jquery.easing');
+let matchHeight = require('jquery-match-height')
 
 
 $(() => {
   runSlider(5000);
   baguetteBox.run('.gallery');
+  $('.product-card .match').matchHeight();
 });
 
 

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Page;
 use App\Product;
 use App\Category;
@@ -21,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
   {
     // Fix database error
     Schema::defaultStringLength(191);
+
+
+    Relation::morphMap([
+    'products' => 'App\Product',
+    'pages' => 'App\Page',
+    ]);
 
     // Get latest products and share it to all views
     $this->getLatestProducts();
@@ -43,9 +50,13 @@ class AppServiceProvider extends ServiceProvider
     // Allow migrations to work
     if(!app()->runningInConsole()) {
       // Get 6 latest products
-      $latestProducts = Product::latest()
+      $latestProducts = Product::where('hidden', NULL)
+      ->orderBy('id', 'desc')
+      ->with('categories')
+      ->with('images')
       ->take(6)
       ->get();
+
       View::share('latestProducts', $latestProducts);
     }
   }

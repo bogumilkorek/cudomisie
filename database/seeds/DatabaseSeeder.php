@@ -16,21 +16,22 @@ class DatabaseSeeder extends Seeder
     factory(App\User::class)->create(
       [
         'name' => 'Your beloved admin',
-        'email' => 'bogumilkorek@gmail.com',
+        'email' => 'admin@cudomisie.app',
         'password' => bcrypt('secret'),
         'phone' => 'restricted',
         'address' => 'restricted',
       ]
     );
+
+    // Image creates also Pages and Products
+    factory(App\Image::class, 50)->create();
+
     factory(App\User::class, 9)->create();
-    factory(App\Page::class, 30)->create();
     factory(App\BlogPost::class, 30)->create();
-    factory(App\Product::class, 30)->create();
     factory(App\Category::class, 10)->create();
     factory(App\ShippingMethod::class, 5)->create();
     factory(App\OrderStatus::class, 5)->create();
     factory(App\Order::class, 20)->create();
-    factory(App\Image::class, 50)->create();
 
     // Fill pivot tables, I'm doing it this way
     // to prevent creating models for pivot tables
