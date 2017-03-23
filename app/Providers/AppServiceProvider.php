@@ -25,15 +25,15 @@ class AppServiceProvider extends ServiceProvider
 
 
     Relation::morphMap([
-    'products' => 'App\Product',
-    'pages' => 'App\Page',
+      'products' => 'App\Product',
+      'pages' => 'App\Page',
     ]);
 
     // Get latest products and share it to all views
     $this->getLatestProducts();
 
     // Create slug before adding and updating page, product, category and blog post
-    $this->createSlugs();
+    $this->createSlugs(['Page', 'Product', 'Category', 'BlogPost']);
   }
 
   /**
@@ -61,45 +61,21 @@ class AppServiceProvider extends ServiceProvider
     }
   }
 
-  public function createSlugs() {
-    Page::creating(function($page) {
-      $page->slug = str_slug($page->title, '-');
-      return true;
-    });
+  public function createSlugs($modelNames) {
+    foreach($modelNames as $modelName)
+    {
+      $model = app("App\\$modelName");
 
-    Page::updating(function($page) {
-      $page->slug = str_slug($page->title, '-');
-      return true;
-    });
+      $model::creating(function($instance) {
+        $instance->slug = str_slug($instance->title, '-');
+        return true;
+      });
 
-    Product::creating(function($product) {
-      $product->slug = str_slug($product->name, '-');
-      return true;
-    });
+      $model::updating(function($page) {
+        $page->slug = str_slug($page->title, '-');
+        return true;
+      });
 
-    Product::updating(function($product) {
-      $product->slug = str_slug($product->name, '-');
-      return true;
-    });
-
-    Category::creating(function($category) {
-      $category->slug = str_slug($category->name, '-');
-      return true;
-    });
-
-    Category::updating(function($category) {
-      $category->slug = str_slug($category->name, '-');
-      return true;
-    });
-
-    BlogPost::creating(function($blogPost) {
-      $blogPost->slug = str_slug($blogPost->title, '-');
-      return true;
-    });
-
-    BlogPost::updating(function($blogPost) {
-      $blogPost->slug = str_slug($blogPost->title, '-');
-      return true;
-    });
+    }
   }
 }
