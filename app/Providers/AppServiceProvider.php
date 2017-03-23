@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
   public function getLatestProducts() {
     // Allow migrations to work
     if(!app()->runningInConsole()) {
-      // Get 6 latest products
+      // Get 6 latest active products
       $latestProducts = Product::where('hidden', NULL)
       ->orderBy('id', 'desc')
       ->with('categories')
@@ -71,8 +71,8 @@ class AppServiceProvider extends ServiceProvider
         return true;
       });
 
-      $model::updating(function($page) {
-        $page->slug = str_slug($page->title, '-');
+      $model::updating(function($instance) {
+        $instance->slug = str_slug($instance->title, '-');
         return true;
       });
 
