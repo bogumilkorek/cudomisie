@@ -20,13 +20,15 @@
           <div class="product-card">
             <img src="{{ $ltProduct->images->first()->url }}">
           <p class="match">
-            <b>{{ $ltProduct->name }}</b>
+            {{ $ltProduct->name }}
           </p>
           <h3>
             {{ $ltProduct->price }} {{__('$') }}
           </h3>
           <br />
-          <a href="blog" class="btn-dashed">More</a>
+          <a href="{{ $ltProduct->categories->first()->slug }}" class="btn-dashed">
+            <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
+          </a>
         </div>
         </div>
 

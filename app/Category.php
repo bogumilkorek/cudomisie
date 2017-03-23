@@ -15,10 +15,6 @@ class Category extends Model
     'title',
   ];
 
-  protected $hidden = [
-    'slug',
-  ];
-  
   public function products()
   {
     return $this->belongsToMany('App\Product');
