@@ -21,7 +21,7 @@ Route::group(['prefix' => __('admin')], function () {
   Route::resource('categories', 'CategoryController');
   Route::resource('orders', 'OrderController');
   Route::resource('orderStatuses', 'OrderStatusController');
-  Route::resource('shippingMethods', 'ShippingMethodController');
+  Route::resource('shippingMethods', 'ShippingMethodController', ['except' => 'show']);
   Route::resource('pages', 'PageController');
   Route::get('/', 'PageController@index')->name('dashboard');
 });

@@ -27572,7 +27572,7 @@ __webpack_require__(16);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Slider; });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return slider; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27582,7 +27582,7 @@ var Slider = function () {
     _classCallCheck(this, Slider);
   }
 
-  _createClass(Slider, null, [{
+  _createClass(Slider, [{
     key: 'run',
     value: function run(container, duration) {
       $(container + ' div:gt(1)').hide();
@@ -27590,7 +27590,7 @@ var Slider = function () {
         $(container + ' > div:eq(1)').fadeOut(700).next().fadeIn(700).end().appendTo(container);
       }, duration);
 
-      // Set slider height on load and resize
+      // Set container height on load and resize
       $(window).on('load resize', function () {
         $(container).height($(container + ' img:eq(1)').height());
       });
@@ -27599,6 +27599,8 @@ var Slider = function () {
 
   return Slider;
 }();
+
+var slider = new Slider();
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
@@ -27608,24 +27610,19 @@ var Slider = function () {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cart__ = __webpack_require__(47);
 var bootstrap = __webpack_require__(18);
 var baguetteBox = __webpack_require__(17);
 var jqueryEasing = __webpack_require__(24);
 var matchHeight = __webpack_require__(23);
 
 
+
+
 $(function () {
-  __WEBPACK_IMPORTED_MODULE_0__slider__["a" /* Slider */].run('.slider-container', 5000);
+  __WEBPACK_IMPORTED_MODULE_0__slider__["a" /* slider */].run('.slider-container', 5000);
   baguetteBox.run('.gallery');
   $('.product-card .match').matchHeight();
-});
-
-$(window).on('load', function () {
-  $('#status').fadeOut();
-  $('#preloader').delay(350).fadeOut('slow');
-  $('body').delay(350).css({
-    'overflow': 'visible'
-  });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
@@ -30618,6 +30615,71 @@ __webpack_require__(9);
 __webpack_require__(10);
 module.exports = __webpack_require__(11);
 
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export cart */
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Cart = function () {
+  function Cart() {
+    _classCallCheck(this, Cart);
+  }
+
+  _createClass(Cart, [{
+    key: "show",
+    value: function show() {
+      //
+    }
+  }, {
+    key: "addItem",
+    value: function addItem() {
+      //
+    }
+  }, {
+    key: "removeItem",
+    value: function removeItem() {
+      //
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      //
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      //
+    }
+  }]);
+
+  return Cart;
+}();
+
+// Make sure we have only one instance
+
+
+var cart = new Cart();
 
 /***/ })
 /******/ ]);

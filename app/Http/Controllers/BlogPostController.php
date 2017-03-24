@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BlogPostsRequest;
+use App\Http\Requests\BlogPostRequest;
 use App\BlogPost;
 use Illuminate\Http\Request;
 use Alert;
@@ -33,10 +33,10 @@ class BlogPostController extends Controller
        /**
        * Store a newly created resource in storage.
        *
-       * @param  \App\Http\Requests\BlogPostsRequest  $request
+       * @param  \App\Http\Requests\BlogPostRequest  $request
        * @return \Illuminate\Http\Response
        */
-       public function store(BlogPostsRequest $request)
+       public function store(BlogPostRequest $request)
        {
          BlogPost::create($request->all());
          alert()->success( __('Blog post created!'), __('Success'))->persistent('OK');
@@ -68,11 +68,11 @@ class BlogPostController extends Controller
      /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\BlogPostsRequest  $request
+     * @param  \App\Http\Requests\BlogPostRequest  $request
      * @param  \App\BlogPost  $blogPost
      * @return \Illuminate\Http\Response
      */
-     public function update(BlogPostsRequest $request, BlogPost $blogPost)
+     public function update(BlogPostRequest $request, BlogPost $blogPost)
      {
        $blogPost->update($request->all());
        alert()->success( __('Blog post updated!'), __('Success'))->persistent('OK');

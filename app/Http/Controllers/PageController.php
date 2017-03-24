@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PagesRequest;
+use App\Http\Requests\PageRequest;
 use App\Page;
 use Illuminate\Http\Request;
 use Alert;
@@ -40,10 +40,10 @@ class PageController extends Controller
     /**
     * Store a newly created resource in storage.
     *
-    * @param  \App\Http\Requests\PagesRequest  $request
+    * @param  \App\Http\Requests\PageRequest  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(PagesRequest $request)
+    public function store(PageRequest $request)
     {
       Page::create($request->all());
       alert()->success( __('Page created!'), __('Success'))->persistent('OK');
@@ -79,11 +79,11 @@ class PageController extends Controller
     /**
     * Update the specified resource in storage.
     *
-    * @param  \App\Http\Requests\PagesRequest  $request
+    * @param  \App\Http\Requests\PageRequest  $request
     * @param  \App\Page  $page
     * @return \Illuminate\Http\Response
     */
-    public function update(PagesRequest $request, Page $page)
+    public function update(PageRequest $request, Page $page)
     {
       $page->update($request->all());
       alert()->success( __('Page updated!'), __('Success'))->persistent('OK');

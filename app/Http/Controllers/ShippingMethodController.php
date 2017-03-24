@@ -2,84 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShippingMethodRequest;
 use App\ShippingMethod;
 use Illuminate\Http\Request;
+use Alert;
 
 class ShippingMethodController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  /**
+  * Display a listing of the resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function index()
+  {
+    $shippingMethods = ShippingMethod::orderBy('title', 'asc')->get();
+    return view('shippingMethods.index')->withShippingMethods($shippingMethods);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+  * Show the form for creating a new resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function create()
+  {
+    return view('shippingMethods.create');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  /**
+  * Store a newly created resource in storage.
+  *
+  * @param  \App\Http\Requests\ShippingMethodRequest  $request
+  * @return \Illuminate\Http\Response
+  */
+  public function store(ShippingMethodRequest $request)
+  {
+    ShippingMethod::create($request->all());
+    alert()->success( __('Shipping method created!'), __('Success'))->persistent('OK');
+    return redirect()->route('shippingMethods.index');
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ShippingMethod  $shippingMethod
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ShippingMethod $shippingMethod)
-    {
-        //
-    }
+  /**
+  * Show the form for editing the specified resource.
+  *
+  * @param  \App\Posts  $Posts
+  * @return \Illuminate\Http\Response
+  */
+  public function edit(ShippingMethod $shippingMethod)
+  {
+    return view('shippingMethods.edit')->withShippingMethod($shippingMethod);
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ShippingMethod  $shippingMethod
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ShippingMethod $shippingMethod)
-    {
-        //
-    }
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  \App\Http\Requests\ShippingMethodRequest  $request
+  * @param  \App\ShippingMethod  $shippingMethod
+  * @return \Illuminate\Http\Response
+  */
+  public function update(ShippingMethodRequest $request, ShippingMethod $shippingMethod)
+  {
+    $shippingMethod->update($request->all());
+    alert()->success( __('Shipping method updated!'), __('Success'))->persistent('OK');
+    return redirect()->route('shippingMethods.index');
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ShippingMethod  $shippingMethod
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ShippingMethod $shippingMethod)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ShippingMethod  $shippingMethod
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ShippingMethod $shippingMethod)
-    {
-        //
-    }
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param  \App\ShippingMethod  $shippingMethod
+  * @return \Illuminate\Http\Response
+  */
+  public function destroy(ShippingMethod $shippingMethod)
+  {
+    $shippingMethod->delete();
+    alert()->success( __('Shipping method deleted!'), __('Success'))->persistent('OK');
+    return redirect()->route('shippingMethods.index');
+  }
 }
