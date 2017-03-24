@@ -95,7 +95,10 @@ section {
     margin: 0px;
     padding: 0px;
     margin-bottom: -5px;
-
+    &.dropdown {
+        background: #83C0B5;
+        
+    }
     & ul {
       margin: 0px;
       padding: 0px;

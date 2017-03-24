@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  @include('layouts.partials.menu')
+  @include('layouts.partials.nav')
 
   @include('layouts.partials.slider')
 

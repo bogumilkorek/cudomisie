@@ -35,6 +35,9 @@ class AppServiceProvider extends ServiceProvider
 
     // Get latest products and share it to all views
     $this->getLatestProducts();
+
+    // Get categories and share it to all views (for nav)
+    $this->getCategories();
   }
 
   /**
@@ -59,6 +62,16 @@ class AppServiceProvider extends ServiceProvider
       ->get();
 
       View::share('latestProducts', $latestProducts);
+    }
+  }
+
+  public function getCategories() {
+    // Allow migrations to work
+    if(!app()->runningInConsole()) {
+      $categories = Category::orderBy('title', 'asc')
+      ->get();
+
+      View::share('categories', $categories);
     }
   }
 
