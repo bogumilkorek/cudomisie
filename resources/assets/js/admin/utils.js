@@ -2,9 +2,9 @@ let sweetalert = require('sweetalert');
 let datatables = require('datatables.net');
 let datatablesBootstrap = require('datatables-bootstrap3-plugin');
 
-$(function() {
+$(() => {
   // Get current URL path and assign 'active' class
-  $('.nav > li > a[href="'+ window.location.pathname+ '"]').parent().addClass('active');
+  $('.nav > li > a[href="'+ window.location+ '"]').parent().addClass('active');
 
   // Get loading icon on form submit
   $('form').on('submit', function(e) {

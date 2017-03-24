@@ -30,7 +30,9 @@
           @foreach($pages as $page)
           <tr>
             <td>
-              <a href="{{ route('user.pages.show', $page) }}" target="_blank">{{ $page->title }}</a>
+              <a href="{{ route('user.pages.show', $page) }}" target="_blank">
+                {{ $page->title }}
+              </a>
             </td>
             <td>{!! str_limit($page->content, 100) !!}</td>
             <td class="text-center actions">

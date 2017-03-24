@@ -11,7 +11,7 @@
   <title>{{ config('app.name', 'Laravel') }}. {{ __('Official website') }}</title>
 
   <!-- Styles -->
-  <link href="{{ mix('css/admin/app.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
   <script>
   window.Laravel = {!! json_encode([
     'csrfToken' => csrf_token(),
@@ -74,7 +74,7 @@
 
   @yield('content')
 </div>
-<script src="{{ mix('js/admin/app.js') }}"></script>
+<script src="{{ mix('js/admin.js') }}"></script>
 @include('sweet::alert')
 
 

@@ -8,8 +8,5 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~baguettebox.js/dist/baguetteBox";
 
-// Variables
-@import "variables";
-
 // App
-@import "styles";
+@import "app/styles";

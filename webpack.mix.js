@@ -14,15 +14,6 @@ const { mix } = require('laravel-mix');
  let ImageminPlugin = require('imagemin-webpack-plugin').default;
 
  mix.webpackConfig( {
-//    entry: {
-//        app: './resources/assets/js/app.js',
-//     vendors: [
-//         'jquery',
-//         'jquery.easing',
-//         'bootstrap-sass',
-//         'baguettebox.js'
-//       ]
-// },
      plugins: [
          // Optimize images
          new ImageminPlugin( {
@@ -34,9 +25,9 @@ const { mix } = require('laravel-mix');
 
  mix.copy('resources/assets/images', 'public/images', false)
  .js('resources/assets/js/app.js', 'public/js')
- .js('resources/assets/js/admin/app.js', 'public/js/admin')
+ .js('resources/assets/js/admin.js', 'public/js')
  .sass('resources/assets/sass/app.scss', 'public/css')
- .sass('resources/assets/sass/admin/app.scss', 'public/css/admin');
+ .sass('resources/assets/sass/admin.scss', 'public/css');
 
- //if(mix.config.inProduction)
-     //mix.version();
+ if(mix.config.inProduction)
+     mix.version();

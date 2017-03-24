@@ -6,5 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogPost extends Model
 {
-    //
+  protected $fillable = [
+    'title', 'content'
+  ];
+
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
+
+  public function images()
+  {
+    return $this->morphMany('App\Image', 'imageable');
+  }
 }

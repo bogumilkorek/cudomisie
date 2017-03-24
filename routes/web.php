@@ -36,7 +36,7 @@ Route::delete('cart/clear', 'CartController@clear')->name('cart.clear');
 // User
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
-Route::get(__('blog') . '/{page}', 'BlogPostController@show')->name('user.blogPosts.show');
+Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.blogPosts.show');
 Route::get(__('blog'), 'BlogPostController@index')->name('user.blogPosts.index');
 Route::get('{page}', 'PageController@show')->name('user.pages.show');
 Route::get('/', 'PageController@showHomepage')->name('user.homepage.show');

@@ -11,14 +11,14 @@
 
     <div class="footer-nav-wrapper">
 
-      <a href="" class="btn-dashed">Start</a>
-      <a href="blog" class="btn-dashed">Blog</a>
-      <a href="o-nas" class="btn-dashed">O nas</a>
-      <a href="oferta" class="btn-dashed">Oferta</a>
-      <a href="wysylka" class="btn-dashed">Wysyłka</a>
-      <a href="regulamin" class="btn-dashed">Regulamin</a>
-      <a href="opinie" class="btn-dashed">Opinie</a>
-      <a href="kontakt" class="btn-dashed">Kontakt</a>
+      <a href="" class="btn btn-dashed">Start</a>
+      <a href="blog" class="btn btn-dashed">Blog</a>
+      <a href="o-nas" class="btn btn-dashed">O nas</a>
+      <a href="oferta" class="btn btn-dashed">Oferta</a>
+      <a href="wysylka" class="btn btn-dashed">Wysyłka</a>
+      <a href="regulamin" class="btn btn-dashed">Regulamin</a>
+      <a href="opinie" class="btn btn-dashed">Opinie</a>
+      <a href="kontakt" class="btn btn-dashed">Kontakt</a>
 
     </div>
 

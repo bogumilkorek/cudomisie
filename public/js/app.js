@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -27531,7 +27531,7 @@ window._ = __webpack_require__(4);
 
 window.$ = window.jQuery = __webpack_require__(0);
 
-__webpack_require__(15);
+__webpack_require__(16);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -27569,15 +27569,53 @@ __webpack_require__(15);
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var bootstrap = __webpack_require__(17);
-var baguetteBox = __webpack_require__(16);
-var jqueryEasing = __webpack_require__(23);
-var matchHeight = __webpack_require__(22);
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Slider; });
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Slider = function () {
+  function Slider() {
+    _classCallCheck(this, Slider);
+  }
+
+  _createClass(Slider, null, [{
+    key: 'run',
+    value: function run(container, duration) {
+      $(container + ' div:gt(1)').hide();
+      setInterval(function () {
+        $(container + ' > div:eq(1)').fadeOut(700).next().fadeIn(700).end().appendTo(container);
+      }, duration);
+
+      // Set slider height on load and resize
+      $(window).on('load resize', function () {
+        $(container).height($(container + ' img:eq(1)').height());
+      });
+    }
+  }]);
+
+  return Slider;
+}();
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider__ = __webpack_require__(15);
+var bootstrap = __webpack_require__(18);
+var baguetteBox = __webpack_require__(17);
+var jqueryEasing = __webpack_require__(24);
+var matchHeight = __webpack_require__(23);
+
 
 $(function () {
-  runSlider(5000);
+  __WEBPACK_IMPORTED_MODULE_0__slider__["a" /* Slider */].run('.slider-container', 5000);
   baguetteBox.run('.gallery');
   $('.product-card .match').matchHeight();
 });
@@ -27589,22 +27627,10 @@ $(window).on('load', function () {
     'overflow': 'visible'
   });
 });
-
-// Set slider height on load and resize
-$(window).on('load resize', function () {
-  $('.slider-container').height($('.slider-container img:eq(1)').height());
-});
-
-function runSlider(duration) {
-  $(".slider-container div:gt(1)").hide();
-  setInterval(function () {
-    $('.slider-container > div:eq(1)').fadeOut(700).next().fadeIn(700).end().appendTo('.slider-container');
-  }, duration);
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -27621,7 +27647,7 @@ function runSlider(duration) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -30005,11 +30031,11 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */,
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -30406,7 +30432,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -30579,13 +30605,13 @@ $.extend( $.easing,
 
 
 /***/ }),
-/* 24 */,
 /* 25 */,
 /* 26 */,
 /* 27 */,
 /* 28 */,
 /* 29 */,
-/* 30 */
+/* 30 */,
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(9);

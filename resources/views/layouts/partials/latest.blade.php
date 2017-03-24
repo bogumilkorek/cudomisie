@@ -26,7 +26,7 @@
             {{ $ltProduct->price }} {{__('$') }}
           </h3>
           <br />
-          <a href="{{ $ltProduct->categories->first()->slug }}/{{ $ltProduct->slug }}" class="btn-dashed">
+          <a href="{{ route('user.products.show', [$ltProduct->categories->first(), $ltProduct]) }}" class="btn-dashed">
             <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
           </a>
         </div>
