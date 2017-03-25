@@ -1,5 +1,11 @@
 {
   "$": "zł",
+  "Homepage": "Serdecznie witamy",
+  "About us": "O nas",
+  "Shipping": "Wysyłka",
+  "Terms of use": "Regulamin",
+  "Feedback": "Opinie",
+  "Contact", "Kontakt":
   "Show more": "Więcej",
   "No data": "Brak danych",
   "Phone number must be 9 digits": "Numer telefonu musi zawierać 9 cyfr",

@@ -22,8 +22,14 @@ class DesiredValueSeeder extends Seeder
       ]);
 
       // Insert desired pages to match navigation bar
-      $desiredTitles = ['Serdecznie witamy', 'O nas',
-      'Wysyłka', 'Regulamin', 'Opinie', 'Kontakt'];
+      $desiredTitles = [
+        __('Homepage'),
+        __('About us'),
+        __('Shipping'),
+        __('Terms of use'),
+        __('Feedback'),
+        __('Contact'),
+      ];
 
       foreach($desiredTitles as $dTitle)
       {
