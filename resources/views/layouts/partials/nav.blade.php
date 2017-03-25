@@ -13,18 +13,24 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
-          <a href="{{ route('user.homepage.show') }}"><i class="fa fa-home" aria-hidden="true"></i></a>
+          <a href="{{ route('user.pages.show', str_slug(__('Homepage'))) }}">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </a>
         </li>
         <li>
-          <a href="{{ route('user.blogPosts.index') }}">Blog</a>
+          <a href="{{ route('user.blogPosts.index') }}">
+            {{ __('Blog') }}
+          </a>
         </li>
         <li>
-          <a href="{{ route('user.pages.show', 'o-nas') }}">O nas</a>
+          <a href="{{ route('user.pages.show', str_slug(__('About us'))) }}">
+            {{ __('About us') }}
+          </a>
         </li>
         <li class="dropdown">
                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                aria-haspopup="true" aria-expanded="false">
-                 Oferta <span class="caret"></span>
+                 {{ __('Products') }} <span class="caret"></span>
                </a>
                <ul class="dropdown-menu">
                   @foreach ($categories as $category)
@@ -37,16 +43,24 @@
                </ul>
              </li>
         <li>
-          <a href="{{ route('user.pages.show', 'wysylka') }}">Wysyłka</a>
+          <a href="{{ route('user.pages.show', str_slug(__('Shipment'))) }}">
+            {{ __('Shipment') }}
+          </a>
         </li>
         <li>
-          <a href="{{ route('user.pages.show', 'regulamin') }}">Regulamin</a>
+          <a href="{{ route('user.pages.show', str_slug(__('Terms of use'))) }}">
+            {{ __('Terms of use') }}
+          </a>
         </li>
         <li>
-          <a href="{{ route('user.pages.show', 'opinie') }}">Opinie</a>
+          <a href="{{ route('user.pages.show', str_slug(__('Feedback'))) }}">
+            {{ __('Feedback') }}
+          </a>
         </li>
         <li>
-          <a href="{{ route('user.pages.show', 'kontakt') }}">Kontakt</a>
+          <a href="{{ route('user.pages.show', str_slug(__('Contact'))) }}">
+            {{ __('Contact') }}
+          </a>
         </li>
         <li>
           <a href="{{ route('cart.show') }}">

@@ -27,11 +27,11 @@ Route::group(['prefix' => __('admin')], function () {
 });
 
 // Shopping cart
-Route::get('cart/show', 'CartController@show')->name('cart.show');
-Route::post('cart/addItem', 'CartController@addItem')->name('cart.add');
-Route::put('cart/updateItem', 'CartController@updateItem')->name('cart.update');
-Route::delete('cart/removeItem', 'CartController@removeItem')->name('cart.remove');
-Route::delete('cart/clear', 'CartController@clear')->name('cart.clear');
+Route::get(__('cart') . '/show', 'CartController@show')->name('cart.show');
+Route::post(__('cart') . '/addItem', 'CartController@addItem')->name('cart.add');
+Route::put(__('cart') . '/updateItem', 'CartController@updateItem')->name('cart.update');
+Route::delete(__('cart') . '/removeItem', 'CartController@removeItem')->name('cart.remove');
+Route::delete(__('cart') . '/clear', 'CartController@clear')->name('cart.clear');
 
 // User
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');

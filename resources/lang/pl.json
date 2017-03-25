@@ -1,8 +1,10 @@
 {
   "$": "zł",
+  "cart": "koszyk",
   "Homepage": "Serdecznie witamy",
   "About us": "O nas",
-  "Shipping": "Wysyłka",
+  "Prodcts": "Oferta",
+  "Shipment": "Wysyłka",
   "Terms of use": "Regulamin",
   "Feedback": "Opinie",
   "Contact": "Kontakt",
