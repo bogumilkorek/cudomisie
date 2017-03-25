@@ -1,0 +1,42 @@
+body {
+  background: #F3F3F3 url(images/cudomisie-tlo.png);
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+}
+
+input:invalid, textarea:invalid {
+    color: #FF0000;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: $text-color;
+  text-decoration: none;
+}
+
+hr {
+  border-top: 1px dashed #333;
+}
+
+h1, h2, h3 {
+  font-family: 'Courgette';
+  text-align: center;
+}
+
+h1 img {
+  display: inline-block;
+  width: 50px;
+  vertical-align: bottom;
+}
+
+section {
+  width: 100%;
+  margin: 0px auto;
+  padding: 25px 0px 50px 0px;
+  background: transparent;
+
+  &.blue {
+    background: #BCE2F7;
+  }
+}

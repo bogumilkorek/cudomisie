@@ -1,0 +1,24 @@
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  padding: 12px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  background: #FFF;
+  color: $text-color;
+  box-shadow: 0 0 0 4px #FFF, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  border: 1px dashed rgba(0, 0, 0, .4);
+  margin: 0px 10px;
+}
+
+.btn-dashed {
+  padding: 12px 16px;
+  background: #F3F3F3;
+  font-family: 'Courgette';
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px #F3F3F3, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  border: 1px dashed rgba(0, 0, 0, .4);
+  margin: 15px;
+}

@@ -1,0 +1,35 @@
+.row.is-flex {
+  display: flex;
+  flex-wrap: wrap;
+  &  > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+  }
+}
+
+.product-card {
+  font-family: 'Noto Sans', sans-serif;
+  text-align: center;
+  color: #031C30;
+  background: transparent;
+  height: 100%;
+  margin: 20px 5px;
+  padding: 0px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px #FFF, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  & p {
+    font-weight: bold;
+    padding: 10px;
+  }
+  & h3 {
+    padding: 0px;
+    margin: 0px;
+  }
+  & img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
