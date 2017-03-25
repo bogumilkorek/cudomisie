@@ -28042,7 +28042,9 @@ __webpack_require__(13);
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var sweetalert = __webpack_require__(30);
+/* WEBPACK VAR INJECTION */(function($) {var _this = this;
+
+var sweetalert = __webpack_require__(30);
 var datatables = __webpack_require__(22);
 var datatablesBootstrap = __webpack_require__(20);
 
@@ -28052,7 +28054,7 @@ $(function () {
 
   // Get loading icon on form submit
   $('form').on('submit', function (e) {
-    var $this = $(this);
+    var $this = $(_this);
     var submitButton = $this.find('button[type=submit]');
     submitButton.html(submitButton.data('loading-text')).prop('disabled', 'disabled');
   });
@@ -28060,7 +28062,7 @@ $(function () {
   // Enable sweet alert confirmation for content delete
   $(".btn-delete").on('click', function (e) {
     e.preventDefault();
-    confirmDelete($(this));
+    confirmDelete($(_this));
   });
 
   // Enable and config datatables
