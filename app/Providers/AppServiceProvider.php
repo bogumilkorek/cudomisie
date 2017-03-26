@@ -62,6 +62,9 @@ class AppServiceProvider extends ServiceProvider
       ->get();
 
       View::share('latestProducts', $latestProducts);
+      // View::composer('*', function($view) {
+      //   $view->with('latestProducts', $latestProducts);
+      // });
     }
   }
 
