@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Laravel\Dusk\DuskServiceProvider;
 use App\Page;
 use App\Product;
 use App\Category;
@@ -23,21 +24,15 @@ class AppServiceProvider extends ServiceProvider
     // Fix database error
     Schema::defaultStringLength(191);
 
-
+    // Set morph map for polymorphic relation
     Relation::morphMap([
       'products' => 'App\Product',
       'pages' => 'App\Page',
     ]);
 
-
     // Create slug before adding and updating page, product, category and blog post
     $this->createSlugs(['Page', 'Product', 'Category', 'BlogPost']);
 
-    // Get latest products and share it to all views
-    $this->getLatestProducts();
-
-    // Get categories and share it to all views (for nav)
-    $this->getCategories();
   }
 
   /**
@@ -47,35 +42,9 @@ class AppServiceProvider extends ServiceProvider
   */
   public function register()
   {
-    //
-  }
-
-  public function getLatestProducts() {
-    // Allow migrations to work
-    if(!app()->runningInConsole()) {
-
-      // Get 6 latest active products and attach it to a view
-      $latestProducts = Product::where('hidden', NULL)
-      ->orderBy('id', 'desc')
-      ->with('categories')
-      ->with('images')
-      ->take(6)
-      ->get();
-
-      View::composer('layouts.partials.latest', function($view) use ($latestProducts) {
-        $view->with('latestProducts', $latestProducts);
-      });
-    }
-  }
-
-  public function getCategories() {
-    // Allow migrations to work
-    if(!app()->runningInConsole()) {
-      $categories = Category::orderBy('title', 'asc')
-      ->get();
-
-      View::share('categories', $categories);
-    }
+    if ($this->app->environment('local', 'testing')) {
+       $this->app->register(DuskServiceProvider::class);
+   }
   }
 
   public function createSlugs($modelNames) {

@@ -7,14 +7,14 @@ $(() => {
   $('.nav > li > a[href="'+ window.location+ '"]').parent().addClass('active');
 
   // Get loading icon on form submit
-  $('form').on('submit', (e) => {
-      var $this = $(this);
-      var submitButton = $this.find('button[type=submit]');
+  $('form').on('submit', function(e) {
+      let $this = $(this);
+      let submitButton = $this.find('button[type=submit]');
       submitButton.html(submitButton.data('loading-text')).prop('disabled', 'disabled');
   });
 
   // Enable sweet alert confirmation for content delete
-  $(".btn-delete").on('click', (e) => {
+  $(".btn-delete").on('click', function(e) {
     e.preventDefault();
     confirmDelete($(this));
   });
