@@ -53,7 +53,8 @@ class AppServiceProvider extends ServiceProvider
   public function getLatestProducts() {
     // Allow migrations to work
     if(!app()->runningInConsole()) {
-      // Get 6 latest active products
+
+      // Get 6 latest active products and attach it to a view
       $latestProducts = Product::where('hidden', NULL)
       ->orderBy('id', 'desc')
       ->with('categories')
@@ -61,10 +62,9 @@ class AppServiceProvider extends ServiceProvider
       ->take(6)
       ->get();
 
-      View::share('latestProducts', $latestProducts);
-      // View::composer('*', function($view) {
-      //   $view->with('latestProducts', $latestProducts);
-      // });
+      View::composer('layouts.partials.latest', function($view) use ($latestProducts) {
+        $view->with('latestProducts', $latestProducts);
+      });
     }
   }
 
