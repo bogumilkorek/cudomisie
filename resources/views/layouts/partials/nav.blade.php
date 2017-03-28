@@ -72,6 +72,11 @@
             <i class="fa fa-search" aria-hidden="true"></i>
           </a>
         </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+          </a>
+        </li>
       </ul>
     </div>
 

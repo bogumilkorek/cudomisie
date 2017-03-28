@@ -1,8 +1,9 @@
 <section id="latest">
 
-  @component('productGrid', [
+  @component('components.itemGrid', [
   'title' => __('Latest products'),
-  'products' => $latestProducts
+  'type' => 'products',
+  'items' => $latestProducts
   ])
   @endcomponent
 

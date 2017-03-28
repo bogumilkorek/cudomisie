@@ -3,7 +3,7 @@
   "Service Unavailable": "Trwa aktualizacja strony",
   "$": "zł",
   "cart": "koszyk",
-  "Description": "Opis",f
+  "Description": "Opis",
   "E-Mail Address": "Adres e-mail",
   "Register": "Załóż konto",
   "Password": "Hasło",
@@ -55,6 +55,8 @@
   "Save": "Zapisz",
   "Title": "Tytuł",
   "Content": "Opis",
+  "Price": "Cena",
+  "Dimensions": "Wymiary",
   "Page created!": "Nowa podstrona została dodana!",
   "Page updated!": "Podstrona została zaktualizowana!",
   "Page deleted!": "Podstrona została usunięta!",
