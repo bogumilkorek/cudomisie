@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 
-@section('description')
+@section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2>{{ __('Products') }}</h2>
+      <h2>{{ __('Orders') }}</h2>
       <hr>
       <div class="row">
         <div class="col-md-4">
-          <a href="{{ route('products.create') }}">
+          <a href="{{ route('orders.create') }}">
             <button class="btn btn-primary">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              {{ __('Add new product') }}
+              {{ __('Add new order') }}
             </button>
           </a>
         </div>
@@ -20,38 +20,42 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
-            <th>{{ __('Title') }}</th>
-            <th>{{ __('Description') }}</th>
-            <th>{{ __('Categories') }}</th>
-            <th>{{ __('Price') }}</th>
-            <th>{{ __('Dimensions') }}</th>
+            <th>{{ __('Id') }}</th>
+            <th>{{ __('Products') }}</th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('E-mail') }}</th>
+            <th>{{ __('Phone') }}</th>
+            <th>{{ __('Address') }}</th>
+            <th>{{ __('Comments') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($products as $product)
+          @foreach($orders as $order)
           <tr>
             <td>
-              <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" target="_blank">
-                {{ $product->title }}
+              <a href="{{ route('orders.show', $order) }}" target="_blank">
+                {{ $order->id }}
               </a>
             </td>
-            <td>{!! str_limit($product->description, 100) !!}</td>
             <td>
-              @foreach($product->categories as $category)
-                {{ $category->title }}<br />
+              @foreach($order->products as $product)
+                {{ $product->title }}<br />
               @endforeach
             </td>
-            <td>{{ $product->price }}</td>
-            <td>{{ $product->dimensions }}</td>
+            <td>{{ $order->name }}</td>
+            <td>{{ $order->email }}</td>
+            <td>{{ $order->phone }}</td>
+            <td>{{ $order->address }}</td>
+            <td>{{ $order->comments }}</td>
             <td class="text-center actions">
-              <a href="{{ route('products.edit', $product) }}" class="btn btn-success btn-icon">
+              <a href="{{ route('orders.edit', $product) }}" class="btn btn-success btn-icon">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="{{ __('Edit') }}"></span>
               </a>
             </td>
             <td class="text-center actions">
-              <form method="post" action="{{ route('products.destroy', $product) }}" style="display: inline-block">
+              <form method="post" action="{{ route('orders.destroy', $order) }}" style="display: inline-block">
                 {{ method_field('DELETE') }}
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-danger btn-icon btn-delete"
