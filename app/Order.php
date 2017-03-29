@@ -9,10 +9,11 @@ class Order extends Model
   protected $fillable = [
     'name', 'email', 'phone', 'address', 'comments'
   ];
-  
+
   public function products()
   {
-    return $this->belongsToMany('App\Product');
+    return $this->belongsToMany('App\Product')
+    ->withPivot('product_title', 'product_quantity', 'product_price');
   }
 
   public function orderStatus()

@@ -11,13 +11,13 @@
       @component('alert', ['errors' => $errors])
       @endcomponent
 
-      <form method="POST" action="{{ route('shippingMethods.update', $shippingMethod) }}">
+      <form method="POST" action="{{ route('shippingMethods.update', $shipping_method) }}">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
 
         @include('shippingMethods.form')
 
-        <input type="hidden" name="id" value="{{ $shippingMethod->id }}" />
+        <input type="hidden" name="id" value="{{ $shipping_method->id }}" />
 
         <button type="submit" class="btn btn-primary"
           data-loading-text="<i class='fa fa-cog fa-spin'></i> {{ __('Loading') }}">

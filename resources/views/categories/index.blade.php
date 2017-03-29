@@ -21,6 +21,7 @@
         <thead>
           <tr>
             <th>{{ __('Title') }}</th>
+            <th>{{ __('Products') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
@@ -32,6 +33,13 @@
               <a href="{{ route('user.categories.show', $category) }}" target="_blank">
                 {{ $category->title }}
               </a>
+            </td>
+            <td>
+              @forelse($category->products as $product)
+                {{ $product->title }}<br />
+              @empty
+                {{ __('Nope') }}
+              @endforelse
             </td>
             <td class="text-center actions">
               <a href="{{ route('categories.edit', $category) }}" class="btn btn-success btn-icon">
@@ -57,3 +65,4 @@
     </div>
   </div>
 </div>
+@endsection

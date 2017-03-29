@@ -24,9 +24,8 @@
             <th>{{ __('Products') }}</th>
             <th>{{ __('Status') }}</th>
             <th>{{ __('Shipping method') }}</th>
-            <th>{{ __('Total cost') }}</th>
+            <th>{{ __('Total') }}</th>
             <th>{{ __('Comments') }}</th>
-            <th>{{ __('Date') }}</th>
             <th class="sorting_disabled">{{ __('Show') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
@@ -39,9 +38,9 @@
                 {{ $order->id }}
               </a>
             </td>
-            <td>
+            <td width="400">
               @foreach($order->products as $product)
-                {{ $product->title }}<br />
+                {{ $product->pivot->product_title }} - {{ $product->pivot->product_quantity }} {{ __('pcs.') }}<br />
               @endforeach
             </td>
             <td>{{ $order->orderStatus->title }}</td>
@@ -54,7 +53,6 @@
                 {{ __('Nope') }}
               @endif
             </td>
-            <td width="135">{{ $order->created_at }}</td>
             <td class="text-center actions">
               <a href="{{ route('orders.show', $order) }}" class="btn btn-success btn-icon">
                 <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="{{ __('Show') }}"></span>
@@ -79,3 +77,4 @@
     </div>
   </div>
 </div>
+@endsection

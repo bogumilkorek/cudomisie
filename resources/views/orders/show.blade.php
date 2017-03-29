@@ -13,7 +13,7 @@
     <p>
       <b>{{ __('Products') }}:</b><br />
       @foreach($order->products as $product)
-        {{ $product->title }}<br />
+        {{ $product->pivot->product_title }} ({{ $product->pivot->product_price }}) - {{ $product->pivot->product_quantity }} {{ __('pcs.') }}<br />
       @endforeach
       <br />
       <b>{{ __('Status') }}:</b><br />{{ $order->orderStatus->title }}<br /><br />

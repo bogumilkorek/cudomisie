@@ -19,7 +19,7 @@ class DesiredValueSeeder extends Seeder
     $this->insertPages([
       __('Homepage'),
       __('About us'),
-      __('Shipping'),
+      __('Shipment'),
       __('Terms of use'),
       __('Feedback'),
       __('Contact'),

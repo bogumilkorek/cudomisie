@@ -21,11 +21,10 @@ class OrderController extends Controller
      public function index()
      {
          $orders = Order::orderBy('id', 'desc')
-         ->with('products')
          ->with('orderStatus')
          ->with('shippingMethod')
          ->get();
-         
+
          return view('orders.index')->withOrders($orders);
      }
 

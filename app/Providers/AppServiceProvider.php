@@ -11,6 +11,8 @@ use App\Page;
 use App\Product;
 use App\Category;
 use App\BlogPost;
+use App\Order;
+use Webpatser\Uuid\Uuid;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,11 @@ class AppServiceProvider extends ServiceProvider
     // Create slug before adding and updating page, product, category and blog post
     $this->createSlugs(['Page', 'Product', 'Category', 'BlogPost']);
 
+    // Automatically insert uuid when creating new order
+    Order::creating(function($instance) {
+      $instance->uuid = Uuid::generate();
+      return true;
+    });
   }
 
   /**

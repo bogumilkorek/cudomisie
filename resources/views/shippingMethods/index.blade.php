@@ -21,6 +21,8 @@
         <thead>
           <tr>
             <th>{{ __('Title') }}</th>
+            <th>{{ __('Price') }}</th>
+            <th>{{ __('Cash on delivery') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
@@ -30,6 +32,12 @@
           <tr>
             <td>
                 {{ $shippingMethod->title }}
+            </td>
+            <td>
+                {{ $shippingMethod->price }}
+            </td>
+            <td>
+                {{ $shippingMethod->cash_on_delivery }}
             </td>
             <td class="text-center actions">
               <a href="{{ route('shippingMethods.edit', $shippingMethod) }}" class="btn btn-success btn-icon">
@@ -55,3 +63,4 @@
     </div>
   </div>
 </div>
+@endsection
