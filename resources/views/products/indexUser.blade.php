@@ -3,9 +3,9 @@
 @section('content')
 
   @component('components.productGrid', [
-  'title' => $category->title,
+  'title' => __('Products'),
   'products' => $products,
-  'pagination' => false
+  'pagination' => true
   ])
   @endcomponent
 

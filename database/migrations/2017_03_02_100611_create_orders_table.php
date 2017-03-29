@@ -18,7 +18,8 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('order_status_id')->unsigned();
             $table->string('shipping_method_id')->unsigned;
-            $table->float('shipping_cost')->unsigned();
+            $table->string('shipping_cost');
+            $table->string('total_cost');
             $table->string('name');
             $table->string('email');
             $table->string('phone');

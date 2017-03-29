@@ -16,13 +16,11 @@ class DatabaseSeeder extends Seeder
     $this->call(DesiredValueSeeder::class);
 
     // Run model factories
-    // Image creates Pages and Products
-    factory(App\Image::class, 50)->create();
+    // Image creates Pages, Products and Blog posts
+    factory(App\Image::class, 90)->create();
     factory(App\User::class, 9)->create();
-    factory(App\BlogPost::class, 30)->create();
     factory(App\Category::class, 10)->create();
     factory(App\ShippingMethod::class, 5)->create();
-    factory(App\OrderStatus::class, 5)->create();
     factory(App\Order::class, 20)->create();
 
     // Seed pivot tables

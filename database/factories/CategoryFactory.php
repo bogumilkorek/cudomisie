@@ -2,6 +2,6 @@
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
 
   return [
-    'title' => $faker->sentence(5),
+    'title' => $faker->sentence(2),
   ];
 });

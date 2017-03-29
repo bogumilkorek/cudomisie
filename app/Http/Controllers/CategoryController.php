@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use Alert;
 
@@ -55,7 +56,11 @@ class CategoryController extends Controller
        */
        public function show(Category $category)
        {
-         return view('categories.show')->withCategory($category);
+         $products = Product::whereHas('categories', function($q) use($category) {
+           $q->where('category_id', '=', $category->id);
+         })->get();
+
+         return view('categories.show')->withCategory($category)->withProducts($products);
        }
 
     /**

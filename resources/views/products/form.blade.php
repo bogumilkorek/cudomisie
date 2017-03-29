@@ -13,12 +13,12 @@
 
 <div class="form-group">
   <label for="price">{{ __('Price') }}</label>
-  <input type="text" class="form-control" pattern="[0-9]{1-3}\.[0-9]{2}" name="price"
-  value="{{ old('price',  isset($product) ? $product->price : null) }}" title="{{ __('Correct form') }}: 99.90" required>
+  <input type="text" class="form-control" pattern="[0-9]{1,3}\.[0-9]{2} .{1,3}" name="price"
+  value="{{ old('price',  isset($product) ? $product->price : null) }}" title="{{ __('Correct form') }}: 99.90 {{  __('$') }}" required>
 </div>
 
 <div class="form-group">
   <label for="dimensions">{{ __('Dimensions') }}</label>
-  <input type="text" class="form-control" pattern="[0-9]{1,3}x[0-9]{1,3}" name="dimensions"
-  value="{{ old('dimensions',  isset($product) ? $product->dimensions : null) }}" title="{{ __('Correct form') }}: 25x60" required>
+  <input type="text" class="form-control" pattern="[0-9]{1,3}x[0-9]{1,3} [a-z]{2}" name="dimensions"
+  value="{{ old('dimensions',  isset($product) ? $product->dimensions : null) }}" title="{{ __('Correct form') }}: 25x60 cm" required>
 </div>

@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->text('description');
-            $table->float('price')->unsigned();
+            $table->string('price');
             $table->string('dimensions');
             $table->boolean('hidden')->nullable();
             $table->timestamps();

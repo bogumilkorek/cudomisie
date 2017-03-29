@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <h2>{{ __('Orders') }}</h2>
       <hr>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-4">
           <a href="{{ route('orders.create') }}">
             <button class="btn btn-primary">
@@ -16,18 +16,18 @@
           </a>
         </div>
       </div>
-      <br />
+      <br /> -->
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
             <th>{{ __('Id') }}</th>
             <th>{{ __('Products') }}</th>
-            <th>{{ __('Name') }}</th>
-            <th>{{ __('E-mail') }}</th>
-            <th>{{ __('Phone') }}</th>
-            <th>{{ __('Address') }}</th>
+            <th>{{ __('Status') }}</th>
+            <th>{{ __('Shipping method') }}</th>
+            <th>{{ __('Total cost') }}</th>
             <th>{{ __('Comments') }}</th>
-            <th class="sorting_disabled">{{ __('Edit') }}</th>
+            <th>{{ __('Date') }}</th>
+            <th class="sorting_disabled">{{ __('Show') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
         </thead>
@@ -44,14 +44,20 @@
                 {{ $product->title }}<br />
               @endforeach
             </td>
-            <td>{{ $order->name }}</td>
-            <td>{{ $order->email }}</td>
-            <td>{{ $order->phone }}</td>
-            <td>{{ $order->address }}</td>
-            <td>{{ $order->comments }}</td>
+            <td>{{ $order->orderStatus->title }}</td>
+            <td>{{ $order->shippingMethod->title }} ({{ $order->shipping_cost }})</td>
+            <td>{{ $order->total_cost }}</td>
+            <td>
+              @if($order->comments)
+                {{ $order->comments }}
+              @else
+                {{ __('Nope') }}
+              @endif
+            </td>
+            <td width="135">{{ $order->created_at }}</td>
             <td class="text-center actions">
-              <a href="{{ route('orders.edit', $product) }}" class="btn btn-success btn-icon">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="{{ __('Edit') }}"></span>
+              <a href="{{ route('orders.show', $order) }}" class="btn btn-success btn-icon">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="{{ __('Show') }}"></span>
               </a>
             </td>
             <td class="text-center actions">

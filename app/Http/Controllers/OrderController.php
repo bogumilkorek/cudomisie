@@ -22,7 +22,10 @@ class OrderController extends Controller
      {
          $orders = Order::orderBy('id', 'desc')
          ->with('products')
+         ->with('orderStatus')
+         ->with('shippingMethod')
          ->get();
+         
          return view('orders.index')->withOrders($orders);
      }
 
@@ -60,10 +63,6 @@ class OrderController extends Controller
          return view('orders.show')->withOrder($order);
        }
 
-       public function showHomeorder()
-       {
-         return view('orders.show')->withOrder(Order::first());
-       }
        /**
        * Show the form for editing the specified resource.
        *

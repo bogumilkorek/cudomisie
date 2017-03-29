@@ -19,6 +19,14 @@ class BlogPostController extends Controller
          $blogPosts = BlogPost::orderBy('title', 'asc')->get();
          return view('blogPosts.index')->withBlogPosts($blogPosts);
      }
+     public function indexUser()
+     {
+         $blogPosts = BlogPost::orderBy('id', 'desc')
+         ->with('images')
+         ->paginate(9);
+
+         return view('blogPosts.indexUser')->withBlogPosts($blogPosts);
+     }
 
        /**
        * Show the form for creating a new resource.

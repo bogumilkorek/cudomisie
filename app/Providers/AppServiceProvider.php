@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     Relation::morphMap([
       'products' => 'App\Product',
       'pages' => 'App\Page',
+      'blogPosts' => 'App\BlogPost',
     ]);
 
     // Create slug before adding and updating page, product, category and blog post

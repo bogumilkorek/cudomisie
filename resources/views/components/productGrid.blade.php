@@ -8,23 +8,23 @@
 
   <div class="container-fluid">
 
-    @forelse (array_chunk($items->all(), 3) as $itemRow)
+    @forelse (array_chunk($products->all(), 3) as $productRow)
 
     <div class="row is-flex">
 
-      @foreach ($itemRow as $item)
+      @foreach ($productRow as $product)
 
       <div class="col-md-4">
         <div class="product-card">
-          <img src="{{ $item->images->first()->url }}">
+          <img src="{{ $product->images->first()->url }}">
         <p class="match">
-          {{ $item->title }}
+          {{ $product->title }}
         </p>
         <h3>
-          {{ $item->price }} {{__('$') }}
+          {{ $product->price }}
         </h3>
         <br />
-        <a href="{{ route('user.products.show', [$item->categories->first(), $item]) }}" class="btn-dashed">
+        <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" class="btn-dashed">
           <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
         </a>
       </div>
@@ -35,12 +35,18 @@
     </div>
 
     @empty
-      <h4>
+      <h3>
         {{ __('No data') }}
-      </h4>
+      </h3>
 
     @endforelse
 
   </div>
+
+  @if($pagination)
+  <div class="text-center">
+    {{ $products->links() }}
+  </div>
+  @endif
 
 </div>

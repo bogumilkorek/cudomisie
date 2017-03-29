@@ -29,6 +29,17 @@ class ProductController extends Controller
          return view('products.index')->withProducts($products);
      }
 
+     public function indexUser()
+     {
+         $products = Product::where('hidden', NULL)
+         ->orderBy('id', 'desc')
+         ->with('categories')
+         ->with('images')
+         ->paginate(9);
+
+         return view('products.indexUser')->withProducts($products);
+     }
+
        /**
        * Show the form for creating a new resource.
        *
@@ -58,7 +69,7 @@ class ProductController extends Controller
        * @param  \App\Product  $product
        * @return \Illuminate\Http\Response
        */
-       public function show(Product $product)
+       public function show(Category $category, Product $product)
        {
          return view('products.show')->withProduct($product);
        }

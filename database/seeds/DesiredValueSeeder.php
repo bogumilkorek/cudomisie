@@ -12,30 +12,57 @@ class DesiredValueSeeder extends Seeder
   */
   public function run()
   {
-    // Insert admin (first user)
+    // Insert admin (first user) e-mail and password
+    $this->insertAdmin('admin@cudomisie.app', 'secret');
+
+    // Insert desired pages to match navigation bar
+    $this->insertPages([
+      __('Homepage'),
+      __('About us'),
+      __('Shipping'),
+      __('Terms of use'),
+      __('Feedback'),
+      __('Contact'),
+    ]);
+
+    // Insert order statuses (better readability than faker)
+    $this->insertOrderStatuses([
+      __('Waiting for payment'),
+      __('Processing'),
+      __('Package sent'),
+      __('Completed'),
+      __('Canceled'),
+    ]);
+  }
+
+  public function insertAdmin($email, $password)
+  {
     factory(App\User::class)->create([
         'name' => 'Your beloved admin',
-        'email' => 'admin@cudomisie.app',
-        'password' => bcrypt('secret'),
+        'email' => $email,
+        'password' => bcrypt($password),
         'phone' => 'restricted',
         'address' => 'restricted',
       ]);
+  }
 
-      // Insert desired pages to match navigation bar
-      $desiredTitles = [
-        __('Homepage'),
-        __('About us'),
-        __('Shipping'),
-        __('Terms of use'),
-        __('Feedback'),
-        __('Contact'),
-      ];
+  public function insertPages($data) {
 
-      foreach($desiredTitles as $dTitle)
-      {
-        factory(App\Page::class)->create([
-          'title' => $dTitle,
-        ]);
-      }
+    foreach($data as $title)
+    {
+      factory(App\Page::class)->create([
+        'title' => $title,
+      ]);
+    }
+  }
+
+  public function insertOrderStatuses($data) {
+
+    foreach($data as $title)
+    {
+      factory(App\OrderStatus::class)->create([
+        'title' => $title,
+      ]);
+    }
   }
 }

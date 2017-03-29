@@ -26,9 +26,9 @@ class PivotTableSeeder extends Seeder
     }
 
 
-    for($i = 0; $i < 10; $i++)
+    for($i = 1; $i <= App\Order::all()->count(); $i++)
     {
-      $order_id = App\Order::select('id')->orderByRaw("RAND()")->first()->id;
+      $order_id = $i;
       $product_id = App\Product::select('id')->orderByRaw("RAND()")->first()->id;
       $product_title = App\Product::find($product_id)->title;
       $product_price = App\Product::find($product_id)->price;

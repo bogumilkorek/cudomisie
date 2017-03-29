@@ -27,16 +27,17 @@ Route::group(['prefix' => __('admin')], function () {
 });
 
 // Shopping cart
-Route::get(__('cart') . '/show', 'CartController@show')->name('cart.show');
+Route::get(__('cart'), 'CartController@show')->name('cart.show');
 Route::post(__('cart') . '/addItem', 'CartController@addItem')->name('cart.add');
 Route::put(__('cart') . '/updateItem', 'CartController@updateItem')->name('cart.update');
 Route::delete(__('cart') . '/removeItem', 'CartController@removeItem')->name('cart.remove');
 Route::delete(__('cart') . '/clear', 'CartController@clear')->name('cart.clear');
 
 // User
-Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
+Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
+Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.show');
 Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.blogPosts.show');
-Route::get(__('blog'), 'BlogPostController@index')->name('user.blogPosts.index');
+Route::get(__('blog'), 'BlogPostController@indexUser')->name('user.blogPosts.index');
 Route::get('{page}', 'PageController@show')->name('user.pages.show');
 Route::get('/', 'PageController@showHomepage')->name('user.homepage.show');
