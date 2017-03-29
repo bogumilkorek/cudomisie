@@ -21,7 +21,7 @@ Route::group(['prefix' => __('admin')], function () {
   Route::resource('categories', 'CategoryController');
   Route::resource('orders', 'OrderController');
   Route::resource('orderStatuses', 'OrderStatusController');
-  Route::resource('shippingMethods', 'ShippingMethodController', ['except' => 'show']);
+  Route::resource('shippingMethods', 'ShippingMethodController');
   Route::resource('pages', 'PageController');
   Route::get('/', 'PageController@index')->name('dashboard');
 });
@@ -34,9 +34,9 @@ Route::delete(__('cart') . '/removeItem', 'CartController@removeItem')->name('ca
 Route::delete(__('cart') . '/clear', 'CartController@clear')->name('cart.clear');
 
 // User
-Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
-Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.show');
+Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
+Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.index');
 Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.blogPosts.show');
 Route::get(__('blog'), 'BlogPostController@indexUser')->name('user.blogPosts.index');
 Route::get('{page}', 'PageController@show')->name('user.pages.show');

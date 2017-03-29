@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth')->except(['index', 'show']);
+      $this->middleware('auth')->except(['indexUser', 'show']);
   }
     /**
      * Display a listing of the resource.
@@ -74,10 +74,6 @@ class ProductController extends Controller
          return view('products.show')->withProduct($product);
        }
 
-       public function showHomeproduct()
-       {
-         return view('products.show')->withProduct(Product::first());
-       }
        /**
        * Show the form for editing the specified resource.
        *
