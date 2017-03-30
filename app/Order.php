@@ -10,6 +10,12 @@ class Order extends Model
     'name', 'email', 'phone', 'address', 'comments'
   ];
 
+  public function getRouteKeyName()
+  {
+    return 'uuid';
+  }
+
+
   public function products()
   {
     return $this->belongsToMany('App\Product')
