@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class CartController extends Controller
 {
   public function show(Request $request)
   {
-      //$request->session()->get('key');
-
+    print_r($request->session()->get('cart.items'));
   }
-  public function addItem(Request $request)
+  public function addItem(Request $request, Product $product)
   {
-      //
+  //  $request->session()->get('cart.items');
+      //$request->session()->push('cart.items', $product->slug);
   }
   public function removeItem(Request $request)
   {
-      //$request->session()->forget('key')
+      $request->session()->pop('cart.items', $product);
   }
   public function update(Request $request)
   {
