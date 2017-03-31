@@ -9,22 +9,25 @@ class CartController extends Controller
 {
   public function show(Request $request)
   {
-    print_r(array_count_values($request->session()->get('cart.items')));
+    return view('cart.show')->withItems($request->session()->get('cart.items'));
   }
   public function addItem(Request $request, Product $product)
   {
-    // $cartItems = $request->session()->get('cart.items') ?? [];
-    // if(!in_array($product->slug, array_column($cartItems, 'slug')))
-    // $request->session()->push('cart.items', ['slug' => $product->slug, 'quantity' => $request->quantity ?? 1]);
-    //print_r($request->session()->get('cart.items'));
-    $request->session()->push('cart.items', $product->slug);
+    $quantity = 1;
+    if($request->session()->has('cart.items.' . $product->slug))
+    {
+      $currentQuantity = $request->session()->get('cart.items.' . $product->slug);
+      $request->session()->forget('cart.items.' . $product->slug);
+    }
+    $quantity += $currentQuantity ?? 0;
+    $request->session()->put('cart.items.' . $product->slug, $quantity);
   }
   public function removeItem(Request $request)
   {
-      $request->session()->pop('cart.items', $product);
+    $request->session()->forget('cart.items.' . $product->slug);
   }
   public function clear(Request $request)
   {
-      $request->session()->flush();
+    $request->session()->flush();
   }
 }
