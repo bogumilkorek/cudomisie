@@ -10,29 +10,35 @@ class CartController extends Controller
 
   public function show(Request $request)
   {
-    $products = Product::whereIn('slug', array_keys($request->session()->get('cart.items') ?? []))->get();
+
+    $items = $request->session()->get('cart.items');
+    $products = Product::whereIn('slug', array_keys($items ?? []))->get();
 
     return view('cart.show')->withProducts($products)
-    ->withQuantities($request->session()->get('cart.items'));
+    ->withQuantities($items);
   }
 
 
   public function addItem(Request $request, Product $product, $quantity = 1)
   {
-    if($request->session()->has('cart.items.' . $product->slug))
+    $item = 'cart.items.' . $product->slug;
+
+    if($request->session()->has($item))
     {
-      $previousQuantity = $request->session()->get('cart.items.' . $product->slug);
+      $previousQuantity = $request->session()->get($item);
       $quantity += $previousQuantity;
-      $request->session()->forget('cart.items.' . $product->slug);
+      $request->session()->forget($item);
     }
-    $request->session()->put('cart.items.' . $product->slug, $quantity);
+    $request->session()->put($item, $quantity);
   }
 
 
   public function updateItem(Request $request, Product $product, $quantity)
   {
-    $request->session()->forget('cart.items.' . $product->slug);
-    $request->session()->put('cart.items.' . $product->slug, $quantity);
+    $item = 'cart.items.' . $product->slug;
+
+    $request->session()->forget($item);
+    $request->session()->put($item, $quantity);
   }
 
 
