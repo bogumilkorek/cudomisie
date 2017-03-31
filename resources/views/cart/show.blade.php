@@ -2,15 +2,17 @@
 
 @section('content')
 
-<h1>
-  <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
-  {{ __('Cart') }}
-</h1>
+  <h1>
+    <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+    {{ __('Cart') }}
+  </h1>
 
-<hr>
+  <hr>
 
-@foreach($items as $item)
-  {{ $item }}<br />
-@endforeach
+  @forelse($products as $product)
+    {{ $product->title  }} - {{ $quantities[$product->slug] }} {{ __('pcs.') }}<br />
+  @empty
+    <h3> {{ __('No data') }} </h3>
+  @endforelse
 
 @endsection
