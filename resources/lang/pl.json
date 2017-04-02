@@ -1,5 +1,7 @@
 {
   "Waiting for payment": "Oczekuje na wpłatę",
+  "Total": "Razem",
+  "Quantity": "Ilość",
   "Processing": "Przyjęte do realizacji",
   "Package sent": "Wysłane",
   "Completed": "Zakończone",
@@ -63,6 +65,10 @@
   "Loading": "Czekaj",
   "Close": "Zamknij",
   "Success": "Sukces",
+  "Item added to cart": "Produkt został dodany do koszyka",
+  "Cart updated": "Koszyk został zaktualizowany",
+  "Item removed from cart": "Produkt został usunięty z koszyka",
+  "Cart cleared": "Koszyk został wyczyszczony",
   "Error": "Wystąpił błąd",
   "Delete": "Usuń",
   "Edit": "Edycja",

@@ -28,9 +28,10 @@ Route::group(['prefix' => __('admin')], function () {
 
 // Shopping cart
 Route::get(__('cart'), 'CartController@show')->name('cart.show');
-Route::get(__('cart') . '/addItem/{product}', 'CartController@addItem')->name('cart.add');
-Route::get(__('cart') . '/removeItem/{product}', 'CartController@removeItem')->name('cart.remove');
-Route::get(__('cart') . '/clear', 'CartController@clear')->name('cart.clear');
+Route::post('cart/addItem', 'CartController@addItem')->name('cart.add');
+Route::put('cart/updateItem', 'CartController@updateItem')->name('cart.update');
+Route::delete('cart/removeItem', 'CartController@removeItem')->name('cart.remove');
+Route::delete('cart/clear', 'CartController@clear')->name('cart.clear');
 
 // User
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');

@@ -27,7 +27,7 @@
         <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" class="btn-dashed">
           <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
         </a>
-        <a href="{{ route('cart.add', $product) }}" class="btn btn-dashed">
+        <a href="#" class="btn btn-dashed cart-add" data-slug="{{ $product->slug }}">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         </a>
       </div>
