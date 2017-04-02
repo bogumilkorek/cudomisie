@@ -7,10 +7,9 @@ use App\Product;
 
 class CartController extends Controller
 {
-
+  
   public function show(Request $request)
   {
-
     $items = $request->session()->get('cart.items');
     $products = Product::whereIn('slug', array_keys($items ?? []))->get();
     $total = 0;
@@ -18,12 +17,10 @@ class CartController extends Controller
     foreach($products as $product)
       $total += floatVal($product->price);
 
-
     return view('cart.show')->withProducts($products)
     ->withQuantities($items)
     ->withTotal($total);
   }
-
 
   public function addItem(Request $request)
   {
@@ -44,7 +41,6 @@ class CartController extends Controller
     ];
   }
 
-
   public function updateItem(Request $request)
   {
     $item = 'cart.items.' . $request->slug;
@@ -59,7 +55,6 @@ class CartController extends Controller
     ];
   }
 
-
   public function removeItem(Request $request)
   {
     $item = 'cart.items.' . $request->slug;
@@ -71,7 +66,6 @@ class CartController extends Controller
       'content' => __('Item removed from cart'),
     ];
   }
-
 
   public function clear(Request $request)
   {
