@@ -169,6 +169,8 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

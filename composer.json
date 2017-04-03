@@ -9,6 +9,7 @@
         "laravel/dusk": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
+        "unisharp/laravel-filemanager": "^1.7",
         "uxweb/sweet-alert": "^1.4",
         "webpatser/laravel-uuid": "2.*"
     },
