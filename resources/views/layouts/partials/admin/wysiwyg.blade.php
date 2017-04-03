@@ -3,6 +3,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.2/adapters/jquery.js" type="text/javascript"></script>
   <script type="text/javascript">
 
+  var options = {
+      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+
   $('textarea').ckeditor({
     on: {
       instanceReady: function (evt) {
@@ -14,6 +21,7 @@
       }
   }
   });
+
 
   // // Frontend validation
   // $('button[type=submit]').on('click', function(e) {
