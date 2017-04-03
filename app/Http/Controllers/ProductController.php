@@ -47,7 +47,8 @@ class ProductController extends Controller
        */
        public function create()
        {
-         return view('products.create');
+         return view('products.create')
+         ->withCategories(Category::all());
        }
 
        /**
@@ -58,7 +59,9 @@ class ProductController extends Controller
        */
        public function store(ProductRequest $request)
        {
-         Product::create($request->all());
+         Product::create($request->all())
+         ->categories()->sync($request->categories, false);
+
          alert()->success( __('Product created!'), __('Success'))->persistent('OK');
          return redirect()->route('products.index');
        }
@@ -82,7 +85,17 @@ class ProductController extends Controller
        */
        public function edit(Product $product)
        {
-         return view('products.edit')->withProduct($product);
+
+         //return json_encode(Category::wherePivot('product_id', $product->id)->get());
+
+         //$product = $product->where('id', $product->id)->with('categories')->get();
+
+         //Category::wherePivot('product_id', $product->id);
+
+
+
+         return view('products.edit')->withProduct($product)
+         ->withCategories(Category::all());
        }
 
        /**
@@ -95,6 +108,12 @@ class ProductController extends Controller
        public function update(ProductRequest $request, Product $product)
        {
          $product->update($request->all());
+
+         if(isset($request->categories))
+           $product->categories()->sync($request->categories);
+         else
+           $product->categories()->sync(array());
+
          alert()->success( __('Product updated!'), __('Success'))->persistent('OK');
          return redirect()->route('products.index');
        }

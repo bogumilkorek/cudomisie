@@ -28,4 +28,10 @@
 
     @include('layouts.partials.admin.wysiwyg')
 
+    @push('scripts')
+      <script type="text/javascript">
+    		$('select').select2().val({!! json_encode($product->categories()->pluck('categories.id')) !!}).trigger('change');
+  	  </script>
+    @endpush
+
     @endsection

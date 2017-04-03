@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('dimensions');
             $table->boolean('hidden')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

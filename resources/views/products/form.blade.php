@@ -5,6 +5,18 @@
 </div>
 
 <div class="form-group">
+  <label for="description">{{ __('Categories') }}</label>
+  <select name="categories[]" multiple required>
+    @foreach($categories as $category)
+      <option value="{{ $category->id }}"
+        @if(old('categories') && in_array($category->id, old('categories'))) selected @endif >
+        {{ $category->title }}
+      </option>
+    @endforeach
+  </select>
+</div>
+
+<div class="form-group">
   <label for="description">{{ __('Content') }}</label>
   <textarea class="form-control" id="description" name="description">
     {{ old('description',  isset($product) ? $product->description : null) }}

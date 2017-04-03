@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
   {
     return [
       'title' => ['required',
-                  Rule::unique('pages')->ignore($this->id),
+                  Rule::unique('products')->ignore($this->id),
                   'max:255'],
       'description' => 'required',
     ];
