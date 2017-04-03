@@ -7,7 +7,7 @@ use App\Product;
 
 class CartController extends Controller
 {
-  
+
   public function show(Request $request)
   {
     $items = $request->session()->get('cart.items');

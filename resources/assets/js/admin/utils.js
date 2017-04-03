@@ -1,6 +1,7 @@
 let sweetalert = require('sweetalert');
 let datatables = require('datatables.net');
 let datatablesBootstrap = require('datatables-bootstrap3-plugin');
+let select2 = require('');
 
 $(() => {
   // Get current URL path and assign 'active' class
