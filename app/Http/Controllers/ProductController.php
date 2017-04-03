@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
      public function index()
      {
-         $products = Product::where('hidden', NULL)
+         $products = Product::where('deleted_at', NULL)
          ->orderBy('id', 'desc')
          ->with('categories')
          ->with('images')
@@ -31,7 +31,7 @@ class ProductController extends Controller
 
      public function indexUser()
      {
-         $products = Product::where('hidden', NULL)
+         $products = Product::where('deleted_at', NULL)
          ->orderBy('id', 'desc')
          ->with('categories')
          ->with('images')

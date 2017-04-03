@@ -11,7 +11,7 @@ class LatestProductComposer
   public function compose(View $view)
   {
       // Get 6 latest active products and attach it to a view
-      $latestProducts = Product::where('hidden', NULL)
+      $latestProducts = Product::where('deleted_at', NULL)
       ->orderBy('id', 'desc')
       ->with('categories')
       ->with('images')
