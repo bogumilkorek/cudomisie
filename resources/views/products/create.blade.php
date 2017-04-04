@@ -16,7 +16,7 @@
 
         @include('products.form')
 
-        <div class="dropzone" id="dropzoneFileUpload"></div>
+        <div class="dropzone" id="realDropzone"></div>
 
         <button type="submit" class="btn btn-primary"
           data-loading-text="<i class='fa fa-cog fa-spin'></i>
@@ -33,9 +33,6 @@
 @push('scripts')
   <script type="text/javascript">
     $('select').select2();
-    $("#dropzoneFileUpload").dropzone({
-                url: "my-upload-url",
-            });
 
 
   </script>

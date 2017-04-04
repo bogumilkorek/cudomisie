@@ -5,7 +5,6 @@ let select2 = require('select2');
 let Dropzone = require('dropzone');
 
 var photo_counter = 0;
-Dropzone.options.myAwesomeDropzone = false;
 Dropzone.options.realDropzone = {
 
     uploadMultiple: false,
