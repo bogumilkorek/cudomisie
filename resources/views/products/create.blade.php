@@ -16,13 +16,20 @@
 
         @include('products.form')
 
-        <div class="dropzone" id="realDropzone"></div>
-
         <button type="submit" class="btn btn-primary"
           data-loading-text="<i class='fa fa-cog fa-spin'></i>
           {{ __('Loading') }}">{{ __('Save') }}
         </button>
         <a href="{{ url()->previous() }}" class="btn btn-default">{{ __('Cancel') }}</a>
+      </form>
+    </div>
+</div>
+    <br /><br />
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{ __('Pictures') }}</h2>
+      <hr>
+      <form action="{{ route('products.store') }}" class="dropzone" id="realDropzone">
       </form>
   </div>
 </div>
@@ -33,8 +40,6 @@
 @push('scripts')
   <script type="text/javascript">
     $('select').select2();
-
-
   </script>
 @endpush
 
