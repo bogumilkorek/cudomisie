@@ -16,6 +16,8 @@
 
         @include('products.form')
 
+        <div class="dropzone" id="dropzoneFileUpload"></div>
+
         <button type="submit" class="btn btn-primary"
           data-loading-text="<i class='fa fa-cog fa-spin'></i>
           {{ __('Loading') }}">{{ __('Save') }}
@@ -31,6 +33,11 @@
 @push('scripts')
   <script type="text/javascript">
     $('select').select2();
+    $("#dropzoneFileUpload").dropzone({
+                url: "my-upload-url",
+            });
+
+
   </script>
 @endpush
 
