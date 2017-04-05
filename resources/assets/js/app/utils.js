@@ -3,6 +3,8 @@ let sweetalert = require('sweetalert');
 let baguetteBox = require('baguettebox.js');
 let jqueryEasing = require('jquery.easing');
 let matchHeight = require('jquery-match-height');
+let smartmenus = require('smartmenus');
+let smartmenusBootstrap = require('smartmenus-bootstrap');
 
 import { slider } from './slider';
 import { cart } from './cart';
