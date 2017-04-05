@@ -33,11 +33,15 @@ Route::put('cart/updateItem', 'CartController@updateItem')->name('cart.update');
 Route::delete('cart/removeItem', 'CartController@removeItem')->name('cart.remove');
 Route::delete('cart/clear', 'CartController@clear')->name('cart.clear');
 
+// Email
+Route::post('email/contact', 'EmailController@contactForm')->name('email.contactForm');
+
 // User
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
 Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.index');
 Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.blogPosts.show');
 Route::get(__('blog'), 'BlogPostController@indexUser')->name('user.blogPosts.index');
+Route::get(__('search') . '/{keywords?}', 'SearchController@search')->name('user.search');
 Route::get('{page}', 'PageController@show')->name('user.pages.show');
 Route::get('/', 'PageController@showHomepage')->name('user.homepage.show');

@@ -57,7 +57,7 @@
       <i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Contact form') }}:
     </h2>
     <hr>
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('email.contactForm') }}">
       {{ csrf_field() }}
       <div class="row">
 
@@ -75,7 +75,7 @@
 
           <div class="form-group">
             <input type="text" pattern="((\+|00)[0-9]{2})?[0-9]{9}" class="form-control"
-            name="name" title="{{ __('Phone number must be 9 digits') }}."
+            name="phone" title="{{ __('Phone number must be 9 digits') }}."
             value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" required>
           </div>
 
@@ -84,7 +84,7 @@
         <div class="col-xs-6">
 
           <div class="form-group">
-            <textarea class="form-control" id="content" name="content" rows="6"
+            <textarea class="form-control" id="content" name="content" rows="6" minlength="20"
             placeholder="{{ __('Content') }}" required>{{ old('content') }}</textarea>
           </div>
 
