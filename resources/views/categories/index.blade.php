@@ -21,6 +21,7 @@
         <thead>
           <tr>
             <th>{{ __('Title') }}</th>
+            <th>{{ __('Parent') }}</th>
             <th>{{ __('Products') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
@@ -33,6 +34,13 @@
               <a href="{{ route('user.categories.show', $category) }}" target="_blank">
                 {{ $category->title }}
               </a>
+            </td>
+            <td>
+              @if(!empty($category->parent))
+                {{ $category->parent->title }}
+              @else
+                {{ __('Nope') }}
+              @endif
             </td>
             <td>
               @forelse($category->products as $product)

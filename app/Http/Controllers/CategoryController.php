@@ -21,9 +21,7 @@ class CategoryController extends Controller
      */
      public function index()
      {
-         $categories = Category::orderBy('title', 'asc')
-         ->with('products')
-         ->get();
+         $categories = Category::orderBy('title', 'asc')->get();
          return view('categories.index')->withCategories($categories);
      }
 
@@ -34,7 +32,7 @@ class CategoryController extends Controller
        */
        public function create()
        {
-         return view('categories.create');
+         return view('categories.create')->withChildren(Category::all());
        }
 
        /**
@@ -73,7 +71,8 @@ class CategoryController extends Controller
      */
      public function edit(Category $category)
      {
-       return view('categories.edit')->withCategory($category);
+       return view('categories.edit')->withCategory($category)
+       ->withChildren(Category::where('id', '!=', $category->id)->get());
      }
 
      /**
