@@ -42,6 +42,6 @@ Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->nam
 Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.index');
 Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.blogPosts.show');
 Route::get(__('blog'), 'BlogPostController@indexUser')->name('user.blogPosts.index');
-Route::get(__('search') . '/{keywords?}', 'SearchController@search')->name('user.search');
+Route::get(__('search'), 'SearchController@search')->name('user.search');
 Route::get('{page}', 'PageController@show')->name('user.pages.show');
 Route::get('/', 'PageController@showHomepage')->name('user.homepage.show');

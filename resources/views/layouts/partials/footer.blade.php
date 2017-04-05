@@ -41,14 +41,16 @@
 
     </div>
 
-    <div class="input-group col-md-2 col-md-offset-5">
-      <input type="text" class="form-control" placeholder="{{ __('Search') }}" required>
-      <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </span>
-    </div>
+      <form method="GET" action="{{ route('user.search') }}">
+        <div class="input-group col-md-2 col-md-offset-5">
+        <input type="text" class="form-control" name="q" placeholder="{{ __('Search') }}" required minlength="5">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="submit">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </span>
+      </div>
+    </form>
 
     <div class="footer-icons-wrapper">
 

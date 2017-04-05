@@ -29009,80 +29009,35 @@ var baguetteBox = __webpack_require__(23);
 var jqueryEasing = __webpack_require__(31);
 var matchHeight = __webpack_require__(30);
 
-var photo_counter = 0;
-Dropzone.options.realDropzone = {
-
-    uploadMultiple: false,
-    parallelUploads: 100,
-    maxFilesize: 8,
-    previewsContainer: '#dropzonePreview',
-    previewTemplate: document.querySelector('#preview-template').innerHTML,
-    addRemoveLinks: true,
-    dictRemoveFile: 'Remove',
-    dictFileTooBig: 'Image is bigger than 8MB',
-
-    // The setting up of the dropzone
-    init: function init() {
-
-        this.on("removedfile", function (file) {
-
-            $.ajax({
-                type: 'POST',
-                url: 'upload/delete',
-                data: { id: file.name, _token: $('#csrf-token').val() },
-                dataType: 'html',
-                success: function success(data) {
-                    var rep = JSON.parse(data);
-                    if (rep.code == 200) {
-                        photo_counter--;
-                        $("#photoCounter").text("(" + photo_counter + ")");
-                    }
-                }
-            });
-        });
-    },
-    error: function error(file, response) {
-        if ($.type(response) === "string") var message = response; //dropzone sends it's own error messages in string
-        else var message = response.message;
-        file.previewElement.classList.add("dz-error");
-        _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            node = _ref[_i];
-            _results.push(node.textContent = message);
-        }
-        return _results;
-    },
-    success: function success(file, done) {
-        photo_counter++;
-        $("#photoCounter").text("(" + photo_counter + ")");
-    }
-};
-
 
 
 
 $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
 });
 
 $(function () {
-    $(document).scrollTop(0);
-    __WEBPACK_IMPORTED_MODULE_0__slider__["a" /* slider */].run('.slider-container', 5000);
-    baguetteBox.run('.gallery');
-    $('.product-card .match').matchHeight();
+  $(document).scrollTop(0);
+  __WEBPACK_IMPORTED_MODULE_0__slider__["a" /* slider */].run('.slider-container', 5000);
+  baguetteBox.run('.gallery');
+  $('.product-card .match').matchHeight();
 
-    $(".cart-add").on('click', function (e) {
-        e.preventDefault();
-        __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].addItem($(this).data('slug'));
-    });
+  $(".cart-add").on('click', function (e) {
+    e.preventDefault();
+    __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].addItem($(this).data('slug'));
+  });
 
-    $(".cart-remove").on('click', function (e) {
-        e.preventDefault();
-        __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].removeItem($(this).data('slug'));
-    });
+  $(".cart-remove").on('click', function (e) {
+    e.preventDefault();
+    __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].removeItem($(this).data('slug'));
+  });
+
+  $(".search-toggle").on('click', function (e) {
+    e.preventDefault();
+    $('.navbar-collapse ul').toggle();
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

@@ -68,13 +68,32 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a class="search-toggle" href="#">
             <i class="fa fa-search" aria-hidden="true"></i>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav" style="display: none">
+        <li>
+          <form method="GET" class="navbar-form navbar-left" action="{{ route('user.search') }}" style="margin-top: 13px">
+            <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="{{ __('Search') }}" required minlength="5">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </span>
+          </div>
+        </form>
+        </li>
+        <li>
+          <a class="search-toggle" href="#">
+            <i class="fa fa-close" aria-hidden="true"></i>
           </a>
         </li>
       </ul>
