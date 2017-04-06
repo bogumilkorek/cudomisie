@@ -31,6 +31,11 @@ $(() => {
     cart.removeItem($(this).data('slug'));
   });
 
+  $(".cart-clear").on('click', function(e) {
+    e.preventDefault();
+    cart.clear();
+  });
+
   $(".search-toggle").on('click', function(e) {
     e.preventDefault();
     $('.navbar-collapse ul').toggle();

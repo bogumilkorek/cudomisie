@@ -11,7 +11,7 @@ class OrderController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth')->except(['showUser']);
+      $this->middleware('auth')->except(['showUser', 'createUser']);
   }
     /**
      * Display a listing of the resource.
@@ -36,6 +36,11 @@ class OrderController extends Controller
        public function create()
        {
          return view('orders.create');
+       }
+
+       public function createUser()
+       {
+         return view('orders.createUser');
        }
 
        /**

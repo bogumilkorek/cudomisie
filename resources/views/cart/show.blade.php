@@ -25,7 +25,7 @@
         <td>{{ $product->title }}</td>
         <td>{{ $quantities[$product->slug] }} {{ __('pcs.') }}</td>
         <td>{{ $product->price }}</td>
-        <td><a href="#" class="btn btn-danger btn-icon cart-remove" data-slug="{{ $product->slug }}">
+        <td class="text-center"><a href="#" class="btn btn-danger btn-icon cart-remove" data-slug="{{ $product->slug }}">
           <span class="glyphicon glyphicon-trash" aria-hidden="true" title="{{ __('Delete') }}"></span>
         </a></td>
       </tr>
@@ -35,6 +35,21 @@
     </tbody>
   </table>
       <b>{{ __('Total') }}: {{ $total }} {{ __('$') }}</b>
+      <br /><br />
+      <div class="text-center">
+      <a href="{{ route('user.orders.create') }}" class="btn btn-success">
+        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> {{ __('Place order') }}
+      </a>
+
+      <a href="{{ route('user.products.index') }}" class="btn btn-primary">
+        <i class="fa fa-shopping-bag" aria-hidden="true"></i> {{ __('Continue shopping') }}
+      </a>
+
+      <a href="#" class="btn btn-danger cart-clear">
+        <i class="fa fa-times" aria-hidden="true"></i> {{ __('Clear cart') }}
+      </a>
+
+    </div>
     </div>
   </div>
 
