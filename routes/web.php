@@ -23,6 +23,7 @@ Route::group(['prefix' => __('admin')], function () {
   Route::resource('orderStatuses', 'OrderStatusController');
   Route::resource('shippingMethods', 'ShippingMethodController');
   Route::resource('pages', 'PageController');
+  Route::resource('images', 'ImageController');
   Route::get('/', 'PageController@index')->name('dashboard');
 });
 

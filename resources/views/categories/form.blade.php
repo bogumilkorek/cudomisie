@@ -5,12 +5,13 @@
 </div>
 
 <div class="form-group">
-  <label for="parent_id">{{ __('Parent') }}</label>
-  <select name="parent_id" id="parent_id">
+  <label for="parent_id">{{ __('Parent') }}</label><br />
+  <select name="parent_id" id="parent_id" class="selectpicker show-tick">
     <option value="">{{ __('Nope') }}</option>
     @foreach($children as $child)
       <option value="{{ $child->id }}"
-        @if(!empty($category->parent->id) && $category->parent->id == $child->id) selected @endif >
+        @if(old('parent_id') && $child->id == old('parent_id')) selected @endif >
+
         {{ $child->title }}
       </option>
     @endforeach

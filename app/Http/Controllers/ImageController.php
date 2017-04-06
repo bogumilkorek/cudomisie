@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Contracts\Filesystem\Factory as Storage;
+use Illuminate\Filesystem\Filesystem;
 
 class ImageController extends Controller
 {
@@ -11,79 +14,58 @@ class ImageController extends Controller
   {
       $this->middleware('auth');
   }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  public function store( Storage $storage, Request $request )
+   {
+       if ( $request->isXmlHttpRequest() )
+       {
+           $image = $request->file( 'image' );
+           $timestamp = $this->getFormattedTimestamp();
+           $savedImageName = $this->getSavedImageName( $timestamp, $image );
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+           $imageUploaded = $this->uploadImage( $image, $savedImageName, $storage );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Image $image)
-    {
-        //
-    }
+           if ( $imageUploaded )
+           {
+               $data = [
+                   'original_path' => asset( '/images/upload' . $savedImageName )
+               ];
+               return json_encode( $data, JSON_UNESCAPED_SLASHES );
+           }
+           return "uploading failed";
+       }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Image $image)
-    {
-        //
-    }
+   }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Image $image)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Image $image)
-    {
-        //
-    }
+   /**
+    * @param $image
+    * @param $imageFullName
+    * @param $storage
+    * @return mixed
+    * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+    */
+   public function uploadImage( $image, $imageFullName, $storage )
+   {
+       $filesystem = new Filesystem;
+       return $storage->disk( 'image' )->put( $imageFullName, $filesystem->get( $image ) );
+   }
+
+   /**
+    * @return string
+    */
+   protected function getFormattedTimestamp()
+   {
+       return str_replace( [' ', ':'], '-', Carbon::now()->toDateTimeString() );
+   }
+
+   /**
+    * @param $timestamp
+    * @param $image
+    * @return string
+    */
+   protected function getSavedImageName( $timestamp, $image )
+   {
+       return $timestamp . '-' . $image->getClientOriginalName();
+   }
 }

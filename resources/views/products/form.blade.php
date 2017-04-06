@@ -6,12 +6,17 @@
 
 <div class="form-group">
   <label for="categories">{{ __('Categories') }}</label>
-  <select name="categories[]" id="categories" multiple required>
+  <br />
+  <select name="categories[]" id="categories" class="selectpicker" data-width="fit" title="{{ __('Nope') }}" multiple required>
     @foreach($categories as $category)
-      <option value="{{ $category->id }}"
-        @if(old('categories') && in_array($category->id, old('categories'))) selected @endif >
-        {{ $category->title }}
+      <optgroup label="{{ $category->title }}">
+      @foreach($category->children as $child)
+      <option value="{{ $child->id }}"
+        @if(old('categories') && in_array($child->id, old('categories'))) selected @endif >
+        {{ $child->title }}
       </option>
+    @endforeach
+    </optgroup>
     @endforeach
   </select>
 </div>

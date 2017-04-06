@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->boolean('hidden')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

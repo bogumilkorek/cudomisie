@@ -28,4 +28,10 @@
 
     @include('layouts.partials.admin.wysiwyg')
 
+    @push('scripts')
+        <script>
+        $(".selectpicker").selectpicker('val', '{{ $category->parent_id }}');
+    </script>
+    @endpush
+
     @endsection

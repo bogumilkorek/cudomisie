@@ -29,7 +29,11 @@
     <div class="col-md-12">
       <h2>{{ __('Pictures') }}</h2>
       <hr>
-      <form action="{{ route('products.store') }}" class="dropzone" id="realDropzone">
+      <form method="POST" action="{{ route('images.store') }}" class="dropzone" id="images" enctype="multipart/form-data">
+          {{ csrf_field() }}
+        <div>
+                            <h3>Upload Image</h3>
+                        </div>
       </form>
   </div>
 </div>
@@ -39,7 +43,8 @@
 
 @push('scripts')
   <script type="text/javascript">
-    $('select').select2();
+    $(".selectpicker").selectpicker();
+
   </script>
 @endpush
 

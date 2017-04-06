@@ -34,28 +34,29 @@
       </a>
       <ul class="dropdown-menu">
         @foreach ($categories as $category)
-        @if(!$category->children->isEmpty())
-        <li>
-          <a href="{{ route('user.categories.show', $category->slug) }}">
-            {{ $category->title }}
-          </a>
-  <ul class="dropdown-menu">
-          @foreach ($category->children as $child)
-          <li>
-            <a href="{{ route('user.categories.show', $child->slug) }}">
-              {{ $child->title }}
-            </a>
-          </li>
-          @endforeach
-        </ul>
-      </li>
-        @else
-        <li>
-          <a href="{{ route('user.categories.show', $category->slug) }}">
-            {{ $category->title }}
-          </a>
-        </li>
-        @endif
+          @if(!$category->children->isEmpty())
+            <li>
+              <a href="{{ route('user.categories.show', $category->slug) }}">
+                {{ $category->title }}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                @foreach ($category->children as $child)
+                  <li>
+                    <a href="{{ route('user.categories.show', $child->slug) }}">
+                      {{ $child->title }}
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+            </li>
+          @else
+            <li>
+              <a href="{{ route('user.categories.show', $category->slug) }}">
+                {{ $category->title }}
+              </a>
+            </li>
+          @endif
         @endforeach
       </ul>
     </li>

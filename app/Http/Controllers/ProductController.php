@@ -48,7 +48,7 @@ class ProductController extends Controller
        public function create()
        {
          return view('products.create')
-         ->withCategories(Category::all());
+         ->withCategories(Category::where('parent_id', NULL)->get());
        }
 
        /**

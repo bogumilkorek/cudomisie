@@ -30,7 +30,7 @@
 
     @push('scripts')
       <script type="text/javascript">
-    		$('select').select2().val({!! json_encode($product->categories()->pluck('categories.id')) !!}).trigger('change');
+        $(".selectpicker").selectpicker('val', {!! json_encode($product->categories()->pluck('categories.id')) !!});
   	  </script>
     @endpush
 
