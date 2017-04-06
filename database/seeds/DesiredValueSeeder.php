@@ -33,7 +33,11 @@ class DesiredValueSeeder extends Seeder
       __('Completed'),
       __('Canceled'),
     ]);
-  }
+
+  // Insert custom categories and subcategories structure
+  $this->insertCategories();
+
+}
 
   public function insertAdmin($email, $password)
   {
@@ -65,4 +69,17 @@ class DesiredValueSeeder extends Seeder
       ]);
     }
   }
+
+  public function insertCategories() {
+
+    for($i = 1; $i <= 4; $i++)
+      factory(App\Category::class)->create();
+
+    for($i = 1; $i <= 4; $i++)
+      for($j = 1; $j <= 3; $j++)
+        factory(App\Category::class)->create([
+          'parent_id' => $j
+        ]);
+  }
+
 }

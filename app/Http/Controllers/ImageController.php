@@ -80,13 +80,8 @@ public function index()
 
    public function destroy(Request $request)
    {
-     if(strpos($request->id, 'http://') === false)
-       $imageUrl = 'http://cudomisie.app/images/upload/' . $request->id;
-    else
-        $imageUrl = $request->id;
-      echo $imageUrl;
-     $image = Image::where('url', $imageUrl)->delete();
-     if(File::exists($imageUrl))
-      File::delete($imageUrl);
+     $image = Image::where('url', $request->url)->delete();
+     if(File::exists($request->url))
+      File::delete($request->url);
    }
 }

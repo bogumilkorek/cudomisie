@@ -4,13 +4,13 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
 
   return [
     'user_id' => function () {
-      return App\User::select('id')->orderByRaw("RAND()")->first()->id;
+      return App\User::inRandomOrder()->first()->id;
     },
     'order_status_id' => function () {
-      return App\OrderStatus::select('id')->orderByRaw("RAND()")->first()->id;
+      return App\OrderStatus::inRandomOrder()->first()->id;
     },
     'shipping_method_id' => function () {
-      return App\ShippingMethod::select('id')->orderByRaw("RAND()")->first()->id;
+      return App\ShippingMethod::inRandomOrder()->first()->id;
     },
     'shipping_cost' => $faker->randomFloat(2, 50, 200) . ' ' . __('$'),
     'total_cost' => $faker->randomFloat(2, 250, 350) . ' ' . __('$'),

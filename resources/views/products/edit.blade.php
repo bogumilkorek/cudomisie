@@ -52,36 +52,35 @@
   <script type="text/javascript">
   $(".selectpicker").selectpicker('val', {!! json_encode($product->categories()->pluck('categories.id')) !!});
 
+
+
   $("#images-dropzone").dropzone({
-    paramName           :       "image", // The name that will be used to transfer the file
-    maxFilesize         :       8, // MB
-    uploadMultiple      :       false,
-    parallelUploads     :       1,
+    paramName: "image",
+    maxFilesize: 8,
+    uploadMultiple: false,
+    parallelUploads: 1,
     addRemoveLinks: true,
-    dictRemoveFile: 'Remove',
-    dictFileTooBig: 'Image is bigger than 8MB',
-    accept              :       function(file, done) { done() },
+    dictRemoveFile: '{{ __('Remove') }}',
+    dictFileTooBig: '{{ __('Image is bigger than 8 MB') }}',
+    accept: function(file, done) { done() },
     init: function() {
-
       this.on("removedfile", function(file) {
-            $.ajax({
-                type: 'DELETE',
-                url: '{{ route('images.destroy') }}',
-                data: {id: file.name },
-                dataType: 'html',
-                success: function(data) {alert(data)}
-            });
-
-        } );
-
+        $.ajax({
+            type: 'DELETE',
+            url: '{{ route('images.destroy') }}',
+            data: {url: file.original_path }
+          });
+      });
 
       @foreach($product->images as $image)
-      var mockFile = { name: '{{ $image->url }}', size: 1234567 };
+      var mockFile = { name: '{{ $image->url }}', size: 0 };
       this.emit("addedfile", mockFile);
       this.emit("thumbnail", mockFile, "{{ $image->url }}");
       this.createThumbnailFromUrl(mockFile, '{{ $image->url }}');
       this.emit("complete", mockFile);
       @endforeach
+
+        $('.dz-size').hide();
     }
   });
   </script>

@@ -16,7 +16,7 @@ class PivotTableSeeder extends Seeder
     // to prevent creating models for pivot tables
     for($i = 1; $i <= App\Product::all()->count(); $i++)
     {
-      $category_id = App\Category::select('id')->orderByRaw("RAND()")->first()->id;
+      $category_id = App\Category::inRandomOrder()->first()->id;
       $product_id = $i;
 
       DB::table('category_product')->insert([
@@ -29,7 +29,7 @@ class PivotTableSeeder extends Seeder
     for($i = 1; $i <= App\Order::all()->count(); $i++)
     {
       $order_id = $i;
-      $product_id = App\Product::select('id')->orderByRaw("RAND()")->first()->id;
+      $product_id = App\Product::inRandomOrder()->first()->id;
       $product_title = App\Product::find($product_id)->title;
       $product_price = App\Product::find($product_id)->price;
       $product_quantity = rand(1, 9);
