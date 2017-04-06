@@ -2,19 +2,14 @@ let bootstrap = require('bootstrap-sass');
 let sweetalert = require('sweetalert');
 let datatables = require('datatables.net');
 let datatablesBootstrap = require('datatables-bootstrap3-plugin');
-let Dropzone = require('dropzone');
 let bootstrapSelect = require('bootstrap-select');
-
-(function() {
-    Dropzone.options.images = {
-        paramName           :       "image", // The name that will be used to transfer the file
-        maxFilesize         :       2, // MB
-        thumbnailWidth      :       "300",
-        thumbnailHeight     :       "300",
-        accept              :       function(file, done) { done() }
-    };
-
-})();
+let Dropzone = require('dropzone');
+Dropzone.autoDiscover = false;
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
 $(() => {
   // Get current URL path and assign 'active' class

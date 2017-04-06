@@ -24,19 +24,6 @@
       </form>
     </div>
   </div>
-  <br /><br />
-  <div class="row">
-    <div class="col-md-12">
-      <h2>{{ __('Pictures') }}</h2>
-      <hr>
-      <form method="POST"action="{{ route('images.store') }}" class="dropzone" id="images" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <div class="dz-message">
-          <h4 style="text-align: center;color:#428bca;">Drop images in this area  <span class="glyphicon glyphicon-hand-down"></span></h4>
-        </div>
-      </form>
-    </div>
-  </div>
 </div>
 
 @include('layouts.partials.admin.wysiwyg')

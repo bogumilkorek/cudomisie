@@ -31245,20 +31245,15 @@ __webpack_require__(20);
 var sweetalert = __webpack_require__(12);
 var datatables = __webpack_require__(29);
 var datatablesBootstrap = __webpack_require__(27);
-var Dropzone = __webpack_require__(31);
 var bootstrapSelect = __webpack_require__(26);
+var Dropzone = __webpack_require__(31);
+Dropzone.autoDiscover = false;
 
-(function () {
-  Dropzone.options.images = {
-    paramName: "image", // The name that will be used to transfer the file
-    maxFilesize: 2, // MB
-    thumbnailWidth: "300",
-    thumbnailHeight: "300",
-    accept: function accept(file, done) {
-      done();
-    }
-  };
-})();
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 $(function () {
   // Get current URL path and assign 'active' class

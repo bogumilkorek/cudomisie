@@ -55,7 +55,7 @@ class CartController extends Controller
     ];
   }
 
-  public function removeItem(Request $request)
+public function removeItem(Request $request)
   {
     $item = 'cart.items.' . $request->slug;
 

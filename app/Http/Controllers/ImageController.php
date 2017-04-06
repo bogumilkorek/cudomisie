@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\Factory as Storage;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 
 class ImageController extends Controller
 {
@@ -14,7 +15,10 @@ class ImageController extends Controller
   {
       $this->middleware('auth');
   }
+public function index()
+{
 
+}
   public function store( Storage $storage, Request $request )
    {
        if ( $request->isXmlHttpRequest() )
@@ -30,6 +34,11 @@ class ImageController extends Controller
                $data = [
                    'original_path' => asset( '/images/upload/' . $savedImageName )
                ];
+
+               Image::create(['url' => $data['original_path'],
+             'imageable_type' => $request->type,
+           'imageable_id' => $request->id ]);
+
                return json_encode( $data, JSON_UNESCAPED_SLASHES );
            }
            return "uploading failed";
@@ -67,5 +76,17 @@ class ImageController extends Controller
    protected function getSavedImageName( $timestamp, $image )
    {
        return $timestamp . '-' . $image->getClientOriginalName();
+   }
+
+   public function destroy(Request $request)
+   {
+     if(strpos($request->id, 'http://') === false)
+       $imageUrl = 'http://cudomisie.app/images/upload/' . $request->id;
+    else
+        $imageUrl = $request->id;
+      echo $imageUrl;
+     $image = Image::where('url', $imageUrl)->delete();
+     if(File::exists($imageUrl))
+      File::delete($imageUrl);
    }
 }

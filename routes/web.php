@@ -23,7 +23,8 @@ Route::group(['prefix' => __('admin')], function () {
   Route::resource('orderStatuses', 'OrderStatusController');
   Route::resource('shippingMethods', 'ShippingMethodController');
   Route::resource('pages', 'PageController');
-  Route::resource('images', 'ImageController');
+  Route::post('images/store', 'ImageController@store')->name('images.store');
+  Route::delete('images/destroy', 'ImageController@destroy')->name('images.destroy');
   Route::get('/', 'PageController@index')->name('dashboard');
 });
 
