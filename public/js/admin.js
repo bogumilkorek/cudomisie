@@ -31248,6 +31248,18 @@ var datatablesBootstrap = __webpack_require__(27);
 var Dropzone = __webpack_require__(31);
 var bootstrapSelect = __webpack_require__(26);
 
+(function () {
+  Dropzone.options.images = {
+    paramName: "image", // The name that will be used to transfer the file
+    maxFilesize: 2, // MB
+    thumbnailWidth: "300",
+    thumbnailHeight: "300",
+    accept: function accept(file, done) {
+      done();
+    }
+  };
+})();
+
 $(function () {
   // Get current URL path and assign 'active' class
   $('.nav > li > a[href="' + window.location + '"]').parent().addClass('active');
@@ -31268,50 +31280,6 @@ $(function () {
   // Enable and config datatables
   configDatatables();
 });
-
-(function () {
-  Dropzone.options.images = {
-    paramName: "image", // The name that will be used to transfer the file
-    maxFilesize: 2, // MB
-    dictDefaultMessage: "Drop File here or Click to upload Image",
-    thumbnailWidth: "300",
-    thumbnailHeight: "300",
-    accept: function accept(file, done) {
-      done();
-    },
-    success: uploadSuccess,
-    complete: uploadCompleted
-  };
-
-  function uploadSuccess(data, file) {
-    var messageContainer = $('.dz-success-mark'),
-        message = $('<p></p>', {
-      'text': 'Image Uploaded Successfully! Image Path is: '
-    }),
-        imagePath = $('<a></a>', {
-      'href': JSON.parse(file).original_path,
-      'text': JSON.parse(file).original_path,
-      'target': '_blank'
-    });
-
-    imagePath.appendTo(message);
-    message.appendTo(messageContainer);
-    messageContainer.addClass('show');
-  }
-
-  function uploadCompleted(data) {
-    if (data.status != "success") {
-      var error_message = $('.dz-error-mark'),
-          message = $('<p></p>', {
-        'text': 'Image Upload Failed'
-      });
-
-      message.appendTo(error_message);
-      error_message.addClass('show');
-      return;
-    }
-  }
-})();
 
 function confirmDelete($this) {
   swal({

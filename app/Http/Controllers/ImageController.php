@@ -28,7 +28,7 @@ class ImageController extends Controller
            if ( $imageUploaded )
            {
                $data = [
-                   'original_path' => asset( '/images/upload' . $savedImageName )
+                   'original_path' => asset( '/images/upload/' . $savedImageName )
                ];
                return json_encode( $data, JSON_UNESCAPED_SLASHES );
            }
