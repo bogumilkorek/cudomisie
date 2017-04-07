@@ -21,14 +21,20 @@ $('textarea').ckeditor({
   }
 });
 
-// // Frontend validation
-// $('button[type=submit]').on('click', function(e) {
-//   if(CKEDITOR.instances.content.getData() == "")
-//     swal("Oops...", "Something went wrong!", "error");
-//   else
-//   $(this).parents('form').submit();
-//
-// });
+// Frontend validation
+$('button[type=submit]').on('click', function(e) {
+
+  if($('input[name=title]').val())
+  {
+    e.preventDefault();
+
+    if(CKEDITOR.instances.content.getData() == "")
+      swal("{{ __('Error') }}", "{{ __('Field description is required') }}", "error");
+    else
+    $(this).parents('form').submit();
+  }
+
+});
 
 </script>
 @endpush

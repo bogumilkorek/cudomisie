@@ -10,7 +10,7 @@ input:invalid, textarea:invalid {
     color: #FF0000;
 }
 
-a:link, a:visited, a:hover, a:active {
+a:link:not(.btn-white), a:visited:not(.btn-white), a:hover, a:active {
   color: $text-color;
   text-decoration: none;
 }

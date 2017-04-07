@@ -4,22 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Http\Traits\CartItemsTrait;
 
 class CartController extends Controller
 {
 
-  public function show(Request $request)
+  use CartItemsTrait;
+
+  public function show()
   {
-    $items = $request->session()->get('cart.items');
-    $products = Product::whereIn('slug', array_keys($items ?? []))->get();
-    $total = 0;
 
-    foreach($products as $product)
-      $total += floatVal($product->price);
+    $items = $this->getItems();
 
-    return view('cart.show')->withProducts($products)
-    ->withQuantities($items)
-    ->withTotal($total);
+    return view('cart.show')->withProducts($items['products'])
+    ->withQuantities($items['quantities'])
+    ->withTotal($items['total']);
   }
 
   public function addItem(Request $request)
