@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Laravel\Dusk\DuskServiceProvider;
 use App\Page;
@@ -31,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
       'products' => 'App\Product',
       'pages' => 'App\Page',
       'blogPosts' => 'App\BlogPost',
+    ]);
+
+    // Loalize resource URIs
+    Route::resourceVerbs([
+      'create' => __('create'),
+      'edit' => __('edit'),
     ]);
 
     // Create slug before adding and updating page, product, category and blog post
