@@ -26,5 +26,5 @@
     @endforeach
   </tbody>
 </table>
-<b>{{ __('Total') }}: {{ $total }} {{ __('$') }}</b>
+<b>{{ __('Total') }}: {{ $total }}</b>
 <br /><br />

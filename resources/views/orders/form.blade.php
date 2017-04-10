@@ -45,7 +45,7 @@
 
 <div class="form-group">
   <label for="comments">{{ __('Comments') }}:</label>
-  <textarea class="form-control" id="comments" name="comments" rows="5">
+  <textarea class="form-control" name="comments" rows="5">
     {{ old('comments') }}
   </textarea>
 </div>

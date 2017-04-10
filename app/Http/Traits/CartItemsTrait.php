@@ -11,7 +11,9 @@ trait CartItemsTrait {
       $total = 0;
 
       foreach($products as $product)
-        $total += floatVal($product->price);
+        $total += floatVal($product->price) * $items[$product->slug];
+
+      $total = (string)$total . ' ' . __('$');
 
       return [
         'products' => $products,
