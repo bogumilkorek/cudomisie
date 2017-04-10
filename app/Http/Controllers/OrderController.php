@@ -48,8 +48,6 @@ class OrderController extends Controller
        {
          $items = $this->getItems();
 
-         return $items;
-
          return view('orders.createUser')
          ->withItems($items)
          ->withShippingMethods(ShippingMethod::all());
@@ -68,23 +66,28 @@ class OrderController extends Controller
        public function storeUser(OrderRequest $request)
        {
 
+         $items = $this->getItems();
+
          $order = new Order;
 
-        //  $oder->create([
-        //    'order_status_id' => 1,
-        //    'shipping_method_id' => $request->shippingMethodId,
-        //    'shipping_cost' => ShippingMethod::where('id', $request->shipping_method_id)->first()->price,
-        //    'total_cost' => 1200.93,
-        //    'name' => $request->name,
-        //    'email' => $request->email,
-        //    'phone' => $request->phone,
-        //    'address' => $request->street . ', ' . $request->city,
-        //    'comments' => $request->comments,
-        //  ]);
+         $order->order_status_id = 1;
+         $order->shipping_method_id = $request->shippingMethodId;
+         $order->shipping_cost = ShippingMethod::where('id', $request->shippingMethodId)->first()->price;
+         $order->total_cost = $items['total'];
+         $order->name = $request->name;
+         $order->email = $request->email;
+         $order->phone = $request->phone;
+         $order->address = $request->street . ', ' . $request->city;
+         $order->comments = $request->comments;
 
-         $products = Product::whereIn('id', $request->products)->get();
+         $order->save();
 
-         return $products;
+         foreach($items['products'] as $product)
+           $order->products()->attach($product->id, [
+             'product_title' => $product->title,
+             'product_quantity' => $items['quantities'][$product->slug],
+             'product_price' => $product->price,
+           ]);
 
          alert()->success( __('Order created!'), __('Success'))->persistent('OK');
          return redirect()->route('orders.index');
