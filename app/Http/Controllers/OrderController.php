@@ -90,7 +90,7 @@ class OrderController extends Controller
            ]);
 
          alert()->success( __('Order created!'), __('Success'))->persistent('OK');
-         return redirect()->route('orders.index');
+         return redirect()->route('user.products.index');
        }
 
        /**
