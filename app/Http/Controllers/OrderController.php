@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Order;
+use App\Product;
+use App\ShippingMethod;
 use Illuminate\Http\Request;
 use Alert;
+use App\Http\Traits\CartItemsTrait;
 
 class OrderController extends Controller
 {
+
+  use CartItemsTrait;
+
   public function __construct()
   {
-      $this->middleware('auth')->except(['showUser', 'createUser']);
+      $this->middleware('auth')->except(['showUser', 'createUser', 'storeUser']);
   }
     /**
      * Display a listing of the resource.
@@ -40,7 +46,13 @@ class OrderController extends Controller
 
        public function createUser()
        {
-         return view('orders.createUser');
+         $items = $this->getItems();
+
+         return $items;
+
+         return view('orders.createUser')
+         ->withItems($items)
+         ->withShippingMethods(ShippingMethod::all());
        }
 
        /**
@@ -51,7 +63,29 @@ class OrderController extends Controller
        */
        public function store(OrderRequest $request)
        {
-         Order::create($request->all());
+       }
+
+       public function storeUser(OrderRequest $request)
+       {
+
+         $order = new Order;
+
+        //  $oder->create([
+        //    'order_status_id' => 1,
+        //    'shipping_method_id' => $request->shippingMethodId,
+        //    'shipping_cost' => ShippingMethod::where('id', $request->shipping_method_id)->first()->price,
+        //    'total_cost' => 1200.93,
+        //    'name' => $request->name,
+        //    'email' => $request->email,
+        //    'phone' => $request->phone,
+        //    'address' => $request->street . ', ' . $request->city,
+        //    'comments' => $request->comments,
+        //  ]);
+
+         $products = Product::whereIn('id', $request->products)->get();
+
+         return $products;
+
          alert()->success( __('Order created!'), __('Success'))->persistent('OK');
          return redirect()->route('orders.index');
        }
@@ -101,7 +135,7 @@ class OrderController extends Controller
        public function destroy(Order $order)
        {
          $order->delete();
-         alert()->success( __('Order deleted!'), __('Success'))->persistent('OK');
+         alert()->success(__('Order deleted!'), __('Success'))->persistent('OK');
          return redirect()->route('orders.index');
        }
 }

@@ -16,9 +16,8 @@ class CartController extends Controller
 
     $items = $this->getItems();
 
-    return view('cart.show')->withProducts($items['products'])
-    ->withQuantities($items['quantities'])
-    ->withTotal($items['total']);
+    return view('cart.show')
+    ->withItems($items);
   }
 
   public function addItem(Request $request)

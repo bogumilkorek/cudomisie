@@ -45,6 +45,7 @@ Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.inde
 Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.blogPosts.show');
 Route::get(__('blog'), 'BlogPostController@indexUser')->name('user.blogPosts.index');
 Route::get(__('place-order'), 'OrderController@createUser')->name('user.orders.create');
+Route::post(__('place-order'), 'OrderController@storeUser')->name('user.orders.store');
 Route::get(__('search'), 'SearchController@search')->name('user.search');
 Route::get('{page}', 'PageController@show')->name('user.pages.show');
 Route::get('/', 'PageController@showHomepage')->name('user.homepage.show');
