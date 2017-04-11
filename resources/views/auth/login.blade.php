@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
   <div class="container">
@@ -64,11 +64,15 @@
                   </a>
                 </div>
               </div>
-
+              <h5>Zaloguj przy użyciu:</h5>
+              <hr>
               <div class="form-group">
                 <div class="col-md-8 col-md-offset-4">
-                  <a class="btn" href="{{ url('socialauth/github') }}">
-                    <i class="fa fa-github fa-3x" aria-hidden="true"></i>
+                  <a class="btn btn-circle" href="{{ url('login/github') }}">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a class="btn btn-circle" href="{{ url('login/google') }}">
+                    <i class="fa fa-google-plus" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>

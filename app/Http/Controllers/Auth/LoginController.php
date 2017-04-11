@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use Illuminate\Foundation\Auth\User;
 
 class LoginController extends Controller
 {
@@ -48,18 +49,21 @@ class LoginController extends Controller
 
       $user = Socialite::driver($provider)->stateless()->user();
 
-      $authUser = User::firstOrNew(['provider_id' => $user->id]);
+      $authUser = User::where('provider_id', $user->id)->first();
 
-    //  if(!$authUser)
+      if(!$authUser)
+      {
+        $authUser = new User();
+        $authUser->name = $user->name;
+        $authUser->email = $user->email;
+        $authUser->provider = $provider;
+        $authUser->provider_id = $user->id;
+        $authUser->save();
+      }
 
-      // $authUser->name = $user->name;
-      // $authUser->email = $user->email;
-      // $authUser->provider = $user->provider;
-      //
-      // $authUser->save();
+      auth()->login($authUser);
 
-      //auth()->login($authUser);
-
+      alert()->success(__('You are now logged in'), __('Success'))->persistent('OK');
       return redirect('/');
     }
 
