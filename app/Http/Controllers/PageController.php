@@ -13,7 +13,7 @@ class PageController extends Controller
 
   public function __construct()
   {
-      $this->middleware('admin')->except(['show', 'showHomepage']);
+      $this->middleware(['auth', 'admin'])->except(['show', 'showHomepage']);
   }
 
   /**

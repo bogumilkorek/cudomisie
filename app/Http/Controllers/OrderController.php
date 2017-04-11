@@ -17,7 +17,7 @@ class OrderController extends Controller
 
   public function __construct()
   {
-    $this->middleware('auth')->except(['showUser', 'createUser', 'storeUser']);
+    $this->middleware(['auth', 'admin'])->except(['showUser', 'createUser', 'storeUser']);
   }
   /**
   * Display a listing of the resource.

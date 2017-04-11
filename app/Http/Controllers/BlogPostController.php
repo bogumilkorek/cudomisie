@@ -11,7 +11,7 @@ class BlogPostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['indexUser', 'show']);
+        $this->middleware(['auth', 'admin'])->except(['indexUser', 'show']);
     }
     /**
      * Display a listing of the resource.

@@ -13,75 +13,75 @@ class ImageController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
+    $this->middleware(['auth', 'admin']);
   }
-public function index()
-{
+  public function index()
+  {
 
-}
+  }
   public function store( Storage $storage, Request $request )
-   {
-       if ( $request->isXmlHttpRequest() )
-       {
-           $image = $request->file( 'image' );
-           $timestamp = $this->getFormattedTimestamp();
-           $savedImageName = $this->getSavedImageName( $timestamp, $image );
+  {
+    if ( $request->isXmlHttpRequest() )
+    {
+      $image = $request->file( 'image' );
+      $timestamp = $this->getFormattedTimestamp();
+      $savedImageName = $this->getSavedImageName( $timestamp, $image );
 
-           $imageUploaded = $this->uploadImage( $image, $savedImageName, $storage );
+      $imageUploaded = $this->uploadImage( $image, $savedImageName, $storage );
 
-           if ( $imageUploaded )
-           {
-               $data = [
-                   'original_path' => asset( '/images/upload/' . $savedImageName )
-               ];
+      if ( $imageUploaded )
+      {
+        $data = [
+          'original_path' => asset( '/images/upload/' . $savedImageName )
+        ];
 
-               Image::create(['url' => $data['original_path'],
-             'imageable_type' => $request->type,
-           'imageable_id' => $request->id ]);
+        Image::create(['url' => $data['original_path'],
+        'imageable_type' => $request->type,
+        'imageable_id' => $request->id ]);
 
-               return json_encode( $data, JSON_UNESCAPED_SLASHES );
-           }
-           return "uploading failed";
-       }
+        return json_encode( $data, JSON_UNESCAPED_SLASHES );
+      }
+      return "uploading failed";
+    }
 
-   }
+  }
 
 
-   /**
-    * @param $image
-    * @param $imageFullName
-    * @param $storage
-    * @return mixed
-    * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-    */
-   public function uploadImage( $image, $imageFullName, $storage )
-   {
-       $filesystem = new Filesystem;
-       return $storage->disk( 'image' )->put( $imageFullName, $filesystem->get( $image ) );
-   }
+  /**
+  * @param $image
+  * @param $imageFullName
+  * @param $storage
+  * @return mixed
+  * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+  */
+  public function uploadImage( $image, $imageFullName, $storage )
+  {
+    $filesystem = new Filesystem;
+    return $storage->disk( 'image' )->put( $imageFullName, $filesystem->get( $image ) );
+  }
 
-   /**
-    * @return string
-    */
-   protected function getFormattedTimestamp()
-   {
-       return str_replace( [' ', ':'], '-', Carbon::now()->toDateTimeString() );
-   }
+  /**
+  * @return string
+  */
+  protected function getFormattedTimestamp()
+  {
+    return str_replace( [' ', ':'], '-', Carbon::now()->toDateTimeString() );
+  }
 
-   /**
-    * @param $timestamp
-    * @param $image
-    * @return string
-    */
-   protected function getSavedImageName( $timestamp, $image )
-   {
-       return $timestamp . '-' . $image->getClientOriginalName();
-   }
+  /**
+  * @param $timestamp
+  * @param $image
+  * @return string
+  */
+  protected function getSavedImageName( $timestamp, $image )
+  {
+    return $timestamp . '-' . $image->getClientOriginalName();
+  }
 
-   public function destroy(Request $request)
-   {
-     $image = Image::where('url', $request->url)->delete();
-     if(File::exists($request->url))
-      File::delete($request->url);
-   }
+  public function destroy(Request $request)
+  {
+    $image = Image::where('url', $request->url)->delete();
+    if(File::exists($request->url))
+    File::delete($request->url);
+  }
 }
