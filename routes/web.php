@@ -35,6 +35,10 @@ Route::put('cart/updateItem', 'CartController@updateItem')->name('cart.update');
 Route::delete('cart/removeItem', 'CartController@removeItem')->name('cart.remove');
 Route::delete('cart/clear', 'CartController@clear')->name('cart.clear');
 
+// Socialite
+Route::get('socialauth/{provider}', 'Auth\SocialAuthController@redirectToProvider');
+Route::get('socialauth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
+
 // Contact form
 Route::post('email/contact', 'EmailController@contactForm')->name('email.contactForm');
 
