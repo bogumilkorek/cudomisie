@@ -42,11 +42,10 @@ class DesiredValueSeeder extends Seeder
   public function insertAdmin($email, $password)
   {
     factory(App\User::class)->create([
+        'admin' => true,
         'name' => 'Your beloved admin',
         'email' => $email,
         'password' => bcrypt($password),
-        'phone' => 'restricted',
-        'address' => 'restricted',
       ]);
   }
 
