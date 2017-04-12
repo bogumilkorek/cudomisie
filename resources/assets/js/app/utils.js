@@ -36,9 +36,4 @@ $(() => {
     cart.clear();
   });
 
-  $(".search-toggle").on('click', function(e) {
-    e.preventDefault();
-    $('.navbar-collapse ul').toggle();
-  });
-
 });

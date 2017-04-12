@@ -13,6 +13,8 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
         return factory(App\Page::class)->create()->id;
     },
     'imageable_type' => $imageable_type,
-    'url' => $faker->imageUrl(1280, 800)
+    'url' => 'mock-' . rand(1,3) . '.jpg',
+    'original_url' => 'mock-' . rand(1,3) . '.jpg',
+    'size' => 123456,
   ];
 });

@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = "/";
+    protected $redirectTo = "/check-user";
 
     /**
      * Create a new controller instance.
@@ -64,7 +64,7 @@ class LoginController extends Controller
       auth()->login($authUser);
 
       alert()->success(__('You are now logged in'), __('Success'))->persistent('OK');
-      return redirect('/');
+      return redirect('/check-user');
     }
 
 }

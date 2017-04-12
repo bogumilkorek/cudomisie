@@ -14,6 +14,6 @@ class Image extends Model
   }
 
   protected $fillable = [
-    'url', 'imageable_id', 'imageable_type'
+    'url', 'original_url', 'size', 'imageable_id', 'imageable_type'
   ];
 }

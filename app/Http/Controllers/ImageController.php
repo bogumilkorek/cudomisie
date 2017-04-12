@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\Factory as Storage;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image as ImageLib;
 
 class ImageController extends Controller
 {
@@ -29,17 +30,23 @@ class ImageController extends Controller
 
       $imageUploaded = $this->uploadImage( $image, $savedImageName, $storage );
 
-      if ( $imageUploaded )
+      if ($imageUploaded)
       {
         $data = [
-          'original_path' => asset( '/images/upload/' . $savedImageName )
+          'filename' => $savedImageName
         ];
 
-        Image::create(['url' => $data['original_path'],
+        Image::create(['url' => $savedImageName,
+        'original_url' => $image->getClientOriginalName(),
+        'size' => File::size($image),
         'imageable_type' => $request->type,
         'imageable_id' => $request->id ]);
 
-        return json_encode( $data, JSON_UNESCAPED_SLASHES );
+        ImageLib::make( asset('/photos/upload/' . $savedImageName ))
+        ->resize(333, 250)
+        ->save(public_path( '/photos/upload/thumbs/' . $savedImageName ));
+
+        return json_encode($data);
       }
       return "uploading failed";
     }
@@ -57,7 +64,7 @@ class ImageController extends Controller
   public function uploadImage( $image, $imageFullName, $storage )
   {
     $filesystem = new Filesystem;
-    return $storage->disk( 'image' )->put( $imageFullName, $filesystem->get( $image ) );
+    return $storage->disk('image')->put( $imageFullName, $filesystem->get( $image ) );
   }
 
   /**
@@ -81,7 +88,9 @@ class ImageController extends Controller
   public function destroy(Request $request)
   {
     $image = Image::where('url', $request->url)->delete();
-    if(File::exists($request->url))
-    File::delete($request->url);
+    if(File::exists(public_path('/photos/upload/' . $request->url)))
+      File::delete(public_path('/photos/upload/' . $request->url));
+    if(File::exists(public_path('/photos/upload/thumbs/' . $request->url)))
+      File::delete(public_path('/photos/upload/thumbs/' . $request->url));
   }
 }

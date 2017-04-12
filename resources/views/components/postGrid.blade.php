@@ -1,7 +1,7 @@
 <div class="container">
 
   <h1>
-    {{ $title ? $title : __('Latest articles') }}
+    {{ !empty($title) ? $title : __('Latest articles') }}
     <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
   </h1>
   <hr>
@@ -41,7 +41,7 @@
 
   </div>
 
-  @if($pagination)
+  @if(!empty($pagination))
   <div class="text-center">
     {{ $products->links() }}
   </div>

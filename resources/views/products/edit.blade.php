@@ -60,27 +60,35 @@
     uploadMultiple: false,
     parallelUploads: 1,
     addRemoveLinks: true,
+    // thumbnailWidth: 450,
+    // thumbnailHeight: 253,
+    dictCancelUpload: '{{ __('Cancel') }}',
+    dictCancelUploadConfirmation: '{{ __('Are you sure?') }}',
     dictRemoveFile: '{{ __('Remove') }}',
     dictFileTooBig: '{{ __('Image is bigger than 8 MB') }}',
     accept: function(file, done) { done() },
     init: function() {
       this.on("removedfile", function(file) {
         $.ajax({
-            type: 'DELETE',
-            url: '{{ route('images.destroy') }}',
-            data: {url: file.original_path }
-          });
+          type: 'DELETE',
+          url: '{{ route('images.destroy') }}',
+          data: { url: $(file.previewElement).find('[data-dz-name]').html() }
+        });
       });
 
       @foreach($product->images as $image)
-      var mockFile = { name: '{{ $image->url }}', size: 0 };
+      var mockFile = { name: '{{ $image->url }}', size: {{ $image->size }} };
       this.emit("addedfile", mockFile);
-      this.emit("thumbnail", mockFile, "{{ $image->url }}");
-      this.createThumbnailFromUrl(mockFile, '{{ $image->url }}');
+      this.emit("thumbnail", mockFile, "{{ $url . '/thumbs/' . $image->url }}");
+      this.createThumbnailFromUrl(mockFile, '{{ $url . '/thumbs/' . $image->url }}');
       this.emit("complete", mockFile);
       @endforeach
 
-        $('.dz-size').hide();
+      $('.dz-size').hide();
+    },
+    success: function(file, response) {
+      responseData = JSON.parse(response);
+      $(file.previewElement).find('[data-dz-name]').html(responseData.filename);
     }
   });
   </script>

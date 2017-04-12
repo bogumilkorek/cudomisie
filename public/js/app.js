@@ -32655,11 +32655,6 @@ $(function () {
     e.preventDefault();
     __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].clear();
   });
-
-  $(".search-toggle").on('click', function (e) {
-    e.preventDefault();
-    $('.navbar-collapse ul').toggle();
-  });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

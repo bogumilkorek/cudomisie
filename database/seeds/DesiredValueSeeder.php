@@ -46,6 +46,9 @@ class DesiredValueSeeder extends Seeder
         'name' => 'Your beloved admin',
         'email' => $email,
         'password' => bcrypt($password),
+        'phone' => NULL,
+        'street' => NULL,
+        'city' => NULL,
       ]);
   }
 

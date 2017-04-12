@@ -9,6 +9,7 @@ use App\ShippingMethod;
 use Illuminate\Http\Request;
 use Alert;
 use App\Http\Traits\CartItemsTrait;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,7 +18,7 @@ class OrderController extends Controller
 
   public function __construct()
   {
-    $this->middleware(['auth', 'admin'])->except(['showUser', 'createUser', 'storeUser']);
+    $this->middleware(['auth', 'admin'])->except(['indexUser', 'showUser', 'createUser', 'storeUser']);
   }
   /**
   * Display a listing of the resource.
@@ -32,6 +33,17 @@ class OrderController extends Controller
     ->get();
 
     return view('orders.index')->withOrders($orders);
+  }
+
+  public function indexUser()
+  {
+    $orders = Order::where('user_id', Auth::user()->id)
+    ->orderBy('id', 'desc')
+    ->with('orderStatus')
+    ->with('shippingMethod')
+    ->get();
+
+    return view('orders.indexUser')->withOrders($orders);
   }
 
   /**
@@ -68,6 +80,8 @@ class OrderController extends Controller
     $items = $this->getItems();
 
     $order = new Order;
+    if(Auth::user()->id)
+        $order->user_id = Auth::user()->id;
     $order->order_status_id = 1;
     $order->shipping_method_id = $request->shippingMethodId;
     $order->shipping_cost = ShippingMethod::where('id', $request->shippingMethodId)->first()->price;

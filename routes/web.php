@@ -52,7 +52,9 @@ Route::get(__('place-order'), 'OrderController@createUser')->name('user.orders.c
 Route::post(__('place-order'), 'OrderController@storeUser')->name('user.orders.store');
 Route::get(__('order') . '/{order}', 'OrderController@showUser')->name('user.orders.show');
 Route::get(__('order'), 'OrderController@indexUser')->name('user.orders.index');
+Route::get('check-user', 'UserController@checkUser');
 Route::get(__('profile'), 'UserController@showProfile')->name('user.profile.show');
+Route::put(__('profile') . '/update/{user}', 'UserController@updateProfile')->name('user.profile.update');
 Route::get(__('search'), 'SearchController@search')->name('user.search');
 Route::get('{page}', 'PageController@show')->name('user.pages.show');
 Route::get('/', 'PageController@showHomepage')->name('user.homepage.show');

@@ -63,7 +63,8 @@ class PageController extends Controller
 
     public function showHomepage()
     {
-      return view('pages.show')->withPage(Page::first());
+      return view('pages.show')->withPage(Page::first())
+      ->withSlider(true);
     }
     /**
     * Show the form for editing the specified resource.

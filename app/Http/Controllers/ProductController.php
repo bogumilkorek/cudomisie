@@ -74,7 +74,8 @@ class ProductController extends Controller
   */
   public function show(Category $category, Product $product)
   {
-    return view('products.show')->withProduct($product);
+    return view('products.show')->withProduct($product)
+    ->withUrl(asset('photos/upload'));
   }
 
   /**
@@ -95,7 +96,8 @@ class ProductController extends Controller
 
 
     return view('products.edit')->withProduct($product)
-    ->withCategories(Category::all());
+    ->withCategories(Category::all())
+    ->withUrl(asset('photos/upload'));
   }
 
   /**
