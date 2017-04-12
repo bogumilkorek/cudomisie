@@ -16,43 +16,43 @@ class ImageController extends Controller
   {
     $this->middleware(['auth', 'admin']);
   }
+
   public function index()
   {
-
   }
-  public function store( Storage $storage, Request $request )
-  {
-    if ( $request->isXmlHttpRequest() )
-    {
-      $image = $request->file( 'image' );
-      $timestamp = $this->getFormattedTimestamp();
-      $savedImageName = $this->getSavedImageName( $timestamp, $image );
 
-      $imageUploaded = $this->uploadImage( $image, $savedImageName, $storage );
+  public function store(Storage $storage, Request $request)
+  {
+    if ($request->isXmlHttpRequest())
+    {
+      $image = $request->file('image');
+      $timestamp = $this->getFormattedTimestamp();
+      $savedImageName = $this->getSavedImageName($timestamp, $image);
+      $imageUploaded = $this->uploadImage($image, $savedImageName, $storage);
 
       if ($imageUploaded)
       {
-        $data = [
-          'filename' => $savedImageName
-        ];
+        $data = ['filename' => $savedImageName];
 
-        Image::create(['url' => $savedImageName,
-        'original_url' => $image->getClientOriginalName(),
-        'size' => File::size($image),
-        'imageable_type' => $request->type,
-        'imageable_id' => $request->id ]);
+        Image::create([
+          'url' => $savedImageName,
+          'original_url' => $image->getClientOriginalName(),
+          'size' => File::size($image),
+          'imageable_type' => $request->type,
+          'imageable_id' => $request->id,
+        ]);
 
-        ImageLib::make( asset('/photos/upload/' . $savedImageName ))
+        ImageLib::make(asset('/photos/upload/' . $savedImageName))
         ->resize(333, 250)
-        ->save(public_path( '/photos/upload/thumbs/' . $savedImageName ));
+        ->save(public_path('/photos/upload/thumbs/' . $savedImageName));
 
         return json_encode($data);
       }
+
       return "uploading failed";
     }
 
   }
-
 
   /**
   * @param $image
@@ -61,10 +61,10 @@ class ImageController extends Controller
   * @return mixed
   * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
   */
-  public function uploadImage( $image, $imageFullName, $storage )
+  public function uploadImage($image, $imageFullName, $storage)
   {
     $filesystem = new Filesystem;
-    return $storage->disk('image')->put( $imageFullName, $filesystem->get( $image ) );
+    return $storage->disk('image')->put($imageFullName, $filesystem->get( $image ));
   }
 
   /**
@@ -72,7 +72,7 @@ class ImageController extends Controller
   */
   protected function getFormattedTimestamp()
   {
-    return str_replace( [' ', ':'], '-', Carbon::now()->toDateTimeString() );
+    return str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
   }
 
   /**
@@ -80,7 +80,7 @@ class ImageController extends Controller
   * @param $image
   * @return string
   */
-  protected function getSavedImageName( $timestamp, $image )
+  protected function getSavedImageName($timestamp, $image)
   {
     return $timestamp . '-' . $image->getClientOriginalName();
   }
@@ -88,6 +88,7 @@ class ImageController extends Controller
   public function destroy(Request $request)
   {
     $image = Image::where('url', $request->url)->delete();
+
     if(File::exists(public_path('/photos/upload/' . $request->url)))
       File::delete(public_path('/photos/upload/' . $request->url));
     if(File::exists(public_path('/photos/upload/thumbs/' . $request->url)))

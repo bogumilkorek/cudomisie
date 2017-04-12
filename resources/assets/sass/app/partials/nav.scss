@@ -11,6 +11,11 @@
   padding: 0px;
   border: 0px solid #83C0B5;
 
+  & .has-submenu.highlighted {
+      background: #83C0B5;
+  }
+
+
   & .navbar-nav {
     display: inline-block;
     float: none;

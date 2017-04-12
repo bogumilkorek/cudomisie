@@ -74,8 +74,7 @@ class ProductController extends Controller
   */
   public function show(Category $category, Product $product)
   {
-    return view('products.show')->withProduct($product)
-    ->withUrl(asset('photos/upload'));
+    return view('products.show')->withProduct($product);
   }
 
   /**
@@ -96,8 +95,7 @@ class ProductController extends Controller
 
 
     return view('products.edit')->withProduct($product)
-    ->withCategories(Category::all())
-    ->withUrl(asset('photos/upload'));
+    ->withCategories(Category::all());
   }
 
   /**
@@ -112,9 +110,9 @@ class ProductController extends Controller
     $product->update($request->all());
 
     if(isset($request->categories))
-    $product->categories()->sync($request->categories);
+      $product->categories()->sync($request->categories);
     else
-    $product->categories()->sync(array());
+      $product->categories()->sync([]);
 
     alert()->success( __('Product updated!'), __('Success'))->persistent('OK');
     return redirect()->route('products.index');

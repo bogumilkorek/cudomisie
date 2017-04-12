@@ -56,23 +56,26 @@
               <div class="form-group">
                 <div class="col-md-8 col-md-offset-4">
                   <button type="submit" class="btn btn-primary">
-                    {{ __('Login') }}
+                      <i class="fa fa-check" aria-hidden="true"></i> {{ __('Login') }}
                   </button>
 
-                  <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
+                  <a class="btn btn-danger btn-white" href="{{ route('password.request') }}">
+                      <i class="fa fa-times" aria-hidden="true"></i> {{ __('Forgot Your Password?') }}
                   </a>
                 </div>
               </div>
-              <h5>Zaloguj przy użyciu:</h5>
-              <hr>
-              <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
-                  <a class="btn btn-circle" href="{{ url('login/github') }}">
-                    <i class="fa fa-github" aria-hidden="true"></i>
+
+              <hr />
+
+              <div class="text-center">
+                  <a class="btn btn-primary btn-white btn-google" href="{{ url('login/google') }}">
+                    <i class="fa fa-google" aria-hidden="true"></i> {{ __('Login with') }} Google
                   </a>
-                  <a class="btn btn-circle" href="{{ url('login/google') }}">
-                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                  <a class="btn btn-primary btn-white btn-facebook" href="{{ url('login/facebook') }}">
+                    <i class="fa fa-facebook" aria-hidden="true"></i> {{ __('Login with') }} Facebook
+                  </a>
+                  <a class="btn btn-primary btn-white btn-twitter" href="{{ url('login/twitter') }}">
+                    <i class="fa fa-twitter" aria-hidden="true"></i> {{ __('Login with') }} Twitter
                   </a>
                 </div>
               </div>

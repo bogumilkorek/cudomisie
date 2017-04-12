@@ -79,8 +79,8 @@
       @foreach($product->images as $image)
       var mockFile = { name: '{{ $image->url }}', size: {{ $image->size }} };
       this.emit("addedfile", mockFile);
-      this.emit("thumbnail", mockFile, "{{ $url . '/thumbs/' . $image->url }}");
-      this.createThumbnailFromUrl(mockFile, '{{ $url . '/thumbs/' . $image->url }}');
+      this.emit("thumbnail", mockFile, "{{ $image->thumbnail_url }}");
+      this.createThumbnailFromUrl(mockFile, '{{ $image->url }}');
       this.emit("complete", mockFile);
       @endforeach
 

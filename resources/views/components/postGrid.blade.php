@@ -16,7 +16,7 @@
 
       <div class="col-md-4">
         <div class="product-card">
-          <img src="{{ $post->images->first()->url }}">
+          <img src="{{ $post->images->first()->thumbnail_url }}">
         <p class="match">
           {{ $post->title }}
         </p>

@@ -32592,13 +32592,14 @@ var Slider = function () {
   _createClass(Slider, [{
     key: 'run',
     value: function run(container, duration) {
+      $(container).height($(container + ' img:eq(1)').height());
       $(container + ' div:gt(1)').hide();
       setInterval(function () {
         $(container + ' > div:eq(1)').fadeOut(700).next().fadeIn(700).end().appendTo(container);
       }, duration);
 
-      // Set container height on load and resize
-      $(window).on('load resize', function () {
+      // Set container height on window resize
+      $(window).on('resize', function () {
         $(container).height($(container + ' img:eq(1)').height());
       });
     }

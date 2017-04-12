@@ -22,8 +22,8 @@
 
         <div class="gallery">
           @foreach($product->images as $image)
-            <a href="{{ $url }}/{{ $image->url }}">
-              <img src="{{ $url }}/thumbs/{{ $image->url }}" />
+            <a href="{{ $image->url }}">
+              <img src="{{ $image->thumbnail_url }}" />
             </a>
           @endforeach
         </div>
