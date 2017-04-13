@@ -12,13 +12,14 @@
 
       <hr>
 
+
       @component('components.cartItems', [
         'products' => $items['products'],
         'quantities' => $items['quantities'],
         'total' => $items['total'],
       ])
     @endcomponent
-
+  @if(Auth::user() || !empty($buy_without_login))
     <form method="POST" action="{{ route('user.orders.store') }}">
       {{ csrf_field() }}
 
@@ -42,6 +43,21 @@
 
     </div>
   </form>
+  @else
+  <div class="text-center">
+    <a href="{{ route('login') }}?s=1" class="btn btn-dashed">
+      <i class="fa fa-check" aria-hidden="true"></i> {{ __('Login') }}
+    </a>
+
+    <a href="{{ route('register') }}?s=1" class="btn btn-dashed">
+      <i class="fa fa-user" aria-hidden="true"></i> {{ __('Register') }}
+    </a>
+
+    <a href="{{ route('user.orders.create') }}?noaccount=1" class="btn btn-dashed">
+      <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> {{ __('Buy without creating account') }}
+    </a>
+  </div>
+  @endif
 
 </div>
 </div>

@@ -124,7 +124,7 @@
             {{ __('Admin panel') }}
           </a>
         </li>
-      @endif
+      @else
       <li>
         <a href="{{ route('user.orders.index') }}">
           {{ __('My orders') }}
@@ -135,6 +135,7 @@
           {{ __('Show profile') }}
         </a>
       </li>
+      @endif
       <li><a href="{{ route('logout') }}"
         onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">

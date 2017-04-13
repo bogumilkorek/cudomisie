@@ -24,6 +24,9 @@
       </form>
   </div>
 </div>
+
+@include('layouts.partials.admin.dropzone')
+
 </div>
 
 @include('layouts.partials.admin.wysiwyg')

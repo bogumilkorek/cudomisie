@@ -6,7 +6,7 @@
 
 <div class="form-group">
   <label for="content">{{ __('Content') }}</label>
-  <textarea class="form-control" id="content" name="content">
+  <textarea class="form-control editor" id="content" name="content">
     {{ old('content',  isset($page) ? $page->content : null) }}
   </textarea>
 </div>

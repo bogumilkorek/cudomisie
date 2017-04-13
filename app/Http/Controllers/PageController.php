@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PageRequest;
 use App\Page;
+use App\Image;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -21,7 +22,8 @@ class PageController extends Controller
   public function index()
   {
       $pages = Page::orderBy('title', 'asc')->get();
-      return view('pages.index')->withPages($pages);
+      return view('pages.index')
+      ->withPages($pages);
   }
 
     /**
@@ -29,9 +31,10 @@ class PageController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function create()
+    public function create(Request $request)
     {
-      return view('pages.create');
+      return view('pages.create')
+      ->withImages(Image::where('form_token', $request->session()->token())->get());
     }
 
     /**
@@ -42,7 +45,10 @@ class PageController extends Controller
     */
     public function store(PageRequest $request)
     {
-      Page::create($request->all());
+      $page = Page::create($request->all());
+      Image::where('form_token', $request->_token)->update(['imageable_id' => $page->id, 'form_token' => NULL]);
+      $request->session()->regenerateToken();
+
       alert()->success( __('Page created!'), __('Success'))->persistent('OK');
       return redirect()->route('pages.index');
     }
@@ -71,7 +77,9 @@ class PageController extends Controller
     */
     public function edit(Page $page)
     {
-      return view('pages.edit')->withPage($page);
+      return view('pages.edit')
+      ->withPage($page)
+      ->withImages($page->images);
     }
 
     /**

@@ -37,9 +37,10 @@ class BlogPostController extends Controller
        *
        * @return \Illuminate\Http\Response
        */
-       public function create()
+       public function create(Request $request)
        {
-         return view('blogPosts.create');
+         return view('blogPosts.create')
+         ->withImages(Image::where('form_token', $request->session()->token())->get());
        }
 
        /**
@@ -50,8 +51,11 @@ class BlogPostController extends Controller
        */
        public function store(BlogPostRequest $request)
        {
-         BlogPost::create($request->all());
-         alert()->success( __('Blog post created!'), __('Success'))->persistent('OK');
+         $blogPost = BlogPost::create($request->all());
+         Image::where('form_token', $request->_token)->update(['imageable_id' => $blogPost->id, 'form_token' => NULL]);
+         $request->session()->regenerateToken();
+
+         alert()->success(__('Blog post created!'), __('Success'))->persistent('OK');
          return redirect()->route('blogPosts.index');
        }
 
@@ -74,7 +78,9 @@ class BlogPostController extends Controller
      */
      public function edit(BlogPost $blogPost)
      {
-       return view('blogPosts.edit')->withBlogPost($blogPost);
+       return view('blogPosts.edit')
+       ->withBlogPost($blogPost)
+       ->withImages($blogPost->images);
      }
 
      /**

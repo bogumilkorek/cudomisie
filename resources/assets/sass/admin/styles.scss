@@ -17,13 +17,17 @@ th, td {
   font-size: $font-size-base;
 }
 
+input:invalid {
+    color: #FF0000;
+}
+
+hr {
+  margin-top: 0px;
+}
+
 .btn-icon {
   padding: 10px 12px;
   margin: 0px;
-}
-
-input:invalid {
-    color: #FF0000;
 }
 
 .dropzone {

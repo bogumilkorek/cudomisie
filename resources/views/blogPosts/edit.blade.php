@@ -26,6 +26,13 @@
         <a href="{{ url()->previous() }}" class="btn btn-default">{{ __('Cancel') }}</a>
       </form>
 
-    @include('layouts.partials.admin.wysiwyg')
+    </div>
+  </div>
 
-    @endsection
+  @include('layouts.partials.admin.dropzone')
+
+</div>
+
+@include('layouts.partials.admin.wysiwyg')
+
+@endsection

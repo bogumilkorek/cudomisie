@@ -15,6 +15,18 @@
         {!! $page->content !!}
       </p>
 
+      <div class="text-center">
+
+        <div class="gallery">
+          @foreach($page->images as $image)
+            <a href="{{ $image->url }}">
+              <img src="{{ $image->thumbnail_url }}" />
+            </a>
+          @endforeach
+        </div>
+
+      </div>
+
     </div>
   </div>
 

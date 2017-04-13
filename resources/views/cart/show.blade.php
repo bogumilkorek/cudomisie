@@ -39,7 +39,6 @@
         <a href="#" class="btn btn-dashed cart-clear">
           <i class="fa fa-times" aria-hidden="true"></i> {{ __('Clear cart') }}
         </a>
-
       </div>
 
     @endif

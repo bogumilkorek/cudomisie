@@ -56,13 +56,16 @@ class OrderController extends Controller
     return view('orders.create');
   }
 
-  public function createUser()
+  public function createUser(Request $request)
   {
+    $buyWithoutLogin = $request->noaccount ?? null;
+
     $items = $this->getItems();
 
     return view('orders.createUser')
     ->withItems($items)
-    ->withShippingMethods(ShippingMethod::all());
+    ->withShippingMethods(ShippingMethod::all())
+    ->withBuyWithoutLogin($buyWithoutLogin);
   }
 
   /**

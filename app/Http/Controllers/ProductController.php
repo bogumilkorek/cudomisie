@@ -24,7 +24,6 @@ class ProductController extends Controller
     $products = Product::where('deleted_at', NULL)
     ->orderBy('id', 'desc')
     ->with('categories')
-    ->with('images')
     ->get();
 
     return view('products.index')->withProducts($products);
@@ -89,7 +88,8 @@ class ProductController extends Controller
   */
   public function edit(Product $product)
   {
-    return view('products.edit')->withProduct($product)
+    return view('products.edit')
+    ->withProduct($product)
     ->withImages($product->images)
     ->withCategories(Category::all());
   }
