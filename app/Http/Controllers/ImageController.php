@@ -39,7 +39,7 @@ class ImageController extends Controller
           'original_url' => $image->getClientOriginalName(),
           'size' => File::size($image),
           'imageable_type' => $request->type,
-          'imageable_id' => $request->id ?? 0,
+          'imageable_id' => $request->id,
           'form_token' => $request->_token,
         ]);
 

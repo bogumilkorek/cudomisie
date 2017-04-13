@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BlogPostRequest;
 use App\BlogPost;
+use App\Image;
 use Illuminate\Http\Request;
-use Alert;
 
 class BlogPostController extends Controller
 {

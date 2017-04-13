@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PageRequest;
 use App\Page;
 use Illuminate\Http\Request;
-use Alert;
 
 class PageController extends Controller
 {
-
-
   public function __construct()
   {
       $this->middleware(['auth', 'admin'])->except(['show', 'showHomepage']);

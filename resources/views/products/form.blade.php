@@ -23,7 +23,7 @@
 
 <div class="form-group">
   <label for="description">{{ __('Content') }}</label>
-  <textarea class="form-control" id="description" name="description">
+  <textarea class="form-control editor" id="description" name="description">
     {{ old('description',  isset($product) ? $product->description : null) }}
   </textarea>
 </div>

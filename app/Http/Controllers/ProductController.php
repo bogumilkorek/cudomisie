@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\Category;
+use App\Image;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -45,10 +46,11 @@ class ProductController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function create()
+  public function create(Request $request)
   {
     return view('products.create')
-    ->withCategories(Category::where('parent_id', NULL)->get());
+    ->withCategories(Category::where('parent_id', NULL)->get())
+    ->withImages(Image::where('form_token', $request->session()->token())->get());
   }
 
   /**
@@ -59,8 +61,10 @@ class ProductController extends Controller
   */
   public function store(ProductRequest $request)
   {
-    Product::create($request->all())
-    ->categories()->sync($request->categories, false);
+    $product = Product::create($request->all());
+    Image::where('form_token', $request->_token)->update(['imageable_id' => $product->id, 'form_token' => NULL]);
+    $product->categories()->sync($request->categories, false);
+    $request->session()->regenerateToken();
 
     alert()->success( __('Product created!'), __('Success'))->persistent('OK');
     return redirect()->route('products.index');
@@ -85,16 +89,8 @@ class ProductController extends Controller
   */
   public function edit(Product $product)
   {
-
-    //return json_encode(Category::wherePivot('product_id', $product->id)->get());
-
-    //$product = $product->where('id', $product->id)->with('categories')->get();
-
-    //Category::wherePivot('product_id', $product->id);
-
-
-
     return view('products.edit')->withProduct($product)
+    ->withImages($product->images)
     ->withCategories(Category::all());
   }
 
