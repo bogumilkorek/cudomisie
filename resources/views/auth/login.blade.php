@@ -3,17 +3,19 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            {{ __('Login') }}
-          </div>
           <div class="panel-body">
+            <h1>
+              <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+              {{ __('Login') }}
+            </h1>
+            <hr>
             <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
               {{ csrf_field() }}
 
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">{{ __('E-Mail Address') }}</label>
+                <label for="email" class="col-md-4 control-label">{{ __('E-Mail Address') }}:</label>
 
                 <div class="col-md-6">
                   <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -28,7 +30,7 @@
 
               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="password" class="col-md-4 control-label">
-                  {{ __('Password') }}
+                  {{ __('Password') }}:
                 </label>
 
                 <div class="col-md-6">
@@ -53,37 +55,43 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
-                  <button type="submit" class="btn btn-primary">
-                      <i class="fa fa-check" aria-hidden="true"></i> {{ __('Login') }}
-                  </button>
-
-                  <a class="btn btn-danger btn-white" href="{{ route('password.request') }}">
-                      <i class="fa fa-times" aria-hidden="true"></i> {{ __('Forgot Your Password?') }}
-                  </a>
-                </div>
-              </div>
-
-              <hr />
-
               <div class="text-center">
-                  <a class="btn btn-primary btn-white btn-google" href="{{ url('login/google') }}">
-                    <i class="fa fa-google" aria-hidden="true"></i> {{ __('Login with') }} Google
-                  </a>
-                  <a class="btn btn-primary btn-white btn-facebook" href="{{ url('login/facebook') }}">
-                    <i class="fa fa-facebook" aria-hidden="true"></i> {{ __('Login with') }} Facebook
-                  </a>
-                  <a class="btn btn-primary btn-white btn-twitter" href="{{ url('login/twitter') }}">
-                    <i class="fa fa-twitter" aria-hidden="true"></i> {{ __('Login with') }} Twitter
-                  </a>
-                </div>
+                <button type="submit" class="btn btn-dashed">
+                  <i class="fa fa-check" aria-hidden="true"></i> {{ __('Login') }}
+                </button>
+                <a class="btn btn-dashed" href="{{ route('password.request') }}">
+                  <i class="fa fa-times" aria-hidden="true"></i> {{ __('Forgot Your Password?') }}
+                </a>
+                <br /><br />
+                <h1>
+                  <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+                  {{ __('Login with') }}
+                </h1>
+                <hr>
+                <a class="btn btn-circle btn-google" href="{{ url('login/google') }}">
+                  <i class="fa fa-google" aria-hidden="true" title="{{ __('Login with') }} Google"></i>
+                </a>
+                <a class="btn btn-circle btn-facebook" href="{{ url('login/facebook') }}">
+                  <i class="fa fa-facebook" aria-hidden="true" title="{{ __('Login with') }} Facebook"></i>
+                </a>
+                <a class="btn btn-circle btn-twitter" href="{{ url('login/twitter') }}">
+                  <i class="fa fa-twitter" aria-hidden="true" title="{{ __('Login with') }} Twitter"></i>
+                </a>
+                <br /><br /><br />
+                <h1>
+                  <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+                  {{ __('Register') }}
+                </h1>
+                <hr>
+                <a class="btn btn-dashed" href="{{ route('register') }}">
+                  <i class="fa fa-user" aria-hidden="true"></i> {{ __('Register') }}
+                </a>
               </div>
-
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+
 @endsection

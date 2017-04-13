@@ -45,7 +45,7 @@
         <div class="input-group col-md-2 col-md-offset-5">
         <input type="text" class="form-control" name="q" placeholder="{{ __('Search') }}" required minlength="5">
         <span class="input-group-btn">
-          <button class="btn btn-secondary" type="submit">
+          <button class="btn btn-secondary btn-min" type="submit">
             <i class="fa fa-search" aria-hidden="true"></i>
           </button>
         </span>
@@ -54,23 +54,23 @@
 
     <div class="footer-icons-wrapper">
 
-      <a class="btn btn-circle">
+      <a class="btn btn-circle btn-active" id="scroll-top">
         <i class="fa fa-level-up" aria-hidden="true"></i>
       </a>
 
-      <a class="btn btn-circle">
+      <a class="btn btn-circle btn-facebook">
         <i class="fa fa-facebook" aria-hidden="true"></i>
       </a>
 
-      <a class="btn btn-circle">
+      <a class="btn btn-circle btn-twitter">
         <i class="fa fa-twitter" aria-hidden="true"></i>
       </a>
 
-      <a class="btn btn-circle">
+      <a class="btn btn-circle btn-google">
         <i class="fa fa-google-plus" aria-hidden="true"></i>
       </a>
 
-      <a class="btn btn-circle">
+      <a class="btn btn-circle btn-flickr">
         <i class="fa fa-flickr" aria-hidden="true"></i>
       </a>
 

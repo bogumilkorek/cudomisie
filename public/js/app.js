@@ -32639,7 +32639,7 @@ $.ajaxSetup({
 $(function () {
   $(document).scrollTop(0);
   __WEBPACK_IMPORTED_MODULE_0__slider__["a" /* slider */].run('.slider-container', 5000);
-  baguetteBox.run('.gallery');
+  baguetteBox.run('.gallery, #content p a');
   $('.product-card .match').matchHeight();
 
   $(".cart-add").on('click', function (e) {
@@ -32655,6 +32655,13 @@ $(function () {
   $(".cart-clear").on('click', function (e) {
     e.preventDefault();
     __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].clear();
+  });
+
+  $("#scroll-top").on('click', function (e) {
+    e.preventDefault();
+    $('html,body').animate({
+      scrollTop: 0
+    }, 500);
   });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))

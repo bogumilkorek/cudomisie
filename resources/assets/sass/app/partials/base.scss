@@ -17,6 +17,7 @@ a:link:not(.btn-white), a:visited:not(.btn-white), a:hover, a:active {
 
 hr {
   border-top: 1px dashed #333;
+  margin-top: 0px;
 }
 
 h1, h2, h3 {
@@ -24,19 +25,43 @@ h1, h2, h3 {
   text-align: center;
 }
 
-h1 img {
-  display: inline-block;
-  width: 50px;
-  vertical-align: bottom;
+h1
+{
+  font-size: 30px;
+  margin-top: 0px;
+  & img {
+    display: inline-block;
+    width: 45px;
+    vertical-align: bottom;
+  }
 }
-
 section {
   width: 100%;
   margin: 0px auto;
-  padding: 25px 0px 50px 0px;
+  padding: 50px 0px;
   background: transparent;
 
   &.blue {
     background: #BCE2F7;
+  }
+}
+
+.panel-default {
+  border-radius: 10px;
+  border: 1px dashed rgba(0, 0, 0, .4);
+  box-shadow: 0 0 0 4px #F3F3F3, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  color: #031C30;
+  background: #F3F3F3;
+}
+
+.gallery img, #content p a img {
+  transition: $transition;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px dashed rgba(100, 100, 100, .4);
+  box-shadow: 0 0 0 4px #F3F3F3, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+
+  &:hover {
+    box-shadow: 0 0 0 4px darken(#F3F3F3,10%), 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
   }
 }

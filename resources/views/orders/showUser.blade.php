@@ -2,7 +2,8 @@
 
 @section('content')
 
-<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
 
   <h1>
     <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
@@ -10,8 +11,6 @@
   </h1>
 
   <hr>
-  <div class="panel panel-default">
-    <div class="panel-body">
       <p>
         <b>{{ __('Status') }}:</b><br />{{ $order->orderStatus->title }}<br /><br />
         <b>{{ __('Products') }}:</b><br />
@@ -34,7 +33,13 @@
         <br /><br />
         <b>{{ __('Date') }}:</b><br />{{ $order->created_at }}<br /><br />
       </p>
-    </div>
-  </div>
+
+      <div class="text-center">
+        <a href="{{ route('user.orders.index') }}" class="btn btn-dashed">
+          <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> {{ __('Go back') }}
+        </a>
+      </div>
+</div>
+</div>
 
   @endsection

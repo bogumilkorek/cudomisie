@@ -50,8 +50,8 @@ Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.bl
 Route::get(__('blog'), 'BlogPostController@indexUser')->name('user.blogPosts.index');
 Route::get(__('place-order'), 'OrderController@createUser')->name('user.orders.create');
 Route::post(__('place-order'), 'OrderController@storeUser')->name('user.orders.store');
-Route::get(__('order') . '/{order}', 'OrderController@showUser')->name('user.orders.show');
-Route::get(__('order'), 'OrderController@indexUser')->name('user.orders.index');
+Route::get(__('orders') . '/{order}', 'OrderController@showUser')->name('user.orders.show');
+Route::get(__('orders'), 'OrderController@indexUser')->name('user.orders.index');
 Route::get('check-user', 'UserController@checkUser');
 Route::get(__('profile'), 'UserController@showProfile')->name('user.profile.show');
 Route::put(__('profile') . '/update/{user}', 'UserController@updateProfile')->name('user.profile.update');

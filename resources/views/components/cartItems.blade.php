@@ -1,4 +1,4 @@
-<table class="table table-hover table-striped">
+<table class="table table-hover table-bordered table-striped">
   <thead>
     <tr>
       <th>{{ __('Title') }}</th>
@@ -16,9 +16,9 @@
         <td>{{ $quantities[$product->slug] }} {{ __('pcs.') }}</td>
         <td>{{ $product->price }}</td>
         @if(!empty($deleteButtons))
-          <td>
-            <a href="#" class="btn btn-danger btn-white cart-remove" data-slug="{{ $product->slug }}">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true" title="{{ __('Delete') }}"></span>
+          <td class="text-center actions">
+            <a href="#" class="btn btn-dashed cart-remove" data-slug="{{ $product->slug }}">
+            <i class="fa fa-trash-o" aria-hidden="true" title="{{ __('Delete') }}"></i>
             </a>
           </td>
         @endif

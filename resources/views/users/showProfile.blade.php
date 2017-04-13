@@ -2,14 +2,14 @@
 
 @section('content')
 
-  <h1>
-    <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
-    {{ __('Show profile') }}
-  </h1>
-
-  <hr>
   <div class="panel panel-default">
     <div class="panel-body">
+      <h1>
+        <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+        {{ __('Show profile') }}
+      </h1>
+
+      <hr>
       <form method="POST" action="{{ route('user.profile.update', $user) }}">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -47,11 +47,12 @@
           value="{{ old('city', $user->city) }}" required>
         </div>
 
-
-        <button type="submit" class="btn btn-primary"
-        data-loading-text="<i class='fa fa-cog fa-spin'></i> {{ __('Loading') }}">
-        {{ __('Save') }}
-      </button>
+        <div class="text-center">
+          <button type="submit" class="btn btn-dashed"
+          data-loading-text="<i class='fa fa-cog fa-spin'></i> {{ __('Loading') }}">
+          <i class="fa fa-share" aria-hidden="true"></i> {{ __('Save') }}
+        </button>
+      </div>
     </form>
   </div>
 </div>

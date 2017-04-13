@@ -1,3 +1,7 @@
+.btn:focus,.btn:active {
+   outline: none !important;
+}
+
 .btn-circle {
   width: 50px;
   height: 50px;
@@ -10,6 +14,7 @@
   box-shadow: 0 0 0 4px #FFF, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
   border: 1px dashed rgba(0, 0, 0, .4);
   margin: 0px 10px;
+  transition: $transition;
 }
 
 .btn-dashed {
@@ -21,19 +26,57 @@
   box-shadow: 0 0 0 4px #F3F3F3, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
   border: 1px dashed rgba(0, 0, 0, .4);
   margin: 15px;
+  transition: $transition;
+  &:hover
+  {
+    background: darken(#F3F3F3,10%);
+    box-shadow: 0 0 0 4px darken(#F3F3F3,10%), 2px 1px 6px 4px rgba(0, 0, 0, 0.5);
+  }
 }
 
-.btn-google {
+.btn-min
+{
+  padding: 6px 10px;
+  margin: 0px;
+  font-size: 14px;
+  border-radius: 0px;
+  border: 1px dashed rgba(80, 80, 80, .4);
+  background: #F3F3F3;
+  border-radius: 5px;
+}
+
+
+.btn-active:hover {
+  background: #53A695;
+  box-shadow: 0 0 0 4px #53A695, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  border: 1px dashed rgba(255, 255, 255, .6);
+  color: #FFF!important;
+}
+
+.btn-google:hover {
   background: #DC4A3E;
-  border-color: #DC4A3E;
+  box-shadow: 0 0 0 4px #DC4A3E, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  border: 1px dashed rgba(255, 255, 255, .6);
+  color: #FFF!important;
 }
 
-.btn-facebook {
+.btn-facebook:hover {
   background: #45629C;
-  border-color: #45629C;
+  box-shadow: 0 0 0 4px #45629C, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  border: 1px dashed rgba(255, 255, 255, .6);
+  color: #FFF!important;
 }
 
-.btn-twitter {
+.btn-twitter:hover {
   background: #0084B4;
-  border-color: #0084B4;
+  box-shadow: 0 0 0 4px #0084B4, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  border: 1px dashed rgba(255, 255, 255, .6);
+  color: #FFF!important;
+}
+
+.btn-flickr:hover {
+  background: #2E5E86;
+  box-shadow: 0 0 0 4px #2E5E86, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  border: 1px dashed rgba(255, 255, 255, .6);
+  color: #FFF!important;
 }
