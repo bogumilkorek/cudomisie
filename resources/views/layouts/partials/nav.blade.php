@@ -118,6 +118,13 @@
         </a>
       </li>
       @else
+      @if(Auth::user()->admin)
+        <li>
+          <a href="{{ url('/admin') }}">
+            {{ __('Admin panel') }}
+          </a>
+        </li>
+      @endif
       <li>
         <a href="{{ route('user.orders.index') }}">
           {{ __('My orders') }}

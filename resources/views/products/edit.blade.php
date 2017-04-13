@@ -60,8 +60,6 @@
     uploadMultiple: false,
     parallelUploads: 1,
     addRemoveLinks: true,
-    // thumbnailWidth: 450,
-    // thumbnailHeight: 253,
     dictCancelUpload: '{{ __('Cancel') }}',
     dictCancelUploadConfirmation: '{{ __('Are you sure?') }}',
     dictRemoveFile: '{{ __('Remove') }}',
@@ -76,6 +74,11 @@
         });
       });
 
+      this.on("success", function(file, response) {
+        responseData = JSON.parse(response);
+        $(file.previewElement).find('[data-dz-name]').html(responseData.filename);
+      });
+
       @foreach($product->images as $image)
       var mockFile = { name: '{{ $image->url }}', size: {{ $image->size }} };
       this.emit("addedfile", mockFile);
@@ -83,12 +86,6 @@
       this.createThumbnailFromUrl(mockFile, '{{ $image->url }}');
       this.emit("complete", mockFile);
       @endforeach
-
-      $('.dz-size').hide();
-    },
-    success: function(file, response) {
-      responseData = JSON.parse(response);
-      $(file.previewElement).find('[data-dz-name]').html(responseData.filename);
     }
   });
   </script>

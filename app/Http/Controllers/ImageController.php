@@ -39,7 +39,8 @@ class ImageController extends Controller
           'original_url' => $image->getClientOriginalName(),
           'size' => File::size($image),
           'imageable_type' => $request->type,
-          'imageable_id' => $request->id,
+          'imageable_id' => $request->id ?? 0,
+          'form_token' => $request->_token,
         ]);
 
         ImageLib::make(asset('/photos/upload/' . $savedImageName))

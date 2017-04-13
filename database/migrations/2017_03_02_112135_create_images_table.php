@@ -18,6 +18,7 @@ class CreateImagesTable extends Migration
             $table->string('url');
             $table->string('original_url');
             $table->integer('size');
+            $table->string('form_token')->nullable();
             $table->morphs('imageable');
         });
     }
