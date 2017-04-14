@@ -17,7 +17,6 @@ class CreateShippingMethodsTable extends Migration
             $table->increments('id');
             $table->string('title')->unique();
             $table->string('price');
-            $table->string('cash_on_delivery');
         });
     }
 

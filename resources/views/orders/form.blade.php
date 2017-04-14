@@ -1,5 +1,5 @@
 <div class="form-group">
-<h5> {{ __('Payment in advance') }}</h5>
+<h4> {{ __('Select shipping method') }}:</h4>
 @foreach($shipping_methods as $sMethod)
   <div class="form-check">
     <label class="form-check-label">
@@ -10,6 +10,7 @@
 @endforeach
 </div>
 
+<h4> {{ __('Fill in shipping data') }}:</h4>
 <div class="form-group">
   <label for="name">{{ __('Name') }}:</label>
   <input type="text" pattern="[^\s]{3,} [^\s]{3,}" class="form-control" name="name"
