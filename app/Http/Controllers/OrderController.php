@@ -60,6 +60,8 @@ class OrderController extends Controller
   {
     $buyWithoutLogin = $request->noaccount ?? null;
 
+    $request->session()->put('shopping', 'true');
+
     $items = $this->getItems();
 
     return view('orders.createUser')

@@ -14,7 +14,6 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
     },
     'imageable_type' => $imageable_type,
     'url' => 'mock-' . rand(1,3) . '.jpg',
-    'original_url' => 'mock-' . rand(1,3) . '.jpg',
     'size' => 123456,
   ];
 });

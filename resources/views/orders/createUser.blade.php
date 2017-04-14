@@ -45,11 +45,11 @@
   </form>
   @else
   <div class="text-center">
-    <a href="{{ route('login') }}?s=1" class="btn btn-dashed">
+    <a href="{{ route('login') }}" class="btn btn-dashed">
       <i class="fa fa-check" aria-hidden="true"></i> {{ __('Login') }}
     </a>
 
-    <a href="{{ route('register') }}?s=1" class="btn btn-dashed">
+    <a href="{{ route('register') }}" class="btn btn-dashed">
       <i class="fa fa-user" aria-hidden="true"></i> {{ __('Register') }}
     </a>
 

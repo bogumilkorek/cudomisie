@@ -39,8 +39,7 @@ $("#images-dropzone").dropzone({
     });
 
     this.on("success", function(file, response) {
-      responseData = JSON.parse(response);
-      $(file.previewElement).find('[data-dz-name]').html(responseData.filename);
+      $(file.previewElement).find('[data-dz-name]').html(response.filename);
     });
 
     @if(!empty($images))

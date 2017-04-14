@@ -10,7 +10,7 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
     // Check if user is admin and whether user has complete profile
-    public function checkUser()
+    public function checkUser(Request $request)
     {
       alert()->success(__('You are now logged in'), __('Success'))->persistent('OK');
 
@@ -19,11 +19,16 @@ class UserController extends Controller
 
       else if(Auth::user())
       {
-        $user = User::where('id', Auth::user()->id)->first();
-        if(empty($user->street))
-            return redirect('/profile');
+        if($request->session()->has('shopping'))
+          return redirect()->route('user.orders.create');
         else
-            return redirect('/');
+        {
+          $user = User::where('id', Auth::user()->id)->first();
+          if(empty($user->street))
+              return redirect('/profile');
+          else
+              return redirect('/');
+        }
       }
     }
 

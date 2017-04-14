@@ -16,7 +16,6 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url');
-            $table->string('original_url');
             $table->integer('size');
             $table->string('form_token')->nullable();
             $table->morphs('imageable');
