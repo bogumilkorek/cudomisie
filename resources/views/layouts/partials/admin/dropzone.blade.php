@@ -8,7 +8,7 @@
       <div class="dz-message">
         <h4 style="text-align: center;color:#428bca;">{{ __('Drop images in this area') }}<span class="glyphicon glyphicon-hand-down"></span></h4>
       </div>
-      <input type="hidden" name="type" value="products" />
+      <input type="hidden" name="type" value="{{ Request::segment(2) }}" />
       <input type="hidden" name="id" value="{{ $product->id ?? 0 }}" />
     </form>
   </div>
