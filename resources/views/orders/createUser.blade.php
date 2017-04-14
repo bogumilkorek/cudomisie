@@ -2,24 +2,26 @@
 
 @section('content')
 
-  <div class="panel panel-default">
-    <div class="panel-body">
+<div class="panel panel-default">
+  <div class="panel-body">
 
-      <h1>
-        <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
-        {{ __('Place order') }}
-      </h1>
+    <h1>
+      <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+      {{ __('Place order') }}
+    </h1>
 
-      <hr>
+    <hr>
 
-
-      @component('components.cartItems', [
-        'products' => $items['products'],
-        'quantities' => $items['quantities'],
-        'total' => $items['total'],
-      ])
+    @if(Auth::user() || !empty($buy_without_login))
+    
+    @component('components.cartItems', [
+    'products' => $items['products'],
+    'quantities' => $items['quantities'],
+    'total' => $items['total'],
+    'input' => false
+    ])
     @endcomponent
-  @if(Auth::user() || !empty($buy_without_login))
+
     <form method="POST" action="{{ route('user.orders.store') }}">
       {{ csrf_field() }}
 
@@ -27,9 +29,9 @@
 
       <div class="text-center">
 
-      <button type="submit" class="btn btn-dashed"
-      data-loading-text="<i class='fa fa-cog fa-spin'></i>
-      {{ __('Loading') }}">
+        <button type="submit" class="btn btn-dashed"
+        data-loading-text="<i class='fa fa-cog fa-spin'></i>
+        {{ __('Loading') }}">
         <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> {{ __('Place order') }}
       </button>
 

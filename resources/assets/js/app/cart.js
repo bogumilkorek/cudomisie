@@ -8,6 +8,8 @@ class Cart {
       data: { slug: slug, quantity: 1 }
     })
     .done(function(message) {
+      let itemCounter = $('#cart-items-counter').val() ? $('#cart-items-counter').val() : 0;
+      $('#cart-items-counter').val(++itemCounter);
       swal({
         title: message.title,
         text: message.content,

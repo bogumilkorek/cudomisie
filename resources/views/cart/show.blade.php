@@ -24,6 +24,7 @@
           'quantities' => $items['quantities'],
           'total' => $items['total'],
           'deleteButtons' => true,
+          'input' => true
         ])
       @endcomponent
 

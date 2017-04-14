@@ -65,3 +65,10 @@ section {
     box-shadow: 0 0 0 4px darken(#F3F3F3,10%), 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
   }
 }
+
+.badge {
+    background-color: #34A8E7;
+    font-family: $font-family-sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}

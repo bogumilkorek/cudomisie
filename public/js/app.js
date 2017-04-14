@@ -32502,6 +32502,8 @@ var Cart = function () {
         url: "/cart/addItem",
         data: { slug: slug, quantity: 1 }
       }).done(function (message) {
+        var itemCounter = $('#cart-items-counter').val() ? $('#cart-items-counter').val() : 0;
+        $('#cart-items-counter').val(++itemCounter);
         swal({
           title: message.title,
           text: message.content,
@@ -32655,6 +32657,10 @@ $(function () {
   $(".cart-clear").on('click', function (e) {
     e.preventDefault();
     __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].clear();
+  });
+
+  $(".cart-item-quantity").on('change keyup', function () {
+    __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].updateItem($(this).data('slug'), $(this).val());
   });
 
   $("#scroll-top").on('click', function (e) {

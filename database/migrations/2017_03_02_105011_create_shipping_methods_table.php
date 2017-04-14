@@ -17,6 +17,7 @@ class CreateShippingMethodsTable extends Migration
             $table->increments('id');
             $table->string('title')->unique();
             $table->string('price');
+            $table->boolean('high_capacity');
         });
     }
 

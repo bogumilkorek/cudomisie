@@ -36,6 +36,10 @@ $(() => {
     cart.clear();
   });
 
+  $(".cart-item-quantity").on('change keyup', function() {
+      cart.updateItem($(this).data('slug'), $(this).val());
+  });
+
   $("#scroll-top").on('click', function(e) {
     e.preventDefault();
     $('html,body').animate({

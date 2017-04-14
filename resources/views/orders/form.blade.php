@@ -1,5 +1,6 @@
 <div class="form-group">
-<h4> {{ __('Select shipping method') }}:</h4>
+<h2><i class="fa fa-truck" aria-hidden="true"></i> {{ __('Select shipping method') }}:</h2>
+<hr>
 @foreach($shipping_methods as $sMethod)
   <div class="form-check">
     <label class="form-check-label">
@@ -9,8 +10,11 @@
   </div>
 @endforeach
 </div>
+<h4><b>{{ __('Total') }}: </b></h4>
+<br />
 
-<h4> {{ __('Fill in shipping data') }}:</h4>
+<h2><i class="fa fa-info-circle" aria-hidden="true"></i> {{ __('Fill in shipping data') }}:</h2>
+<hr>
 <div class="form-group">
   <label for="name">{{ __('Name') }}:</label>
   <input type="text" pattern="[^\s]{3,} [^\s]{3,}" class="form-control" name="name"

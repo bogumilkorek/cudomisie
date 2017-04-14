@@ -14,6 +14,7 @@ use App\Category;
 use App\BlogPost;
 use App\Order;
 use Webpatser\Uuid\Uuid;
+use Request;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
   * @return void
   */
   public function boot()
-  {    
+  {
     // Fix database error
     Schema::defaultStringLength(191);
 

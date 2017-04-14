@@ -9,7 +9,7 @@ class ShippingMethod extends Model
   public $timestamps = false;
 
   protected $fillable = [
-    'name', 'price', 'cash_on_delivery'
+    'title', 'price', 'high_capacity'
   ];
 
   public function orders()

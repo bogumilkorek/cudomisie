@@ -62,11 +62,22 @@ class OrderController extends Controller
 
     $request->session()->put('shopping', 'true');
 
+    $cartItemsCounter = $request->session()->get('cart-items-counter');
+
     $items = $this->getItems();
+
+    $shippingMethods = ShippingMethod::all();
+
+    // If shipping method has small capacity then price will be multiplied by item quantity
+    foreach($shippingMethods as $sMethod)
+    {
+      if($sMethod->high_capacity == 0)
+        $sMethod->price = (string)((floatval($sMethod->price) * $cartItemsCounter) . ' ' . __('$'));
+    }
 
     return view('orders.createUser')
     ->withItems($items)
-    ->withShippingMethods(ShippingMethod::all())
+    ->withShippingMethods($shippingMethods)
     ->withBuyWithoutLogin($buyWithoutLogin);
   }
 
