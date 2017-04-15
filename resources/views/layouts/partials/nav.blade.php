@@ -82,7 +82,7 @@
     </li>
     <li>
       <a href="{{ route('cart.show') }}">
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge" id="cart-items-counter">{{ Request::session()->get('cart-items-counter') ?? '' }}</span>
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge" id="cart-items-counter">{{ Request::session()->get('cart.counter') ?? '' }}</span>
       </a>
     </li>
     <li class="dropdown">

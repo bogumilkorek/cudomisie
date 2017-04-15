@@ -1,16 +1,16 @@
 <div class="form-group">
-<h2><i class="fa fa-truck" aria-hidden="true"></i> {{ __('Select shipping method') }}:</h2>
-<hr>
-@foreach($shipping_methods as $sMethod)
+  <h2><i class="fa fa-truck" aria-hidden="true"></i> {{ __('Select shipping method') }}:</h2>
+  <hr>
+  @foreach($shipping_methods as $sMethod)
   <div class="form-check">
     <label class="form-check-label">
-      <input class="form-check-input" type="radio" name="shippingMethodId" id="shippingMethodId" value="{{ $sMethod->id }}" required>
+      <input class="form-check-input" type="radio" name="shippingMethodId" data-price="{{ $sMethod->price }}" id="shippingMethodId" value="{{ $sMethod->id }}" required>
       {{ $sMethod->title }} ({{ $sMethod->price }})
     </label>
   </div>
-@endforeach
+  @endforeach
 </div>
-<h4><b>{{ __('Total') }}: </b></h4>
+<h4>{{ __('Total') }}: <b id="total">{{ Request::session()->get('cart.total') ?? '' }}</b></h4>
 <br />
 
 <h2><i class="fa fa-info-circle" aria-hidden="true"></i> {{ __('Fill in shipping data') }}:</h2>

@@ -32663,6 +32663,13 @@ $(function () {
     __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].updateItem($(this).data('slug'), $(this).val());
   });
 
+  $("input[type=radio]").on('change', function () {
+    var currentTotal = $('#total').html().split(' ');
+    var price = parseFloat($(this).data('price'));
+    var newTotal = parseFloat(currentTotal[0]) + price;
+    $('#total').html(newTotal.toFixed(2) + ' ' + currentTotal[1]);
+  });
+
   $("#scroll-top").on('click', function (e) {
     e.preventDefault();
     $('html,body').animate({

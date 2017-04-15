@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Alert;
 use App\Http\Traits\CartItemsTrait;
 use Illuminate\Support\Facades\Auth;
+use App\Events\OrderCreated;
 
 class OrderController extends Controller
 {
@@ -62,7 +63,7 @@ class OrderController extends Controller
 
     $request->session()->put('shopping', 'true');
 
-    $cartItemsCounter = $request->session()->get('cart-items-counter');
+    $cartItemsCounter = $request->session()->get('cart.counter');
 
     $items = $this->getItems();
 
@@ -72,7 +73,7 @@ class OrderController extends Controller
     foreach($shippingMethods as $sMethod)
     {
       if($sMethod->high_capacity == 0)
-        $sMethod->price = (string)((floatval($sMethod->price) * $cartItemsCounter) . ' ' . __('$'));
+      $sMethod->price = (string)((floatval($sMethod->price) * $cartItemsCounter) . ' ' . __('$'));
     }
 
     return view('orders.createUser')
@@ -96,8 +97,8 @@ class OrderController extends Controller
     $items = $this->getItems();
 
     $order = new Order;
-    if(Auth::user()->id)
-        $order->user_id = Auth::user()->id;
+    if(isset(Auth::user()->id))
+    $order->user_id = Auth::user()->id;
     $order->order_status_id = 1;
     $order->shipping_method_id = $request->shippingMethodId;
     $order->shipping_cost = ShippingMethod::where('id', $request->shippingMethodId)->first()->price;
@@ -115,6 +116,9 @@ class OrderController extends Controller
       'product_quantity' => $items['quantities'][$product->slug],
       'product_price' => $product->price,
     ]);
+
+
+    event(new OrderCreated($order));
 
     $request->session()->forget('cart');
 

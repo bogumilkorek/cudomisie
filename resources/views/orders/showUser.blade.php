@@ -34,11 +34,13 @@
         <b>{{ __('Date') }}:</b><br />{{ $order->created_at }}<br /><br />
       </p>
 
+      @if(isset(Auth::user()->id))
       <div class="text-center">
         <a href="{{ route('user.orders.index') }}" class="btn btn-dashed">
           <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> {{ __('Go back') }}
         </a>
       </div>
+      @endif
 </div>
 </div>
 

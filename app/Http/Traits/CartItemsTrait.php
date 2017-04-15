@@ -15,6 +15,8 @@ trait CartItemsTrait {
 
       $total = (string)$total . ' ' . __('$');
 
+      Request::session()->put('cart.total', $total);
+
       return [
         'products' => $products,
         'quantities' => $items,

@@ -13,9 +13,7 @@ class CartController extends Controller
 
   public function show()
   {
-
     $items = $this->getItems();
-
     return view('cart.show')
     ->withItems($items);
   }
@@ -24,7 +22,7 @@ class CartController extends Controller
   {
     $item = 'cart.items.' . $request->slug;
     $quantity = $request->quantity;
-    $cartItemsCounter = $request->session()->get('cart-items-counter') ?? 0;
+    $cartItemsCounter = $request->session()->get('cart.counter') ?? 0;
 
     if($request->session()->has($item))
     {
@@ -34,7 +32,7 @@ class CartController extends Controller
     }
     $request->session()->put($item, $quantity);
 
-    $request->session()->put('cart-items-counter', ++$cartItemsCounter);
+    $request->session()->put('cart.counter', ++$cartItemsCounter);
 
     return [
       'title' => __('Success'),
@@ -47,8 +45,8 @@ class CartController extends Controller
     $item = 'cart.items.' . $request->slug;
     $quantity = $request->quantity;
 
-    $cartItemsCounter = $request->session()->get('cart-items-counter') - $request->session()->get($item) + $quantity;
-    $request->session()->put('cart-items-counter', $cartItemsCounter);
+    $cartItemsCounter = $request->session()->get('cart.counter') - $request->session()->get($item) + $quantity;
+    $request->session()->put('cart.counter', $cartItemsCounter);
 
     $request->session()->forget($item);
     $request->session()->put($item, $quantity);
@@ -62,10 +60,10 @@ class CartController extends Controller
 public function removeItem(Request $request)
   {
     $item = 'cart.items.' . $request->slug;
-    $cartItemsCounter = $request->session()->get('cart-items-counter') - $request->session()->get($item);
-    $request->session()->put('cart-items-counter', $cartItemsCounter);
+    $cartItemsCounter = $request->session()->get('cart.counter') - $request->session()->get($item);
+    $request->session()->put('cart.counter', $cartItemsCounter);
     if($cartItemsCounter == 0)
-        $request->session()->forget('cart-items-counter');
+        $request->session()->forget('cart.counter');
     $request->session()->forget($item);
 
     return [
@@ -77,7 +75,7 @@ public function removeItem(Request $request)
   public function clear(Request $request)
   {
     $request->session()->forget('cart');
-    $request->session()->forget('cart-items-counter');
+    $request->session()->forget('cart.counter');
 
     return [
       'title' => __('Success'),

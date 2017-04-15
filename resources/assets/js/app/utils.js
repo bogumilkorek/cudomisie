@@ -40,6 +40,13 @@ $(() => {
       cart.updateItem($(this).data('slug'), $(this).val());
   });
 
+  $("input[type=radio]").on('change', function() {
+    let currentTotal = $('#total').html().split(' ');
+    let price = parseFloat($(this).data('price'));
+    let newTotal = parseFloat(currentTotal[0]) + price;
+    $('#total').html(newTotal.toFixed(2) + ' ' + currentTotal[1]);
+  })
+
   $("#scroll-top").on('click', function(e) {
     e.preventDefault();
     $('html,body').animate({
