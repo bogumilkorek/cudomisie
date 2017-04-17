@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Order;
+use App\OrderStatus;
 use App\Product;
 use App\ShippingMethod;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Alert;
 use App\Http\Traits\CartItemsTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Events\OrderCreated;
+use App\Events\OrderStatusUpdated;
 
 class OrderController extends Controller
 {
@@ -28,12 +31,17 @@ class OrderController extends Controller
   */
   public function index()
   {
+
+    $orderStatuses = OrderStatus::all();
+
     $orders = Order::orderBy('id', 'desc')
     ->with('orderStatus')
     ->with('shippingMethod')
     ->get();
 
-    return view('orders.index')->withOrders($orders);
+    return view('orders.index')
+    ->withOrders($orders)
+    ->withOrderStatuses($orderStatuses);
   }
 
   public function indexUser()
@@ -66,7 +74,7 @@ class OrderController extends Controller
     $cartItemsCounter = $request->session()->get('cart.counter');
 
     if(!isset($cartItemsCounter))
-      return view('cart.show');
+      return redirect()->route('cart.show');
 
     $items = $this->getItems();
 
@@ -170,6 +178,15 @@ class OrderController extends Controller
     $order->update($request->all());
     alert()->success( __('Order updated!'), __('Success'))->persistent('OK');
     return redirect()->route('orders.index');
+  }
+
+  public function updateStatus(Request $request, Order $order)
+  {
+    $order = Order::where('uuid', $request->uuid)->first();
+    $order->order_status_id = $request->order_status_id;
+    $order->save();
+    event(new OrderStatusUpdated($order));
+    return response()->json("Order status updated");
   }
 
   /**

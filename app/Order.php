@@ -13,6 +13,10 @@ class Order extends Model
     return 'uuid';
   }
 
+  protected $fillable = [
+    'uuid'
+  ];
+
   public function products()
   {
     return $this->belongsToMany('App\Product')

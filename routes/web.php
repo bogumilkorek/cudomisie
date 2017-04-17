@@ -24,6 +24,7 @@ Route::group(['prefix' => __('admin')], function () {
   Route::resource('products', 'ProductController');
   Route::resource('categories', 'CategoryController');
   Route::resource('orders', 'OrderController');
+  Route::put('orders/{order}/updateStatus', 'OrderController@updateStatus');
   Route::resource('orderStatuses', 'OrderStatusController');
   Route::resource('shippingMethods', 'ShippingMethodController');
   Route::resource('pages', 'PageController');

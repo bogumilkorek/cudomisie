@@ -18,8 +18,8 @@ Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br /><br />
 | {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }} | {{ $product->pivot->product_quantity }} | {{ $product->pivot->product_quantity * floatval($product->pivot->product_price) . ' ' . __('$') }} |
 @endforeach
 |  |  | **{{ __('Shipping method') }}:** | {{ $order->shippingMethod->title }} | {{ $order->shippingMethod->price }} |
+|  |  |  | **{{ __('Total cost') }}:** | **{{ $order->total_cost }}** |
 @endcomponent
-##{{ __('Total cost') }}: {{ $order->total_cost }}<br /><br />
 
 #Dane do wysyłki:
 
