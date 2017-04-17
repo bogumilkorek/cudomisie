@@ -1,6 +1,13 @@
+@component('mail::layout')
+ @slot('header')
+@component('mail::header')
+header
+@endcomponent
+@endslot
+
 @component('mail::message')
 
-#Twoje zamówienie zostało złożone. Dziękujemy za zakup!
+#Twoje zamówienie zostało złożone. Dziękujemy za zakup! Numer zamówienia: {{ $order->id }}.
 
 Proszę wpłacić kwotę **{{ $order->total_cost }}** na konto:<br />
 PKO BP 21 1020 2821 0000 1702 0022 1242<br />
@@ -10,16 +17,16 @@ Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br /><br />
 
 **Śledzenie statusu zamówienia: <a href="{{ route('user.orders.show', $order->uuid) }}">{{ route('user.orders.show', $order->uuid) }}**
 
+#Zamówione produkty:
 @component('mail::table')
 | # | Produkt | Cena | Ilość | Wartość |
 | :---: | :---: | :---: | :---: | :---: |
 @foreach($order->products as $index => $product)
-| {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }} | {{ $product->pivot->product_quantity }} |  | {{ $product->pivot->product_quantity * floatvar($product->pivot->product_price)  }} |
+| {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }} | {{ $product->pivot->product_quantity }} | {{ $product->pivot->product_quantity * floatval($product->pivot->product_price) . ' ' . __('$') }} |
 @endforeach
-|  |  | {{ __('Shipping method') }}: | {{ $order->shippingMethod->title }} | {{ $order->shippingMethod->price }} |
+|  |  | **{{ __('Shipping method') }}:** | {{ $order->shippingMethod->title }} | {{ $order->shippingMethod->price }} |
 @endcomponent
-
-#{{ __('Total cost') }}: {{ $order->total_cost }}<br /><br />
+##{{ __('Total cost') }}: {{ $order->total_cost }}<br /><br />
 
 #Dane do wysyłki:
 
@@ -39,5 +46,12 @@ Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br /><br />
 
 **{{ __('Data') }}:**<br />
 {{ $order->created_at }}<br /><br />
+
+@endcomponent
+ @slot('footer')
+@component('mail::footer')
+Lolz
+@endcomponent
+@endslot
 
 @endcomponent
