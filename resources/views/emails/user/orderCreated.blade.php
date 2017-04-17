@@ -1,10 +1,3 @@
-@component('mail::layout')
- @slot('header')
-@component('mail::header')
-header
-@endcomponent
-@endslot
-
 @component('mail::message')
 
 #Twoje zamówienie zostało złożone. Dziękujemy za zakup! Numer zamówienia: {{ $order->id }}.
@@ -46,12 +39,5 @@ Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br /><br />
 
 **{{ __('Data') }}:**<br />
 {{ $order->created_at }}<br /><br />
-
-@endcomponent
- @slot('footer')
-@component('mail::footer')
-Lolz
-@endcomponent
-@endslot
 
 @endcomponent
