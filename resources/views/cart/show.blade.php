@@ -11,7 +11,7 @@
 
   <hr>
 
-      @if($items['products']->isEmpty())
+      @if(!isset($items['products']))
         <h3> {{ __('No data') }}</h3>
         <div class="text-center">
           <a href="{{ route('user.products.index') }}" class="btn btn-dashed">

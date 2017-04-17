@@ -65,6 +65,9 @@ class OrderController extends Controller
 
     $cartItemsCounter = $request->session()->get('cart.counter');
 
+    if(!isset($cartItemsCounter))
+      return view('cart.show');
+
     $items = $this->getItems();
 
     $shippingMethods = ShippingMethod::all();
