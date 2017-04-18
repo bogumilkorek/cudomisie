@@ -34,29 +34,29 @@
       </a>
       <ul class="dropdown-menu">
         @foreach ($categories as $category)
-        @if(!$category->children->isEmpty())
-        <li>
-          <a href="{{ route('user.categories.show', $category->slug) }}">
-            {{ $category->title }}
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            @foreach ($category->children as $child)
+          @if(!$category->children->isEmpty())
             <li>
-              <a href="{{ route('user.categories.show', $child->slug) }}">
-                {{ $child->title }}
+              <a href="{{ route('user.categories.show', $category->slug) }}">
+                {{ $category->title }}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                @foreach ($category->children as $child)
+                  <li>
+                    <a href="{{ route('user.categories.show', $child->slug) }}">
+                      {{ $child->title }}
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+            </li>
+          @else
+            <li>
+              <a href="{{ route('user.categories.show', $category->slug) }}">
+                {{ $category->title }}
               </a>
             </li>
-            @endforeach
-          </ul>
-        </li>
-        @else
-        <li>
-          <a href="{{ route('user.categories.show', $category->slug) }}">
-            {{ $category->title }}
-          </a>
-        </li>
-        @endif
+          @endif
         @endforeach
       </ul>
     </li>
@@ -80,51 +80,58 @@
         {{ __('Contact') }}
       </a>
     </li>
-    <li>
-      <a href="{{ route('cart.show') }}">
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge" id="cart-items-counter">{{ Request::session()->get('cart.counter') ?? '' }}</span>
-      </a>
-    </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" role="button"
       aria-haspopup="true" aria-expanded="false">
-      <i class="fa fa-search" aria-hidden="true"></i>
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge" id="cart-items-counter">{{ Request::session()->get('cart.counter') ?? '' }}</span>
     </a>
     <ul class="dropdown-menu">
-      <li>
-        <form method="GET" class="navbar-form navbar-left" action="{{ route('user.search') }}" style="margin-top: 13px">
-          <div class="input-group">
-            <input type="text" class="form-control" name="q" placeholder="{{ __('Search') }}" required minlength="5">
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </span>
-          </div>
-        </form>
-      </li>
+      @foreach($items['products'] as $product)
+        <li><a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" style="padding: 0px; margin: 0px; font-family: Noto Sans, sans-serif; font-size: 14px"><img src="{{ $product->images->first()->thumbnail_url }}" width="80px"> {{ $product->title }} x {{ $items['quantities'][$product->slug] }}</a></li>
+      @endforeach
+        <li style="text-align: center"><a href={{ route('cart.show') }}>{{ __('Show cart') }}</a></li>
     </ul>
   </li>
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-      aria-haspopup="true" aria-expanded="false">
-      <i class="fa fa-user-circle" aria-hidden="true"></i>
-    </a>
-    <ul class="dropdown-menu">
-      @if (Auth::guest())
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+    aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-search" aria-hidden="true"></i>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <form method="GET" class="navbar-form navbar-left" action="{{ route('user.search') }}" style="margin-top: 13px">
+        <div class="input-group">
+          <input type="text" class="form-control" name="q" placeholder="{{ __('Search') }}" required minlength="5">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+      </form>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+  aria-haspopup="true" aria-expanded="false">
+  <i class="fa fa-user-circle" aria-hidden="true"></i>
+</a>
+<ul class="dropdown-menu">
+  @if (Auth::guest())
+    <li>
+      <a href="{{ route('login') }}">
+        {{ __('Login') }}
+      </a>
+    </li>
+  @else
+    @if(Auth::user()->admin)
       <li>
-        <a href="{{ route('login') }}">
-          {{ __('Login') }}
+        <a href="{{ url('/admin') }}">
+          {{ __('Admin panel') }}
         </a>
       </li>
-      @else
-      @if(Auth::user()->admin)
-        <li>
-          <a href="{{ url('/admin') }}">
-            {{ __('Admin panel') }}
-          </a>
-        </li>
-      @else
+    @else
       <li>
         <a href="{{ route('user.orders.index') }}">
           {{ __('My orders') }}
@@ -135,18 +142,18 @@
           {{ __('Show profile') }}
         </a>
       </li>
-      @endif
-      <li><a href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-      </a>
-    </li>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-      {{ csrf_field() }}
-    </form>
     @endif
-  </ul>
+    <li><a href="{{ route('logout') }}"
+      onclick="event.preventDefault();
+      document.getElementById('logout-form').submit();">
+      {{ __('Logout') }}
+    </a>
+  </li>
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    {{ csrf_field() }}
+  </form>
+@endif
+</ul>
 </ul>
 </div>
 

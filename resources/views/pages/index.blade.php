@@ -20,6 +20,7 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>{{ __('Title') }}</th>
             <th>{{ __('Content') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
@@ -27,8 +28,9 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($pages as $page)
+          @foreach($pages as $index => $page)
           <tr>
+            <td>{{ ++$index }}</td>
             <td>
               <a href="{{ route('user.pages.show', $page) }}" target="_blank">
                 {{ $page->title }}

@@ -23,7 +23,9 @@ $(() => {
 
   $(".cart-add").on('click', function(e) {
     e.preventDefault();
-    cart.addItem($(this).data('slug'));
+    let slug = $(this).data('slug');
+    let quantity = $('input[data-slug=' + slug + ']').val();
+    cart.addItem(slug, quantity);
   });
 
   $(".cart-remove").on('click', function(e) {

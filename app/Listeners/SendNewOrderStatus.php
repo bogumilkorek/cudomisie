@@ -6,6 +6,7 @@ use App\Events\OrderStatusUpdated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
+use Carbon\Carbon;
 use App\Mail\OrderStatusUpdated as OrderStatusUpdatedMail;
 
 class SendNewOrderStatus
@@ -28,7 +29,9 @@ class SendNewOrderStatus
      */
     public function handle(OrderStatusUpdated $event)
     {
+      $when = Carbon::now()->addMinutes(1);
+
       Mail::to($event->order->email)
-      ->send(new OrderStatusUpdatedMail($event->order));
+      ->later($when, new OrderStatusUpdatedMail($event->order));
     }
 }

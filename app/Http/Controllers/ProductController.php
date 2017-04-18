@@ -22,7 +22,7 @@ class ProductController extends Controller
   public function index()
   {
     $products = Product::where('deleted_at', NULL)
-    ->orderBy('id', 'desc')
+    ->orderBy('title', 'asc')
     ->with('categories')
     ->get();
 

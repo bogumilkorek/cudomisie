@@ -16,6 +16,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('layouts.partials.latest', 'App\Http\ViewComposers\LatestProductComposer');
         View::composer('layouts.partials.nav', 'App\Http\ViewComposers\CategoryComposer');
+        View::composer('layouts.partials.nav', 'App\Http\ViewComposers\CartItemsComposer');
     }
 
     /**

@@ -1,11 +1,11 @@
 class Cart {
 
-  addItem(slug)
+  addItem(slug, quantity)
   {
     $.ajax({
       method: "POST",
       url: "/cart/addItem",
-      data: { slug: slug, quantity: 1 }
+      data: { slug: slug, quantity: quantity }
     })
     .done(function(message) {
       let itemCounter = $('#cart-items-counter').val() ? $('#cart-items-counter').val() : 0;

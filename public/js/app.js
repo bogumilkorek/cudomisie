@@ -32496,11 +32496,11 @@ var Cart = function () {
 
   _createClass(Cart, [{
     key: "addItem",
-    value: function addItem(slug) {
+    value: function addItem(slug, quantity) {
       $.ajax({
         method: "POST",
         url: "/cart/addItem",
-        data: { slug: slug, quantity: 1 }
+        data: { slug: slug, quantity: quantity }
       }).done(function (message) {
         var itemCounter = $('#cart-items-counter').val() ? $('#cart-items-counter').val() : 0;
         $('#cart-items-counter').val(++itemCounter);
@@ -32646,7 +32646,9 @@ $(function () {
 
   $(".cart-add").on('click', function (e) {
     e.preventDefault();
-    __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].addItem($(this).data('slug'));
+    var slug = $(this).data('slug');
+    var quantity = $('input[data-slug=' + slug + ']').val();
+    __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].addItem(slug, quantity);
   });
 
   $(".cart-remove").on('click', function (e) {

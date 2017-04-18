@@ -20,21 +20,31 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>{{ __('Title') }}</th>
             <th>{{ __('Price') }}</th>
+            <th>{{ __('Cash on delivery') }}</th>
             <th>{{ __('High capacity') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($shipping_methods as $shippingMethod)
+          @foreach($shipping_methods as $index => $shippingMethod)
           <tr>
+            <td>{{ ++$index }}</td>
             <td>
                 {{ $shippingMethod->title }}
             </td>
             <td>
                 {{ $shippingMethod->price }}
+            </td>
+            <td>
+                @if($shippingMethod->cash_on_delivery)
+                  <span class="label label-success" style="font-size: 16px">{{ __('Yes') }}</span>
+                @else
+                  <span class="label label-danger" style="font-size: 16px">{{ __('No') }}</span>
+                @endif
             </td>
             <td>
                 @if($shippingMethod->high_capacity)

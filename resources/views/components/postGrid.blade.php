@@ -8,7 +8,7 @@
 
   <div class="container-fluid">
 
-    @forelse (array_chunk($posts->all(), 3) as $postRow)
+    @forelse($posts->chunk(3) as $postRow)
 
     <div class="row is-flex">
 

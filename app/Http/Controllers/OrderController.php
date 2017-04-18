@@ -34,7 +34,7 @@ class OrderController extends Controller
 
     $orderStatuses = OrderStatus::all();
 
-    $orders = Order::orderBy('id', 'desc')
+    $orders = Order::orderBy('id', 'asc')
     ->with('orderStatus')
     ->with('shippingMethod')
     ->get();
@@ -110,7 +110,14 @@ class OrderController extends Controller
     $order = new Order;
     if(isset(Auth::user()->id))
     $order->user_id = Auth::user()->id;
-    $order->order_status_id = 1;
+
+    $cashOnDelivery = ShippingMethod::where('id', $request->shippingMethodId)->first()->cash_on_delivery;
+
+    if($cashOnDelivery != 1)
+      $order->order_status_id = 1;
+    else
+      $order->order_status_id = 2;
+
     $order->shipping_method_id = $request->shippingMethodId;
     $order->shipping_cost = ShippingMethod::where('id', $request->shippingMethodId)->first()->price;
     $order->total_cost = (string)(floatval($items['total']) + floatval($order->shipping_cost)) . ' ' . __('$');
@@ -128,7 +135,6 @@ class OrderController extends Controller
       'product_price' => $product->price,
     ]);
 
-
     event(new OrderCreated($order));
 
     $request->session()->forget('cart');
@@ -136,7 +142,8 @@ class OrderController extends Controller
     return view('orders.completed')
     ->withId($order->id)
     ->withUuid($order->uuid)
-    ->withTotalCost($order->total_cost);
+    ->withTotalCost($order->total_cost)
+    ->withStatus($order->order_status_id);
   }
 
   /**

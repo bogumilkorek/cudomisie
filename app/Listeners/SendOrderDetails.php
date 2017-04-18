@@ -6,6 +6,7 @@ use App\Events\OrderCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
+use Carbon\Carbon;
 use App\Mail\OrderCreated as OrderCreatedMail;
 
 class SendOrderDetails
@@ -28,7 +29,9 @@ class SendOrderDetails
      */
     public function handle(OrderCreated $event)
     {
+        $when = Carbon::now()->addMinutes(1);
+
         Mail::to($event->order->email)
-        ->send(new OrderCreatedMail($event->order));
+        ->later($when, new OrderCreatedMail($event->order));
     }
 }

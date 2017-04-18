@@ -20,6 +20,7 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>{{ __('Title') }}</th>
             <th>{{ __('Description') }}</th>
             <th>{{ __('Categories') }}</th>
@@ -30,8 +31,9 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($products as $product)
+          @foreach($products as $index => $product)
           <tr>
+            <td>{{ ++$index }}</td>
             <td>
               <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" target="_blank">
                 {{ $product->title }}

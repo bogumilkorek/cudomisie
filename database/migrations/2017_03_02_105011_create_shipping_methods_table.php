@@ -18,6 +18,7 @@ class CreateShippingMethodsTable extends Migration
             $table->string('title')->unique();
             $table->string('price');
             $table->boolean('high_capacity');
+            $table->boolean('cash_on_delivery');
         });
     }
 

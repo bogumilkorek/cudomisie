@@ -32,7 +32,7 @@ class CartController extends Controller
     }
     $request->session()->put($item, $quantity);
 
-    $request->session()->put('cart.counter', ++$cartItemsCounter);
+    $request->session()->put('cart.counter', $cartItemsCounter + $quantity);
 
     return [
       'title' => __('Success'),

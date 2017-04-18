@@ -20,6 +20,7 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>{{ __('Title') }}</th>
             <th>{{ __('Parent') }}</th>
             <th>{{ __('Products') }}</th>
@@ -28,8 +29,9 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($categories as $category)
+          @foreach($categories as $index => $category)
           <tr>
+            <td>{{ ++$index }}</td>
             <td>
               <a href="{{ route('user.categories.show', $category) }}" target="_blank">
                 {{ $category->title }}

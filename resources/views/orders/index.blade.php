@@ -9,7 +9,8 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
-            <th>{{ __('Id') }}</th>
+            <th>#</th>
+            <th>{{ __('No.') }}</th>
             <th>{{ __('Products') }}</th>
             <th>{{ __('Status') }}</th>
             <th>{{ __('Shipping method') }}</th>
@@ -20,13 +21,12 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($orders as $order)
+          @foreach($orders as $index => $order)
           <tr>
             <td>
-              <a href="{{ route('orders.show', $order) }}" target="_blank">
-                {{ $order->id }}
-              </a>
+                {{ ++$index }}
             </td>
+          <td>{{ $order->id }}</td>
             <td width="400">
               @foreach($order->products as $product)
               {{ $product->pivot->product_title }} - {{ $product->pivot->product_quantity }} {{ __('pcs.') }}<br />
@@ -87,11 +87,11 @@ $('.selectpicker').on('change', function () {
     url: "orders/" + uuid + "/updateStatus",
     data: { uuid: uuid, order_status_id: order_status_id },
     beforeSend: function() {
-        swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
+        //swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
     }
   })
   .done(function() {
-//  
+swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
 });
 });
 </script>
