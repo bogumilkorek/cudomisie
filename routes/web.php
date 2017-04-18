@@ -22,8 +22,9 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 Route::group(['prefix' => __('admin')], function () {
   Route::resource('blogPosts', 'BlogPostController');
   Route::resource('products', 'ProductController');
-  Route::put('products/{product}/restore', 'ProductController@restore')->name('products.restore');
+  Route::put('products/{slug}/restore', 'ProductController@restore')->name('products.restore');
   Route::resource('categories', 'CategoryController');
+  Route::put('categories/{slug}/restore', 'CategoryController@restore')->name('categories.restore');
   Route::resource('orders', 'OrderController');
   Route::put('orders/{order}/updateStatus', 'OrderController@updateStatus');
   Route::resource('orderStatuses', 'OrderStatusController');

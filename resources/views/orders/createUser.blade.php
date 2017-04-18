@@ -13,7 +13,7 @@
     <hr>
 
     @if(Auth::user() || !empty($buy_without_login))
-    
+
     @component('components.cartItems', [
     'products' => $items['products'],
     'quantities' => $items['quantities'],
@@ -57,6 +57,22 @@
 
     <a href="{{ route('user.orders.create') }}?noaccount=1" class="btn btn-dashed">
       <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> {{ __('Buy without creating account') }}
+    </a>
+
+    <br /><br />
+    <h1>
+      <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+      {{ __('Login with') }}
+    </h1>
+    <hr>
+    <a class="btn btn-circle btn-google" href="{{ url('login/google') }}" title="{{ __('Login with') }} Google">
+      <i class="fa fa-google" aria-hidden="true"></i>
+    </a>
+    <a class="btn btn-circle btn-facebook" href="{{ url('login/facebook') }}" title="{{ __('Login with') }} Facebook">
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+    </a>
+    <a class="btn btn-circle btn-twitter" href="{{ url('login/twitter') }}" title="{{ __('Login with') }} Twitter">
+      <i class="fa fa-twitter" aria-hidden="true"></i>
     </a>
   </div>
   @endif

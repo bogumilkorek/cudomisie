@@ -6,9 +6,9 @@ let bootstrapSelect = require('bootstrap-select');
 let Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
 $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
 });
 
 $(() => {
@@ -17,9 +17,9 @@ $(() => {
 
   // Get loading icon on form submit
   $('form').on('submit', function(e) {
-      let $this = $(this);
-      let submitButton = $this.find('button[type=submit]');
-      submitButton.html(submitButton.data('loading-text')).prop('disabled', 'disabled');
+    let $this = $(this);
+    let submitButton = $this.find('button[type=submit]');
+    submitButton.html(submitButton.data('loading-text')).prop('disabled', 'disabled');
   });
 
   // Enable sweet alert confirmation for content delete

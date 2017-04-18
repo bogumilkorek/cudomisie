@@ -24,6 +24,7 @@
             <th>{{ __('Title') }}</th>
             <th>{{ __('Parent') }}</th>
             <th>{{ __('Products') }}</th>
+            <th>{{ __('Visible') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
@@ -51,12 +52,28 @@
                 {{ __('Nope') }}
               @endforelse
             </td>
+            <td>
+              @if($category->deleted_at)
+              <span class="label label-danger" style="font-size: 16px">{{ __('No') }}</span>
+              @else
+              <span class="label label-success" style="font-size: 16px">{{ __('Yes') }}</span>
+              @endif
+            </td>
             <td class="text-center actions">
               <a href="{{ route('categories.edit', $category) }}" class="btn btn-success btn-icon">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="{{ __('Edit') }}"></span>
               </a>
             </td>
             <td class="text-center actions">
+              @if($category->deleted_at)
+              <form method="post" action="{{ route('categories.restore', $category) }}" style="display: inline-block">
+                {{ method_field('PUT') }}
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-warning btn-icon">
+                  <span class="glyphicon glyphicon-repeat" aria-hidden="true" title="{{ __('Restore') }}"></span>
+                </button>
+              </form>
+              @else
               <form method="post" action="{{ route('categories.destroy', $category) }}" style="display: inline-block">
                 {{ method_field('DELETE') }}
                 {{ csrf_field() }}
@@ -67,6 +84,7 @@
                   <span class="glyphicon glyphicon-trash" aria-hidden="true" title="{{ __('Delete') }}"></span>
                 </button>
               </form>
+              @endif
             </td>
           </tr>
           @endforeach

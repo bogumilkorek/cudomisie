@@ -127,10 +127,9 @@ class ProductController extends Controller
     return redirect()->route('products.index');
   }
 
-  public function restore(Product $product)
+  public function restore($slug)
   {
-    $restore = Product::where('id', $product->id)->withTrashed()->first(); 
-    $restore->restore();
+    Product::withTrashed()->where('slug', $slug)->restore(); 
     alert()->success( __('Product restored!'), __('Success'))->persistent('OK');
     return redirect()->route('products.index');
   }

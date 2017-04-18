@@ -24,9 +24,9 @@
           @foreach($orders as $index => $order)
           <tr>
             <td>
-                {{ ++$index }}
+              {{ ++$index }}
             </td>
-          <td>{{ $order->id }}</td>
+            <td>{{ $order->id }}</td>
             <td width="400">
               @foreach($order->products as $product)
               {{ $product->pivot->product_title }} - {{ $product->pivot->product_quantity }} {{ __('pcs.') }}<br />
@@ -87,12 +87,12 @@ $('.selectpicker').on('change', function () {
     url: "orders/" + uuid + "/updateStatus",
     data: { uuid: uuid, order_status_id: order_status_id },
     beforeSend: function() {
-        //swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
+      //swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
     }
   })
   .done(function() {
-swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
-});
+    swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
+  });
 });
 </script>
 @endpush
