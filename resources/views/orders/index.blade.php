@@ -42,7 +42,7 @@
                 @endforeach
 
               </td>
-              <td>{{ $order->shippingMethod->title }} ({{ $order->shipping_cost }})</td>
+              <td>{{ $order->shipping_method_name }} ({{ $order->shipping_cost }})</td>
               <td>{{ $order->total_cost }}</td>
               <td>
                 @if($order->comments)

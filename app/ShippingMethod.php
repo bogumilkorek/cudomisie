@@ -14,6 +14,6 @@ class ShippingMethod extends Model
 
   public function orders()
   {
-    return $this->hasMany('App\Order');
+    return $this->hasMany('App\Order', 'shipping_method_name', 'title');
   }
 }

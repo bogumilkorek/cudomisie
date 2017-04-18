@@ -9,8 +9,8 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
     'order_status_id' => function () {
       return App\OrderStatus::inRandomOrder()->first()->id;
     },
-    'shipping_method_id' => function () {
-      return App\ShippingMethod::inRandomOrder()->first()->id;
+    'shipping_method_name' => function () {
+      return App\ShippingMethod::inRandomOrder()->first()->title;
     },
     'shipping_cost' => $faker->randomFloat(2, 50, 200) . ' ' . __('$'),
     'total_cost' => $faker->randomFloat(2, 250, 350) . ' ' . __('$'),

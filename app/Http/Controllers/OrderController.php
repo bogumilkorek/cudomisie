@@ -183,7 +183,7 @@ class OrderController extends Controller
   public function update(OrderRequest $request, Order $order)
   {
     $order->update($request->all());
-    alert()->success( __('Order updated!'), __('Success'))->persistent('OK');
+    alert()->success( __('Order updated'), __('Success'))->persistent('OK');
     return redirect()->route('orders.index');
   }
 
@@ -204,8 +204,9 @@ class OrderController extends Controller
   */
   public function destroy(Order $order)
   {
+    $order->products()->detach();
     $order->delete();
-    alert()->success(__('Order deleted!'), __('Success'))->persistent('OK');
+    alert()->success(__('Order deleted'), __('Success'))->persistent('OK');
     return redirect()->route('orders.index');
   }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\PageRequest;
 use App\Page;
 use App\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PageController extends Controller
 {
@@ -104,6 +105,30 @@ class PageController extends Controller
     */
     public function destroy(Page $page)
     {
+      if($page->id == 1)
+      {
+        alert()->error( __('Homepage cannot be deleted!'), __('Error'))->persistent('OK');
+        return redirect()->back();
+      }
+
+      $images = Image::where([
+        ['imageable_id', $page->id],
+        ['imageable_type', 'pages']
+        ])->get();
+
+        if($images->isNotEmpty())
+        {
+          foreach($images as $image)
+          {
+            if(File::exists(public_path('/photos/upload/' . $image->url)))
+            File::delete(public_path('/photos/upload/' . $image->url));
+            if(File::exists(public_path('/photos/upload/thumbs/' . $image->url)))
+            File::delete(public_path('/photos/upload/thumbs/' . $image->url));
+
+            $image->delete();
+          }
+        }
+
       $page->delete();
       alert()->success( __('Page deleted!'), __('Success'))->persistent('OK');
       return redirect()->route('pages.index');

@@ -20,6 +20,7 @@ class Order extends Model
   public function products()
   {
     return $this->belongsToMany('App\Product')
+    ->withTrashed()
     ->withPivot('product_title', 'product_quantity', 'product_price');
   }
 

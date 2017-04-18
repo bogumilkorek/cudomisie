@@ -97,6 +97,7 @@ class CategoryController extends Controller
      */
      public function destroy(Category $category)
      {
+       $category->products()->detach();
        $category->delete();
        alert()->success( __('Category deleted!'), __('Success'))->persistent('OK');
        return redirect()->route('categories.index');

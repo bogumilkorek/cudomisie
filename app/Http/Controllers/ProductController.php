@@ -21,7 +21,8 @@ class ProductController extends Controller
   */
   public function index()
   {
-    $products = Product::where('deleted_at', NULL)
+    $products = Product
+    ::withTrashed()
     ->orderBy('title', 'asc')
     ->with('categories')
     ->get();
@@ -31,8 +32,7 @@ class ProductController extends Controller
 
   public function indexUser()
   {
-    $products = Product::where('deleted_at', NULL)
-    ->orderBy('id', 'desc')
+    $products = Product::orderBy('id', 'desc')
     ->with('categories')
     ->with('images')
     ->paginate(9);
@@ -123,7 +123,15 @@ class ProductController extends Controller
   public function destroy(Product $product)
   {
     $product->delete();
-    alert()->success( __('Product deleted!'), __('Success'))->persistent('OK');
+    alert()->success( __('Product hidden!'), __('Success'))->persistent('OK');
+    return redirect()->route('products.index');
+  }
+
+  public function restore(Product $product)
+  {
+    $restore = Product::where('id', $product->id)->withTrashed()->first(); 
+    $restore->restore();
+    alert()->success( __('Product restored!'), __('Success'))->persistent('OK');
     return redirect()->route('products.index');
   }
 }

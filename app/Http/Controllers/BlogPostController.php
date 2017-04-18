@@ -6,6 +6,7 @@ use App\Http\Requests\BlogPostRequest;
 use App\BlogPost;
 use App\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BlogPostController extends Controller
 {
@@ -105,6 +106,24 @@ class BlogPostController extends Controller
      */
      public function destroy(BlogPost $blogPost)
      {
+       $images = Image::where([
+         ['imageable_id', $blogPost->id],
+         ['imageable_type', 'blogPosts']
+         ])->get();
+
+         if($images->isNotEmpty())
+         {
+           foreach($images as $image)
+           {
+             if(File::exists(public_path('/photos/upload/' . $image->url)))
+             File::delete(public_path('/photos/upload/' . $image->url));
+             if(File::exists(public_path('/photos/upload/thumbs/' . $image->url)))
+             File::delete(public_path('/photos/upload/thumbs/' . $image->url));
+
+             $image->delete();
+           }
+         }
+
        $blogPost->delete();
        alert()->success( __('Blog post deleted!'), __('Success'))->persistent('OK');
        return redirect()->route('blogPosts.index');

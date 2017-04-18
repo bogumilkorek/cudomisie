@@ -39,7 +39,7 @@ class ImageController extends Controller
         'form_token' => $request->_token,
       ]);
 
-      ImageLib::make($image->url)
+      ImageLib::make($image->full_url)
       ->resize(333, 250)
       ->save(public_path('/photos/upload/thumbs/' . $imageName));
 

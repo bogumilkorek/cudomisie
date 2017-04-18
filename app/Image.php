@@ -8,7 +8,7 @@ class Image extends Model
 {
   public $timestamps = false;
 
-  protected $thumbnail_url;
+  protected $thumbnail_url, $full_url;
 
   protected $fillable = [
     'url', 'original_url', 'size', 'imageable_id', 'imageable_type', 'form_token'
@@ -19,14 +19,14 @@ class Image extends Model
     return $this->morphTo();
   }
 
-  public function getUrlAttribute($url)
+  public function getFullUrlAttribute()
   {
-    return asset('/photos/upload/' . $url);
+    return asset('/photos/upload/' . $this->url);
   }
 
   public function getThumbnailUrlAttribute()
   {
-    return asset(str_replace('/upload/', '/upload/thumbs/', $this->url));
+    return asset('photos/upload/thumbs/'. $this->url);
   }
 
 }

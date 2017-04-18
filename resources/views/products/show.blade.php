@@ -20,7 +20,7 @@
 
         <div class="gallery">
           @foreach($product->images as $image)
-            <a href="{{ $image->url }}">
+            <a href="{{ $image->full_url }}">
               <img src="{{ $image->thumbnail_url }}" />
             </a>
           @endforeach

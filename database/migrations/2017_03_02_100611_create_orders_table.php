@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('uuid');
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('order_status_id')->unsigned();
-            $table->string('shipping_method_id')->unsigned;
+            $table->string('shipping_method_name');
             $table->string('shipping_cost');
             $table->string('total_cost');
             $table->string('name');
