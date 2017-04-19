@@ -14,7 +14,7 @@ class Order extends Model
   }
 
   protected $fillable = [
-    'uuid'
+    'uuid', 'name', 'email', 'phone', 'address', 'comments'
   ];
 
   public function products()

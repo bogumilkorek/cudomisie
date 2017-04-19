@@ -170,7 +170,9 @@ class OrderController extends Controller
   */
   public function edit(Order $order)
   {
-    return view('orders.edit')->withOrder($order);
+    $shippingMethods = ShippingMethod::all();
+    return view('orders.edit')->withOrder($order)
+    ->withShippingMethods($shippingMethods);
   }
 
   /**
@@ -183,7 +185,7 @@ class OrderController extends Controller
   public function update(OrderRequest $request, Order $order)
   {
     $order->update($request->all());
-    alert()->success( __('Order updated'), __('Success'))->persistent('OK');
+    alert()->success(__('Order updated'), __('Success'))->persistent('OK');
     return redirect()->route('orders.index');
   }
 

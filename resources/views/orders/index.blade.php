@@ -17,6 +17,7 @@
             <th>{{ __('Total') }}</th>
             <th>{{ __('Comments') }}</th>
             <th class="sorting_disabled">{{ __('Show') }}</th>
+            <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
         </thead>
@@ -52,8 +53,13 @@
                 @endif
               </td>
               <td class="text-center actions">
-                <a href="{{ route('orders.show', $order) }}" class="btn btn-success btn-icon">
+                <a href="{{ route('orders.show', $order) }}" class="btn btn-primary btn-icon">
                   <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="{{ __('Show') }}"></span>
+                </a>
+              </td>
+              <td class="text-center actions">
+                <a href="{{ route('orders.edit', $order) }}" class="btn btn-success btn-icon">
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="{{ __('Edit') }}"></span>
                 </a>
               </td>
               <td class="text-center actions">
