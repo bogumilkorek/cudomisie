@@ -27,13 +27,13 @@ class Kernel extends ConsoleKernel
   protected function schedule(Schedule $schedule)
   {
 
-    // Clean orphaned images daily
-    $schedule->call(function () {
-      DB::table('images')->where('imageable_id', 0)->delete();
-    })->everyMinute();
-
-    // Send queued e-mails
-   $schedule->command('queue:work')->cron('* * * * * *');
+  //   // Clean orphaned images daily
+  //   $schedule->call(function () {
+  //     DB::table('images')->where('imageable_id', 0)->delete();
+  //   })->everyMinute();
+   //
+  //   // Send queued e-mails
+  //  $schedule->command('queue:work')->cron('* * * * * *');
   }
 
   /**
