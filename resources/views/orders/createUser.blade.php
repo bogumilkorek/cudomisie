@@ -29,7 +29,7 @@
 
       <div class="text-center">
 
-        <button type="submit" class="btn btn-dashed"
+        <button type="submit" class="btn btn-dashed" id="submit"
         data-loading-text="<i class='fa fa-cog fa-spin'></i>
         {{ __('Loading') }}">
         <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> {{ __('Place order') }}
@@ -59,21 +59,8 @@
       <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> {{ __('Buy without creating account') }}
     </a>
 
-    <br /><br />
-    <h1>
-      <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
-      {{ __('Login with') }}
-    </h1>
-    <hr>
-    <a class="btn btn-circle btn-google" href="{{ url('login/google') }}" title="{{ __('Login with') }} Google">
-      <i class="fa fa-google" aria-hidden="true"></i>
-    </a>
-    <a class="btn btn-circle btn-facebook" href="{{ url('login/facebook') }}" title="{{ __('Login with') }} Facebook">
-      <i class="fa fa-facebook" aria-hidden="true"></i>
-    </a>
-    <a class="btn btn-circle btn-twitter" href="{{ url('login/twitter') }}" title="{{ __('Login with') }} Twitter">
-      <i class="fa fa-twitter" aria-hidden="true"></i>
-    </a>
+    @include('layouts.partials.socialAuth')
+
   </div>
   @endif
 

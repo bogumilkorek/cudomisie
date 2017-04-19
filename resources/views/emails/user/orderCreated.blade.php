@@ -20,7 +20,7 @@ Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br /><br />
 @foreach($order->products as $index => $product)
 | {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }} | {{ $product->pivot->product_quantity }} | {{ $product->pivot->product_quantity * floatval($product->pivot->product_price) . ' ' . __('$') }} |
 @endforeach
-|  |  | **{{ __('Shipping method') }}:** | {{ $order->shippingMethod->title }} | {{ $order->shippingMethod->price }} |
+|  |  | **{{ __('Shipping method') }}:** | {{ $order->shipping_method_name }} | {{ $order->shipping_cost }} |
 |  |  |  | **{{ __('Total cost') }}:** | **{{ $order->total_cost }}** |
 @endcomponent
 

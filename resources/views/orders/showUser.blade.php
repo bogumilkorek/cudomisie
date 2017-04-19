@@ -18,7 +18,7 @@
         {{ $product->pivot->product_title }} ({{ $product->pivot->product_price }}) - {{ $product->pivot->product_quantity }} {{ __('pcs.') }}<br />
         @endforeach
         <br />
-        <b>{{ __('Shipping method') }}:</b><br />{{ $order->shippingMethod->title }} ({{ $order->shipping_cost }})<br /><br />
+        <b>{{ __('Shipping method') }}:</b><br />{{ $order->shipping_method_title }} ({{ $order->shipping_cost }})<br /><br />
         <b>{{ __('Total cost') }}:</b><br />{{ $order->total_cost }}<br /><br />
         <b>{{ __('Name') }}:</b><br />{{ $order->name }}<br /><br />
         <b>{{ __('E-mail') }}:</b><br />{{ $order->email }}<br /><br />

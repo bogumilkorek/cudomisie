@@ -4,7 +4,7 @@
   @foreach($shipping_methods as $sMethod)
   <div class="form-check">
     <label class="form-check-label">
-      <input class="form-check-input" type="radio" name="shippingMethodId" data-price="{{ $sMethod->price }}" id="shippingMethodId" value="{{ $sMethod->id }}" required>
+      <input class="form-check-input" type="radio" name="shippingMethodName" data-price="{{ $sMethod->price }}" id="shippingMethodName" value="{{ $sMethod->title }}" required>
       {{ $sMethod->title }} ({{ $sMethod->price }})
     </label>
   </div>

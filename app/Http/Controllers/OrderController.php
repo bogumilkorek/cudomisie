@@ -111,15 +111,15 @@ class OrderController extends Controller
     if(isset(Auth::user()->id))
     $order->user_id = Auth::user()->id;
 
-    $cashOnDelivery = ShippingMethod::where('id', $request->shippingMethodId)->first()->cash_on_delivery;
+    $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
 
     if($cashOnDelivery != 1)
       $order->order_status_id = 1;
     else
       $order->order_status_id = 2;
 
-    $order->shipping_method_id = $request->shippingMethodId;
-    $order->shipping_cost = ShippingMethod::where('id', $request->shippingMethodId)->first()->price;
+    $order->shipping_method_name = $request->shippingMethodName;
+    $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
     $order->total_cost = (string)(floatval($items['total']) + floatval($order->shipping_cost)) . ' ' . __('$');
     $order->name = $request->name;
     $order->email = $request->email;
