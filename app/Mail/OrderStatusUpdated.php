@@ -13,6 +13,8 @@ class OrderStatusUpdated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    public $tries = 3;
+
     public $order;
 
     /**
@@ -33,6 +35,6 @@ class OrderStatusUpdated extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->subject(__('Cudomisie.pl - order status updated'))
-        ->markdown('emails.user.OrderStatusUpdated');
+        ->markdown('emails.user.orderStatusUpdated');
     }
 }

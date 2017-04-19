@@ -1,4 +1,4 @@
-s@component('mail::message')
+@component('mail::message')
 
 #Twoje zamówienie zostało złożone. Dziękujemy za zakup! Numer zamówienia: {{ $order->id }}.
 @if($order->order_status_id == 2)

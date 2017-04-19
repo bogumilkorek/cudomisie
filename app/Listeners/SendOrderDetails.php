@@ -29,11 +29,10 @@ class SendOrderDetails
      */
     public function handle(OrderCreated $event)
     {
-      return 'debug';
-
-        $when = Carbon::now()->addMinutes(1);
+        $when = Carbon::now()->addSeconds(5);
 
         Mail::to($event->order->email)
+        ->bcc(env('MAIL_FROM_ADDRESS'))
         ->later($when, new OrderCreatedMail($event->order));
     }
 }
