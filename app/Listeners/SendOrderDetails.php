@@ -29,6 +29,8 @@ class SendOrderDetails
      */
     public function handle(OrderCreated $event)
     {
+      return 'debug';
+
         $when = Carbon::now()->addMinutes(1);
 
         Mail::to($event->order->email)

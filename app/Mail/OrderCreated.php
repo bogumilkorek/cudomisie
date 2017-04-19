@@ -12,6 +12,8 @@ class OrderCreated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    public $tries = 3;
+
     public $order;
 
     /**
