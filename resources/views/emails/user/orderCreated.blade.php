@@ -2,14 +2,16 @@
 
 #Twoje zamówienie zostało złożone. Dziękujemy za zakup! Numer zamówienia: {{ $order->id }}.
 @if($order->order_status_id == 2)
-Wybrano przesyłkę za pobraniem. Proszę przygotować kwotę: **{{ $order->total_cost }}** dla kuriera/listonosza.<br /><br />
+Wybrano przesyłkę za pobraniem. Proszę przygotować kwotę: **{{ $order->total_cost }}** dla kuriera/listonosza.<br />
 @else
 Proszę wpłacić kwotę **{{ $order->total_cost }}** na konto:<br />
 PKO BP 21 1020 2821 0000 1702 0022 1242<br />
 Tadeusz Pyzia<br />
 ul. Rzemieślnicza 18, 72-320 Trzebiatów<br />
-Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br /><br />
+Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br />
 @endif
+
+W załączeniu przesyłamy także fakturę do zamówienia.<br /><br />
 
 **Śledzenie statusu zamówienia: <a href="{{ route('user.orders.show', $order->uuid) }}">{{ route('user.orders.show', $order->uuid) }}**
 

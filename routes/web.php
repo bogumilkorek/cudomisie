@@ -46,6 +46,11 @@ Route::delete('cart/clear', 'CartController@clear')->name('cart.clear');
 Route::post('email/contact', 'EmailController@contactForm')->name('email.contactForm');
 
 // User
+Route::get(__('invoice') . '/{invoice}', function($invoice)
+{
+  $file = public_path('files/invoices/' . $invoice);
+  return response()->download($file);
+});
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
 Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.index');

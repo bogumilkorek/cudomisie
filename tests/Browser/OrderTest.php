@@ -25,8 +25,6 @@ class OrderTest extends DuskTestCase
       $browser->visit('/' . __('cart'));
       $browser->driver->executeScript('window.scrollTo(0, 500);');
       $browser->click('a[data-slug="' . $itemToBuy . '"]')
-      ->pause(1000)
-      ->assertSee(__('Success'))
       ->visit('/' . __('cart'))
       ->assertSee(__('Place order'))
       ->clickLink(__('Place order'))

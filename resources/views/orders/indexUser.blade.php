@@ -19,6 +19,7 @@
               <th>{{ __('Shipping method') }}</th>
               <th>{{ __('Total') }}</th>
               <th>{{ __('Comments') }}</th>
+              <th>{{ __('Invoice') }}</th>
               <th>{{ __('Show') }}</th>
             </tr>
           </thead>
@@ -36,7 +37,7 @@
                   @endforeach
                 </td>
                 <td>{{ $order->orderStatus->title }}</td>
-                <td>{{ $order->shippingMethod->title }} ({{ $order->shipping_cost }})</td>
+                <td>{{ $order->shipping_method_name }} ({{ $order->shipping_cost }})</td>
                 <td>{{ $order->total_cost }}</td>
                 <td>
                   @if($order->comments)
@@ -44,6 +45,11 @@
                   @else
                     {{ __('Nope') }}
                   @endif
+                </td>
+                <td class="text-center actions">
+                  <a href="{{ url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf') }}" class="btn btn-dashed">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true" title="{{ __('Show') }}"></i>
+                  </a>
                 </td>
                 <td class="text-center actions">
                   <a href="{{ route('user.orders.show', $order) }}" class="btn btn-dashed">

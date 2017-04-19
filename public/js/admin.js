@@ -31291,7 +31291,7 @@ function confirmDelete($this) {
 }
 
 function configDatatables() {
-  $('table').DataTable({
+  $('table:not(.no-dtables)').DataTable({
     // Disable sorting on the sorting_disabled class
     "aoColumnDefs": [{
       "bSortable": false,

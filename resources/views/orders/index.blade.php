@@ -17,6 +17,7 @@
             <th>{{ __('Total') }}</th>
             <th>{{ __('Comments') }}</th>
             <th class="sorting_disabled">{{ __('Show') }}</th>
+            <th class="sorting_disabled">{{ __('Invoice') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
@@ -55,6 +56,11 @@
               <td class="text-center actions">
                 <a href="{{ route('orders.show', $order) }}" class="btn btn-primary btn-icon">
                   <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title="{{ __('Show') }}"></span>
+                </a>
+              </td>
+              <td class="text-center actions">
+                <a href="{{ url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf') }}" class="btn btn-primary btn-icon">
+                  <span class="glyphicon glyphicon-save-file" aria-hidden="true" title="{{ __('Show') }}"></span>
                 </a>
               </td>
               <td class="text-center actions">

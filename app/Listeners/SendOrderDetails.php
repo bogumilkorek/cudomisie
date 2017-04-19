@@ -9,7 +9,7 @@ use Mail;
 use Carbon\Carbon;
 use App\Mail\OrderCreated as OrderCreatedMail;
 
-class SendOrderDetails
+class SendOrderDetails implements ShouldQueue
 {
     /**
      * Create the event listener.

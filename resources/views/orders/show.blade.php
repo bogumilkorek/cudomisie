@@ -12,12 +12,15 @@
 
     <p>
       <b>{{ __('Products') }}:</b><br />
-      @foreach($order->products as $product)
-        {{ $product->pivot->product_title }} ({{ $product->pivot->product_price }}) - {{ $product->pivot->product_quantity }} {{ __('pcs.') }}<br />
-      @endforeach
-      <br />
+      @component('components.cartItems', [
+      'products' => $order->products,
+      'total' => $order->total_cost,
+      ])
+      @endcomponent
+      <b>{{ __('Invoice') }}:</b><br /><a href="{{ url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf') }}">{{ __('Invoice') }}</a><br /><br />
       <b>{{ __('Status') }}:</b><br />{{ $order->orderStatus->title }}<br /><br />
-      <b>{{ __('Shipping method') }}:</b><br />{{ $order->shippingMethod->title }} ({{ $order->shipping_cost }})<br /><br />
+      <b>{{ __('Shipping method') }}:</b><br />{{ $order->shipping_method_name }} ({{ $order->shipping_cost }})<br /><br />
+      <b>{{ __('Total cost') }}:</b><br />{{ $order->total_cost }}<br /><br />
       <b>{{ __('Name') }}:</b><br />{{ $order->name }}<br /><br />
       <b>{{ __('E-mail') }}:</b><br />{{ $order->email }}<br /><br />
       <b>{{ __('Phone') }}:</b><br />{{ $order->phone }}<br /><br />
