@@ -121,7 +121,7 @@ class OrderController extends Controller
 
     $order->shipping_method_name = $request->shippingMethodName;
     $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
-    $order->total_cost = (string)(floatval($items['total']) + floatval($order->shipping_cost)) . ' ' . __('$');
+    $order->total_cost = (string)(number_format(floatval($items['total']) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
     $order->name = $request->name;
     $order->email = $request->email;
     $order->phone = $request->phone;

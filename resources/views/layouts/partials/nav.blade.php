@@ -98,8 +98,8 @@
     <i class="fa fa-search" aria-hidden="true"></i>
   </a>
   <ul class="dropdown-menu" style="text-align: center">
-    <li>
-      <form method="GET" class="navbar-form navbar-left" action="{{ route('user.search') }}" style="margin-top: 13px">
+    <li style="padding: 10px 0px; margin-bottom: 55px">
+      <form method="GET" class="navbar-form navbar-left" action="{{ route('user.search') }}">
         <div class="input-group">
           <input type="text" class="form-control" name="q" placeholder="{{ __('Search') }}" required minlength="5">
           <span class="input-group-btn">

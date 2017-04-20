@@ -37,7 +37,9 @@
 
                         <div class="form-group">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-dashed">
+                                <button type="submit" class="btn btn-dashed"
+                                data-loading-text="<i class='fa fa-cog fa-spin'></i>
+                                {{ __('Loading') }}">
                                     <i class="fa fa-paper-plane-o" aria-hidden="true"></i> {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

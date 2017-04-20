@@ -39,7 +39,7 @@ class ProductTest extends DuskTestCase
       $('.dropzone')[0].dropzone.listeners[0].events.drop(e)
       ");
       $browser->click('button[type=submit]');
-      $browser->waitForText(__('Success'));
+      $browser->waitForText(__('Success'));    
     });
   }
 }

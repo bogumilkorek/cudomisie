@@ -41,7 +41,7 @@ class Order extends Model
 
   public function getCreatedAtAttribute($date)
   {
-    $unformattedDate = new Carbon($date);
-    return Carbon::createFromFormat('Y-m-d H:i:s', $unformattedDate)->format('d.m.Y, H:i');
+    $currentDate = new Carbon($date);
+    return Carbon::createFromFormat('Y-m-d H:i:s', $currentDate)->format('d.m.Y, H:i');
   }
 }

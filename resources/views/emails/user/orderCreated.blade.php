@@ -25,7 +25,7 @@ Pobierz fakturę
 | # | Produkt | Cena | Ilość | Wartość |
 | :---: | :---: | :---: | :---: | :---: |
 @foreach($order->products as $index => $product)
-| {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }} | {{ $product->pivot->product_quantity }} | {{ $product->pivot->product_quantity * floatval($product->pivot->product_price) . ' ' . __('$') }} |
+| {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }} | {{ $product->pivot->product_quantity }} | {{ number_format($product->pivot->product_quantity * floatval($product->pivot->product_price), 2) . ' ' . __('$') }} |
 @endforeach
 |  |  | **{{ __('Shipping method') }}:** | {{ $order->shipping_method_name }} | {{ $order->shipping_cost }} |
 |  |  |  | **{{ __('Total cost') }}:** | **{{ $order->total_cost }}** |

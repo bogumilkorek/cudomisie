@@ -13,8 +13,8 @@
   </div>
   <b>Faktura nr:</b> CM/{{ $order->id }}/{{ date('Y') }}
   <br /><br />
-  <b>Data wystawienia:</b> {{ $order->created_at }}<br />
-  <b>Termin płatności:</b> {{ $order->created_at }}<br />
+  <b>Data wystawienia:</b> {{ str_limit($order->created_at, 10, '') }}<br />
+  <b>Termin płatności:</b> {{ str_limit($order->created_at, 10, '') }}<br />
   <b>Płatność:</b> przelew
   <br /><br />
   <table class="table">
@@ -48,7 +48,7 @@
           <td>{{ $product->pivot->product_title }}</td>
           <td>{{ $product->pivot->product_price }}</td>
           <td>{{ $product->pivot->product_quantity }}</td>
-          <td>{{ $product->pivot->product_quantity * floatval($product->pivot->product_price) . ' ' . __('$') }}</td>
+          <td>{{ number_format($product->pivot->product_quantity * floatval($product->pivot->product_price), 2) . ' ' . __('$') }}</td>
         </tr>
         @endforeach
       </tbody>

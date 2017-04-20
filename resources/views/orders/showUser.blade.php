@@ -16,11 +16,11 @@
       <b>{{ __('Products') }}:</b><br />
       @component('components.cartItems', [
       'products' => $order->products,
+      'shipment' => ['name' => $order->shipping_method_name, 'price' => $order->shipping_cost],
       'total' => $order->total_cost,
+      'simpleView' => true,
       ])
       @endcomponent
-      <b>{{ __('Shipping method') }}:</b><br />{{ $order->shipping_method_title }} ({{ $order->shipping_cost }})<br /><br />
-      <b>{{ __('Total cost') }}:</b><br />{{ $order->total_cost }}<br /><br />
       <b>{{ __('Name') }}:</b><br />{{ $order->name }}<br /><br />
       <b>{{ __('E-mail') }}:</b><br />{{ $order->email }}<br /><br />
       <b>{{ __('Phone') }}:</b><br />{{ $order->phone }}<br /><br />

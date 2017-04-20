@@ -7,23 +7,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+
   use SoftDeletes;
 
   /**
-    * The attributes that should be mutated to dates.
-    *
-    * @var array
-    */
+  * The attributes that should be mutated to dates.
+  *
+  * @var array
+  */
   protected $dates = ['deleted_at'];
 
   protected $fillable = [
     'title', 'description', 'price', 'dimensions'
   ];
-
-  protected $hidden = [
-    'hidden',
-  ];
-
+  
   public function getRouteKeyName()
   {
     return 'slug';

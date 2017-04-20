@@ -21,6 +21,19 @@ $(() => {
   baguetteBox.run('.gallery, #content p a');
   $('.product-card .match').matchHeight();
 
+  // Get loading icon on form submit
+  $('form').on('submit', function(e) {
+    let $this = $(this);
+    let submitButton = $this.find('button[type=submit]');
+    submitButton.html(submitButton.data('loading-text')).prop('disabled', 'disabled');
+  });
+
+  // Get loading icon on social auth
+  $('.social-login').on('click', function(e) {
+    let $this = $(this);
+    $this.html("<i class='fa fa-cog fa-spin'></i>").addClass('disabled');
+  });
+
   $(".cart-add").on('click', function(e) {
     e.preventDefault();
     let slug = $(this).data('slug');
