@@ -1,4 +1,4 @@
-@component('mail::message')
+n@component('mail::message')
 # Witaj,
 
 Otrzymujesz ten e-mail, ponieważ wybrano opcję "Przypomnij hasło".

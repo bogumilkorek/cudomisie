@@ -29,7 +29,7 @@ class SendOrderDetails implements ShouldQueue
      */
     public function handle(OrderCreated $event)
     {
-        $when = Carbon::now()->addSeconds(5);
+        $when = Carbon::now()->addSeconds(30);
 
         Mail::to($event->order->email)
         ->bcc(env('MAIL_FROM_ADDRESS'))

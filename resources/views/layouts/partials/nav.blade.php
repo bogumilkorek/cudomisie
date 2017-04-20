@@ -97,7 +97,7 @@
     aria-haspopup="true" aria-expanded="false">
     <i class="fa fa-search" aria-hidden="true"></i>
   </a>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" style="text-align: center">
     <li>
       <form method="GET" class="navbar-form navbar-left" action="{{ route('user.search') }}" style="margin-top: 13px">
         <div class="input-group">
@@ -117,7 +117,7 @@
   aria-haspopup="true" aria-expanded="false">
   <i class="fa fa-user-circle" aria-hidden="true"></i>
 </a>
-<ul class="dropdown-menu">
+<ul class="dropdown-menu" style="text-align: center">
   @if (Auth::guest())
     <li>
       <a href="{{ route('login') }}">

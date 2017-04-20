@@ -1,6 +1,7 @@
 @component('mail::message')
 
-#Twoje zamówienie zostało złożone. Dziękujemy za zakup! Numer zamówienia: {{ $order->id }}.
+#Twoje zamówienie zostało złożone. Dziękujemy za zakup!
+#Numer zamówienia: {{ $order->id }}.<br />
 @if($order->order_status_id == 2)
 Wybrano przesyłkę za pobraniem. Proszę przygotować kwotę: **{{ $order->total_cost }}** dla kuriera/listonosza.<br />
 @else
@@ -11,9 +12,13 @@ ul. Rzemieślnicza 18, 72-320 Trzebiatów<br />
 Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br />
 @endif
 
-W załączeniu przesyłamy także fakturę do zamówienia.<br /><br />
+W załączeniu przesyłamy także fakturę do zamówienia.<br />
+@component('mail::button', ['url' => url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf')])
+Pobierz fakturę
+@endcomponent
 
-**Śledzenie statusu zamówienia: <a href="{{ route('user.orders.show', $order->uuid) }}">{{ route('user.orders.show', $order->uuid) }}**
+**Śledzenie statusu zamówienia:<br />
+<a href="{{ route('user.orders.show', $order->uuid) }}">{{ route('user.orders.show', $order->uuid) }}**
 
 #Zamówione produkty:
 @component('mail::table')

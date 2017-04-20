@@ -39,8 +39,8 @@ class OrderTest extends DuskTestCase
       ->type('city', '00-000 Test')
       ->type('comments', 'Test comments');
       $browser->driver->executeScript('location.href="#submit"');
-      $browser->click('#submit')
-      ->assertSee(__('Success'));
+      $browser->click('#submit');
+      $browser->waitForText(__('Success'));
     });
   }
 }

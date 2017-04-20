@@ -2668,16 +2668,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "v1.7.1",
+            "version": "v1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "df97c5c7bf43eb0660f13fdc16a0efefc534311a"
+                "reference": "741622fce79df3d77b6063239e3d95566db1810e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/df97c5c7bf43eb0660f13fdc16a0efefc534311a",
-                "reference": "df97c5c7bf43eb0660f13fdc16a0efefc534311a",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/741622fce79df3d77b6063239e3d95566db1810e",
+                "reference": "741622fce79df3d77b6063239e3d95566db1810e",
                 "shasum": ""
             },
             "require": {
@@ -2694,6 +2694,9 @@
                 "ext-gd": "to use GD library based image processing.",
                 "ext-imagick": "to use Imagick based image processing."
             },
+            "bin": [
+                "bin/debug"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -2725,7 +2728,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2017-03-23T06:55:16+00:00"
+            "time": "2017-04-19T20:35:43+00:00"
         },
         {
             "name": "uxweb/sweet-alert",

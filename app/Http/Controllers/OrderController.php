@@ -14,6 +14,7 @@ use App\Http\Traits\CartItemsTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Events\OrderCreated;
 use App\Events\OrderStatusUpdated;
+use Illuminate\Support\Facades\File;
 
 class OrderController extends Controller
 {
@@ -206,6 +207,8 @@ class OrderController extends Controller
   */
   public function destroy(Order $order)
   {
+    if(File::exists(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf')))
+      File::delete(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf'));
     $order->products()->detach();
     $order->delete();
     alert()->success(__('Order deleted'), __('Success'))->persistent('OK');
