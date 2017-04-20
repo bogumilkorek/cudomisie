@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\OrderCreated;
+use App\Order;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Http\Traits\DigitsToWordsTrait;
@@ -35,7 +36,9 @@ public function handle(OrderCreated $event)
 {
   View::share('order', $event->order);
   View::share('cost_words', $this->digitsToWords(floatVal($event->order->total_cost)));
+  $invoiceUrl = __('invoice') . '-' . $event->order->uuid . '.pdf';
   $pdf = PDF::loadView('pdf.invoice');
-  $pdf->setPaper('a4', 'portrait')->save(public_path('files/invoices/' .  __('invoice') . '-' . $event->order->uuid . '.pdf'));
+  $pdf->setPaper('a4', 'portrait')->save(public_path('files/invoices/' .  $invoiceUrl));
+  Order::where('id', $event->order->id)->update(['invoice_url' => $invoiceUrl]);
 }
 }

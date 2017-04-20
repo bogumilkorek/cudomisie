@@ -47,7 +47,7 @@
                   @endif
                 </td>
                 <td class="text-center actions">
-                  <a href="{{ url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf') }}" class="btn btn-dashed">
+                  <a href="{{ route('user.orders.invoice', $order->invoice_url) }}" class="btn btn-dashed">
                     <i class="fa fa-file-pdf-o" aria-hidden="true" title="{{ __('Show') }}"></i>
                   </a>
                 </td>

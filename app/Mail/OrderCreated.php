@@ -34,7 +34,7 @@ class OrderCreated extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->subject(__('Cudomisie.pl - order confirmation'))
-        ->attach(public_path('files/invoices/'  . __('invoice') . '-' . $this->order->uuid . '.pdf'))
+        ->attach(public_path('files/invoices/'  . $this->order->invoice_url))
         ->markdown('emails.user.orderCreated');
     }
 }

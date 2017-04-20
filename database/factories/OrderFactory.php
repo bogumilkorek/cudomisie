@@ -18,6 +18,7 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
     'email' => $faker->unique()->safeEmail,
     'phone' => $faker->phoneNumber,
     'address' => $faker->address,
-    'comments' => $faker->randomElement([NULL, $faker->text])
+    'comments' => $faker->randomElement([NULL, $faker->text]),
+    'invoice_url' => 'mock.pdf'
   ];
 });

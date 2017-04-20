@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->text('comments')->nullable();
+            $table->string('invoice_url')->nullable();
             $table->timestamps();
         });
     }

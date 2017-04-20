@@ -59,7 +59,7 @@
                 </a>
               </td>
               <td class="text-center actions">
-                <a href="{{ url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf') }}" class="btn btn-primary btn-icon">
+                <a href="{{ route('user.orders.invoice', $order->invoice_url) }}" class="btn btn-primary btn-icon">
                   <span class="glyphicon glyphicon-save-file" aria-hidden="true" title="{{ __('Show') }}"></span>
                 </a>
               </td>

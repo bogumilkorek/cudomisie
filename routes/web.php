@@ -50,7 +50,7 @@ Route::get(__('invoice') . '/{invoice}', function($invoice)
 {
   $file = public_path('files/invoices/' . $invoice);
   return response()->download($file);
-});
+})->name('user.orders.invoice');
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
 Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.index');
