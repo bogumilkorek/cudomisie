@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Notifications\Notifiable;
 
 class Order extends Model
 {
+  use Notifiable;
 
   public function getRouteKeyName()
   {
@@ -14,7 +16,7 @@ class Order extends Model
   }
 
   protected $fillable = [
-    'uuid', 'name', 'email', 'phone', 'address', 'comments', 'invoice_url'
+    'uuid', 'name', 'email', 'phone_number', 'address', 'comments', 'invoice_url'
   ];
 
   public function products()

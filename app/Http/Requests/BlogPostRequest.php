@@ -26,8 +26,8 @@ class BlogPostRequest extends FormRequest
   {
     return [
       'title' => ['required',
-                  Rule::unique('blog_posts')->ignore($this->id),
-                  'max:255'],
+      Rule::unique('blog_posts')->ignore($this->id),
+      'max:255'],
       'content' => 'required',
     ];
   }

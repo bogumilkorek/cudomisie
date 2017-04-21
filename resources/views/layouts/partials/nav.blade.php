@@ -87,9 +87,18 @@
     </a>
     <ul class="dropdown-menu">
       @foreach($items['products'] as $product)
-        <li style="border-bottom: 1px solid #F3F3F3"><a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" style="padding: 0px; margin: 0px; font-family: Noto Sans, sans-serif; font-size: 14px"><div style="display:table-cell; vertical-align: middle"><img src="{{ $product->images->first()->thumbnail_url }}" width="95px"></div><div style="display:table-cell; vertical-align: middle; padding-left: 5px">{{ $product->title }} ({{ $items['quantities'][$product->slug] . ' ' . __('pcs.') }})</div></a></li>
+        <li class="nav-cart-item">
+          <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}">
+            <div>
+              <img src="{{ $product->images->first()->thumbnail_url }}">
+            </div>
+            <div>
+              {{ $product->title }}<br />({{ $items['quantities'][$product->slug] . ' ' . __('pcs.') }})
+            </div>
+          </a>
+        </li>
       @endforeach
-        <li style="text-align: center"><a href={{ route('cart.show') }}>{{ __('Show cart') }}</a></li>
+      <li class="text-center"><a href={{ route('cart.show') }}>{{ __('Show cart') }}</a></li>
     </ul>
   </li>
   <li class="dropdown">
@@ -97,8 +106,8 @@
     aria-haspopup="true" aria-expanded="false">
     <i class="fa fa-search" aria-hidden="true"></i>
   </a>
-  <ul class="dropdown-menu" style="text-align: center">
-    <li style="padding: 10px 0px; margin-bottom: 55px">
+  <ul class="dropdown-menu text-center">
+    <li class="nav-search">
       <form method="GET" class="navbar-form navbar-left" action="{{ route('user.search') }}">
         <div class="input-group">
           <input type="text" class="form-control" name="q" placeholder="{{ __('Search') }}" required minlength="5">
@@ -117,7 +126,7 @@
   aria-haspopup="true" aria-expanded="false">
   <i class="fa fa-user-circle" aria-hidden="true"></i>
 </a>
-<ul class="dropdown-menu" style="text-align: center">
+<ul class="dropdown-menu text-center">
   @if (Auth::guest())
     <li>
       <a href="{{ route('login') }}">

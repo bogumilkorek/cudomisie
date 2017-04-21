@@ -28,10 +28,10 @@
         </div>
 
         <div class="form-group">
-          <label for="phone">{{ __('Phone') }}:</label>
+          <label for="phone_number">{{ __('Phone') }}:</label>
           <input type="text" pattern="((\+|00)[0-9]{2})?[0-9]{9}" class="form-control"
-          name="phone" title="{{ __('Phone number must be 9 digits') }}."
-          value="{{ old('phone',  $order->phone) }}" required>
+          name="phone_number" title="{{ __('Phone number must be 9 digits') }}."
+          value="{{ old('phone_number',  $order->phone_number) }}" required>
         </div>
 
         <div class="form-group">

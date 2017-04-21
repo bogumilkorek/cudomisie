@@ -45,6 +45,12 @@ return [
     'client_id'     => env('GOOGLE_APP_ID'),
     'client_secret' => env('GOOGLE_APP_SECRET'),
     'redirect'      => env('GOOGLE_APP_CALLBACK')
-  ]
+  ],
+
+  'nexmo' => [
+    'key' => env('NEXMO_KEY'),
+    'secret' => env('NEXMO_SECRET'),
+    'sms_from' => env('SMS_FROM'),
+],
 
 ];

@@ -1,7 +1,20 @@
 @component('mail::message')
-# Witaj,
+{{-- Greeting --}}
+@if (! empty($greeting))
+# {{ $greeting }}
+@else
+@if ($level == 'error')
+# Whoops!
+@else
+# Hello!
+@endif
+@endif
 
-Otrzymujesz ten e-mail, ponieważ wybrano opcję "Przypomnij hasło".
+{{-- Intro Lines --}}
+@foreach ($introLines as $line)
+{{ $line }}
+
+@endforeach
 
 {{-- Action Button --}}
 @if (isset($actionText))
@@ -18,21 +31,28 @@ Otrzymujesz ten e-mail, ponieważ wybrano opcję "Przypomnij hasło".
     }
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
-Resetuj hasło
+{{ $actionText }}
 @endcomponent
 @endif
+
+{{-- Outro Lines --}}
+@foreach ($outroLines as $line)
+{{ $line }}
+
+@endforeach
 
 <!-- Salutation -->
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-Pozdrawiamy,<br>{{ config('app.name') }}
+Regards,<br>{{ config('app.name') }}
 @endif
 
 <!-- Subcopy -->
 @if (isset($actionText))
 @component('mail::subcopy')
-Jeżeli nie możesz kliknąć na przycisk "Resetuj hasło", skopiuj poniższy link do przeglądarki: [{{ $actionUrl }}]({{ $actionUrl }})
+If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
+into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
 @endcomponent
 @endif
 @endcomponent

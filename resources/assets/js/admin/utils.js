@@ -50,14 +50,14 @@ function confirmDelete($this) {
 
 function configDatatables()
 {
-  $('table:not(.no-dtables)').DataTable({
+  $('#table').DataTable({
     // Disable sorting on the sorting_disabled class
     "aoColumnDefs" : [ {
       "bSortable" : false,
       "aTargets" : [ "sorting_disabled" ]
     } ],
     "order": [
-      [1, 'asc']
+      [0, 'asc']
     ],
 
     // Go to datatables.net to find translations for your language

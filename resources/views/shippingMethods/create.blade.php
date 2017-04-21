@@ -26,6 +26,4 @@
 </div>
 </div>
 
-@include('layouts.partials.admin.wysiwyg')
-
 @endsection

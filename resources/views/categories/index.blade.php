@@ -17,7 +17,7 @@
         </div>
       </div>
       <br />
-      <table class="table table-bordered table-hover table-striped">
+      <table class="table table-bordered table-hover table-striped" id="table">
         <thead>
           <tr>
             <th>#</th>

@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <h2>{{ __('Orders') }}</h2>
       <hr>
-      <table class="table table-bordered table-hover table-striped">
+      <table class="table table-bordered table-hover table-striped" id="table">
         <thead>
           <tr>
             <th>#</th>

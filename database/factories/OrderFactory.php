@@ -16,7 +16,7 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
     'total_cost' => $faker->randomFloat(2, 250, 350) . ' ' . __('$'),
     'name' => $faker->name,
     'email' => $faker->unique()->safeEmail,
-    'phone' => $faker->phoneNumber,
+    'phone_number' => $faker->phoneNumber,
     'address' => $faker->address,
     'comments' => $faker->randomElement([NULL, $faker->text]),
     'invoice_url' => 'mock.pdf'

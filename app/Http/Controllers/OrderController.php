@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\User;
 use App\Order;
 use App\OrderStatus;
 use App\Product;
@@ -10,10 +11,12 @@ use App\ShippingMethod;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Alert;
+use Carbon\Carbon;
 use App\Http\Traits\CartItemsTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Events\OrderCreated;
-use App\Events\OrderStatusUpdated;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\OrderStatusChanged;
 use Illuminate\Support\Facades\File;
 
 class OrderController extends Controller
@@ -35,7 +38,7 @@ class OrderController extends Controller
 
     $orderStatuses = OrderStatus::all();
 
-    $orders = Order::orderBy('id', 'asc')
+    $orders = Order::orderBy('id', 'desc')
     ->with('orderStatus')
     ->with('shippingMethod')
     ->get();
@@ -124,7 +127,7 @@ class OrderController extends Controller
     $order->total_cost = (string)(number_format(floatval($items['total']) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
     $order->name = $request->name;
     $order->email = $request->email;
-    $order->phone = $request->phone;
+    $order->phone_number = $request->phone;
     $order->address = $request->street . ', ' . $request->city;
     $order->comments = $request->comments;
     $order->save();
@@ -195,7 +198,10 @@ class OrderController extends Controller
     $order = Order::where('uuid', $request->uuid)->first();
     $order->order_status_id = $request->order_status_id;
     $order->save();
-    event(new OrderStatusUpdated($order));
+    //event(new OrderStatusUpdated($order));
+    $when = Carbon::now()->addSeconds(5);
+    $order->notify((new OrderStatusChanged($order))->delay($when));
+
     return response()->json("Order status updated");
   }
 

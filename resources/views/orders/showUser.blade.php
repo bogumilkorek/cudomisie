@@ -23,7 +23,7 @@
       @endcomponent
       <b>{{ __('Name') }}:</b><br />{{ $order->name }}<br /><br />
       <b>{{ __('E-mail') }}:</b><br />{{ $order->email }}<br /><br />
-      <b>{{ __('Phone') }}:</b><br />{{ $order->phone }}<br /><br />
+      <b>{{ __('Phone') }}:</b><br />{{ $order->phone_number }}<br /><br />
       <b>{{ __('Address') }}:</b><br />{{ $order->address }}<br /><br />
       <b>{{ __('Comments') }}:</b><br />
       @if($order->comments)

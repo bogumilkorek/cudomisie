@@ -27,8 +27,8 @@
               <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" class="btn-dashed">
                 <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
               </a>
-              <input type="number" min="1" max="9" class="form-control text-center btn-dashed" value="1" data-slug="{{ $product->slug }}" style="display: inline-block; width: 70px; padding: 24px 5px; font-family: Noto Sans; margin-right: 0px">
-              <a href="#" class="btn btn-dashed cart-add" style="margin-left: 4px" data-slug="{{ $product->slug }}">
+              <input type="number" min="1" max="9" class="form-control text-center btn-dashed" value="1" data-slug="{{ $product->slug }}">
+              <a href="#" class="btn btn-dashed cart-add" data-slug="{{ $product->slug }}">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               </a>
             </div>

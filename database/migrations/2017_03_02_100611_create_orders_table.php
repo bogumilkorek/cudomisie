@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('total_cost');
             $table->string('name');
             $table->string('email');
-            $table->string('phone');
+            $table->string('phone_number');
             $table->string('address');
             $table->text('comments')->nullable();
             $table->string('invoice_url')->nullable();

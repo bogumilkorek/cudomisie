@@ -26,8 +26,8 @@ class PageRequest extends FormRequest
   {
     return [
       'title' => ['required',
-                  Rule::unique('pages')->ignore($this->id),
-                  'max:255'],
+      Rule::unique('pages')->ignore($this->id),
+      'max:255'],
       'content' => 'required',
     ];
   }
