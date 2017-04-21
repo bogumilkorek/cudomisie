@@ -25,11 +25,11 @@ class OrderRequest extends FormRequest
   {
     return [
       'shippingMethodName' => 'required',
-      'name' => 'requred|regex:/^$/',
-      'email' => 'requred|email',
-      'phone' => 'requred|regex:/^((\+|00)[0-9]{2})?[0-9]{9}$/',
-      'street' => 'requred|regex:/^$[^\s]+ [0-9]{1,3}([a-zA-Z])?(\/[0-9]{1,3})?/',
-      'city' => 'requred|regex:/^[0-9]{2}-[0-9]{3} [^\s]{3,}$/',
+      'name' => 'required|regex:/^$/',
+      'email' => 'required|email',
+      'phone' => 'required|regex:/^((\+|00)[0-9]{2})?[0-9]{9}$/',
+      'street' => 'required|regex:/^$[^\s]+ [0-9]{1,3}([a-zA-Z])?(\/[0-9]{1,3})?/',
+      'city' => 'required|regex:/^[0-9]{2}-[0-9]{3} [^\s]{3,}$/',
     ];
   }
 }

@@ -693,21 +693,22 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v1.0.12",
+            "version": "v1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "9a150bedc3ae6566d05f0a8d1657c658ce98dcad"
+                "reference": "c92a592b193846a9ee6a324dfc088533449ae2c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/9a150bedc3ae6566d05f0a8d1657c658ce98dcad",
-                "reference": "9a150bedc3ae6566d05f0a8d1657c658ce98dcad",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/c92a592b193846a9ee6a324dfc088533449ae2c3",
+                "reference": "c92a592b193846a9ee6a324dfc088533449ae2c3",
                 "shasum": ""
             },
             "require": {
                 "facebook/webdriver": "~1.0",
-                "illuminate/support": "~5.3",
+                "illuminate/console": "~5.4",
+                "illuminate/support": "~5.4",
                 "nesbot/carbon": "~1.20",
                 "php": ">=5.6.4",
                 "symfony/console": "~3.2",
@@ -744,7 +745,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2017-04-07T21:47:06+00:00"
+            "time": "2017-04-20T21:45:48+00:00"
         },
         {
             "name": "laravel/framework",
@@ -877,16 +878,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "441e0d467319044e4913b1748382d427795416e9"
+                "reference": "2771ab96004b6149d0974f8a469e08c8e54474a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/441e0d467319044e4913b1748382d427795416e9",
-                "reference": "441e0d467319044e4913b1748382d427795416e9",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/2771ab96004b6149d0974f8a469e08c8e54474a5",
+                "reference": "2771ab96004b6149d0974f8a469e08c8e54474a5",
                 "shasum": ""
             },
             "require": {
@@ -927,7 +928,7 @@
                 "laravel",
                 "oauth"
             ],
-            "time": "2017-03-27T19:43:19+00:00"
+            "time": "2017-04-20T16:24:07+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2147,16 +2148,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.6",
+            "version": "v5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
                 "shasum": ""
             },
             "require": {
@@ -2197,7 +2198,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-02-13T07:52:53+00:00"
+            "time": "2017-04-20T17:32:18+00:00"
         },
         {
             "name": "symfony/console",
@@ -2978,16 +2979,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "v1.7.4",
+            "version": "v1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "741622fce79df3d77b6063239e3d95566db1810e"
+                "reference": "6b5570484c0efb3d38313278cef0049e1c372543"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/741622fce79df3d77b6063239e3d95566db1810e",
-                "reference": "741622fce79df3d77b6063239e3d95566db1810e",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/6b5570484c0efb3d38313278cef0049e1c372543",
+                "reference": "6b5570484c0efb3d38313278cef0049e1c372543",
                 "shasum": ""
             },
             "require": {
@@ -3038,7 +3039,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2017-04-19T20:35:43+00:00"
+            "time": "2017-04-21T02:09:04+00:00"
         },
         {
             "name": "uxweb/sweet-alert",

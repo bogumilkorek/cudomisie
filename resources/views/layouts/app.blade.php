@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css" />
 </head>
 <body>
-
   @include('layouts.partials.nav')
 
   @include('layouts.partials.slider')

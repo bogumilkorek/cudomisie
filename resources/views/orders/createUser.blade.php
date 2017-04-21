@@ -12,6 +12,9 @@
 
     <hr>
 
+    @component('alert', ['errors' => $errors])
+    @endcomponent
+
     @if(Auth::user() || !empty($buy_without_login))
 
     @component('components.cartItems', [
