@@ -28,7 +28,6 @@ class ProductRequest extends FormRequest
       'title' => ['required',
       Rule::unique('products')->ignore($this->id),
       'max:255'],
-      'categories[]' => 'required',
       'description' => 'required',
       'price' => 'required|regex:/^[0-9]{1,3}\.[0-9]{2} .{1,3}$/',
       'dimensions' => 'required|regex:/^[0-9]{1,3}x[0-9]{1,3} [a-z]{2}$/',
@@ -40,7 +39,6 @@ class ProductRequest extends FormRequest
     return [
       'title.required' => __('Field title is required'),
       'title.unique' => __('The title has already been taken'),
-      'categories.required' => __('Field categories is required'),
       'description.required' => __('Field description is required'),
       'price.required' => __('Field price is required'),
       'dimensions.required' => __('Field dimensions is required'),

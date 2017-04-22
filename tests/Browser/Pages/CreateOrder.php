@@ -46,7 +46,7 @@ class CreateOrder extends Page
     $browser->radio('shippingMethodName', $shippingMethod)
     ->type('name', 'Test Client')
     ->type('email', 'test@test.com')
-    ->type('phone', '500500500')
+    ->type('phone_number', '500500500')
     ->type('street', 'Test 3')
     ->type('city', '00-000 Test')
     ->type('comments', 'Test comments');

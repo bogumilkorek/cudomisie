@@ -127,7 +127,7 @@ class OrderController extends Controller
     $order->total_cost = (string)(number_format(floatval($items['total']) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
     $order->name = $request->name;
     $order->email = $request->email;
-    $order->phone_number = $request->phone;
+    $order->phone_number = $request->phone_number;
     $order->address = $request->street . ', ' . $request->city;
     $order->comments = $request->comments;
     $order->save();
