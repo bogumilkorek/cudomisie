@@ -42,5 +42,26 @@ class PivotTableSeeder extends Seeder
           'product_quantity' => $product_quantity,
         ]);
     }
+
+    for($i = 1; $i <= App\Product::all()->count(); $i++)
+    {
+      $product_id = $i;
+      $shipping_method_id = 1;
+
+      DB::table('product_shipping_method')->insert([
+          'product_id' => $i,
+          'shipping_method_id' => $shipping_method_id,
+        ]);
+    }
+    for($i = 1; $i <= App\Product::all()->count(); $i++)
+    {
+      $product_id = $i;
+      $shipping_method_id = rand(2,4);
+
+      DB::table('product_shipping_method')->insert([
+          'product_id' => $i,
+          'shipping_method_id' => $shipping_method_id,
+        ]);
+    }
   }
 }

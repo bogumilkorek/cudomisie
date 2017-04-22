@@ -11,7 +11,7 @@ class EmailController extends Controller
 {
     public function contactForm(Request $request)
     {
-      $when = Carbon::now()->addMinutes(1);
+      $when = Carbon::now()->addSeconds(30);
 
       Mail::to($request->email)
       ->later($when, new ContactForm($request));

@@ -198,8 +198,7 @@ class OrderController extends Controller
     $order = Order::where('uuid', $request->uuid)->first();
     $order->order_status_id = $request->order_status_id;
     $order->save();
-    //event(new OrderStatusUpdated($order));
-    $when = Carbon::now()->addSeconds(5);
+    $when = Carbon::now()->addSeconds(30);
     $order->notify((new OrderStatusChanged($order))->delay($when));
 
     return response()->json("Order status updated");

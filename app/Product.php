@@ -20,7 +20,7 @@ class Product extends Model
   protected $fillable = [
     'title', 'description', 'price', 'dimensions'
   ];
-  
+
   public function getRouteKeyName()
   {
     return 'slug';
@@ -39,5 +39,10 @@ class Product extends Model
   public function images()
   {
     return $this->morphMany('App\Image', 'imageable');
+  }
+
+  public function shippingMethods()
+  {
+    return $this->hasMany('App\ShippingMethod');
   }
 }
