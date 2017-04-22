@@ -53,6 +53,7 @@ class OrderStatusChanged extends Notification implements ShouldQueue
     public function toNexmo($notifiable)
     {
       return (new NexmoMessage)
+      ->from(env('NEXMO_FROM_NAME'))
       ->content('Status Twojego zamówienia został zmieniony. Nowy status: ' . $this->order->orderStatus->title)
       ->unicode();
     }
