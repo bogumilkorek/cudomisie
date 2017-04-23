@@ -17,6 +17,12 @@
 <body>
   @include('layouts.partials.nav')
 
+  <div class="alert alert-success alert-dismissable fade in text-center">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close"><i class="fa fa-times" aria-hidden="true" style="font-size: 36px"></i></a>
+    Używamy plików cookies, aby ułatwić korzystanie z serwisu.
+    <a href="#">Zapoznaj się z naszą polityką prywatności cookies</a>
+  </div>
+
   @include('layouts.partials.slider')
 
   @include('layouts.partials.content')

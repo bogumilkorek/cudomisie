@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\Category;
 use App\Image;
+use App\ShippingMethod;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -32,7 +33,8 @@ class ProductController extends Controller
 
   public function indexUser()
   {
-    $products = Product::orderBy('id', 'desc')
+    $products = Product::withTrashed()
+    ->orderBy('id', 'desc')
     ->with('categories')
     ->with('images')
     ->paginate(9);
@@ -48,6 +50,7 @@ class ProductController extends Controller
   public function create(Request $request)
   {
     return view('products.create')
+    ->withShippingMethods(ShippingMethod::all())
     ->withCategories(Category::where('parent_id', NULL)->get())
     ->withImages(Image::where('form_token', $request->session()->token())->get());
   }
@@ -63,6 +66,7 @@ class ProductController extends Controller
     $product = Product::create($request->all());
     Image::where('form_token', $request->_token)->update(['imageable_id' => $product->id, 'form_token' => NULL]);
     $product->categories()->sync($request->categories, false);
+    $product->shippingMethods()->sync($request->shipping_methods, false);
     $request->session()->regenerateToken();
 
     alert()->success( __('Product created!'), __('Success'))->persistent('OK');
@@ -91,6 +95,7 @@ class ProductController extends Controller
     return view('products.edit')
     ->withProduct($product)
     ->withImages($product->images)
+    ->withShippingMethods(ShippingMethod::all())
     ->withCategories(Category::all());
   }
 
@@ -106,9 +111,14 @@ class ProductController extends Controller
     $product->update($request->all());
 
     if(isset($request->categories))
-      $product->categories()->sync($request->categories);
+    $product->categories()->sync($request->categories);
     else
-      $product->categories()->sync([]);
+    $product->categories()->sync([]);
+
+    if(isset($request->shipping_methods))
+    $product->shippingMethods()->sync($request->shipping_methods);
+    else
+    $product->shippingMethods()->sync([]);
 
     alert()->success( __('Product updated!'), __('Success'))->persistent('OK');
     return redirect()->route('products.index');
@@ -129,7 +139,7 @@ class ProductController extends Controller
 
   public function restore($slug)
   {
-    Product::withTrashed()->where('slug', $slug)->restore(); 
+    Product::withTrashed()->where('slug', $slug)->restore();
     alert()->success( __('Product restored!'), __('Success'))->persistent('OK');
     return redirect()->route('products.index');
   }

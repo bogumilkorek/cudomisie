@@ -23,6 +23,7 @@
             <th>#</th>
             <th>{{ __('Title') }}</th>
             <th>{{ __('Content') }}</th>
+            <th>{{ __('Date') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
           </tr>
@@ -37,6 +38,7 @@
               </a>
             </td>
             <td>{!! str_limit($blogPost->content, 100) !!}</td>
+            <td>{{ $blogPost->created_at }}</td>
             <td class="text-center actions">
               <a href="{{ route('blogPosts.edit', $blogPost) }}" class="btn btn-success btn-icon">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" title="{{ __('Edit') }}"></span>

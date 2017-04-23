@@ -7,7 +7,9 @@ use App\Product;
 trait CartItemsTrait {
     public function getItems() {
       $items = Request::session()->get('cart.items');
-      $products = Product::whereIn('slug', array_keys($items ?? []))->get();
+      $products = Product::whereIn('slug', array_keys($items ?? []))
+      ->with('shippingMethods')
+      ->get();
       $total = 0;
 
       foreach($products as $product)

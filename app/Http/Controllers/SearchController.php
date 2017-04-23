@@ -17,6 +17,7 @@ class SearchController extends Controller
       {
         $products = Product::where('title', 'LIKE', '%' . $keyword . '%')
         ->orWhere('description', 'LIKE', '%' . $keyword . '%')
+        ->withTrashed()
         ->get();
 
         $blogPosts = BlogPost::where('title', 'LIKE', '%' . $keyword . '%')

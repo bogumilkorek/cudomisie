@@ -33,7 +33,7 @@
 
 @push('scripts')
   <script type="text/javascript">
-  $(".selectpicker").selectpicker();
+  $(".selectpicker, .selectpicker-shipping").selectpicker();
   </script>
 @endpush
 

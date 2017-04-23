@@ -39,6 +39,8 @@
 
 $(".selectpicker").selectpicker('val', {!! json_encode($product->categories()->pluck('categories.id')) !!});
 
+$(".selectpicker-shipping").selectpicker('val', {!! json_encode($product->shippingMethods()->pluck('shipping_methods.id')) !!});
+
 </script>
 
 @endpush

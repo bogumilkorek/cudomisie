@@ -1,7 +1,7 @@
 <div class="container">
 
   <h1>
-    {{ !empty($title) ? $title : __('Latest articles') }}
+    {{ $title ?? __('Latest articles') }}
     <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
   </h1>
   <hr>

@@ -78,11 +78,21 @@ class OrderController extends Controller
     $cartItemsCounter = $request->session()->get('cart.counter');
 
     if(!isset($cartItemsCounter))
-      return redirect()->route('cart.show');
+    return redirect()->route('cart.show');
 
     $items = $this->getItems();
 
-    $shippingMethods = ShippingMethod::all();
+    // Get shipping methods from selected products
+    $allowedSMethods = [];
+    foreach($items['products'] as $product)
+    foreach($product->shippingMethods as $sMethod)
+    $allowedSMethods[] = $sMethod->id;
+
+    // Determine allowed shipping methods
+    $allowedSMethods = array_diff_assoc($allowedSMethods, array_unique($allowedSMethods));
+    
+    // Select allowed shipping methods
+    $shippingMethods = ShippingMethod::whereIn('id', $allowedSMethods)->get();
 
     // If shipping method has small capacity then price will be multiplied by item quantity
     foreach($shippingMethods as $sMethod)
@@ -118,9 +128,9 @@ class OrderController extends Controller
     $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
 
     if($cashOnDelivery != 1)
-      $order->order_status_id = 1;
+    $order->order_status_id = 1;
     else
-      $order->order_status_id = 2;
+    $order->order_status_id = 2;
 
     $order->shipping_method_name = $request->shippingMethodName;
     $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
@@ -142,6 +152,8 @@ class OrderController extends Controller
     event(new OrderCreated($order));
 
     $request->session()->forget('cart');
+
+    $order->products()->delete();
 
     return view('orders.completed')
     ->withId($order->id)
@@ -213,7 +225,7 @@ class OrderController extends Controller
   public function destroy(Order $order)
   {
     if(File::exists(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf')))
-      File::delete(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf'));
+    File::delete(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf'));
     $order->products()->detach();
     $order->delete();
     alert()->success(__('Order deleted'), __('Success'))->persistent('OK');

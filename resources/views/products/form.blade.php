@@ -36,6 +36,26 @@
 
 <div class="form-group">
   <label for="dimensions">{{ __('Dimensions') }}</label>
-  <input type="text" class="form-control" pattern="[0-9]{1,3}x[0-9]{1,3} [a-z]{2}" name="dimensions"
-  value="{{ old('dimensions',  isset($product) ? $product->dimensions : null) }}" title="{{ __('Correct form') }}: 25x60 cm" required>
+  <input type="text" class="form-control" name="dimensions"
+  value="{{ old('dimensions',  isset($product) ? $product->dimensions : null) }}" required>
 </div>
+
+<div class="form-group">
+  <label for="shipping_methods">{{ __('Shipping methods') }}</label>
+  <br />
+  <select name="shipping_methods[]" id="shipping_methods" class="selectpicker-shipping" data-width="fit" title="{{ __('Nope') }}" multiple required>
+    @foreach($shipping_methods as $sMethod)
+        <option value="{{ $sMethod->id }}"
+        @if(old('shipping_methods'))
+          @if(in_array($sMethod->id, old('shipping_methods')))
+          selected
+          @endif
+          @else
+          selected
+        @endif >
+        {{ $sMethod->title }}
+      </option>
+    @endforeach
+  </select>
+</div>
+<br />

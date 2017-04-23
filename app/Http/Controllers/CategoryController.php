@@ -60,7 +60,7 @@ class CategoryController extends Controller
   {
     $products = Product::whereHas('categories', function($q) use($category) {
       $q->where('category_id', $category->id);
-    })->get();
+    })->withTrashed()->get();
 
     return view('categories.show')->withCategory($category)->withProducts($products);
   }

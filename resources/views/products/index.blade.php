@@ -25,7 +25,7 @@
             <th>{{ __('Description') }}</th>
             <th>{{ __('Categories') }}</th>
             <th>{{ __('Price') }}</th>
-            <th>{{ __('Dimensions') }}</th>
+            <th>{{ __('Date') }}</th>
             <th>{{ __('Visible') }}</th>
             <th class="sorting_disabled">{{ __('Edit') }}</th>
             <th class="sorting_disabled">{{ __('Delete') }}</th>
@@ -51,7 +51,7 @@
               @endforeach
             </td>
             <td>{{ $product->price }}</td>
-            <td>{{ $product->dimensions }}</td>
+            <td>{{ $product->created_at }}</td>
             <td>
               @if($product->deleted_at)
               <span class="label label-danger" style="font-size: 16px">{{ __('No') }}</span>

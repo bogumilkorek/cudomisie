@@ -15,6 +15,8 @@ class Order extends Model
     return 'uuid';
   }
 
+  protected $shipping_tax, $post_tax_shipping, $total_tax, $post_tax_total;
+
   protected $fillable = [
     'uuid', 'name', 'email', 'phone_number', 'address', 'comments', 'invoice_url'
   ];
@@ -45,5 +47,25 @@ class Order extends Model
   {
     $currentDate = new Carbon($date);
     return Carbon::createFromFormat('Y-m-d H:i:s', $currentDate)->format('d.m.Y, H:i');
+  }
+
+  public function getShippingTaxAttribute()
+  {
+    return number_format((floatval($this->shipping_cost) * 0.23) / 1.23, 2) . ' ' . __('$');
+  }
+
+  public function getPostTaxShippingAttribute()
+  {
+    return number_format((floatval($this->shipping_cost) - floatval($this->getShippingTaxAttribute())), 2) . ' ' . __('$');
+  }
+
+  public function getTotalTaxAttribute()
+  {
+    return number_format((floatval($this->total_cost) * 0.23) / 1.23, 2) . ' ' . __('$');
+  }
+
+  public function getPostTaxTotalAttribute()
+  {
+    return number_format((floatval($this->total_cost) - floatval($this->getTotalTaxAttribute())), 2) . ' ' . __('$');
   }
 }

@@ -14,6 +14,7 @@ class LatestProductComposer
       $latestProducts = Product::orderBy('id', 'desc')
       ->with('categories')
       ->with('images')
+      ->withTrashed()
       ->take(6)
       ->get();
 

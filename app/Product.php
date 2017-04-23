@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Product extends Model
 {
 
   use SoftDeletes;
+
+  protected $price_tax, $post_tax_price;
 
   /**
   * The attributes that should be mutated to dates.
@@ -43,6 +46,23 @@ class Product extends Model
 
   public function shippingMethods()
   {
-    return $this->hasMany('App\ShippingMethod');
+    return $this->belongsToMany('App\ShippingMethod');
   }
+
+  public function getCreatedAtAttribute($date)
+  {
+    $currentDate = new Carbon($date);
+    return Carbon::createFromFormat('Y-m-d H:i:s', $currentDate)->format('d.m.Y, H:i');
+  }
+
+  public function getPriceTaxAttribute()
+  {
+    return number_format((floatval($this->price) * 0.23) / 1.23, 2) . ' ' . __('$');
+  }
+
+  public function getPostTaxPriceAttribute()
+  {
+    return number_format((floatval($this->price) - floatval($this->getPriceTaxAttribute())), 2) . ' ' . __('$');
+  }
+
 }

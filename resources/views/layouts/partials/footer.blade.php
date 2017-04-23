@@ -1,7 +1,7 @@
 <section class="footer">
 
   <div class="container text-center">
-    
+
     <i class="fa fa-copyright" aria-hidden="true"></i> {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved') }}.
     <br />
 
@@ -48,29 +48,7 @@
       </div>
     </form>
 
-    <div class="footer-icons-wrapper">
-
-      <a class="btn btn-circle btn-active" id="scroll-top">
-        <i class="fa fa-level-up" aria-hidden="true"></i>
-      </a>
-
-      <a class="btn btn-circle btn-facebook">
-        <i class="fa fa-facebook" aria-hidden="true"></i>
-      </a>
-
-      <a class="btn btn-circle btn-twitter">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-      </a>
-
-      <a class="btn btn-circle btn-google">
-        <i class="fa fa-google-plus" aria-hidden="true"></i>
-      </a>
-
-      <a class="btn btn-circle btn-flickr">
-        <i class="fa fa-flickr" aria-hidden="true"></i>
-      </a>
-
-    </div>
+    @include('layouts.partials.social')
 
     <img src="{{ asset("images/cudomisie-mis.png") }}" />
 
