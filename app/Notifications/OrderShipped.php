@@ -5,9 +5,9 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 
-class OrderStatusChanged extends Notification implements ShouldQueue
+class OrderShipped extends Notification implements ShouldQueue
 {
   use Queueable;
 
@@ -33,20 +33,16 @@ class OrderStatusChanged extends Notification implements ShouldQueue
   */
   public function via($notifiable)
   {
-    return ['mail'];
+    return ['nexmo'];
   }
 
-  /**
-  * Get the mail representation of the notification.
-  *
-  * @param  mixed  $notifiable
-  * @return \Illuminate\Notifications\Messages\MailMessage
-  */
-  public function toMail($notifiable)
+
+  public function toNexmo($notifiable)
   {
-    return (new MailMessage)
-    ->subject(__('Cudomisie.pl - order status updated'))
-    ->markdown('emails.user.orderStatusUpdated', ['order' => $this->order]);
+    return (new NexmoMessage)
+    ->from(env('NEXMO_FROM_NAME'))
+    ->content('Twoje zamówienie nr ' . $this->order->id . ' zostało wysłane. Dziękujemy i zapraszamy ponownie. Cudomisie.pl')
+    ->unicode();
   }
 
   /**

@@ -35,7 +35,7 @@
             @if(!empty($simpleView))
               <td>{{ $product->title }}</td>
             @elseif($product->deleted_at)
-              <td><img src="{{ $product->images->first()->thumbnail_url }}" style="width: 150px"> {{ $product->title }} <span class="label label-danger" style="font-size: 16px">{{ __('This product is hidden') }}</span></td>
+              <td><img src="{{ $product->images->first()->thumbnail_url }}" style="width: 150px"> {{ $product->title }} <span class="label label-danger" style="font-size: 16px">{{ __('Product temporary unavailable') }}</span></td>
             @else
               <td><a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" target="_blank"><img src="{{ $product->images->first()->thumbnail_url }}" style="width: 150px"> {{ $product->title }}</a></td>
             @endif

@@ -97,7 +97,7 @@
               <!--<br />({{ $items['quantities'][$product->slug] . ' ' . __('pcs.') }})-->
             </div>
             <div>
-              <i class="fa fa-times-circle cart-remove" data-slug="{{ $product->slug }}" aria-hidden="true"></i>
+              <i class="fa fa-times-circle cart-remove" data-slug="{{ $product->slug }}" aria-hidden="true" title="{{ __('Remove') }}"></i>
             </div>
           </a>
         </li>

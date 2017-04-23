@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Events\OrderCreated;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\OrderStatusChanged;
+use App\Notifications\OrderShipped;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 
 class OrderController extends Controller
@@ -121,6 +123,9 @@ class OrderController extends Controller
   {
     $items = $this->getItems();
 
+    if($items['trashed'])
+      return redirect()->route('user.orders.create')->withInput(Input::all());
+
     $order = new Order;
     if(isset(Auth::user()->id))
     $order->user_id = Auth::user()->id;
@@ -137,7 +142,7 @@ class OrderController extends Controller
     $order->total_cost = (string)(number_format(floatval($items['total']) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
     $order->name = $request->name;
     $order->email = $request->email;
-    $order->phone_number = $request->phone_number;
+    $order->phone_number = strpos($request->phone_number, '+48') === false ? '+48' . $request->phone_number : $request->phone_number;
     $order->address = $request->street . ', ' . $request->city;
     $order->comments = $request->comments;
     $order->save();
@@ -210,11 +215,10 @@ class OrderController extends Controller
     $order = Order::where('uuid', $request->uuid)->first();
     $order->order_status_id = $request->order_status_id;
     $order->save();
+    $when = Carbon::now()->addSeconds(30);
+    $order->notify((new OrderStatusChanged($order))->delay($when));
     if($order->order_status_id == 3)
-    {
-      $when = Carbon::now()->addSeconds(30);
-      $order->notify((new OrderStatusChanged($order))->delay($when));
-    }
+      $order->notify((new OrderShipped($order))->delay($when));
     return response()->json("Order status updated");
   }
 

@@ -15,8 +15,21 @@
     @component('alert', ['errors' => $errors])
     @endcomponent
 
-    @if(Auth::user() || !empty($buy_without_login))
+    @if($items['trashed'])
+    @component('components.cartItems', [
+    'products' => $items['products'],
+    'quantities' => $items['quantities'],
+    'total' => $items['total'],
+    'input' => false,
+    'deleteButtons' => true,
+    ])
+    @endcomponent
+    <div class="alert alert-info">
+      <strong>Uwaga!</strong> Niektóre produkty z Twojego koszyka zostały już zakupione przez innego użytkownika i są tymczasowo niedostępne.<br />
+      Aby kontynuować zamówienie usuń te produkty z koszyka.
+    </div>
 
+    @else
     @component('components.cartItems', [
     'products' => $items['products'],
     'quantities' => $items['quantities'],
@@ -24,7 +37,7 @@
     'input' => false
     ])
     @endcomponent
-
+    @if(Auth::user() || !empty($buy_without_login))
     <form method="POST" action="{{ route('user.orders.store') }}">
       {{ csrf_field() }}
 
@@ -137,7 +150,7 @@
 
     </div>
     @endif
-
+    @endif
   </div>
 </div>
 
