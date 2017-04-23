@@ -47,8 +47,9 @@ class CreateOrder extends Page
     ->type('phone_number', '500500500')
     ->type('street', 'Test 3')
     ->type('city', '00-000 Test')
-    ->type('comments', 'Test comments')
-    ->check('accept-terms')
+    ->type('comments', 'Test comments');
+    $browser->driver->executeScript('window.scrollTo(0, 1000);');
+    $browser->check('accept-terms')
     ->check('accept-usage');
     $browser->driver->executeScript('location.href="#submit"');
   }

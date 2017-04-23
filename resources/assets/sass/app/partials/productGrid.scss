@@ -35,19 +35,23 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-  & input {
-    display: inline-block;
-    width: 70px;
-    padding: 24px 5px;
-    font-family: $font-family-sans-serif;
-    margin-right: 0px;
-    @media screen and (max-width: 1200px) {
-      margin-left: -5px;
-    }
-  }
   & a.cart-add {
-    margin-left: -5px;
-    margin-top: 12px;
-    height: 51px;
+    margin-top: 10px;
   }
+
+  // & input {
+  //   display: inline-block;
+  //   width: 70px;
+  //   padding: 24px 5px;
+  //   font-family: $font-family-sans-serif;
+  //   margin-right: 0px;
+  //   @media screen and (max-width: 1200px) {
+  //     margin-left: -5px;
+  //   }
+  // }
+  // & a.cart-add {
+  //   margin-left: -5px;
+  //   margin-top: 12px;
+  //   height: 51px;
+  // }
 }

@@ -11,9 +11,12 @@ class CartController extends Controller
 
   use CartItemsTrait;
 
-  public function show()
+  public function show(Request $request)
   {
+    //$request->session()->forget('cart');
     $items = $this->getItems();
+    // if($items['trashed'])
+    //   return view('orders.itemsUnavailable');
     return view('cart.show')
     ->withItems($items);
   }
@@ -26,9 +29,14 @@ class CartController extends Controller
 
     if($request->session()->has($item))
     {
-      $previousQuantity = $request->session()->get($item);
-      $quantity += $previousQuantity;
-      $request->session()->forget($item);
+      return [
+        'title' => __('Error'),
+        'type' => 'error',
+        'content' => __('Item already in cart'),
+      ];
+      // $previousQuantity = $request->session()->get($item);
+      // $quantity += $previousQuantity;
+      // $request->session()->forget($item);
     }
     $request->session()->put($item, $quantity);
 
@@ -75,7 +83,6 @@ public function removeItem(Request $request)
   public function clear(Request $request)
   {
     $request->session()->forget('cart');
-    $request->session()->forget('cart.counter');
 
     return [
       'title' => __('Success'),

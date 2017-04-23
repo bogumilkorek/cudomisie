@@ -93,6 +93,16 @@
         vertical-align: middle;
         padding: 10px;
       }
+      & div:nth-child(3) {
+        padding: 10px;
+        display:table-cell;
+        vertical-align: middle;
+        cursor: pointer;
+        font-size: 24px;
+        &:hover {
+          color: #E5E5E5;
+        }
+      }
     }
   }
 

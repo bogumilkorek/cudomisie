@@ -22,13 +22,13 @@ Pobierz fakturę
 
 #Zamówione produkty:
 @component('mail::table')
-| # | Produkt | Cena | Ilość | Wartość |
-| :---: | :---: | :---: | :---: | :---: |
+| # | Produkt | Cena |
+| :--- | :--- | ---: |
 @foreach($order->products as $index => $product)
-| {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }} | {{ $product->pivot->product_quantity }} | {{ number_format($product->pivot->product_quantity * floatval($product->pivot->product_price), 2) . ' ' . __('$') }} |
+| {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }}
 @endforeach
-|  |  | **{{ __('Shipping method') }}:** | {{ $order->shipping_method_name }} | {{ $order->shipping_cost }} |
-|  |  |  | **{{ __('Total cost') }}:** | **{{ $order->total_cost }}** |
+|   | {{ __('Shipping method') }}: {{ $order->shipping_method_name }} | {{ $order->shipping_cost }} |
+|   | **{{ __('Total cost') }}:** | **{{ $order->total_cost }}** |
 @endcomponent
 
 #Dane do wysyłki:
@@ -37,7 +37,7 @@ Pobierz fakturę
 {{ $order->name }}<br /><br />
 
 **{{ __('Phone') }}:**<br />
-{{ $order->phone }}<br /><br />
+{{ $order->phone_number }}<br /><br />
 
 **{{ __('Address') }}:**<br />
 {{ $order->address }}<br /><br />

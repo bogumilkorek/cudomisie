@@ -32507,7 +32507,7 @@ var Cart = function () {
         swal({
           title: message.title,
           text: message.content,
-          type: "success"
+          type: message.type ? message.type : "success"
         }, function () {
           return location.reload();
         });
@@ -32644,8 +32644,8 @@ $(function () {
   baguetteBox.run('.gallery, #content p a');
   $('.product-card .match').matchHeight();
 
-  // Hide cookie alert if "Cookies accepted" cookie is set
-  if (document.cookie.search("cookies-accepted") != -1) $('.cookie-alert').hide();
+  // Show cookie alert if "Cookies accepted" cookie is not set
+  if (document.cookie.search("cookies-accepted") == -1) $('.cookie-alert').show();
 
   // Set "Cookies accepted" cookie on button press
   $('.accept-cookie').on('click', function () {
@@ -32668,7 +32668,7 @@ $(function () {
   $(".cart-add").on('click', function (e) {
     e.preventDefault();
     var slug = $(this).data('slug');
-    var quantity = $('input[data-slug=' + slug + ']').val();
+    var quantity = $('input[data-slug=' + slug + ']').length ? $('input[data-slug=' + slug + ']').val() : 1;
     __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].addItem(slug, quantity);
   });
 

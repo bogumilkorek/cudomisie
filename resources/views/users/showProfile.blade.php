@@ -2,6 +2,9 @@
 
 @section('content')
 
+  @component('alert', ['errors' => $errors])
+  @endcomponent
+
   <div class="panel panel-default">
     <div class="panel-body">
       <h1>

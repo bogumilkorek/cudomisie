@@ -33,7 +33,7 @@
                 </td>
                 <td width="400">
                   @foreach($order->products as $product)
-                    {{ $product->pivot->product_title }} - {{ $product->pivot->product_quantity }} {{ __('pcs.') }}<br />
+                    {{ $product->pivot->product_title }} <!--- {{ $product->pivot->product_quantity }} {{ __('pcs.') }}--><br />
                   @endforeach
                 </td>
                 <td>{{ $order->orderStatus->title }}</td>

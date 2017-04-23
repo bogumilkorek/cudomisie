@@ -21,9 +21,9 @@ $(() => {
   baguetteBox.run('.gallery, #content p a');
   $('.product-card .match').matchHeight();
 
-  // Hide cookie alert if "Cookies accepted" cookie is set
-  if(document.cookie.search("cookies-accepted") != -1)
-    $('.cookie-alert').hide();
+  // Show cookie alert if "Cookies accepted" cookie is not set
+  if(document.cookie.search("cookies-accepted") == -1)
+    $('.cookie-alert').show();
 
   // Set "Cookies accepted" cookie on button press
   $('.accept-cookie').on('click', function() {
@@ -46,7 +46,7 @@ $(() => {
   $(".cart-add").on('click', function(e) {
     e.preventDefault();
     let slug = $(this).data('slug');
-    let quantity = $('input[data-slug=' + slug + ']').val();
+    let quantity = $('input[data-slug=' + slug + ']').length ? $('input[data-slug=' + slug + ']').val() : 1;
     cart.addItem(slug, quantity);
   });
 

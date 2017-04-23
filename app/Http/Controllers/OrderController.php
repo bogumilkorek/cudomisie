@@ -89,7 +89,7 @@ class OrderController extends Controller
        $allowedSMethods[] = $sMethod->id;
 
     if(count($items['products']) > 1)
-     $allowedSMethods = array_diff($allowedSMethods, array_unique($allowedSMethods));
+      $allowedSMethods = array_diff_assoc($allowedSMethods, array_unique($allowedSMethods));
 
     // Select allowed shipping methods
     $shippingMethods = ShippingMethod::whereIn('id', $allowedSMethods)->get();
@@ -210,9 +210,11 @@ class OrderController extends Controller
     $order = Order::where('uuid', $request->uuid)->first();
     $order->order_status_id = $request->order_status_id;
     $order->save();
-    $when = Carbon::now()->addSeconds(30);
-    $order->notify((new OrderStatusChanged($order))->delay($when));
-
+    if($order->order_status_id == 3)
+    {
+      $when = Carbon::now()->addSeconds(30);
+      $order->notify((new OrderStatusChanged($order))->delay($when));
+    }
     return response()->json("Order status updated");
   }
 

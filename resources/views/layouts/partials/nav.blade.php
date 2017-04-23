@@ -88,12 +88,16 @@
     <ul class="dropdown-menu">
       @foreach($items['products'] as $product)
         <li class="nav-cart-item">
-          <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}">
+          <a>
             <div>
               <img src="{{ $product->images->first()->thumbnail_url }}">
             </div>
             <div>
-              {{ $product->title }}<br />({{ $items['quantities'][$product->slug] . ' ' . __('pcs.') }})
+              {{ $product->title }}
+              <!--<br />({{ $items['quantities'][$product->slug] . ' ' . __('pcs.') }})-->
+            </div>
+            <div>
+              <i class="fa fa-times-circle cart-remove" data-slug="{{ $product->slug }}" aria-hidden="true"></i>
             </div>
           </a>
         </li>

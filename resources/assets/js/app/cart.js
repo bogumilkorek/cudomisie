@@ -13,7 +13,7 @@ class Cart {
       swal({
         title: message.title,
         text: message.content,
-        type: "success"
+        type: message.type ? message.type : "success"
       },
       () => location.reload());
     });
