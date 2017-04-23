@@ -82,15 +82,15 @@ class OrderController extends Controller
 
     $items = $this->getItems();
 
-    // Get shipping methods from selected products
+    // Determine allowed shipping methods
     $allowedSMethods = [];
     foreach($items['products'] as $product)
-    foreach($product->shippingMethods as $sMethod)
-    $allowedSMethods[] = $sMethod->id;
+      foreach($product->shippingMethods as $sMethod)
+       $allowedSMethods[] = $sMethod->id;
 
-    // Determine allowed shipping methods
-    $allowedSMethods = array_diff_assoc($allowedSMethods, array_unique($allowedSMethods));
-    
+    if(count($items['products']) > 1)
+     $allowedSMethods = array_diff($allowedSMethods, array_unique($allowedSMethods));
+
     // Select allowed shipping methods
     $shippingMethods = ShippingMethod::whereIn('id', $allowedSMethods)->get();
 
@@ -198,7 +198,7 @@ class OrderController extends Controller
   * @param  \App\Order  $order
   * @return \Illuminate\Http\Response
   */
-  public function update(OrderRequest $request, Order $order)
+  public function update(Request $request, Order $order)
   {
     $order->update($request->all());
     alert()->success(__('Order updated'), __('Success'))->persistent('OK');

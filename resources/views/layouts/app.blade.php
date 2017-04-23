@@ -17,10 +17,10 @@
 <body>
   @include('layouts.partials.nav')
 
-  <div class="alert alert-success alert-dismissable fade in text-center">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close"><i class="fa fa-times" aria-hidden="true" style="font-size: 36px"></i></a>
+  <div class="alert alert-success alert-dismissable fade in text-center cookie-alert" style="color: #FFF">
+    <a href="#" class="close accept-cookie" data-dismiss="alert" aria-label="close"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
     Używamy plików cookies, aby ułatwić korzystanie z serwisu.
-    <a href="#">Zapoznaj się z naszą polityką prywatności cookies</a>
+    <a href="{{ route('user.pages.show', str_slug(__('Cookie policy'))) }}">Zapoznaj się z naszą polityką prywatności cookies.</a>
   </div>
 
   @include('layouts.partials.slider')

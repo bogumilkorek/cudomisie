@@ -21,6 +21,15 @@ $(() => {
   baguetteBox.run('.gallery, #content p a');
   $('.product-card .match').matchHeight();
 
+  // Hide cookie alert if "Cookies accepted" cookie is set
+  if(document.cookie.search("cookies-accepted") != -1)
+    $('.cookie-alert').hide();
+
+  // Set "Cookies accepted" cookie on button press
+  $('.accept-cookie').on('click', function() {
+    document.cookie = "cookies-accepted=true";
+  });
+
   // Get loading icon on form submit
   $('form').on('submit', function(e) {
     let $this = $(this);
@@ -52,7 +61,7 @@ $(() => {
   });
 
   $(".cart-item-quantity").on('change keyup', function() {
-      cart.updateItem($(this).data('slug'), $(this).val());
+    cart.updateItem($(this).data('slug'), $(this).val());
   });
 
   $("input[type=radio]").on('change', function() {

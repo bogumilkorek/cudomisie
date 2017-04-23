@@ -3,7 +3,6 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
-use App\ShippingMethod;
 
 class CreateOrder extends Page
 {
@@ -35,15 +34,14 @@ class CreateOrder extends Page
   {
     return [
       '@submit' => '#submit',
+      '@shippingMethod' => 'input[type=radio]:first-of-type',
     ];
   }
 
   public function fillForm(Browser $browser)
   {
-    $shippingMethod = ShippingMethod::inRandomOrder()->first()->title;
-
     $browser->driver->executeScript('window.scrollTo(0, 500);');
-    $browser->radio('shippingMethodName', $shippingMethod)
+    $browser->radio('@shippingMethod', '1')
     ->type('name', 'Test Client')
     ->type('email', 'test@test.com')
     ->type('phone_number', '500500500')

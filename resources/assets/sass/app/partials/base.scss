@@ -74,10 +74,25 @@ section {
 }
 
 .alert.alert-success {
-  color: #000;
+  color: #F3F3F3;
   background: #27A1BB;
   background-image: '';
   border-color: #27A1BB;
+  & a:link, a:visited, a:hover, a:active {
+    color: #F3F3F3;
+    transition: $transition;
+    & i {
+      font-size: 36px;
+    }
+  }
+  & .close {
+    color: #F3F3F3;
+    opacity: 1;
+    &:hover {
+      color: #E5E5E5;
+      text-shadow: 0 1px 0 #E5E5E5;
+    }
+  }
 }
 
 .alert-fixed {
