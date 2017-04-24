@@ -14,7 +14,7 @@ class EmailController extends Controller
     {
       $when = Carbon::now()->addSeconds(30);
 
-      Mail::to($request->email)
+      Mail::to(env('MAIL_FROM_ADDRESS'))
       ->later($when, new ContactForm($request));
 
       alert()->success(__('Your e-mail has been sent'), __('Success'))->persistent('OK');

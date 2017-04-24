@@ -9,7 +9,8 @@
 </head>
 <body style="background: #FFF; font-size: 11px;">
   <div class="text-center">
-    <img src="{{ asset('images/cudomisie-logo.png') }}" width="150px" />
+    <h1>cudomisie.pl</h1>
+    <!--<img src="{{ asset('images/cudomisie-logo.png') }}" width="150px" />-->
   </div>
   <b>Faktura VAT numer:</b> CM/{{ $order->id }}/{{ date('Y') }}<br />
   <b>Data wystawienia:</b> {{ str_limit($order->created_at, 10, '') }}<br />

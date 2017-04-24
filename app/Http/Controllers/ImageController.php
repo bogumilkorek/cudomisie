@@ -33,7 +33,7 @@ class ImageController extends Controller
 
       $image = Image::create([
         'url' => $imageName,
-        'size' => File::size($imageFile),
+        'size' => File::size(public_path('photos/upload'), $imageName),
         'imageable_type' => $request->type,
         'imageable_id' => $request->id,
         'form_token' => $request->_token,
