@@ -38,15 +38,16 @@ $(() => {
   });
 
   // Get loading icon on social auth
-  $('.social-login').on('click', function(e) {
+  $('.social-login, .cart-add').on('click', function(e) {
     let $this = $(this);
-    $this.html("<i class='fa fa-cog fa-spin'></i>").addClass('disabled');
+    $this.html("<i class='fa fa-refresh fa-spin'></i>").addClass('disabled');
   });
 
   $(".cart-add").on('click', function(e) {
     e.preventDefault();
     let slug = $(this).data('slug');
     let quantity = $('input[data-slug=' + slug + ']').length ? $('input[data-slug=' + slug + ']').val() : 1;
+    $(this).addClass('disabled');
     cart.addItem(slug, quantity);
   });
 

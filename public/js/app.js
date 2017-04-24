@@ -32504,12 +32504,13 @@ var Cart = function () {
       }).done(function (message) {
         var itemCounter = $('#cart-items-counter').val() ? $('#cart-items-counter').val() : 0;
         $('#cart-items-counter').val(++itemCounter);
+        var mType = message.type;
         swal({
           title: message.title,
           text: message.content,
           type: message.type ? message.type : "success"
         }, function () {
-          return location.reload();
+          return mType != 'error' ? location.reload() : $('.cart-add[data-slug=' + slug + ']').html("<i class='fa fa-shopping-cart'></i>");
         });
       });
     }
@@ -32517,7 +32518,7 @@ var Cart = function () {
     key: "updateItem",
     value: function updateItem(slug, quantity) {
       $.ajax({
-        method: "PUT",
+        method: "POST",
         url: "/cart/updateItem",
         data: { slug: slug, quantity: quantity }
       }).done(function (message) {
@@ -32534,7 +32535,7 @@ var Cart = function () {
     key: "removeItem",
     value: function removeItem(slug) {
       $.ajax({
-        method: "DELETE",
+        method: "POST",
         url: "/cart/removeItem",
         data: { slug: slug }
       })
@@ -32553,7 +32554,7 @@ var Cart = function () {
     key: "clear",
     value: function clear() {
       $.ajax({
-        method: "DELETE",
+        method: "POST",
         url: "/cart/clear"
       }).done(function (message) {
         swal({
@@ -32660,15 +32661,16 @@ $(function () {
   });
 
   // Get loading icon on social auth
-  $('.social-login').on('click', function (e) {
+  $('.social-login, .cart-add').on('click', function (e) {
     var $this = $(this);
-    $this.html("<i class='fa fa-cog fa-spin'></i>").addClass('disabled');
+    $this.html("<i class='fa fa-refresh fa-spin'></i>").addClass('disabled');
   });
 
   $(".cart-add").on('click', function (e) {
     e.preventDefault();
     var slug = $(this).data('slug');
     var quantity = $('input[data-slug=' + slug + ']').length ? $('input[data-slug=' + slug + ']').val() : 1;
+    $(this).addClass('disabled');
     __WEBPACK_IMPORTED_MODULE_1__cart__["a" /* cart */].addItem(slug, quantity);
   });
 

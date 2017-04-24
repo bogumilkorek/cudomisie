@@ -10,19 +10,20 @@ class Cart {
     .done(function(message) {
       let itemCounter = $('#cart-items-counter').val() ? $('#cart-items-counter').val() : 0;
       $('#cart-items-counter').val(++itemCounter);
+      let mType = message.type;
       swal({
         title: message.title,
         text: message.content,
         type: message.type ? message.type : "success"
       },
-      () => location.reload());
+      () => mType != 'error' ? location.reload() : $('.cart-add[data-slug=' + slug + ']').html("<i class='fa fa-shopping-cart'></i>"));
     });
   }
 
   updateItem(slug, quantity)
   {
     $.ajax({
-      method: "PUT",
+      method: "POST",
       url: "/cart/updateItem",
       data: { slug: slug, quantity: quantity }
     })
@@ -39,7 +40,7 @@ class Cart {
   removeItem(slug)
   {
     $.ajax({
-      method: "DELETE",
+      method: "POST",
       url: "/cart/removeItem",
       data: { slug: slug }
     })
@@ -57,7 +58,7 @@ class Cart {
   clear()
   {
     $.ajax({
-      method: "DELETE",
+      method: "POST",
       url: "/cart/clear"
     })
     .done(function(message) {

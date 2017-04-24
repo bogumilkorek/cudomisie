@@ -98,7 +98,7 @@
         let uuid = $(this).find('option:selected').data('order');
         let order_status_id =  $(this).find('option:selected').val();
         $.ajax({
-          method: "PUT",
+          method: "POST",
           url: "orders/" + uuid + "/updateStatus",
           data: { uuid: uuid, order_status_id: order_status_id },
           beforeSend: function() {

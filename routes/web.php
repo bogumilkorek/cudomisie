@@ -26,7 +26,7 @@ Route::group(['prefix' => __('admin')], function () {
   Route::resource('categories', 'CategoryController');
   Route::put('categories/{slug}/restore', 'CategoryController@restore')->name('categories.restore');
   Route::resource('orders', 'OrderController');
-  Route::put('orders/{order}/updateStatus', 'OrderController@updateStatus');
+  Route::post('orders/{order}/updateStatus', 'OrderController@updateStatus');
   Route::resource('orderStatuses', 'OrderStatusController');
   Route::resource('shippingMethods', 'ShippingMethodController');
   Route::resource('pages', 'PageController');
@@ -38,9 +38,9 @@ Route::group(['prefix' => __('admin')], function () {
 // Shopping cart
 Route::get(__('cart'), 'CartController@show')->name('cart.show');
 Route::post('cart/addItem', 'CartController@addItem')->name('cart.add');
-Route::put('cart/updateItem', 'CartController@updateItem')->name('cart.update');
-Route::delete('cart/removeItem', 'CartController@removeItem')->name('cart.remove');
-Route::delete('cart/clear', 'CartController@clear')->name('cart.clear');
+Route::post('cart/updateItem', 'CartController@updateItem')->name('cart.update');
+Route::post('cart/removeItem', 'CartController@removeItem')->name('cart.remove');
+Route::post('cart/clear', 'CartController@clear')->name('cart.clear');
 
 // Contact form
 Route::post('email/contact', 'EmailController@contactForm')->name('email.contactForm');

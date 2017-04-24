@@ -93,7 +93,7 @@
 
       <div class="form-group">
         <textarea class="form-control" id="content" name="content" rows="6" minlength="20"
-        placeholder="{{ __('Content') }}" required>{{ old('content') }}</textarea>
+        placeholder="{{ __('Message') }}" required>{{ old('content') }}</textarea>
       </div>
 
     </div>
