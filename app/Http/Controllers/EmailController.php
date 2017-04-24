@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
+use App\Http\Requests\EmailRequest;
 use App\Mail\ContactForm;
 use Carbon\Carbon;
 
 class EmailController extends Controller
 {
-    public function contactForm(Request $request)
+    public function contactForm(EmailRequest $request)
     {
       $when = Carbon::now()->addSeconds(30);
 

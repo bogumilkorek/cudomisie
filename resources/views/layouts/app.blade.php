@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css" />
 </head>
 <body>
+  @component('alert', ['errors' => $errors])
+  @endcomponent
+  
   @include('layouts.partials.nav')
 
   <div class="alert alert-success alert-dismissable fade in text-center cookie-alert" style="color: #FFF">

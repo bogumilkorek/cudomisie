@@ -26,9 +26,7 @@ class UserRequest extends FormRequest
   {
     return [
       'name' => 'required|regex:/^[^\s]{3,} [^\s]{3,}$/',
-      'email' => [
-        'required',
-      ],
+      'email' => 'required|email',
       'phone_number' => ['required', 'regex:/((\+|00)[0-9]{2})?[0-9]{9}/'],
       'street' => 'required|regex:/^[^\s]+ [0-9]{1,3}([a-zA-Z])?(\/[0-9]{1,3})?$/',
       'city' => 'required|regex:/^[0-9]{2}-[0-9]{3} [^\s]{3,}$/',

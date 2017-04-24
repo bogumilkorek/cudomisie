@@ -72,7 +72,7 @@
     <div class="col-xs-6">
 
       <div class="form-group">
-        <input type="text" class="form-control" name="name"
+        <input type="text" pattern="[^\s]{3,} [^\s]{3,}" class="form-control" name="name"
         value="{{ old('name') }}" placeholder="{{ __('Name') }}" required>
       </div>
 

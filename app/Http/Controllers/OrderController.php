@@ -18,7 +18,6 @@ use App\Events\OrderCreated;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\OrderStatusChanged;
 use App\Notifications\OrderShipped;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 
 class OrderController extends Controller
@@ -73,6 +72,8 @@ class OrderController extends Controller
 
   public function createUser(Request $request)
   {
+    $previousData = false;
+
     $buyWithoutLogin = $request->noaccount ?? null;
 
     $request->session()->put('shopping', 'true');
@@ -103,10 +104,14 @@ class OrderController extends Controller
       $sMethod->price = (string)((floatval($sMethod->price) * $cartItemsCounter) . ' ' . __('$'));
     }
 
+    if($request->session()->has('cart.order-in-progress'))
+      $previousData = $request->session()->get('cart.order-in-progress');
+
     return view('orders.createUser')
     ->withItems($items)
     ->withShippingMethods($shippingMethods)
-    ->withBuyWithoutLogin($buyWithoutLogin);
+    ->withBuyWithoutLogin($buyWithoutLogin)
+    ->withPreviousData($previousData);
   }
 
   /**
@@ -123,8 +128,12 @@ class OrderController extends Controller
   {
     $items = $this->getItems();
 
+    // Store inserted data into session
     if($items['trashed'])
-      return redirect()->route('user.orders.create')->withInput(Input::all());
+    {
+      $request->session()->put('cart.order-in-progress', $request->all());
+      return redirect()->route('user.orders.create')->withInput();
+    }
 
     $order = new Order;
     if(isset(Auth::user()->id))
