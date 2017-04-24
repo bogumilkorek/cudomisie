@@ -17,15 +17,14 @@
       <div class="col-md-4">
         <div class="product-card">
           <img src="{{ $post->images->first()->thumbnail_url }}">
-        <p class="match">
-          {{ $post->title }}
-        </p>
-        {{ $post->created_at }}
-        <br /><br />
-        <a href="{{ route('user.blogPosts.show', $post) }}" class="btn-dashed">
-          <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
-        </a>
-      </div>
+          <span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $post->created_at }}</span>
+          <p class="match">
+            {{ $post->title }}
+          </p>
+          <a href="{{ route('user.blogPosts.show', $post) }}" class="btn-dashed">
+            <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
+          </a>
+        </div>
       </div>
 
       @endforeach
@@ -33,9 +32,9 @@
     </div>
 
     @empty
-      <h3>
-        {{ __('No data') }}
-      </h3>
+    <h3>
+      {{ __('No data') }}
+    </h3>
 
     @endforelse
 

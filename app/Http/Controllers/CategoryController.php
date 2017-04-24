@@ -34,7 +34,7 @@ class CategoryController extends Controller
   */
   public function create()
   {
-    return view('categories.create')->withChildren(Category::all());
+    return view('categories.create')->withChildren(Category::where('parent_id', NULL)->get());
   }
 
   /**

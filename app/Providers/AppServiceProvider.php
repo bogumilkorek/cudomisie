@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
   */
   public function boot()
   {
+    // Force HTTPS
+    // \URL::forceScheme('https');
+
     // Fix database error
     Schema::defaultStringLength(191);
 

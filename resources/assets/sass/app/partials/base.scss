@@ -58,7 +58,6 @@ section {
   transition: $transition;
   margin: 10px;
   border-radius: 10px;
-  border: 1px dashed rgba(100, 100, 100, .4);
   box-shadow: 0 0 0 4px #F3F3F3, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
 
   &:hover {
@@ -79,6 +78,7 @@ section {
   background: #27A1BB;
   background-image: '';
   border-color: #27A1BB;
+  margin-bottom: 0px;
   & a:link, a:visited, a:hover, a:active {
     color: #F3F3F3;
     transition: $transition;

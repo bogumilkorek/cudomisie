@@ -66,7 +66,7 @@
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
                 <button type="submit" class="btn btn-dashed"
-                data-loading-text="<i class='fa fa-cog fa-spin'></i>
+                data-loading-text="<i class='fa fa-refresh fa-spin'></i>
                 {{ __('Loading') }}">
                 <i class="fa fa-check" aria-hidden="true"></i> {{ __('Reset Password') }}
               </button>

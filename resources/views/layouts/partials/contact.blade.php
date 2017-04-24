@@ -102,7 +102,7 @@
 
   <div class="text-center">
     <button type="submit" class="btn btn-dashed"
-    data-loading-text="<i class='fa fa-cog fa-spin'></i>
+    data-loading-text="<i class='fa fa-refresh fa-spin'></i>
     {{ __('Loading') }}"><i class='fa fa-paper-plane-o'></i> {{ __('Send') }}
   </button>
 </div>

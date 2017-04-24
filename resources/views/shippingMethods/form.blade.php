@@ -11,11 +11,11 @@
 </div>
 
 <div class="form-group">
-  <label for="high_capacity">{{ __('Cash on delivery') }}</label><br />
-  <select name="high_capacity" id="high_capacity" class="selectpicker show-tick">
+  <label for="cash_on_delivery">{{ __('Cash on delivery') }}</label><br />
+  <select name="cash_on_delivery" id="cash_on_delivery" class="selectpicker show-tick">
     <option value="0">
       {{ __('No') }}</option>
-    <option value="1" {{ !empty($shipping_method->high_capacity) && $shipping_method->high_capacity == 1 ? 'selected' : '' }}>
+    <option value="1" {{ !empty($shipping_method->cash_on_delivery) && $shipping_method->cash_on_delivery == 1 ? 'selected' : '' }}>
       {{ __('Yes') }}</option>
   </select>
 </div>
@@ -23,11 +23,11 @@
 <br />
 
 <div class="form-group">
-  <label for="cash_on_delivery">{{ __('High capacity') }}</label><br />
-  <select name="cash_on_delivery" id="cash_on_delivery" class="selectpicker show-tick">
+  <label for="high_capacity">{{ __('High capacity') }}</label><br />
+  <select name="high_capacity" id="high_capacity" class="selectpicker show-tick">
     <option value="0">
       {{ __('No') }}</option>
-    <option value="1" {{ !empty($shipping_method->cash_on_delivery) && $shipping_method->cash_on_delivery == 1 ? 'selected' : '' }}>
+    <option value="1" {{ !empty($shipping_method->high_capacity) && $shipping_method->high_capacity == 1 ? 'selected' : '' }}>
       {{ __('Yes') }}</option>
   </select>
 </div>

@@ -56,7 +56,7 @@
 
         <div class="text-center">
           <button type="submit" class="btn btn-dashed"
-          data-loading-text="<i class='fa fa-cog fa-spin'></i> {{ __('Loading') }}">
+          data-loading-text="<i class='fa fa-refresh fa-spin'></i> {{ __('Loading') }}">
           <i class="fa fa-share" aria-hidden="true"></i> {{ __('Save') }}
         </button>
       </div>
