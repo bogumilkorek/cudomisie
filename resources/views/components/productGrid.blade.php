@@ -1,7 +1,7 @@
 <div class="container">
 
   <h1>
-    {{ $title }}
+    {!! $title !!}
     <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
   </h1>
   <hr>

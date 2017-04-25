@@ -20,18 +20,18 @@ $('textarea.editor').ckeditor({
 });
 
 // Frontend validation
-$('button[type=submit]').on('click', function(e) {
-  if($('input[name=title]').val())
-  {
-    e.preventDefault();
-
-    if($('textarea.editor').val() == "")
-      swal("{{ __('Error') }}", "{{ __('Field description is required') }}", "error");
-    else
-      $(this).parents('form').submit();
-  }
-
-});
+// $('button[type=submit]').on('click', function(e) {
+//   if($('input[name=title]').val())
+//   {
+//     e.preventDefault();
+//
+//     if($('textarea.editor').val() == "")
+//       swal("{{ __('Error') }}", "{{ __('Field description is required') }}", "error");
+//     else
+//       $(this).parents('form').submit();
+//   }
+//
+// });
 
 </script>
 @endpush

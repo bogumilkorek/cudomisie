@@ -13,7 +13,7 @@
       @foreach($category->children as $child)
       <option value="{{ $child->id }}"
         @if(old('categories') && in_array($child->id, old('categories'))) selected @endif >
-        {{ $child->title }}
+        {{ $child->title }} w {{ lcfirst($category->title) }}
       </option>
     @endforeach
     </optgroup>
@@ -43,7 +43,7 @@
 <div class="form-group">
   <label for="shipping_methods">{{ __('Shipping methods') }}</label>
   <br />
-  <select name="shipping_methods[]" id="shipping_methods" class="selectpicker-shipping" data-width="fit" title="{{ __('Nope') }}" multiple required>
+  <select name="shipping_methods[]" id="shipping_methods" class="selectpicker-shipping" data-width="40%" title="{{ __('Nope') }}" multiple required>
     @foreach($shipping_methods as $sMethod)
         <option value="{{ $sMethod->id }}"
         @if(old('shipping_methods'))

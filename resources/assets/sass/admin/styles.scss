@@ -60,12 +60,15 @@ hr {
 }
 
 .dz-preview {
-    width: auto !important;
+  width: 176px;
+  height: 155px;
+  border-radius: 20px;
 }
 
 .dz-image {
     text-align: center;
-    /*border: 1px solid #EB7260;*/
+    width: 166px!important;
+    height: 125px!important;
 }
 
 .dz-details {

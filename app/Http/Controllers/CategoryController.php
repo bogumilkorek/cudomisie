@@ -59,8 +59,14 @@ class CategoryController extends Controller
   public function show(Category $category)
   {
     $products = Product::whereHas('categories', function($q) use($category) {
-      $q->where('category_id', $category->id);
+      if($category->parent)
+        $q->where('category_id', $category->id);
+      else
+        $q->whereIn('category_id', $category->children->pluck('id'));
     })->withTrashed()->get();
+
+    if($category->parent)
+        $category->title = $category->parent->title . ' <i class="fa fa-long-arrow-right" aria-hidden="true"></i> ' . $category->title;
 
     return view('categories.show')->withCategory($category)->withProducts($products);
   }

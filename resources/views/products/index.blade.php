@@ -47,7 +47,11 @@
             <td>{!! str_limit($product->description, 100) !!}</td>
             <td>
               @foreach($product->categories as $category)
-              {{ $category->title }}<br />
+              {{ $category->title }}
+              @if($category->parent_id)
+                w {{ lcfirst($category->parent->title) }}
+              @endif
+              <br /><br />
               @endforeach
             </td>
             <td>{{ $product->price }}</td>

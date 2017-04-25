@@ -21,6 +21,8 @@
 $("#images-dropzone").dropzone({
   paramName: "image",
   maxFilesize: 8,
+  thumbnailWidth: 166,
+  thumbnailHeight: 125,
   uploadMultiple: false,
   parallelUploads: 1,
   addRemoveLinks: true,
