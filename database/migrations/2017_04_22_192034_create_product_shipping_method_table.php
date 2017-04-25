@@ -18,7 +18,7 @@ class CreateProductShippingMethodTable extends Migration
       $table->integer('product_id')->unsigned();
       $table->foreign('product_id')->references('id')->on('products');
       $table->integer('shipping_method_id')->unsigned();
-      $table->foreign('shipping_method_id')->references('id')->on('shipping_methods');
+      $table->foreign('shipping_method_id')->references('id')->on('shipping_methods')->onDelete('cascade');
     });
   }
 

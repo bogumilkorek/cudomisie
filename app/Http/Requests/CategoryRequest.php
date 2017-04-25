@@ -25,17 +25,20 @@ class CategoryRequest extends FormRequest
   public function rules()
   {
     return [
-      'title' => ['required',
-      //Rule::unique('categories')->ignore($this->id),
-      'max:255'],
-    ];
-  }
+      'title' =>  [
+        'required',
+        Rule::unique('categories')->where(function ($query) {
+          $query->where('parent_id', $this->parent_id)->where('title', $this->title);}),
+        'max:255',
+      ],
+      ];
+    }
 
-  public function messages()
-  {
-    return [
-      'title.required' => __('Field title is required'),
-      'title.unique' => __('The title has already been taken'),
-    ];
+    public function messages()
+    {
+      return [
+        'title.required' => __('Field title is required'),
+        'title.unique' => __('The title has already been taken'),
+      ];
+    }
   }
-}

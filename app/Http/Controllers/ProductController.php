@@ -79,7 +79,7 @@ class ProductController extends Controller
   * @param  \App\Product  $product
   * @return \Illuminate\Http\Response
   */
-  public function show(Category $category, Product $product)
+  public function show(Category $category, Category $subcategory, Product $product)
   {
     return view('products.show')->withProduct($product);
   }

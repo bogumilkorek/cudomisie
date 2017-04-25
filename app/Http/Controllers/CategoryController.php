@@ -56,19 +56,25 @@ class CategoryController extends Controller
   * @param  \App\Category  $category
   * @return \Illuminate\Http\Response
   */
-  public function show(Category $category)
+  public function show(Category $category, Category $subcategory = NULL)
   {
-    $products = Product::whereHas('categories', function($q) use($category) {
-      if($category->parent)
-        $q->where('category_id', $category->id);
-      else
+
+    if(isset($subcategory))
+    {
+      $subcategory = Category::where('title', $subcategory->title)->where('parent_id', $category->id)->first();
+      $products = Product::whereHas('categories', function($q) use($subcategory) {
+        $q->where('category_id', $subcategory->id);
+      })->withTrashed()->get();
+      $subcategory->title = $category->title . ' <i class="fa fa-long-arrow-right" aria-hidden="true"></i> ' . $subcategory->title;
+      return view('categories.show')->withCategory($subcategory)->withProducts($products);
+    }
+    else
+    {
+      $products = Product::whereHas('categories', function($q) use($category) {
         $q->whereIn('category_id', $category->children->pluck('id'));
-    })->withTrashed()->get();
-
-    if($category->parent)
-        $category->title = $category->parent->title . ' <i class="fa fa-long-arrow-right" aria-hidden="true"></i> ' . $category->title;
-
-    return view('categories.show')->withCategory($category)->withProducts($products);
+      })->withTrashed()->get();
+      return view('categories.show')->withCategory($category)->withProducts($products);
+    }
   }
 
   /**

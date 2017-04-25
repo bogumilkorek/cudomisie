@@ -52,7 +52,8 @@ Route::get(__('invoice') . '/{invoice}', function($invoice)
   return response()->download($file);
 })->name('user.orders.invoice');
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
-Route::get(__('offer') . '/{category}/{product}', 'ProductController@show')->name('user.products.show');
+Route::get(__('offer') . '/{category}/{subcategory?}', 'CategoryController@show')->name('user.categories.show');
+Route::get(__('offer') . '/{category}/{subcategory}/{product}', 'ProductController@show')->name('user.products.show');
 Route::get(__('offer'), 'ProductController@indexUser')->name('user.products.index');
 Route::get(__('blog') . '/{blogPost}', 'BlogPostController@show')->name('user.blogPosts.show');
 Route::get(__('blog'), 'BlogPostController@indexUser')->name('user.blogPosts.index');

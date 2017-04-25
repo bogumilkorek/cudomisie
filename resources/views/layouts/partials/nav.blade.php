@@ -36,14 +36,14 @@
         @foreach ($categories as $category)
           @if(!$category->children->isEmpty())
             <li>
-              <a href="{{ route('user.categories.show', $category->slug) }}">
+              <a href="{{ route('user.categories.show', $category) }}">
                 {{ $category->title }}
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 @foreach ($category->children as $child)
                   <li>
-                    <a href="{{ route('user.categories.show', $child->slug) }}">
+                    <a href="{{ route('user.categories.show', [$category, $child]) }}">
                       {{ $child->title }}
                     </a>
                   </li>
@@ -52,7 +52,7 @@
             </li>
           @else
             <li>
-              <a href="{{ route('user.categories.show', $category->slug) }}">
+              <a href="{{ route('user.categories.show', $category) }}">
                 {{ $category->title }}
               </a>
             </li>

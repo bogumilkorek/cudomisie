@@ -18,7 +18,7 @@
 
 <script type="text/javascript">
 
-$("#images-dropzone").dropzone({
+ $("#images-dropzone").dropzone({
   paramName: "image",
   maxFilesize: 8,
   thumbnailWidth: 166,

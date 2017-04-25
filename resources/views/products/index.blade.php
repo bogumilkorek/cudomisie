@@ -37,7 +37,7 @@
             <td>{{ ++$index }}</td>
             <td>
               @if(!$product->deleted_at)
-              <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" target="_blank">
+              <a href="{{ route('user.products.show', [$product->categories->first()->parent, $product->categories->first(), $product]) }}" target="_blank">
                 @endif
                 {{ $product->title }}
                 @if(!$product->deleted_at)

@@ -37,7 +37,7 @@
             @elseif($product->deleted_at)
               <td><img src="{{ $product->images->first()->thumbnail_url }}" style="width: 150px"> {{ $product->title }} <span class="label label-danger" style="font-size: 16px">{{ __('Product temporary unavailable') }}</span></td>
             @else
-              <td><a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" target="_blank"><img src="{{ $product->images->first()->thumbnail_url }}" style="width: 150px"> {{ $product->title }}</a></td>
+              <td><a href="{{ route('user.products.show', [$product->categories->first()->parent, $product->categories->first(), $product]) }}" target="_blank"><img src="{{ $product->images->first()->thumbnail_url }}" style="width: 150px"> {{ $product->title }}</a></td>
             @endif
             <td style="vertical-align: middle">{{ $product->price }}</td>
             <!--<td style="vertical-align: middle">

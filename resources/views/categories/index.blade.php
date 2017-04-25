@@ -34,7 +34,11 @@
           <tr>
             <td>{{ ++$index }}</td>
             <td>
+              @if(!empty($category->parent))
+              <a href="{{ route('user.categories.show', [$category->parent, $category]) }}" target="_blank">
+              @else
               <a href="{{ route('user.categories.show', $category) }}" target="_blank">
+              @endif
                 {{ $category->title }}
               </a>
             </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ShippingMethodRequest;
 use App\ShippingMethod;
+use App\Product;
 use Illuminate\Http\Request;
 use Alert;
 
@@ -11,7 +12,7 @@ class ShippingMethodController extends Controller
 {
   public function __construct()
   {
-      $this->middleware(['auth', 'admin']);
+    $this->middleware(['auth', 'admin']);
   }
   /**
   * Display a listing of the resource.
@@ -42,7 +43,11 @@ class ShippingMethodController extends Controller
   */
   public function store(ShippingMethodRequest $request)
   {
-    ShippingMethod::create($request->all());
+    $shippingMethod = ShippingMethod::create($request->all());
+
+    foreach(Product::all() as $product)
+      $product->shippingMethods()->sync($shippingMethod->id, false);
+
     alert()->success( __('Shipping method created!'), __('Success'))->persistent('OK');
     return redirect()->route('shippingMethods.index');
   }
@@ -81,6 +86,7 @@ class ShippingMethodController extends Controller
   public function destroy(ShippingMethod $shippingMethod)
   {
     $shippingMethod->delete();
+
     alert()->success( __('Shipping method deleted!'), __('Success'))->persistent('OK');
     return redirect()->route('shippingMethods.index');
   }

@@ -31,7 +31,7 @@
           @endif
           <br />
           @if(!$product->trashed())
-          <a href="{{ route('user.products.show', [$product->categories->first(), $product]) }}" class="btn-dashed">
+          <a href="{{ route('user.products.show', [$product->categories->first()->parent, $product->categories->first(), $product]) }}" class="btn-dashed">
             <i class="fa fa-share" aria-hidden="true"></i> {{ __('Show more') }}
           </a>
           <!--<input type="number" min="1" max="9" class="form-control text-center btn-dashed" value="1" data-slug="{{ $product->slug }}">-->
