@@ -13,10 +13,7 @@ class CartController extends Controller
 
   public function show(Request $request)
   {
-    //$request->session()->forget('cart');
     $items = $this->getItems();
-    // if($items['trashed'])
-    //   return view('orders.itemsUnavailable');
     return view('cart.show')
     ->withItems($items);
   }
@@ -38,8 +35,8 @@ class CartController extends Controller
       // $quantity += $previousQuantity;
       // $request->session()->forget($item);
     }
-    $request->session()->put($item, $quantity);
 
+    $request->session()->put($item, $quantity);
     $request->session()->put('cart.counter', $cartItemsCounter + $quantity);
 
     return [

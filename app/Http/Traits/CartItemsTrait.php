@@ -12,6 +12,7 @@ trait CartItemsTrait {
       ->withTrashed()
       ->with('shippingMethods')
       ->get();
+      
       $total = 0;
       $trashed = false;
       foreach($products as $product)

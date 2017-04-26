@@ -58,7 +58,6 @@ class CategoryController extends Controller
   */
   public function show(Category $category, Category $subcategory = NULL)
   {
-
     if(isset($subcategory))
     {
       $subcategory = Category::where('title', $subcategory->title)->where('parent_id', $category->id)->first();
@@ -66,6 +65,7 @@ class CategoryController extends Controller
         $q->where('category_id', $subcategory->id);
       })->withTrashed()->get();
       $subcategory->title = $category->title . ' <i class="fa fa-long-arrow-right" aria-hidden="true"></i> ' . $subcategory->title;
+
       return view('categories.show')->withCategory($subcategory)->withProducts($products);
     }
     else
@@ -73,6 +73,7 @@ class CategoryController extends Controller
       $products = Product::whereHas('categories', function($q) use($category) {
         $q->whereIn('category_id', $category->children->pluck('id'));
       })->withTrashed()->get();
+
       return view('categories.show')->withCategory($category)->withProducts($products);
     }
   }
@@ -111,8 +112,6 @@ class CategoryController extends Controller
   */
   public function destroy(Category $category)
   {
-    // foreach($category->children as $child)
-    //   Category::where('id', $child->id)->update(['parent_id' => null]);
     $category->delete();
     alert()->success(__('Category hidden!'), __('Success'))->persistent('OK');
     return redirect()->route('categories.index');

@@ -17,7 +17,7 @@
 <body>
   @component('alert', ['errors' => $errors])
   @endcomponent
-  
+
   @include('layouts.partials.nav')
 
   <div class="alert alert-success alert-dismissable fade in text-center cookie-alert" style="color: #FFF">
@@ -39,6 +39,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="{{ mix('/js/app.js') }}" type="text/javascript"></script>
   @include('sweet::alert')
+  @stack('scripts')
 
 </body>
 </html>

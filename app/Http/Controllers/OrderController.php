@@ -88,11 +88,11 @@ class OrderController extends Controller
     // Determine allowed shipping methods
     $allowedSMethods = [];
     foreach($items['products'] as $product)
-      foreach($product->shippingMethods as $sMethod)
-       $allowedSMethods[] = $sMethod->id;
+    foreach($product->shippingMethods as $sMethod)
+    $allowedSMethods[] = $sMethod->id;
 
     if(count($items['products']) > 1)
-      $allowedSMethods = array_diff_assoc($allowedSMethods, array_unique($allowedSMethods));
+    $allowedSMethods = array_diff_assoc($allowedSMethods, array_unique($allowedSMethods));
 
     // Select allowed shipping methods
     $shippingMethods = ShippingMethod::whereIn('id', $allowedSMethods)->get();
@@ -105,7 +105,7 @@ class OrderController extends Controller
     }
 
     if($request->session()->has('cart.order-in-progress'))
-      $previousData = $request->session()->get('cart.order-in-progress');
+    $previousData = $request->session()->get('cart.order-in-progress');
 
     return view('orders.createUser')
     ->withItems($items)
@@ -227,7 +227,7 @@ class OrderController extends Controller
     $when = Carbon::now()->addSeconds(30);
     $order->notify((new OrderStatusChanged($order))->delay($when));
     if($order->order_status_id == 3)
-      $order->notify((new OrderShipped($order))->delay($when));
+    $order->notify((new OrderShipped($order))->delay($when));
     return response()->json("Order status updated");
   }
 
