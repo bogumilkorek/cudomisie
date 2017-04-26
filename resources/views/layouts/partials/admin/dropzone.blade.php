@@ -16,46 +16,67 @@
 
 @push('scripts')
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
- $("#images-dropzone").dropzone({
-  paramName: "image",
-  maxFilesize: 8,
-  thumbnailWidth: 166,
-  thumbnailHeight: 125,
-  uploadMultiple: false,
-  parallelUploads: 1,
-  addRemoveLinks: true,
-  dictCancelUpload: '{{ __('Cancel') }}',
-  dictCancelUploadConfirmation: '{{ __('Are you sure?') }}',
-  dictRemoveFile: '{{ __('Remove') }}',
-  dictFileTooBig: '{{ __('Image is bigger than 8 MB') }}',
-  accept: function(file, done) { done() },
-  init: function() {
-    this.on("removedfile", function(file) {
-      $.ajax({
-        type: 'DELETE',
-        url: '{{ route('images.destroy') }}',
-        data: { url: $(file.previewElement).find('[data-dz-name]').html() }
+  $("#images-dropzone").dropzone({
+    paramName: "image",
+    maxFilesize: 8,
+    thumbnailWidth: 166,
+    thumbnailHeight: 125,
+    uploadMultiple: false,
+    parallelUploads: 1,
+    addRemoveLinks: true,
+    dictCancelUpload: '{{ __('Cancel') }}',
+    dictCancelUploadConfirmation: '{{ __('Are you sure?') }}',
+    dictRemoveFile: '{{ __('Remove') }}',
+    dictFileTooBig: '{{ __('Image is bigger than 8 MB') }}',
+    accept: function(file, done) { done() },
+    init: function() {
+      this.on("removedfile", function(file) {
+        $.ajax({
+          type: 'POST',
+          url: '{{ route('images.destroy') }}',
+          data: { url: $(file.previewElement).find('[data-dz-name]').html() }
+        });
       });
-    });
 
-    this.on("success", function(file, response) {
-      $(file.previewElement).find('[data-dz-name]').html(response.filename);
-    });
+      this.on("success", function(file, response) {
+        $(file.previewElement).find('[data-dz-name]').html(response.filename);
+      });
 
-    @if(!empty($images))
+      @if(!empty($images))
       @foreach($images as $image)
-        var mockFile = { name: '{{ $image->url }}', size: {{ $image->size }} };
-        this.emit("addedfile", mockFile);
-        this.emit("thumbnail", mockFile, "{{ $image->thumbnail_url }}");
-        this.createThumbnailFromUrl(mockFile, '{{ $image->thumbnail_url }}');
-        this.emit("complete", mockFile);
+      var mockFile = { name: '{{ $image->url }}', size: {{ $image->size }} };
+      this.emit("addedfile", mockFile);
+      this.emit("thumbnail", mockFile, "{{ $image->thumbnail_url }}");
+      this.createThumbnailFromUrl(mockFile, '{{ $image->thumbnail_url }}');
+      this.emit("complete", mockFile);
       @endforeach
-    @endif
-  }
-});
+      @endif
+    }
+  });
 
-</script>
+  // Lousy frontend validation
+  $('button[type=submit]').on('click', function(e) {
+    var proceed = true;
+    var validate = $('#form-with-wysiwyg').data('validate');
+    validate.forEach(function(key, index) {
+      if($('*[name="'+key+'"]').val().length == 0)
+      proceed = false;
+    });
+
+    if(proceed)
+    {
+      if(!$('.dz-remove:first').length)
+      {
+        e.preventDefault();
+        swal("{{ __('Error') }}", "{{ __('Add some images') }}", "error");
+      }
+      else
+      $(this).parents('form').submit();
+    }
+  });
+
+  </script>
 
 @endpush

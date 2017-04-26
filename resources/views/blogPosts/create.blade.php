@@ -11,7 +11,7 @@
       @component('alert', ['errors' => $errors])
       @endcomponent
 
-      <form method="POST" action="{{ route('blogPosts.store') }}">
+      <form method="POST" action="{{ route('blogPosts.store') }}" id="form-with-wysiwyg" data-validate='["title"]'>
         {{ csrf_field() }}
 
         @include('blogPosts.form')

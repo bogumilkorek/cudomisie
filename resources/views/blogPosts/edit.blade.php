@@ -11,7 +11,7 @@
       @component('alert', ['errors' => $errors])
       @endcomponent
 
-      <form method="POST" action="{{ route('blogPosts.update', $blog_post) }}">
+      <form method="POST" action="{{ route('blogPosts.update', $blog_post) }}" id="form-with-wysiwyg" data-validate='["title"]'>
         {{ csrf_field() }}
         {{ method_field('PUT') }}
 

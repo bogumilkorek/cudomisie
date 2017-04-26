@@ -36,11 +36,11 @@
           <tr>
             <td>{{ ++$index }}</td>
             <td>
-              @if(!$product->deleted_at)
-              <a href="{{ route('user.products.show', [$product->categories->first()->parent, $product->categories->first(), $product]) }}" target="_blank">
+              @if(!$product->trashed())
+              <a href="{{ route('user.products.show', [$product->categories->first()->parent ?? $product->categories->first(), $product->categories->first(), $product]) }}" target="_blank">
                 @endif
                 {{ $product->title }}
-                @if(!$product->deleted_at)
+                @if(!$product->trashed())
               </a>
               @endif
             </td>
@@ -57,7 +57,7 @@
             <td>{{ $product->price }}</td>
             <td>{{ $product->created_at }}</td>
             <td>
-              @if($product->deleted_at)
+              @if($product->trashed())
               <span class="label label-danger" style="font-size: 16px">{{ __('No') }}</span>
               @else
               <span class="label label-success" style="font-size: 16px">{{ __('Yes') }}</span>
@@ -69,7 +69,7 @@
               </a>
             </td>
             <td class="text-center actions">
-              @if($product->deleted_at)
+              @if($product->trashed())
               <form method="post" action="{{ route('products.restore', $product) }}" style="display: inline-block">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
