@@ -33,7 +33,8 @@ class ProductController extends Controller
 
   public function indexUser()
   {
-    $products = Product::withTrashed()
+    $products = Product
+    ::withTrashed()
     ->orderBy('id', 'desc')
     ->with('categories')
     ->with('images')
