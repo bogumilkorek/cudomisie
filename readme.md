@@ -1,9 +1,23 @@
 ## Cudomisie
+Laravel 5.4 + some Javascript/jQuery e-commerce website.
 
-Simple CMS and online shop using Laravel 5.4 and some Javascript / jQuery / vue.js.
+## 1. Features
+Description comming soon
 
-**This app is still under heavy development!**
+## 2. Todo
+- More tests
+- Code refactoring
+- Extend dropzone with drag and drop
+- Navigation CRUD with drag and drop
 
-More info comming soon.
+## 3. Tests
+I've written a couple of browser tests using Laravel Dusk. To run them type:
+`php artisan dusk`
 
-Cheers :)
+To run single test you need to provide it's full path:
+`php artisan dusk tests\browser\OrderTest.php`
+
+I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty slow ATM).
+
+## 4. Installation
+Description comming soon

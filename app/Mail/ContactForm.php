@@ -24,7 +24,7 @@ class ContactForm extends Mailable implements ShouldQueue
         $this->name = $request->name;
         $this->email = $request->email;
         $this->phone = $request->phone;
-        $this->content = $request->content;
+        $this->content = $request->messageContent;
     }
 
     /**

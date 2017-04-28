@@ -3,7 +3,7 @@
   <div class="container">
 
     <h1>
-      <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+      <img src="{{ asset('images/cudomisie-logo-male.png') }}" alt="" title="" />
       {{ __('Contact') }}
     </h1>
     <hr>
@@ -29,15 +29,13 @@
           <i class="fa fa-phone" aria-hidden="true"></i>
         </a>
         <span>502 336 103</span>
-      </a>
     </div>
 
     <div class="info-card">
-      <button type="button" class="btn btn-circle" href="mailto:kontakt@cudomisie.pl" title="Wyślij e-mail">
+      <a class="btn btn-circle" href="mailto:kontakt@cudomisie.pl" title="Wyślij e-mail">
         <i class="fa fa-envelope" aria-hidden="true"></i>
-      </button>
+      </a>
       <span>kontakt@cudomisie.pl</span>
-    </a>
   </div>
 
 </div>
@@ -92,7 +90,7 @@
         <div class="col-xs-6">
 
           <div class="form-group">
-            <textarea class="form-control" id="content" name="content" rows="6" minlength="20"
+            <textarea class="form-control" id="messageContent" name="messageContent" rows="6" minlength="20"
             placeholder="{{ __('Message') }}" required>{{ old('content') }}</textarea>
           </div>
 

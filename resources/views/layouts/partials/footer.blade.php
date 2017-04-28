@@ -2,8 +2,7 @@
 
   <div class="container text-center">
 
-    <i class="fa fa-copyright" aria-hidden="true"></i> {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved') }}.
-    <br />
+    <h5><i class="fa fa-copyright" aria-hidden="true"></i> {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved') }}.</h5>
 
     <div class="footer-nav-wrapper">
 
@@ -50,7 +49,7 @@
 
     @include('layouts.partials.social')
 
-    <img src="{{ asset("images/cudomisie-mis.png") }}" />
+    <img src="{{ asset("images/cudomisie-mis.png") }}" alt="" title="" />
 
   </div>
 

@@ -2,7 +2,7 @@
 
   <h1>
     {!! $title !!}
-    <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+    <img src="{{ asset('images/cudomisie-logo-male.png') }}" alt="" title="" />
   </h1>
   <hr>
 
@@ -12,7 +12,7 @@
         @foreach ($productRow as $product)
           <div class="col-md-4">
             <div class="product-card">
-              <img src="{{ $product->images->first()->thumbnail_url }}">
+              <img src="{{ $product->images->first()->thumbnail_url }}" alt="" title="">
               <p class="match">
                 {{ $product->title }}
               </p>
