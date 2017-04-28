@@ -37,25 +37,7 @@
       ])
     @endcomponent
     @if(Auth::user() || !empty($buy_without_login))
-
-      <!-- Online payments testing -->
-      <a id="online-payment" class="btn btn-dashed">Pay</a>
-      @push('scripts')
-        <script>
-        $('#online-payment').on('click', function () {
-          $.ajax({
-            method: "POST",
-            url: '{{ env('P24_URL') }}',
-            data: {p24_merchant_id: '{{env('P24_MERCHANT_ID')}}', p24_pos_id: '{{env('P24_POS_ID')}}', p24_sign: '{{md5(env('P24_POS_ID') . '|' . env('P24_CRC'))}}' },
-          })
-          .done(function() {
-            swal('{{ __("Success") }}', '{{ __("Payment successful") }}', 'success');
-          });
-        });
-        </script>
-      @endpush
-      <!-- End test -->
-
+      
       <form method="POST" action="{{ route('user.orders.store') }}">
         {{ csrf_field() }}
 

@@ -3,8 +3,8 @@
 @section('content')
 
   @component('components.postGrid', [
-  'posts' => $blog_posts
+    'posts' => $blog_posts
   ])
-  @endcomponent
+@endcomponent
 
 @endsection

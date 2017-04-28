@@ -41,24 +41,24 @@
             @endif
             <td style="vertical-align: middle">{{ $product->price }}</td>
             <!--<td style="vertical-align: middle">
-              @if(!empty($input))
-                <input type="number" min="1" max="9" name="cart-item-quantity" class="form-control text-center cart-item-quantity"
-                style="width: 60px" value="{{ $quantities[$product->slug] }}" data-slug="{{ $product->slug }}">
-              @else
-                {{ $quantities[$product->slug] ?? $product->pivot->product_quantity }} {{ __('pcs.') }}
-              @endif
-            </td>
-            <td style="vertical-align: middle">{{ floatVal($product->price) * ($quantities[$product->slug] ?? $product->pivot->product_quantity) . ' ' . __('$') }}</td>-->
-            @if(!empty($deleteButtons))
-              <td class="text-center actions" style="vertical-align: middle">
-                <a href="#" class="btn btn-dashed cart-remove" data-slug="{{ $product->slug }}">
-                  <i class="fa fa-trash-o" aria-hidden="true" title="{{ __('Delete') }}"></i>
-                </a>
-              </td>
-            @endif
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div>
-  <br />
+            @if(!empty($input))
+            <input type="number" min="1" max="9" name="cart-item-quantity" class="form-control text-center cart-item-quantity"
+            style="width: 60px" value="{{ $quantities[$product->slug] }}" data-slug="{{ $product->slug }}">
+          @else
+          {{ $quantities[$product->slug] ?? $product->pivot->product_quantity }} {{ __('pcs.') }}
+        @endif
+      </td>
+      <td style="vertical-align: middle">{{ floatVal($product->price) * ($quantities[$product->slug] ?? $product->pivot->product_quantity) . ' ' . __('$') }}</td>-->
+      @if(!empty($deleteButtons))
+        <td class="text-center actions" style="vertical-align: middle">
+          <a href="#" class="btn btn-dashed cart-remove" data-slug="{{ $product->slug }}">
+            <i class="fa fa-trash-o" aria-hidden="true" title="{{ __('Delete') }}"></i>
+          </a>
+        </td>
+      @endif
+    </tr>
+  @endforeach
+</tbody>
+</table>
+</div>
+<br />

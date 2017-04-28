@@ -3,10 +3,10 @@
 @section('content')
 
   @component('components.productGrid', [
-  'title' => __('Products'),
-  'products' => $products,
-  'pagination' => true
+    'title' => __('Products'),
+    'products' => $products,
+    'pagination' => true
   ])
-  @endcomponent
+@endcomponent
 
 @endsection

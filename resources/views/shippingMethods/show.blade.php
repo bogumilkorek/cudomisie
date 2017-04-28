@@ -2,15 +2,15 @@
 
 @section('content')
 
-<h1>
-  <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
-  {{ $shippingMethod->title }}
-</h1>
+  <h1>
+    <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+    {{ $shippingMethod->title }}
+  </h1>
 
-<hr>
+  <hr>
 
-<p>
-  {!! $shippingMethod->content !!}
-</p>
+  <p>
+    {!! $shippingMethod->content !!}
+  </p>
 
 @endsection

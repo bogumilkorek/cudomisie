@@ -18,26 +18,5 @@
       }
     }
   });
-
-  // Lousy frontend validation
-  $('button[type=submit]').on('click', function(e) {
-    var proceed = true;
-    var validate = $('#form-with-wysiwyg').data('validate');
-    validate.forEach(function(key, index) {
-      if($('*[name="'+key+'"]').val().length == 0)
-      proceed = false;
-    });
-
-    if(proceed)
-    {
-      e.preventDefault();
-      if($('textarea.editor').val().length == 0)
-      swal("{{ __('Error') }}", "{{ __('Field description is required') }}", "error");
-      else
-      $(this).parents('form').submit();
-    }
-
-  });
-
   </script>
 @endpush

@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
     // Clean orphaned images daily
     $schedule->call(function () {
       DB::table('images')->where('imageable_id', 0)->delete();
-    })->everyMinute();
+    })->daily();
 
     // Monitor queue listener
     // Code from: papertank.co.uk
@@ -50,7 +50,6 @@ class Kernel extends ConsoleKernel
       }
     })->name('monitor_queue_listener')->everyMinute();
 
-    //   // Send queued e-mails
     //  $schedule->command('queue:work')->cron('* * * * * *');
   }
 

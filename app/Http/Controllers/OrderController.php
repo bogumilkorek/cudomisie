@@ -142,9 +142,9 @@ class OrderController extends Controller
     $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
 
     if($cashOnDelivery != 1)
-    $order->order_status_id = 1;
+      $order->order_status_id = 1;
     else
-    $order->order_status_id = 2;
+      $order->order_status_id = 2;
 
     $order->shipping_method_name = $request->shippingMethodName;
     $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
@@ -173,7 +173,7 @@ class OrderController extends Controller
     ->withId($order->id)
     ->withUuid($order->uuid)
     ->withTotalCost($order->total_cost)
-    ->withStatus($order->order_status_id);
+    ->withCashOnDelivery($cashOnDelivery);
   }
 
   /**

@@ -57,7 +57,7 @@
               @endforelse
             </td>
             <td>
-              @if($category->deleted_at)
+              @if($category->trashed())
               <span class="label label-danger" style="font-size: 16px">{{ __('No') }}</span>
               @else
               <span class="label label-success" style="font-size: 16px">{{ __('Yes') }}</span>
@@ -69,7 +69,7 @@
               </a>
             </td>
             <td class="text-center actions">
-              @if($category->deleted_at)
+              @if($category->trashed())
               <form method="post" action="{{ route('categories.restore', $category) }}" style="display: inline-block">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}

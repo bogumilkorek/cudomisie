@@ -11,9 +11,8 @@
     @foreach($children as $child)
       <option value="{{ $child->id }}"
         @if(old('parent_id') && $child->id == old('parent_id')) selected @endif >
-
-        {{ $child->title }}
-      </option>
-    @endforeach
-  </select>
-</div>
+          {{ $child->title }}
+        </option>
+      @endforeach
+    </select>
+  </div>

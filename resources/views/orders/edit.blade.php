@@ -38,7 +38,7 @@
           <label for="address">{{ __('Addres') }}:</label>
           <input type="text" class="form-control"
           name="address"
-          value="{{ old('address',  $order->address) }}" required>
+          value="{{ old('address', $order->address) }}" required>
         </div>
 
         <input type="hidden" name="uuid" value="{{ $order->uuid }}" />

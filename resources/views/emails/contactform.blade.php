@@ -11,5 +11,5 @@
 
   **{{ __('Content') }}:**<br />
   {{ $content }}
-
+  
 @endcomponent

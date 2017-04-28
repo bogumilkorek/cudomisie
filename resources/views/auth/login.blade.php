@@ -57,31 +57,31 @@
 
               <div class="text-center">
                 <button type="submit" class="btn btn-dashed"
-                  data-loading-text="<i class='fa fa-refresh fa-spin'></i>
-                  {{ __('Loading') }}">
-                  <i class="fa fa-check" aria-hidden="true"></i> {{ __('Login') }}
-                </button>
-                <a class="btn btn-dashed" href="{{ route('password.request') }}">
-                  <i class="fa fa-times" aria-hidden="true"></i> {{ __('Forgot Your Password?') }}
-                </a>
+                data-loading-text="<i class='fa fa-refresh fa-spin'></i>
+                {{ __('Loading') }}">
+                <i class="fa fa-check" aria-hidden="true"></i> {{ __('Login') }}
+              </button>
+              <a class="btn btn-dashed" href="{{ route('password.request') }}">
+                <i class="fa fa-times" aria-hidden="true"></i> {{ __('Forgot Your Password?') }}
+              </a>
 
-                    @include('layouts.partials.socialAuth')
+              @include('layouts.partials.socialAuth')
 
-                <br /><br />
-                <h1>
-                  <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
-                  {{ __('Register') }}
-                </h1>
-                <hr>
-                <a class="btn btn-dashed" href="{{ route('register') }}">
-                  <i class="fa fa-user" aria-hidden="true"></i> {{ __('Register') }}
-                </a>
-              </div>
+              <br /><br />
+              <h1>
+                <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+                {{ __('Register') }}
+              </h1>
+              <hr>
+              <a class="btn btn-dashed" href="{{ route('register') }}">
+                <i class="fa fa-user" aria-hidden="true"></i> {{ __('Register') }}
+              </a>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
 @endsection

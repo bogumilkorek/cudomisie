@@ -65,49 +65,49 @@
 <hr>
 <div class="panel panel-default">
   <div class="panel-body">
-<form method="POST" action="{{ route('email.contactForm') }}">
-  {{ csrf_field() }}
-  <div class="row">
+    <form method="POST" action="{{ route('email.contactForm') }}">
+      {{ csrf_field() }}
+      <div class="row">
 
-    <div class="col-xs-6">
+        <div class="col-xs-6">
 
-      <div class="form-group">
-        <input type="text" pattern="[^\s]{3,} [^\s]{3,}" class="form-control" name="name"
-        value="{{ old('name') }}" placeholder="{{ __('Name') }}" required>
+          <div class="form-group">
+            <input type="text" pattern="[^\s]{3,} [^\s]{3,}" class="form-control" name="name"
+            value="{{ old('name') }}" placeholder="{{ __('Name') }}" required>
+          </div>
+
+          <div class="form-group">
+            <input type="email" class="form-control" name="email"
+            value="{{ old('email') }}" placeholder="{{ __('E-mail') }}" required>
+          </div>
+
+          <div class="form-group">
+            <input type="text" pattern="((\+|00)[0-9]{2})?[0-9]{9}" class="form-control"
+            name="phone" title="{{ __('Phone number must be 9 digits') }}."
+            value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" required>
+          </div>
+
+        </div>
+
+        <div class="col-xs-6">
+
+          <div class="form-group">
+            <textarea class="form-control" id="content" name="content" rows="6" minlength="20"
+            placeholder="{{ __('Message') }}" required>{{ old('content') }}</textarea>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="form-group">
-        <input type="email" class="form-control" name="email"
-        value="{{ old('email') }}" placeholder="{{ __('E-mail') }}" required>
-      </div>
-
-      <div class="form-group">
-        <input type="text" pattern="((\+|00)[0-9]{2})?[0-9]{9}" class="form-control"
-        name="phone" title="{{ __('Phone number must be 9 digits') }}."
-        value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" required>
-      </div>
-
+      <div class="text-center">
+        <button type="submit" class="btn btn-dashed"
+        data-loading-text="<i class='fa fa-refresh fa-spin'></i>
+        {{ __('Loading') }}"><i class='fa fa-paper-plane-o'></i> {{ __('Send') }}
+      </button>
     </div>
 
-    <div class="col-xs-6">
-
-      <div class="form-group">
-        <textarea class="form-control" id="content" name="content" rows="6" minlength="20"
-        placeholder="{{ __('Message') }}" required>{{ old('content') }}</textarea>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="text-center">
-    <button type="submit" class="btn btn-dashed"
-    data-loading-text="<i class='fa fa-refresh fa-spin'></i>
-    {{ __('Loading') }}"><i class='fa fa-paper-plane-o'></i> {{ __('Send') }}
-  </button>
-</div>
-
-</form>
+  </form>
 </div>
 </div>
 

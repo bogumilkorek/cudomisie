@@ -1,53 +1,53 @@
 @component('mail::message')
 
-#Twoje zamówienie zostało złożone. Dziękujemy za zakup!
-#Numer zamówienia: {{ $order->id }}.<br />
-@if($order->order_status_id == 2)
-Wybrano przesyłkę za pobraniem. Proszę przygotować kwotę: **{{ $order->total_cost }}** dla kuriera/listonosza.<br />
-@else
-Proszę wpłacić kwotę **{{ $order->total_cost }}** na konto:<br />
-PKO BP 21 1020 2821 0000 1702 0022 1242<br />
-Tadeusz Pyzia<br />
-ul. Rzemieślnicza 18, 72-320 Trzebiatów<br />
-Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br />
-@endif
+  #Twoje zamówienie zostało złożone. Dziękujemy za zakup!
+  #Numer zamówienia: {{ $order->id }}.<br />
+  @if($order->order_status_id == 2)
+    Wybrano przesyłkę za pobraniem. Proszę przygotować kwotę: **{{ $order->total_cost }}** dla kuriera/listonosza.<br />
+  @else
+    Proszę wpłacić kwotę **{{ $order->total_cost }}** na konto:<br />
+    PKO BP 21 1020 2821 0000 1702 0022 1242<br />
+    Tadeusz Pyzia<br />
+    ul. Rzemieślnicza 18, 72-320 Trzebiatów<br />
+    Tytułem: cudomisie.pl zamówienie nr {{ $order->id }}<br />
+  @endif
 
-W załączeniu przesyłamy także fakturę do zamówienia.<br />
-@component('mail::button', ['url' => url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf')])
-Pobierz fakturę
-@endcomponent
+  W załączeniu przesyłamy także fakturę do zamówienia.<br />
+  @component('mail::button', ['url' => url(__('invoice') .'/'.__('invoice') . '-' . $order->uuid . '.pdf')])
+    Pobierz fakturę
+  @endcomponent
 
-**Śledzenie statusu zamówienia:<br />
-<a href="{{ route('user.orders.show', $order->uuid) }}">{{ route('user.orders.show', $order->uuid) }}**
+  **Śledzenie statusu zamówienia:<br />
+  <a href="{{ route('user.orders.show', $order->uuid) }}">{{ route('user.orders.show', $order->uuid) }}**
 
-#Zamówione produkty:
-@component('mail::table')
-| # | Produkt | Cena |
-| :--- | :--- | ---: |
-@foreach($order->products as $index => $product)
-| {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }}
-@endforeach
-|   | {{ __('Shipping method') }}: {{ $order->shipping_method_name }} | {{ $order->shipping_cost }} |
-|   | **{{ __('Total cost') }}:** | **{{ $order->total_cost }}** |
-@endcomponent
+    #Zamówione produkty:
+    @component('mail::table')
+      | # | Produkt | Cena |
+      | :--- | :--- | ---: |
+      @foreach($order->products as $index => $product)
+        | {{ ++$index }} | {{ $product->pivot->product_title }} | {{ $product->pivot->product_price }}
+      @endforeach
+      |   | {{ __('Shipping method') }}: {{ $order->shipping_method_name }} | {{ $order->shipping_cost }} |
+      |   | **{{ __('Total cost') }}:** | **{{ $order->total_cost }}** |
+    @endcomponent
 
-#Dane do wysyłki:
+    #Dane do wysyłki:
 
-**{{ __('Name') }}:**<br />
-{{ $order->name }}<br /><br />
+    **{{ __('Name') }}:**<br />
+    {{ $order->name }}<br /><br />
 
-**{{ __('Phone') }}:**<br />
-{{ $order->phone_number }}<br /><br />
+    **{{ __('Phone') }}:**<br />
+    {{ $order->phone_number }}<br /><br />
 
-**{{ __('Address') }}:**<br />
-{{ $order->address }}<br /><br />
+    **{{ __('Address') }}:**<br />
+    {{ $order->address }}<br /><br />
 
-@if(isset($order->comments))
-**{{ __('Comments') }}:**<br />
-{{ $order->comments }}<br /><br />
-@endif
+    @if(isset($order->comments))
+      **{{ __('Comments') }}:**<br />
+      {{ $order->comments }}<br /><br />
+    @endif
 
-**{{ __('Data') }}:**<br />
-{{ $order->created_at }}<br /><br />
+    **{{ __('Data') }}:**<br />
+    {{ $order->created_at }}<br /><br />
 
-@endcomponent
+  @endcomponent

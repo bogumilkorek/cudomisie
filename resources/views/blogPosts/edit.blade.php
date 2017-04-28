@@ -2,24 +2,24 @@
 
 @section('content')
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>{{ __('Edit blog post') }}</h1>
-      <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>{{ __('Edit blog post') }}</h1>
+        <hr>
 
-      @component('alert', ['errors' => $errors])
-      @endcomponent
+        @component('alert', ['errors' => $errors])
+        @endcomponent
 
-      <form method="POST" action="{{ route('blogPosts.update', $blog_post) }}" id="form-with-wysiwyg" data-validate='["title"]'>
-        {{ csrf_field() }}
-        {{ method_field('PUT') }}
+        <form method="POST" action="{{ route('blogPosts.update', $blog_post) }}" id="form-with-wysiwyg" data-validate='["title"]'>
+          {{ csrf_field() }}
+          {{ method_field('PUT') }}
 
-        @include('blogPosts.form')
+          @include('blogPosts.form')
 
-        <input type="hidden" name="id" value="{{ $blog_post->id }}" />
+          <input type="hidden" name="id" value="{{ $blog_post->id }}" />
 
-        <button type="submit" class="btn btn-primary"
+          <button type="submit" class="btn btn-primary"
           data-loading-text="<i class='fa fa-cog fa-spin'></i> {{ __('Loading') }}">
           {{ __('Save') }}
         </button>
@@ -34,5 +34,7 @@
 </div>
 
 @include('layouts.partials.admin.wysiwyg')
+
+@include('layouts.partials.admin.frontendValidation')
 
 @endsection

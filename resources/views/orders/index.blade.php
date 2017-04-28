@@ -100,10 +100,7 @@
         $.ajax({
           method: "POST",
           url: "orders/" + uuid + "/updateStatus",
-          data: { uuid: uuid, order_status_id: order_status_id },
-          beforeSend: function() {
-            //swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');
-          }
+          data: { uuid: uuid, order_status_id: order_status_id }
         })
         .done(function() {
           swal('{{ __("Success") }}', '{{ __("Order status updated") }}', 'success');

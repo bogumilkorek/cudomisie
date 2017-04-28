@@ -1,6 +1,9 @@
 {
+  "Alert!": "Uwaga!",
+  "Some items from your shopping cart were bought and are currently unavailable. Please remove those items from your cart to proceed with your order.": "Niektóre produkty z Twojego koszyka zostały już zakupione przez innego użytkownika i są tymczasowo niedostępne. Aby kontynuować zamówienie usuń te produkty z koszyka.",
   "Waiting for payment": "Oczekuje na wpłatę",
   "Total": "Razem",
+  "in": "w",
   "No.": "Nr",
   "create": "utworz",
   "edit": "edycja",

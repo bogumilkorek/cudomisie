@@ -31,6 +31,8 @@
 
 @include('layouts.partials.admin.wysiwyg')
 
+@include('layouts.partials.admin.frontendValidation')
+
 @push('scripts')
   <script type="text/javascript">
   $(".selectpicker, .selectpicker-shipping").selectpicker();
