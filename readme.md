@@ -28,6 +28,8 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 - Go into created directory:<br />
 `cd cudomisie`
 
+- Rename .env.example to .env and insert your data 
+
 - Install composer dependencies :<br />
 `composer install`
 
@@ -40,7 +42,7 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 - Compile, join and minify SASS and Javascript assets:<br />
 `npm run dev`
 
-- Run queue via schedule (or change QUEUE_DRIVER=database to QUEUE_DRIVER=sync in your .env file)
+- Run queue via schedule (or change QUEUE_DRIVER=database to QUEUE_DRIVER=sync in your .env file):<br />
 `php artisan schedule:run`
 
 - Run tests:<br />
