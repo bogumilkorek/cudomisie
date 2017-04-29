@@ -30,7 +30,10 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 
 - Rename .env.example to .env and insert your data
 
-- Install Composer dependencies :<br />
+- Generate app key:<br />
+`php artisan key:generate`
+
+- Install Composer dependencies:<br />
 `composer install`
 
 - Install Node.js dependencies:<br />
