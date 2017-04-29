@@ -49,7 +49,7 @@ To run single test you need to provide it's full path:<br />
 I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty slow ATM).
 
 ## 5. Dependencies
-### 1. Composer
+### 5.1. Composer
 - *barryvdh/laravel-debugbar*: debug bar useful for development, it appears at the bottom of page
 - *barryvdh/laravel-dompdf*: create PDF's for invoices
 - *laravel/dusk*: create browser tests
@@ -59,7 +59,7 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 - *uxweb/sweet-alert*: nice looking messages
 - *webpatser/laravel-uuid*: create UUID for orders
 
-### 2. Node.js
+### 5.2. Node.js
 - *baguettebox.js*: image gallery
 - *ckeditor*: WYSIWYG
 - *datatables.net*: additional table features (e.g. search, sort, paginate)
@@ -80,7 +80,7 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 - Go into created directory:<br />
 `cd cudomisie`
 
-- Rename .env.example to .env and insert your data
+- Rename *.env.example* to *.env* and insert your data
 
 - Generate app key:<br />
 `php artisan key:generate`
