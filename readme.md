@@ -50,26 +50,26 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 
 ## 5. Dependencies
 ### 1. Composer
-- barryvdh/laravel-debugbar: debug bar useful for development, it appears at the bottom of page,
-- barryvdh/laravel-dompdf: create PDF's for invoices,
-- laravel/dusk: create browser tests,
-- laravel/socialite: login via google/facebook/twitter,
-- nexmo/laravel: send SMS when order is shipped,
-- unisharp/laravel-filemanager: useful filemanager added to WYSIWYG,
-- uxweb/sweet-alert: nice looking messages,
-- webpatser/laravel-uuid: create UUID for orders
+- *barryvdh/laravel-debugbar*: debug bar useful for development, it appears at the bottom of page
+- *barryvdh/laravel-dompdf*: create PDF's for invoices
+- *laravel/dusk*: create browser tests
+- *laravel/socialite*: login via google/facebook/twitter
+- *nexmo/laravel*: send SMS when order is shipped
+- *unisharp/laravel-filemanager*: useful filemanager added to WYSIWYG
+- *uxweb/sweet-alert*: nice looking messages
+- *webpatser/laravel-uuid*: create UUID for orders
 
 ### 2. Node.js
-- baguettebox.js: image gallery,
-- ckeditor: WYSIWYG,
-- datatables.net: additional table features (e.g. search, sort, paginate),
-- dropzone: drag and drop image container,
-- font-awesome: icons,
-- imagemin-webpack-plugin: webpack plugin for image optimization,
-- jquery-match-height: same height for product grid,
-- jquery.easing: advanced easing options,
-- select2: advanced select/multiselect tool,
-- smartmenus: multi level dropdown menu
+- *baguettebox.js*: image gallery
+- *ckeditor*: WYSIWYG
+- *datatables.net*: additional table features (e.g. search, sort, paginate)
+- *dropzone*: drag and drop image container
+- *font-awesome*: icons
+- *imagemin-webpack-plugin*: webpack plugin for image optimization
+- *jquery-match-height*: same height for product grid
+- *jquery.easing*: advanced easing options
+- *select2*: advanced select/multiselect tool
+- *smartmenus*: multi level dropdown menu
 
 ## 6. Installation
 *Install Composer and Node.js if you don't have it. You will also need HTTP and MySQL server (I recommend Laravel Homestead, or XAMPP).*
@@ -112,6 +112,6 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 `php artisan dusk`
 
 ## 7. License
-This app is free for personal and commercial usage.<br />
-Feel free to ask me any questions.<br />
+This app is free for personal and commercial use.<br /><br />
+Feel free to ask me any questions.<br /><br />
 **Code reviews are always much appreciated :)**
