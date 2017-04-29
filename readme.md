@@ -38,6 +38,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - Extend dropzone with drag and drop
 - Navigation CRUD with drag and drop
 - AJAX Duplicate check on title field focus out
+- **Create backend API with Laravel/Lumen using JWT or Laravel Passport and frontend client with Vue.js**
 
 ## 4. Tests
 I've written a couple of browser tests using Laravel Dusk. To run them type:<br />
