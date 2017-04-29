@@ -6,13 +6,17 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - App can be easily translated to desired language using translation strings. Just rename `resources/lang/pl.json` to your language and translate it. If you need English language only just delete this file.
 - Shopping cart
 - Search system (products, pages, blog posts)
-- Login with Google/Facebook/Twitter using Laravel Socialite
-- Image dropzone
-- WYSIWYG (Ckeditor) including file manager with image upload
 - Send SMS when order is shipped using NEXMO
 - Create PDF (invoices)
+- Check if products are still available before order
+- Buy without login or login with standard Laravel auth
+- Login with Google/Facebook/Twitter using Laravel Socialite
+- User: update profile, and view order history
+- Image dropzone
+- WYSIWYG (CKEditor) including file manager with image upload
 
 ## 2. Structure
+- Database migrations and seeders: description comming soon
 - View composers
   - LatestProductComposer: description comming soon
   - CategoryComposer: description comming soon
