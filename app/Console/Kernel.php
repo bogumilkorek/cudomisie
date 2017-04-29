@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
   * @var array
   */
   protected $commands = [
-    //
+    Commands\ClearImages::class,
   ];
 
   /**
@@ -26,15 +26,17 @@ class Kernel extends ConsoleKernel
   */
   protected function schedule(Schedule $schedule)
   {
+    $path = base_path();
 
     // Clean orphaned images daily
-    $schedule->call(function () {
-      DB::table('images')->where('imageable_id', 0)->delete();
-    })->daily();
+    // $schedule->call(function () {
+    //   DB::table('images')->where('imageable_id', 0)->delete();
+    // })->daily();
 
+    $schedule->command('php-7-cli ' . $path . '/artisan image:clear')->daily();
+    
     // Monitor queue listener
     // Code from: papertank.co.uk
-    $path = base_path();
     $schedule->call(function() use($path) {
       if (file_exists($path . '/queue.pid')) {
         $pid = file_get_contents($path . '/queue.pid');

@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
       'edit' => __('edit'),
     ]);
 
-    // Create slug before adding and updating page, product, category and blog post
+    // Automatically create slug before add and update page, product, category and blog post
     $this->createSlugs(['Page', 'Product', 'Category', 'BlogPost']);
 
     // Automatically insert uuid when creating new order
