@@ -52,13 +52,13 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 ## 5. Dependencies
 ### 5.1. Composer
 - *barryvdh/laravel-debugbar*: debug bar useful for development, it appears at the bottom of page
-- *barryvdh/laravel-dompdf*: create PDF's for invoices
+- *barryvdh/laravel-dompdf*: create PDF for invoices
 - *laravel/dusk*: create browser tests
-- *laravel/socialite*: login via google/facebook/twitter
+- *laravel/socialite*: login via Google/Facebook/Twitter
 - *nexmo/laravel*: send SMS when order is shipped
 - *unisharp/laravel-filemanager*: useful filemanager added to WYSIWYG
 - *uxweb/sweet-alert*: nice looking messages
-- *webpatser/laravel-uuid*: create UUID for orders
+- *webpatser/laravel-uuid*: create unique IDs for orders
 
 ### 5.2. Node.js
 - *baguettebox.js*: image gallery
