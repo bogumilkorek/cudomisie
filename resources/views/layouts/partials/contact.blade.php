@@ -67,7 +67,7 @@
       {{ csrf_field() }}
       <div class="row">
 
-        <div class="col-xs-6">
+        <div class="col-md-6 col-xs-12">
 
           <div class="form-group">
             <input type="text" pattern="[^\s]{3,} [^\s]{3,}" class="form-control" name="name"
@@ -87,7 +87,7 @@
 
         </div>
 
-        <div class="col-xs-6">
+        <div class="col-md-6 col-xs-12">
 
           <div class="form-group">
             <textarea class="form-control" id="messageContent" name="messageContent" rows="6" minlength="20"
