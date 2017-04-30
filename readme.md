@@ -17,6 +17,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - Image is automacitally resized and thumbnail is created after upload
 - WYSIWYG (CKEditor) including file manager with image upload
 - Responsivity
+- Additional frontend validation including regular expressions (HTML5 + Javascript)
 - Soft delete for products and categories with ability to restore
 - Database structure allows to change products and shipping methods without messing order history
 
@@ -27,8 +28,8 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
   - PivotTableSeeder: seed pivot tables, I've done it this way to avoid creating models just for seeding purposes
 
 - View composers
-  - CategoryComposer: get all categories for nav
-  - CartItemsComposer: get cart items for nav
+  - CategoryComposer: get all categories for navigation
+  - CartItemsComposer: get cart items for navigation
   - LatestProductComposer: get 6 latest products for layout
 
 - Traits
@@ -43,7 +44,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
   - manage queue (every minute)
 
 - Listeners
-  - CreateInvoice: in PDF, save it and attach to e-mail with order details
+  - CreateInvoice: as PDF, save it and attach to e-mail with order details
   - SendOrderDetails: e-mail to user and BCC to owner
 
 - Events
