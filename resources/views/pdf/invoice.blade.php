@@ -9,7 +9,7 @@
 </head>
 <body style="background: #FFF; font-size: 11px;">
   <div class="text-center">
-    <h1>cudomisie.pl</h1>
+    <h1>env('MAIL_FROM_NAME')</h1>
     <!--<img src="{{ asset('images/cudomisie-logo.png') }}" width="150px" />-->
   </div>
   <b>{{ __('Invoice no') }}:</b> CM/{{ $order->id }}/{{ date('Y') }}<br />
@@ -25,14 +25,14 @@
   <table class="table">
     <tr><td>
       <b>{{ __('Seller') }}</b><br />
-      FHU Hurt - Krzyś<br />
-      Tadeusz Pyzia<br />
-      ul. Rzemieślnicza 18<br />
-      72-320 Trzebiatów<br />
-      tel. 502 336 103<br />
-      NIP: 857-100-68-56<br />
-      Rachunek: PKO BP Oddział w Kołobrzegu<br />
-      {{ __('On account') }}: 21 1020 2821 0000 1702 0022 1242
+      {{ env('SELLER_COMPANY') }}<br />
+      {{ env('SELLER_NAME') }}<br />
+      {{ env('SELLER_ADDRESS') }}<br />
+      {{ env('SELLER_CITY') }}<br />
+      {{ __('tel.') }} {{ env('SELLER_PHONE') }}<br />
+      {{ __('Tax number') }}: {{ env('SELLER_TAX_NUMBER') }}<br />
+      {{ __('Bank'): {{ env('SELLER_BANK_NAME') }}<br />
+      {{ __('On account') }}: {{ env('SELLER_BANK_ACCOUNT') }}
     </td><td>
       <b>{{ __('Buyer') }}:</b><br />
       {{ $order->name }}<br />

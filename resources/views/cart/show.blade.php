@@ -29,7 +29,8 @@
       @if($items['trashed'])
         <div class="alert alert-info">
           <strong>{{ __('Alert!') }}</strong>
-          {{ __('order.itemUnavailable') }}
+          {{ __('Some items from your shopping cart were bought and are currently unavailable.
+          Please remove those items from your cart to proceed with your order.') }}
         </div>
       @else
         <div class="text-center">

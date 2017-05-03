@@ -1,4 +1,22 @@
 {
+  "Some items from your shopping cart were bought and are currently unavailable.
+  Please remove those items from your cart to proceed with your order.":
+  "Niektóre produkty z Twojego koszyka zostały już zakupione przez innego
+  użytkownika i są tymczasowo niedostępne. Aby kontynuować zamówienie
+  usuń te produkty z koszyka.",
+  "Tax number": "NIP",
+  "I accept": "Akceptuję",
+  "I hereby give consent for my personal data to be used by :company.": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez :company.",
+  "This data will be used under the Personal Data Protection Act as of 29 August 1997, consolidated text: Journal of Laws 2016, item 922 as amended": "Dane zostaną wykorzystanie zgodnie z ustawą z dnia 29.08.1997 o ochronie danych osobowych - Dz. U. nr 133 poz. 883.",
+  "This data will be processed for the purposes of the order process and contact with buyer only by :company.": "Dane te będą wykorzystywane w celu ewidencji sprzedaży i kontaktu z nabywcą wyłącznie przez firmę :company.",
+  "company policy": "regulamin sklepu",
+  "Payment data": "Dane do przelewu",
+  "Your order has been placed successfully!": "Twoje zamówienie zostało złożone. Dziękujemy za zakup!",
+  "Order number: :id.": "Numer zamówienia: :id.",
+  "You have selected cash on delivery option. Please prepare: :total for your courier/postman": "Wybrano przesyłkę za pobraniem. Proszę przygotować kwotę: :total dla kuriera/listonosza",
+  "Please pay: :total on the following account number": "Proszę wpłacić kwotę: :total na nr konta",
+  "Payment title: cudomisie.pl order no :id": "Tytułem: cudomisie.pl zamówienie nr :id",
+  "Payment title": "Tytuł wpłaty",
   "Invoice no": "Faktura VAT numer",
   "Date of sale": "Data wystawienia",
   "Term of payment": "Termin płatności",
@@ -7,6 +25,7 @@
   "cash on demand": "za pobraniem",
   "Seller": "Sprzedawca",
   "On account": "Nr konta",
+  "Order number": "Proszę podać w tytule numer zamówienia.",
   "Total due": "Do zapłaty",
   "in words": "słownie",
   "Hello": "Witaj",
@@ -61,7 +80,7 @@
   "Select shipping method": "Wybierz sposób dostawy",
   "Fill in shipping data": "Podaj dane do wysyłki",
   "Shipping data": "Dane do wysyłki",
-  "We are sending the invoice as an attachment as well": "W załączeniu przesyłamy także fakturę do zamówienia",
+  "We are sending your invoice as an attachment as well": "W załączeniu przesyłamy także fakturę do zamówienia",
   "Place order": "Złóż zamówienie",
   "Continue shopping": "Kontynuuj zakupy",
   "Order status updated": "Status zamówienia został zaktualizowany",

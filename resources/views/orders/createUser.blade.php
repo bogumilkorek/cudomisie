@@ -100,15 +100,15 @@
 
           <div class="form-group">
             <div class="checkbox">
-              <label><input type="checkbox" name="accept-terms" value="1" required @if($previous_data['accept-terms'] == 1) checked @endif>Akceptuję <a href="{{ route('user.pages.show', str_slug(__('Terms of use'))) }}" target="_blank">regulamin sklepu</a></label>
+              <label><input type="checkbox" name="accept-terms" value="1" required @if($previous_data['accept-terms'] == 1) checked @endif>{{ __('I accept') }} <a href="{{ route('user.pages.show', str_slug(__('Terms of use'))) }}" target="_blank">{{ __('company policy') }}</a></label>
               </div>
               </div>
 
               <div class="form-group">
               <div class="checkbox">
-              <label><input type="checkbox" name="accept-usage" value="1" required @if($previous_data['accept-usage'] == 1) checked @endif>Wyrażam zgodę na przetwarzanie moich danych osobowych przez FHU Hurt - Krzyś (cudomisie.pl)<br />
-                Dane zostaną wykorzystanie zgodnie z ustawą z dnia 29.08.1997 o ochronie danych osobowych - Dz. U. nr 133 poz. 883.<br />
-                Dane te będą wykorzystywane w celu ewidencji sprzedaży i kontaktu z nabywcą wyłącznie przez firmę FHU Hurt - Krzyś (cudomisie.pl)</label>
+              <label><input type="checkbox" name="accept-usage" value="1" required @if($previous_data['accept-usage'] == 1) checked @endif>{{ __('I hereby give consent for my personal data to be used by :company.', ['company' => env('SELLER_COMPANY')]) }}<br />
+                {{ __('This data will be used under the Personal Data Protection Act as of 29 August 1997, consolidated text: Journal of Laws 2016, item 922 as amended') }}<br />
+                {{ __('This data will be processed for the purposes of the order process and contact with buyer only by :company.', ['company' => env('SELLER_COMPANY')]) }}</label>
               </div>
             </div>
 

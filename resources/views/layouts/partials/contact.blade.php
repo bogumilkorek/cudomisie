@@ -14,43 +14,43 @@
         <a class="btn btn-circle">
           <i class="fa fa-male" aria-hidden="true"></i>
         </a>
-        <span>Pracownia Cudomisie</span>
+        <span>{{ env('MAIL_FROM_NAME') }}</span>
       </div>
 
       <div class="info-card">
         <a class="btn btn-circle">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
         </a>
-        <span>ul. Rzemieślnicza 18, 72-320 Trzebiatów</span>
+        <span>{{ env('SELLER_ADDRESS') }}, {{ env('SELLER_CITY') }}</span>
       </div>
 
       <div class="info-card">
-        <a class="btn btn-circle" href="tel:502336103" title="Zadzwoń">
+        <a class="btn btn-circle" href="tel:{{ env('SELLER_PHONE') }}" title="Zadzwoń">
           <i class="fa fa-phone" aria-hidden="true"></i>
         </a>
-        <span>502 336 103</span>
+        <span>{{ env('SELLER_PHONE') }}</span>
     </div>
 
     <div class="info-card">
-      <a class="btn btn-circle" href="mailto:kontakt@cudomisie.pl" title="Wyślij e-mail">
+      <a class="btn btn-circle" href="{{ env('MAIL_FROM_ADDRESS') }}" title="Wyślij e-mail">
         <i class="fa fa-envelope" aria-hidden="true"></i>
       </a>
-      <span>kontakt@cudomisie.pl</span>
+      <span>{{ env('MAIL_FROM_ADDRESS') }}</span>
   </div>
 
 </div>
 
 <h2>
-  <i class="fa fa-credit-card" aria-hidden="true"></i> Dane do przelewu:
+  <i class="fa fa-credit-card" aria-hidden="true"></i> {{ __('Payment data') }}:
 </h2>
 <hr>
 <div class="panel panel-default">
   <div class="panel-body">
     <p>
-      Tadeusz Pyzia<br />
-      PKO BP Oddział w Kołobrzegu<br />
-      Nr konta: 21 1020 2821 0000 1702 0022 1242<br />
-      Tytuł wpłaty: Proszę podać w tytule numer zamówienia.
+      {{ env('SELLER_NAME') }}<br />
+      {{ env('SELLER_BANK_NAME') }}<br />
+      {{ __('On account') }}: {{ env('SELLER_BANK_ACCOUNT') }}<br />
+      {{ __('Payment title') }}: {{ __('Order number') }}
     </p>
   </div>
 </div>
