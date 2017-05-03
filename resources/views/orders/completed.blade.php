@@ -12,18 +12,14 @@
       <hr>
 
       <p>
-        <b>Twoje zamówienie zostało złożone. Dziękujemy za zakup!</b><br />
+        <b>{{ __('Your order has been placed') }}</b><br />
         @if($cash_on_delivery == 1)
-          Wybrano przesyłkę za pobraniem. Proszę przygotować kwotę: {{ $total_cost }} dla kuriera/listonosza.<br /><br />
+          {{ __('order.cashOnDelivery', ['total' => $total_cost]) }}<br /><br />
         @else
-          Proszę wpłacić kwotę: {{ $total_cost }} na nr konta:<br />
-          PKO BP 21 1020 2821 0000 1702 0022 1242<br />
-          Tadeusz Pyzia<br />
-          ul. Rzemieślnicza 18, 72-320 Trzebiatów<br />
-          Tytułem: cudomisie.pl zamówienie nr {{ $id }}<br /><br />
+          {{ __('order.cashUpFront', ['total' => $total_cost, 'id' => $id]) }}<br /><br />
         @endif
 
-        <b>Śledzenie statusu zamówienia: <a href="{{ route('user.orders.show', $uuid) }}">{{ route('user.orders.show', $uuid) }}</a></b>
+        <b>{{ __('Track order status') }}: <a href="{{ route('user.orders.show', $uuid) }}">{{ route('user.orders.show', $uuid) }}</a></b>
       </p>
 
     </div>

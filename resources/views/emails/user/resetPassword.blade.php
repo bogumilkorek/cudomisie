@@ -1,16 +1,16 @@
 @component('mail::message')
-  # Witaj,
+  # {{ __('Hello') }},
 
-  Otrzymujesz ten e-mail, ponieważ wybrano opcję "Przypomnij hasło".
+  {{ __('You are receiving this email because we received a password reset request for your account.') }}
 
   @component('mail::button', ['url' => $url])
-    Resetuj hasło
+    {{ __('Reset password') }}
   @endcomponent
 
-  Pozdrawiamy,<br>{{ config('app.name') }}
+  {{ __('Regards') }},<br>{{ config('app.name') }}
 
   @component('mail::subcopy')
-    Jeżeli nie możesz kliknąć na przycisk "Resetuj hasło", skopiuj poniższy link do przeglądarki: [{{ $url }}]({{ $url }})
+    {{ __("If you’re having trouble clicking the 'Reset password' button, copy and paste the URL below into your web browser") }}: [{{ $url }}]({{ $url }})
   @endcomponent
 
 @endcomponent

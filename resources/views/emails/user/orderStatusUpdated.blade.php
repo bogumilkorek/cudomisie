@@ -1,6 +1,5 @@
 @component('mail::message')
 
-  ##Twoje zamówienie (nr {{ $order->id }}) zostało zaktualizowane.<br /><br />
-  #Nowy status zamówienia: {{ $order->orderStatus->title }}
-
+  {{ __('order.statusUpdated', ['id' => $order->id, 'status' => $order->orderStatus->title]) }}
+  
 @endcomponent

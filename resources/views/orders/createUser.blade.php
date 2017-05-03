@@ -24,8 +24,8 @@
         ])
       @endcomponent
       <div class="alert alert-info">
-        <strong>Uwaga!</strong> Niektóre produkty z Twojego koszyka zostały już zakupione przez innego użytkownika i są tymczasowo niedostępne.<br />
-        Aby kontynuować zamówienie usuń te produkty z koszyka.
+        <strong>{{ __('Alert!') }}</strong>
+        {{ __('order.itemUnavailable') }}
       </div>
 
     @else
@@ -37,7 +37,7 @@
       ])
     @endcomponent
     @if(Auth::user() || !empty($buy_without_login))
-      
+
       <form method="POST" action="{{ route('user.orders.store') }}">
         {{ csrf_field() }}
 
