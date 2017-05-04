@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd3898117e43494be80259fb0b438e87",
+    "content-hash": "36d6794d8c9a01158a8230e835dbcbec",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -576,6 +576,46 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "initbizlab/laravel-przelewy24",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/initbizlab/laravel-przelewy24.git",
+                "reference": "b9468c70744a00ac2b691bb0632b820332da84dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/initbizlab/laravel-przelewy24/zipball/b9468c70744a00ac2b691bb0632b820332da84dd",
+                "reference": "b9468c70744a00ac2b691bb0632b820332da84dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Initbizlab\\Przelewy24\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "InIT.biz Ltd.",
+                    "email": "developers@init.biz",
+                    "homepage": "http://init.biz"
+                }
+            ],
+            "description": "A Laravel 5 library for Przelewy24 as a Service Provider",
+            "keywords": [
+                "payment"
+            ],
+            "time": "2016-08-11 09:17:01"
         },
         {
             "name": "intervention/image",
@@ -4804,7 +4844,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "initbizlab/laravel-przelewy24": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

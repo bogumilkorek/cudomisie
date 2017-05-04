@@ -19,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\OrderStatusChanged;
 use App\Notifications\OrderShipped;
 use Illuminate\Support\Facades\File;
+use Przelewy24;
 
 class OrderController extends Controller
 {
@@ -247,33 +248,33 @@ class OrderController extends Controller
     return redirect()->route('orders.index');
   }
 
-  public function pay()
+  public function pay(Request $request)
   {
-    $registration_request = app()->make(\Devpark\Transfers24\Requests\Transfers24::class);
+    $values = [
+      'p24_session_id' => uniqid(),
+      'p24_amount' => 100,
+      'p24_currency' => 'PLN',
+      'p24_description' => 'test',
+      'p24_email' => 'test@test.pl',
+      'p24_country' => 'PL',
+      'p24_url_return' => 'http://cudomisie.app/payCallback',
+      'p24_url_status' => 'http://cudomisie.app/payStatus',
+      'p24_wait_for_result ' => 1
+    ];
 
-    $register_payment = $registration_request->setEmail('test@example.com')->setAmount(100)->setArticle('Article Name')->init();
+    foreach($values as $index => $value)
+    Przelewy24::addValue($index, $value);
 
-    if($register_payment->isSuccess())
-    {
-      // save registration parameters in payment object
+    $register = Przelewy24::trnRegister(true);
+  }
 
-      return $registration_request->execute($register_payment->getToken(), true);
-    }
+  public function payStatus(Request $request)
+  {
+    file_put_contents(public_path('trans.txt'), 'lolz');
   }
 
   public function payCallback(Request $request)
   {
-    $payment_verify = app()->make(\Devpark\Transfers24\Requests\Transfers24::class);
-    $payment_response = $payment_verify->receive($request);
-
-  echo $payment_response->isSuccess();
-
-    if ($payment_response->isSuccess()) {
-      //$payment = Payment::where('session_id',$payment_response->getSessionId())->firstOrFail();
-      // process order here after making sure it was real payment
-      echo "Fine";
-    }
-    else
-    echo "LOLZ";
+    return 'callback';
   }
 }

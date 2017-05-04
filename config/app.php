@@ -176,6 +176,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
         Devpark\Transfers24\Providers\Transfers24ServiceProvider::class,
+        Initbizlab\Przelewy24\Przelewy24ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -242,7 +243,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Nexmo' => \Nexmo\Laravel\Facade\Nexmo::class
+        'Nexmo' => \Nexmo\Laravel\Facade\Nexmo::class,
+        'Przelewy24' => Initbizlab\Przelewy24\Facades\Przelewy24::class,
     ],
 
 ];
