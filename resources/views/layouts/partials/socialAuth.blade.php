@@ -1,6 +1,5 @@
 <br /><br />
 <h1>
-  <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
   {{ __('Login with') }}
 </h1>
 <hr>

@@ -41,7 +41,7 @@ class OrderShipped extends Notification implements ShouldQueue
   {
     return (new NexmoMessage)
     ->from(env('NEXMO_FROM_NAME'))
-    ->content('Twoje zamówienie nr ' . $this->order->id . ' zostało wysłane. Dziękujemy i zapraszamy ponownie. Cudomisie.pl')
+    ->content(__('Your order no :id has been shipped. Thank you for your business.', ['id' => $this->order->id]) . ' ' . env('APP_NAME'))
     ->unicode();
   }
 

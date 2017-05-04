@@ -34,7 +34,7 @@ class ContactForm extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject(__('New e-mail from Cudomisie'))
+        return $this->subject(__('New e-mail from') . ' ' . env('APP_NAME'))
         ->markdown('emails.contactform');
     }
 }

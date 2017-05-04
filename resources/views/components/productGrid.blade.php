@@ -2,7 +2,6 @@
 
   <h1>
     {!! $title !!}
-    <img src="{{ asset('images/cudomisie-logo-male.png') }}" alt="" title="" />
   </h1>
   <hr>
 

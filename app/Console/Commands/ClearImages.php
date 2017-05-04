@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 use App\Image;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\Console\Command;
 
@@ -40,7 +41,19 @@ class ClearImages extends Command
   */
   public function handle()
   {
-    Image::where('imageable_id', 0)->delete();
+    $images = Image::where('imageable_id', 0)->get();
+
+    foreach($images as $image)
+    {
+      if(File::exists(public_path('/photos/upload/' . $image->url)))
+        File::delete(public_path('/photos/upload/' . $image->url));
+      if(File::exists(public_path('/photos/upload/thumbs/' . $image->url)))
+        File::delete(public_path('/photos/upload/thumbs/' . $image->url));
+
+      $image->delete();
+
+    }
+
     echo "Images cleared successfully.";
   }
 }

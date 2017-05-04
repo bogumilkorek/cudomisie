@@ -9,8 +9,7 @@
 </head>
 <body style="background: #FFF; font-size: 11px;">
   <div class="text-center">
-    <h1>env('MAIL_FROM_NAME')</h1>
-    <!--<img src="{{ asset('images/cudomisie-logo.png') }}" width="150px" />-->
+    <h1>{{ env('MAIL_FROM_NAME') }}</h1>
   </div>
   <b>{{ __('Invoice no') }}:</b> CM/{{ $order->id }}/{{ date('Y') }}<br />
   <b>{{ __('Date of sale') }}:</b> {{ str_limit($order->created_at, 10, '') }}<br />
@@ -31,9 +30,9 @@
       {{ env('SELLER_CITY') }}<br />
       {{ __('tel.') }} {{ env('SELLER_PHONE') }}<br />
       {{ __('Tax number') }}: {{ env('SELLER_TAX_NUMBER') }}<br />
-      {{ __('Bank'): {{ env('SELLER_BANK_NAME') }}<br />
+      {{ __('Bank') }}: {{ env('SELLER_BANK_NAME') }}<br />
       {{ __('On account') }}: {{ env('SELLER_BANK_ACCOUNT') }}
-    </td><td>
+      </td><td>
       <b>{{ __('Buyer') }}:</b><br />
       {{ $order->name }}<br />
       {{ $order->address }}

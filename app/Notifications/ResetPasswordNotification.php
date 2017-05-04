@@ -28,7 +28,7 @@ class ResetPasswordNotification extends Notification implements ShouldQueue
   public function toMail($notifiable)
   {
     return (new MailMessage)
-    ->subject('Twój link do zmiany hasła')
+    ->subject(env('APP_NAME') . ' - ' . __('reset password'))
     ->markdown('emails.user.resetPassword', ['url' => url('password/reset', $this->token)]);
   }
 

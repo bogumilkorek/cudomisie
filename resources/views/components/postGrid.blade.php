@@ -2,7 +2,7 @@
 
   <h1>
     {{ $title ?? __('Latest articles') }}
-    <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
+
   </h1>
   <hr>
 
@@ -32,7 +32,7 @@
 
     @endforelse
   </div>
-  
+
   @if(!empty($pagination))
     <div class="text-center">
       {{ $products->links() }}

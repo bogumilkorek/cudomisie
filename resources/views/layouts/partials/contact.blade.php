@@ -3,7 +3,6 @@
   <div class="container">
 
     <h1>
-      <img src="{{ asset('images/cudomisie-logo-male.png') }}" alt="" title="" />
       {{ __('Contact') }}
     </h1>
     <hr>

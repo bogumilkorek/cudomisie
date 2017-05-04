@@ -87,7 +87,9 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - Extend dropzone with drag and drop
 - Navigation CRUD with drag and drop
 - AJAX Duplicate check when title field was focused out
-- Add more complex auth with user roles
+- More complex auth with user roles
+- Wishlist
+- Product attributes (size etc.)
 - Add Google captcha if needed
 - **Create backend API with Laravel/Lumen using JWT or Laravel Passport and frontend client with Vue.js**
 

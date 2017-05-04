@@ -43783,18 +43783,18 @@ return jQuery;
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1.10.15
- * ©2008-2017 SpryMedia Ltd - datatables.net/license
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1.10.13
+ * ©2008-2016 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     DataTables
  * @description Paginate, search and order HTML tables
- * @version     1.10.15
+ * @version     1.10.13
  * @file        jquery.dataTables.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net
- * @copyright   Copyright 2008-2017 SpryMedia Ltd.
+ * @copyright   Copyright 2008-2016 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license
@@ -45327,35 +45327,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 	
 	
 	/**
-	 * Determine if all values in the array are unique. This means we can short
-	 * cut the _unique method at the cost of a single loop. A sorted array is used
-	 * to easily check the values.
-	 *
-	 * @param  {array} src Source array
-	 * @return {boolean} true if all unique, false otherwise
-	 * @ignore
-	 */
-	var _areAllUnique = function ( src ) {
-		if ( src.length < 2 ) {
-			return true;
-		}
-	
-		var sorted = src.slice().sort();
-		var last = sorted[0];
-	
-		for ( var i=1, ien=sorted.length ; i<ien ; i++ ) {
-			if ( sorted[i] === last ) {
-				return false;
-			}
-	
-			last = sorted[i];
-		}
-	
-		return true;
-	};
-	
-	
-	/**
 	 * Find the unique elements in a source array.
 	 *
 	 * @param  {array} src Source array
@@ -45364,10 +45335,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 	 */
 	var _unique = function ( src )
 	{
-		if ( _areAllUnique( src ) ) {
-			return src.slice();
-		}
-	
 		// A faster unique method is to use object keys to identify used values,
 		// but this doesn't work with arrays or objects, which we must also
 		// consider. See jsperf.com/compare-array-unique-versions/4 for more
@@ -45641,7 +45608,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 	
 		// orderData can be given as an integer
 		var dataSort = init.aDataSort;
-		if ( typeof dataSort === 'number' && ! $.isArray( dataSort ) ) {
+		if ( dataSort && ! $.isArray( dataSort ) ) {
 			init.aDataSort = [ dataSort ];
 		}
 	}
@@ -50130,7 +50097,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 	
 			// Allow custom and plug-in manipulation functions to alter the saved data set and
 			// cancelling of loading by returning false
-			var abStateLoad = _fnCallbackFire( settings, 'aoStateLoadParams', 'stateLoadParams', [settings, s] );
+			var abStateLoad = _fnCallbackFire( settings, 'aoStateLoadParams', 'stateLoadParams', [settings, state] );
 			if ( $.inArray( false, abStateLoad ) !== -1 ) {
 				callback();
 				return;
@@ -50150,7 +50117,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 			}
 	
 			// Store the saved state so it might be accessed at any time
-			settings.oLoadedState = $.extend( true, {}, s );
+			settings.oLoadedState = $.extend( true, {}, state );
 	
 			// Restore key features - todo - for 1.11 this needs to be done by
 			// subscribed events
@@ -50179,7 +50146,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 			}
 	
 			// Columns
-			//
+			// 
 			if ( s.columns ) {
 				for ( i=0, ien=s.columns.length ; i<ien ; i++ ) {
 					var col = s.columns[i];
@@ -50196,7 +50163,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 				}
 			}
 	
-			_fnCallbackFire( settings, 'aoStateLoaded', 'stateLoaded', [settings, s] );
+			_fnCallbackFire( settings, 'aoStateLoaded', 'stateLoaded', [settings, state] );
 			callback();
 		}
 	
@@ -50926,11 +50893,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 	
 	
 		shift:   __arrayProto.shift,
-	
-	
-		slice: function () {
-			return new _Api( this.context, this );
-		},
 	
 	
 		sort:    __arrayProto.sort, // ? name - order?
@@ -53219,7 +53181,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables 1
 	 *  @type string
 	 *  @default Version number
 	 */
-	DataTable.version = "1.10.15";
+	DataTable.version = "1.10.13";
 
 	/**
 	 * Private data store, containing all of the settings objects that are

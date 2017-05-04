@@ -6,7 +6,6 @@
     <div class="panel-body">
 
       <h1>
-        <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
         {{ __('Order no') }} {{ $order->id }}
       </h1>
 

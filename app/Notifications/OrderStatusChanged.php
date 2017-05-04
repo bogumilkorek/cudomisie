@@ -45,7 +45,7 @@ class OrderStatusChanged extends Notification implements ShouldQueue
   public function toMail($notifiable)
   {
     return (new MailMessage)
-    ->subject(__('Cudomisie.pl - order status updated'))
+    ->subject(env('APP_NAME') . ' - ' . __('Order status updated'))
     ->markdown('emails.user.orderStatusUpdated', ['order' => $this->order]);
   }
 

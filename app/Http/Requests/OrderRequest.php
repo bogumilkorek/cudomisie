@@ -39,7 +39,7 @@ class OrderRequest extends FormRequest
       'shippingMethodName.required' => __('Field shippingMethodName is required'),
       'name.required' => __('Field name is required'),
       'email.required' => __('Field email is required'),
-      'phone_number.required' => __('Field phone_number is required'),
+      'phone_number.required' => __('Field phone is required'),
       'street.required' => __('Field street is required'),
       'city.required' => __('Field city is required'),
     ];

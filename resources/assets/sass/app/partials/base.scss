@@ -34,6 +34,11 @@ h1
     width: 45px;
     vertical-align: bottom;
   }
+  &:before {
+        content: url("../../images/cudomisie-logo-h1.bmp");
+        display: inline-block;
+        vertical-align: middle;
+  }
 }
 section {
   width: 100%;

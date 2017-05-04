@@ -5,7 +5,6 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <h1>
-        <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
         {{ __('Search') }}: {{ $keyword }}
       </h1>
       <hr>
@@ -48,7 +47,6 @@
     @if(!$pages->isEmpty())
       <h1>
         {{ __('Found pages') }}
-        <img src="{{ asset('images/cudomisie-logo-male.png') }}" />
       </h1>
       <hr>
 

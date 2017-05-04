@@ -26,33 +26,8 @@ class Kernel extends ConsoleKernel
   */
   protected function schedule(Schedule $schedule)
   {
-    $path = base_path();
-
-    // Clean orphaned images daily
-    // $schedule->call(function () {
-    //   DB::table('images')->where('imageable_id', 0)->delete();
-    // })->daily();
-
-    $schedule->command('php-7-cli ' . $path . '/artisan image:clear')->daily();
-    
-    // Monitor queue listener
-    // Code from: papertank.co.uk
-    $schedule->call(function() use($path) {
-      if (file_exists($path . '/queue.pid')) {
-        $pid = file_get_contents($path . '/queue.pid');
-        $result = exec("ps -p $pid --no-heading | awk '{print $1}'");
-        $run = $result == '' ? true : false;
-      } else {
-        $run = true;
-      }
-      if($run) {
-        $command = 'php7-cli -c ' . $path .'/php.ini ' . $path . '/artisan queue:listen --tries=3 > /dev/null & echo $!';
-        $number = exec($command);
-        file_put_contents($path . '/queue.pid', $number);
-      }
-    })->name('monitor_queue_listener')->everyMinute();
-
-    //  $schedule->command('queue:work')->cron('* * * * * *');
+    $schedule->command('image:clear')->daily();
+    $schedule->command('queue:work')->everyMinute();
   }
 
   /**

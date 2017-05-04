@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ _('Service Unavailable') }}</title>
+  <title>{{ _('Service Unavailable') }}</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #333;
-                font-family: 'Noto Sans', sans-serif;
-                font-weight: 600;
-                height: 100vh;
-                margin: 0;
-            }
+  <!-- Styles -->
+  <style>
+  html, body {
+    background-color: #fff;
+    color: #333;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    height: 100vh;
+    margin: 0;
+  }
 
-            .full-height {
-                height: 100vh;
-            }
+  .full-height {
+    height: 100vh;
+  }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+  .flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 
-            .position-ref {
-                position: relative;
-            }
+  .position-ref {
+    position: relative;
+  }
 
-            .content {
-                text-align: center;
-            }
+  .content {
+    text-align: center;
+  }
 
-            .title {
-                font-size: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title">
-				{{ __('Be right back.') }}
-                </div>
-            </div>
-        </div>
-    </body>
+  .title {
+    font-size: 40px;
+  }
+  </style>
+</head>
+<body>
+  <div class="flex-center position-ref full-height">
+    <div class="content">
+      <div class="title">
+        {{ __('Be right back.') }}
+      </div>
+    </div>
+  </div>
+</body>
 </html>
