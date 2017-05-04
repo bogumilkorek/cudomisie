@@ -32419,7 +32419,7 @@ __webpack_require__(21);
 /* 17 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleParseError: Module parse failed: C:\\Users\\stolm\\Desktop\\cudomisie\\resources\\assets\\images\\cudomisie-logo-h1.bmp Unexpected character '\u0011' (1:3)\nYou may need an appropriate loader to handle this file type.\n(Source code omitted for this binary file)\n    at doBuild.e (C:\\Users\\stolm\\Desktop\\cudomisie\\node_modules\\webpack\\lib\\NormalModule.js:296:19)\n    at runLoaders (C:\\Users\\stolm\\Desktop\\cudomisie\\node_modules\\webpack\\lib\\NormalModule.js:206:11)\n    at C:\\Users\\stolm\\Desktop\\cudomisie\\node_modules\\loader-runner\\lib\\LoaderRunner.js:370:3\n    at iterateNormalLoaders (C:\\Users\\stolm\\Desktop\\cudomisie\\node_modules\\loader-runner\\lib\\LoaderRunner.js:211:10)\n    at C:\\Users\\stolm\\Desktop\\cudomisie\\node_modules\\loader-runner\\lib\\LoaderRunner.js:202:4\n    at C:\\Users\\stolm\\Desktop\\cudomisie\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:62:14\n    at _combinedTickCallback (internal/process/next_tick.js:67:7)\n    at process._tickCallback (internal/process/next_tick.js:98:9)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 18 */

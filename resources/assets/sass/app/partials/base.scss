@@ -29,13 +29,8 @@ h1
 {
   font-size: 30px;
   margin-top: 0px;
-  & img {
-    display: inline-block;
-    width: 45px;
-    vertical-align: bottom;
-  }
   &:before {
-        content: url("../../images/cudomisie-logo-h1.bmp");
+        content: url("../../images/cudomisie-logo-h1.png");
         display: inline-block;
         vertical-align: middle;
   }
