@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec3e5a4753d7ad0961927979ec8b518d",
+    "content-hash": "bd3898117e43494be80259fb0b438e87",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -107,6 +107,41 @@
                 "pdf"
             ],
             "time": "2017-02-19T06:45:54+00:00"
+        },
+        {
+            "name": "devpark/laravel-przelewy24",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devpark/laravel-przelewy24.git",
+                "reference": "43a0c1a0412463dc8c1eaabff19566bc0418355d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devpark/laravel-przelewy24/zipball/43a0c1a0412463dc8c1eaabff19566bc0418355d",
+                "reference": "43a0c1a0412463dc8c1eaabff19566bc0418355d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "laravel/framework": "5.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.6",
+                "phpunit/phpunit": "^5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Devpark\\Transfers24\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel przelewy24.pl integration",
+            "time": "2017-02-01T06:17:39+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

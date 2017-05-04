@@ -51,6 +51,10 @@ Route::get(__('invoice') . '/{invoice}', function($invoice)
   $file = public_path('files/invoices/' . $invoice);
   return response()->download($file);
 })->name('user.orders.invoice');
+
+Route::get('pay', 'OrderController@pay');
+Route::get('payCallback', 'OrderController@payCallback');
+
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{subcategory?}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{subcategory}/{product}', 'ProductController@show')->name('user.products.show');

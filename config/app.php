@@ -175,6 +175,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
+        Devpark\Transfers24\Providers\Transfers24ServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.3",
         "barryvdh/laravel-dompdf": "^0.8.0",
+        "devpark/laravel-przelewy24": "^1.0",
         "laravel/dusk": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",

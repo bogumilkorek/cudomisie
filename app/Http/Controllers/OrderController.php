@@ -142,9 +142,9 @@ class OrderController extends Controller
     $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
 
     if($cashOnDelivery != 1)
-      $order->order_status_id = 1;
+    $order->order_status_id = 1;
     else
-      $order->order_status_id = 2;
+    $order->order_status_id = 2;
 
     $order->shipping_method_name = $request->shippingMethodName;
     $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
@@ -245,5 +245,35 @@ class OrderController extends Controller
     $order->delete();
     alert()->success(__('Order deleted'), __('Success'))->persistent('OK');
     return redirect()->route('orders.index');
+  }
+
+  public function pay()
+  {
+    $registration_request = app()->make(\Devpark\Transfers24\Requests\Transfers24::class);
+
+    $register_payment = $registration_request->setEmail('test@example.com')->setAmount(100)->setArticle('Article Name')->init();
+
+    if($register_payment->isSuccess())
+    {
+      // save registration parameters in payment object
+
+      return $registration_request->execute($register_payment->getToken(), true);
+    }
+  }
+
+  public function payCallback(Request $request)
+  {
+    $payment_verify = app()->make(\Devpark\Transfers24\Requests\Transfers24::class);
+    $payment_response = $payment_verify->receive($request);
+
+  echo $payment_response->isSuccess();
+
+    if ($payment_response->isSuccess()) {
+      //$payment = Payment::where('session_id',$payment_response->getSessionId())->firstOrFail();
+      // process order here after making sure it was real payment
+      echo "Fine";
+    }
+    else
+    echo "LOLZ";
   }
 }
