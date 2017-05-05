@@ -53,8 +53,8 @@ Route::get(__('invoice') . '/{invoice}', function($invoice)
 })->name('user.orders.invoice');
 
 Route::get('pay', 'OrderController@pay');
-Route::get('payCallback', 'OrderController@payCallback');
-Route::post('payStatus', 'OrderController@payStatus');
+Route::post('pay/status', 'OrderController@payStatus');
+Route::get('pay/callback', 'OrderController@payCallback');
 
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{subcategory?}', 'CategoryController@show')->name('user.categories.show');

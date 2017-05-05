@@ -8,6 +8,7 @@ use App\Order;
 use App\OrderStatus;
 use App\Product;
 use App\ShippingMethod;
+use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Alert;
@@ -28,7 +29,7 @@ class OrderController extends Controller
 
   public function __construct()
   {
-    $this->middleware(['auth', 'admin'])->except(['indexUser', 'showUser', 'createUser', 'storeUser']);
+    $this->middleware(['auth', 'admin'])->except(['indexUser', 'showUser', 'createUser', 'storeUser', 'pay', 'payStatus', 'payCallback']);
   }
   /**
   * Display a listing of the resource.
@@ -142,7 +143,9 @@ class OrderController extends Controller
 
     $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
 
-    if($cashOnDelivery != 1)
+    if($request->paymentMethodName == 1)
+    $order->order_status_id = 6;
+    else if($cashOnDelivery != 1)
     $order->order_status_id = 1;
     else
     $order->order_status_id = 2;
@@ -169,6 +172,19 @@ class OrderController extends Controller
     $request->session()->forget('cart');
 
     $order->products()->delete();
+
+    // Online payments
+    if($request->paymentMethodName == __('Online payment'))
+    {
+      $request->session()->put('order.id', $order->id);
+      $request->session()->put('order.uuid', $order->id);
+      $request->session()->put('order.total_cost', $order->total_cost);
+      $request->session()->put('order.cashOnDelivery', $cashOnDelivery);
+
+      $this->pay($order);
+    }
+
+    else
 
     return view('orders.completed')
     ->withId($order->id)
@@ -248,33 +264,76 @@ class OrderController extends Controller
     return redirect()->route('orders.index');
   }
 
-  public function pay(Request $request)
+  public function pay(Order $order)
   {
     $values = [
-      'p24_session_id' => uniqid(),
+      'p24_session_id' => $order->uuid,
       'p24_amount' => 100,
       'p24_currency' => 'PLN',
       'p24_description' => 'test',
       'p24_email' => 'test@test.pl',
       'p24_country' => 'PL',
-      'p24_url_return' => 'http://cudomisie.app/payCallback',
-      'p24_url_status' => 'http://cudomisie.app/payStatus',
-      'p24_wait_for_result ' => 1
+      'p24_url_return' => env('P24_URL_RETURN'),
+      'p24_url_status' => env('P24_URL_STATUS'),
     ];
 
     foreach($values as $index => $value)
     Przelewy24::addValue($index, $value);
 
+    $payment = new Payment;
+
+    $payment->session_id = $order->uuid;
+    $payment->amount = 100;
+
+    $payment->save();
+
     $register = Przelewy24::trnRegister(true);
   }
 
+
   public function payStatus(Request $request)
   {
-    file_put_contents(public_path('trans.txt'), 'lolz');
+    if(isset($request->p24_session_id))
+    {
+      $payment = Payment::where('session_id',$request->p24_session_id)->firstOrFail();
+      $payment->order_id = $request->p24_order_id;
+      $payment->method= $request->p24_method;
+
+      $values = [
+        'p24_session_id' => $request->p24_session_id,
+        'p24_amount' => 100,
+        'p24_currency' => 'PLN',
+        'p24_order_id' => $request->p24_order_id,
+      ];
+
+      foreach($values as $index => $value)
+      Przelewy24::addValue($index, $value);
+
+      $res = Przelewy24::trnVerify();
+      if(isset($res["error"]) and $res["error"] === '0')
+      {
+        $payment->verified = 1;
+        $order = Order::where('uuid',$request->p24_session_id)->firstOrFail();
+        $order->order_status_id = 7;
+        $order->save();
+      }
+
+      $payment->update();
+    }
   }
 
   public function payCallback(Request $request)
   {
-    return 'callback';
+    $id = $request->session()->get('order.id');
+    $uuid = $request->session()->get('order.uuid');
+    $total_cost = $request->session()->get('order.total_cost');
+    $cashOnDelivery = $request->session()->get('order.cashOnDelivery');
+    $request->session()->forget('order');
+
+    return view('orders.completed')
+    ->withId($id)
+    ->withUuid($uuid)
+    ->withTotalCost($total_cost)
+    ->withCashOnDelivery($cashOnDelivery);
   }
 }

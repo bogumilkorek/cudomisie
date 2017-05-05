@@ -41,12 +41,38 @@
         {{ csrf_field() }}
 
         <div class="form-group">
+          <h2><i class="fa fa-credit-card" aria-hidden="true"></i> {{ __('Select payment method') }}:</h2>
+          <hr>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="paymentMethodName" value="{{ __('Online payment') }}" required>
+                  {{ __('Online payment') }}
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="paymentMethodName" value="{{ __('Payment by bank transfer') }}" required>
+                    {{ __('Payment by bank transfer') }}
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="paymentMethodName" value="{{ __('Cash on delivery') }}" required>
+                      {{ __('Cash on delivery') }}
+                    </label>
+                  </div>
+          </div>
+
+
+        <div class="form-group">
           <h2><i class="fa fa-truck" aria-hidden="true"></i> {{ __('Select shipping method') }}:</h2>
           <hr>
           @foreach($shipping_methods as $sMethod)
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="shippingMethodName" data-price="{{ $sMethod->price }}" id="shippingMethodName" value="{{ $sMethod->title }}" required @if($previous_data['shippingMethodName'] == $sMethod->title) checked @endif>
+                <input class="form-check-input" type="radio" name="shippingMethodName" data-price="{{ $sMethod->price }}" value="{{ $sMethod->title }}" required @if($previous_data['shippingMethodName'] == $sMethod->title) checked @endif>
                   {{ $sMethod->title }} ({{ $sMethod->price }})
                 </label>
               </div>

@@ -65,7 +65,7 @@ $(() => {
     cart.updateItem($(this).data('slug'), $(this).val());
   });
 
-  $("input[type=radio]").on('change', function() {
+  $("input[name=shippingMethodName]").on('change', function() {
     let currentTotal = $('#total').html().split(' ');
     let price = parseFloat($(this).data('price'));
     let newTotal = parseFloat(currentTotal[0]) + price;
