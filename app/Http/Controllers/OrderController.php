@@ -143,15 +143,21 @@ class OrderController extends Controller
 
     $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
 
-    if($request->paymentMethodName == 1)
+    if($request->paymentMethodName == __('Online payment'))
+    // 6 = payment verification
     $order->order_status_id = 6;
     else if($cashOnDelivery != 1)
+    // 1 = waiting for payment
     $order->order_status_id = 1;
     else
+    // 2 = processing
     $order->order_status_id = 2;
 
     $order->shipping_method_name = $request->shippingMethodName;
     $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
+    if($request->paymentMethodName == __('Online payment'))
+    $order->total_cost = (string)(number_format(floatval($items['total']) * (1 + env('PRZELEWY24_COMMISSION') / 100) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
+    else
     $order->total_cost = (string)(number_format(floatval($items['total']) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
     $order->name = $request->name;
     $order->email = $request->email;
@@ -173,24 +179,14 @@ class OrderController extends Controller
 
     $order->products()->delete();
 
-    // Online payments
     if($request->paymentMethodName == __('Online payment'))
-    {
-      $request->session()->put('order.id', $order->id);
-      $request->session()->put('order.uuid', $order->id);
-      $request->session()->put('order.total_cost', $order->total_cost);
-      $request->session()->put('order.cashOnDelivery', $cashOnDelivery);
-
       $this->pay($order);
-    }
-
     else
-
-    return view('orders.completed')
-    ->withId($order->id)
-    ->withUuid($order->uuid)
-    ->withTotalCost($order->total_cost)
-    ->withCashOnDelivery($cashOnDelivery);
+      return view('orders.completed')
+      ->withId($order->id)
+      ->withUuid($order->uuid)
+      ->withStatus($order->orderStatus->title)
+      ->withTotalCost($order->total_cost);
   }
 
   /**
@@ -266,27 +262,30 @@ class OrderController extends Controller
 
   public function pay(Order $order)
   {
+    $request->session()->put('order.id', $order->id);
+    $request->session()->put('order.uuid', $order->uuid);
+    $request->session()->put('order.total_cost', $order->total_cost);
+    $request->session()->put('order.status', $order->orderStatus->title);
+
     $values = [
       'p24_session_id' => $order->uuid,
-      'p24_amount' => 100,
+      'p24_amount' => floatval($order->total_cost) * 100,
       'p24_currency' => 'PLN',
-      'p24_description' => 'test',
-      'p24_email' => 'test@test.pl',
+      'p24_description' => 'Zakup produktu w sklepie cudomisie.pl',
+      'p24_email' => $order->email,
       'p24_country' => 'PL',
       'p24_url_return' => env('P24_URL_RETURN'),
       'p24_url_status' => env('P24_URL_STATUS'),
     ];
 
     foreach($values as $index => $value)
-    Przelewy24::addValue($index, $value);
+      Przelewy24::addValue($index, $value);
 
     $payment = new Payment;
-
     $payment->session_id = $order->uuid;
-    $payment->amount = 100;
-
+    $payment->amount = floatval($order->total_cost) * 100;
     $payment->save();
-
+    
     $register = Przelewy24::trnRegister(true);
   }
 
@@ -301,7 +300,7 @@ class OrderController extends Controller
 
       $values = [
         'p24_session_id' => $request->p24_session_id,
-        'p24_amount' => 100,
+        'p24_amount' => $request->p24_amount,
         'p24_currency' => 'PLN',
         'p24_order_id' => $request->p24_order_id,
       ];
@@ -314,8 +313,12 @@ class OrderController extends Controller
       {
         $payment->verified = 1;
         $order = Order::where('uuid',$request->p24_session_id)->firstOrFail();
+        // 7 = payment verified
         $order->order_status_id = 7;
         $order->save();
+
+        $when = Carbon::now()->addSeconds(30);
+        $order->notify((new OrderStatusChanged($order))->delay($when));
       }
 
       $payment->update();
@@ -326,14 +329,14 @@ class OrderController extends Controller
   {
     $id = $request->session()->get('order.id');
     $uuid = $request->session()->get('order.uuid');
+    $status = $request->session()->get('order.status');
     $total_cost = $request->session()->get('order.total_cost');
-    $cashOnDelivery = $request->session()->get('order.cashOnDelivery');
     $request->session()->forget('order');
 
     return view('orders.completed')
     ->withId($id)
     ->withUuid($uuid)
-    ->withTotalCost($total_cost)
-    ->withCashOnDelivery($cashOnDelivery);
+    ->withStatus($status)
+    ->withTotalCost($total_cost);
   }
 }

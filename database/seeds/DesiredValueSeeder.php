@@ -32,6 +32,9 @@ class DesiredValueSeeder extends Seeder
       __('Package sent'),
       __('Completed'),
       __('Canceled'),
+      __('Payment verification'),
+      __('Payment verified'),
+      __('Payment cancelled'),
     ]);
 
   // Insert custom categories and subcategories structure

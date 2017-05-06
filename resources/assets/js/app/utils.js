@@ -16,6 +16,17 @@ $.ajaxSetup({
 });
 
 $(() => {
+  let totalPrice = 0;
+  let totalPriceWithProvision = 0;
+  let shippingPrice = 0;
+  let onlinePayment = false;
+
+  if($('#total').length)
+  {
+    totalPrice = $('#total').html().split(' ');
+    totalPriceWithProvision = parseFloat(totalPrice[0]) * (1 + (parseFloat($('#total').data('commission') / 100)));
+  }
+
   $(document).scrollTop(0);
   slider.run('.slider-container', 5000);
   baguetteBox.run('.gallery, #content p a');
@@ -23,7 +34,7 @@ $(() => {
 
   // Show cookie alert if "Cookies accepted" cookie is not set
   if(document.cookie.search("cookies-accepted") == -1)
-    $('.cookie-alert').show();
+  $('.cookie-alert').show();
 
   // Set "Cookies accepted" cookie on button press
   $('.accept-cookie').on('click', function() {
@@ -66,10 +77,39 @@ $(() => {
   });
 
   $("input[name=shippingMethodName]").on('change', function() {
-    let currentTotal = $('#total').html().split(' ');
-    let price = parseFloat($(this).data('price'));
-    let newTotal = parseFloat(currentTotal[0]) + price;
-    $('#total').html(newTotal.toFixed(2) + ' ' + currentTotal[1]);
+    let newTotal = 0;
+    shippingPrice = parseFloat($(this).data('price'));
+    if(onlinePayment)
+    newTotal = totalPriceWithProvision + shippingPrice;
+    else
+    newTotal = parseFloat(totalPrice[0]) + shippingPrice;
+    $('#total').html(newTotal.toFixed(2) + ' ' + totalPrice[1]);
+  })
+
+  $("input[name=paymentMethodName]").on('change', function() {
+    let newTotal = 0;
+    if($(this).hasClass('online-payment'))
+    {
+      onlinePayment = true;
+      if(onlinePayment)
+      newTotal = totalPriceWithProvision + shippingPrice;
+      else
+      newTotal = parseFloat(totalPrice[0]) + shippingPrice;
+      $('.cash-on-delivery').hide();
+    }
+    else
+    {
+      onlinePayment = false;
+      if(onlinePayment)
+      newTotal = totalPriceWithProvision + shippingPrice;
+      else
+      newTotal = parseFloat(totalPrice[0]) + shippingPrice;
+      if($(this).hasClass('bank-payment'))
+      $('.cash-on-delivery').hide();
+      else
+      $('.cash-on-delivery').show();
+    }
+    $('#total').html(newTotal.toFixed(2) + ' ' + totalPrice[1]);
   })
 
   $("#scroll-top").on('click', function(e) {

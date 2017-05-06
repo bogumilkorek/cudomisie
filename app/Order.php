@@ -43,6 +43,11 @@ class Order extends Model
     return $this->belongsTo('App\User');
   }
 
+  public function payment()
+  {
+    return $this->hasOne('App\Payment');
+  }
+
   public function getCreatedAtAttribute($date)
   {
     $currentDate = new Carbon($date);

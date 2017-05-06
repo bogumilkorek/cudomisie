@@ -45,14 +45,14 @@
           <hr>
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="paymentMethodName" value="{{ __('Online payment') }}" required>
-                  {{ __('Online payment') }}
+                <input class="form-check-input online-payment" type="radio" name="paymentMethodName" value="{{ __('Online payment') }}" required>
+                  {{ __('Online payment') }} - {{ __('provider commission') }}: {{ env('PRZELEWY24_COMMISSION') }}%
                 </label>
               </div>
 
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" name="paymentMethodName" value="{{ __('Payment by bank transfer') }}" required>
+                  <input class="form-check-input bank-payment" type="radio" name="paymentMethodName" value="{{ __('Payment by bank transfer') }}" required>
                     {{ __('Payment by bank transfer') }}
                   </label>
                 </div>
@@ -70,7 +70,7 @@
           <h2><i class="fa fa-truck" aria-hidden="true"></i> {{ __('Select shipping method') }}:</h2>
           <hr>
           @foreach($shipping_methods as $sMethod)
-            <div class="form-check">
+            <div class="form-check @if($sMethod->cash_on_delivery)cash-on-delivery @endif">
               <label class="form-check-label">
                 <input class="form-check-input" type="radio" name="shippingMethodName" data-price="{{ $sMethod->price }}" value="{{ $sMethod->title }}" required @if($previous_data['shippingMethodName'] == $sMethod->title) checked @endif>
                   {{ $sMethod->title }} ({{ $sMethod->price }})
@@ -78,7 +78,7 @@
               </div>
             @endforeach
           </div>
-          <h4>{{ __('Total') }}: <b id="total">{{ Request::session()->get('cart.total') ?? '' }}</b></h4>
+          <h4>{{ __('Total') }}: <b id="total" data-commission="{{ env('PRZELEWY24_COMMISSION') }}">{{ Request::session()->get('cart.total') ?? '' }}</b></h4>
           <br />
 
           <h2><i class="fa fa-info-circle" aria-hidden="true"></i> {{ __('Fill in shipping data') }}:</h2>
