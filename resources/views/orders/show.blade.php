@@ -20,6 +20,7 @@
     @endcomponent
     <b>{{ __('Invoice') }}:</b><br /><a href="{{ route('user.orders.invoice', $order->invoice_url) }}" class="btn btn-primary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ __('Invoice') }}</a><br /><br />
     <b>{{ __('Status') }}:</b><br />{{ $order->orderStatus->title }}<br /><br />
+    <b>{{ __('Payment') }}:</b><br />{{ $order->paymentMethod->title }}<br /><br />
     <b>{{ __('Name') }}:</b><br />{{ $order->name }}<br /><br />
     <b>{{ __('E-mail') }}:</b><br />{{ $order->email }}<br /><br />
     <b>{{ __('Phone') }}:</b><br />{{ $order->phone_number }}<br /><br />

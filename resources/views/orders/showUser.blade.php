@@ -12,6 +12,7 @@
       <hr>
       <p>
         <b>{{ __('Status') }}:</b><br />{{ $order->orderStatus->title }}<br /><br />
+        <b>{{ __('Payment') }}:</b><br />{{ $order->paymentMethod->title }}<br /><br />
         <b>{{ __('Products') }}:</b><br />
         @component('components.cartItems', [
           'products' => $order->products,

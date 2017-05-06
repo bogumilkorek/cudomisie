@@ -14,12 +14,7 @@
   <b>{{ __('Invoice no') }}:</b> CM/{{ $order->id }}/{{ date('Y') }}<br />
   <b>{{ __('Date of sale') }}:</b> {{ str_limit($order->created_at, 10, '') }}<br />
   <b>{{ __('Term of payment') }}:</b> {{ str_limit($order->created_at, 10, '') }}<br />
-  <b>{{ __('Way of payment') }}:</b>
-  @if($order->status == 1)
-    {{ __('bank transfer') }}
-  @else
-    {{ __('cash on demand') }}
-  @endif
+  <b>{{ __('Way of payment') }}:</b> {{ $order->paymentMethod->title }}
   <br /><br />
   <table class="table">
     <tr><td>

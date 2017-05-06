@@ -52,7 +52,6 @@ Route::get(__('invoice') . '/{invoice}', function($invoice)
   return response()->download($file);
 })->name('user.orders.invoice');
 
-Route::get('pay', 'OrderController@pay');
 Route::post('pay/status', 'OrderController@payStatus');
 Route::get('pay/callback', 'OrderController@payCallback');
 

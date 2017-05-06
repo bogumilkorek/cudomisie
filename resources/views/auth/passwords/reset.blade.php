@@ -7,8 +7,8 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h1>
-            
-            {{ __('Reset Password') }}
+
+            {{ __('Create New Password') }}
           </h1>
           <hr>
           @if (session('status'))
@@ -68,7 +68,7 @@
                 <button type="submit" class="btn btn-dashed"
                 data-loading-text="<i class='fa fa-refresh fa-spin'></i>
                 {{ __('Loading') }}">
-                <i class="fa fa-check" aria-hidden="true"></i> {{ __('Reset Password') }}
+                <i class="fa fa-check" aria-hidden="true"></i> {{ __('Create New Password') }}
               </button>
             </div>
           </div>

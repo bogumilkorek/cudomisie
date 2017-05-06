@@ -4,13 +4,13 @@
 {{ __('You are receiving this email because we received a password reset request for your account.') }}
 
 @component('mail::button', ['url' => $url])
-{{ __('Reset password') }}
+{{ __('Reset Password') }}
 @endcomponent
 
 {{ __('Regards') }},<br>{{ config('app.name') }}
 
 @component('mail::subcopy')
-{{ __("If you’re having trouble clicking the 'Reset password' button, copy and paste the URL below into your web browser") }}: [{{ $url }}]({{ $url }})
+{{ __("If you’re having trouble clicking the 'Reset Password' button, copy and paste the URL below into your web browser") }}: [{{ $url }}]({{ $url }})
 @endcomponent
 
 @endcomponent

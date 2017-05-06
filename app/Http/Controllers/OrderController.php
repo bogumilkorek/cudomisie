@@ -123,26 +123,13 @@ class OrderController extends Controller
   * @param  \App\Http\Requests\OrderRequest  $request
   * @return \Illuminate\Http\Response
   */
-  public function store(OrderRequest $request)
+  public function store(OrderRequest $request, $items)
   {
-  }
-
-  public function storeUser(OrderRequest $request)
-  {
-    $items = $this->getItems();
-
-    // Store inserted data into session
-    if($items['trashed'])
-    {
-      $request->session()->put('cart.order-in-progress', $request->all());
-      return redirect()->route('user.orders.create')->withInput();
-    }
-
     $order = new Order;
     if(isset(Auth::user()->id))
-    $order->user_id = Auth::user()->id;
-
-    $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
+    {
+      $order->user_id = Auth::user()->id;
+    }
 
     if($request->paymentMethodName == __('Online payment'))
     {
@@ -150,7 +137,7 @@ class OrderController extends Controller
       $order->order_status_id = 1;
       $order->payment_method_id = 1;
     }
-    else if($cashOnDelivery != 1)
+    else if($request->paymentMethodName == __('Bank transfer'))
     {
       // 1 = waiting for payment
       $order->order_status_id = 1;
@@ -158,6 +145,7 @@ class OrderController extends Controller
     }
     else
     {
+      // Cash on demand - we can process order without waiting for payment
       // 2 = processing
       $order->order_status_id = 2;
       $order->payment_method_id = 3;
@@ -165,9 +153,6 @@ class OrderController extends Controller
 
     $order->shipping_method_name = $request->shippingMethodName;
     $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
-    if($request->paymentMethodName == __('Online payment'))
-    $order->total_cost = (string)(number_format(floatval($items['total']) * (1 + env('PRZELEWY24_COMMISSION') / 100) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
-    else
     $order->total_cost = (string)(number_format(floatval($items['total']) + floatval($order->shipping_cost), 2)) . ' ' . __('$');
     $order->name = $request->name;
     $order->email = $request->email;
@@ -183,6 +168,22 @@ class OrderController extends Controller
       'product_price' => $product->price,
     ]);
 
+    return $order;
+
+  }
+
+  public function storeUser(OrderRequest $request)
+  {
+    $items = $this->getItems();
+
+    if($items['trashed'])
+    {
+      $request->session()->put('cart.order-in-progress', $request->all());
+      return redirect()->route('user.orders.create')->withInput();
+    }
+
+    $order = $this->store($request, $items);
+
     event(new OrderCreated($order));
 
     $request->session()->forget('cart');
@@ -190,13 +191,17 @@ class OrderController extends Controller
     $order->products()->delete();
 
     if($request->paymentMethodName == __('Online payment'))
-    $this->pay($order, $request);
+    {
+      $this->pay($order, $request);
+    }
     else
-    return view('orders.completed')
-    ->withId($order->id)
-    ->withUuid($order->uuid)
-    ->withStatus($order->paymentMethod->title)
-    ->withTotalCost($order->total_cost);
+    {
+      return view('orders.completed')
+      ->withId($order->id)
+      ->withUuid($order->uuid)
+      ->withStatus($order->paymentMethod->title)
+      ->withTotalCost($order->total_cost);
+    }
   }
 
   /**
@@ -250,7 +255,9 @@ class OrderController extends Controller
     $when = Carbon::now()->addSeconds(30);
     $order->notify((new OrderStatusChanged($order))->delay($when));
     if($order->order_status_id == 3)
-    $order->notify((new OrderShipped($order))->delay($when));
+    {
+      $order->notify((new OrderShipped($order))->delay($when));
+    }
     return response()->json("Order status updated");
   }
 
@@ -263,7 +270,9 @@ class OrderController extends Controller
   public function destroy(Order $order)
   {
     if(File::exists(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf')))
-    File::delete(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf'));
+    {
+      File::delete(public_path('files/invoices/'  . __('invoice') . '-' . $order->uuid . '.pdf'));
+    }
     $order->products()->detach();
     $order->delete();
     alert()->success(__('Order deleted'), __('Success'))->persistent('OK');
@@ -272,6 +281,8 @@ class OrderController extends Controller
 
   public function pay(Order $order, Request $request)
   {
+    $amount = number_format((floatval($order->total_cost) * (1 + (floatval(env('PRZELEWY24_COMMISSION')) / 100))), 2) * 100;
+
     $request->session()->put('order.id', $order->id);
     $request->session()->put('order.uuid', $order->uuid);
     $request->session()->put('order.total_cost', $order->total_cost);
@@ -279,7 +290,7 @@ class OrderController extends Controller
 
     $values = [
       'p24_session_id' => $order->uuid,
-      'p24_amount' => floatval($order->total_cost) * 100,
+      'p24_amount' => $amount,
       'p24_currency' => 'PLN',
       'p24_description' => 'Zakup produktu w sklepie cudomisie.pl',
       'p24_email' => $order->email,
@@ -293,12 +304,12 @@ class OrderController extends Controller
 
     $payment = new Payment;
     $payment->session_id = $order->uuid;
-    $payment->amount = floatval($order->total_cost) * 100;
+    $payment->amount = $amount;
     $payment->save();
 
     $register = Przelewy24::trnRegister(true);
 
-    //print_r($register);
+    print_r($register);
   }
 
 
@@ -344,6 +355,12 @@ class OrderController extends Controller
   public function payCallback(Request $request)
   {
     $id = $request->session()->get('order.id');
+
+    if(!$id)
+    {
+      abort(404);
+    }
+
     $uuid = $request->session()->get('order.uuid');
     $status = $request->session()->get('order.status');
     $total_cost = $request->session()->get('order.total_cost');

@@ -90,21 +90,21 @@ $(() => {
     let newTotal = 0;
     if($(this).hasClass('online-payment'))
     {
-      onlinePayment = true;
-      if(onlinePayment)
-      newTotal = totalPriceWithProvision + shippingPrice;
-      else
-      newTotal = parseFloat(totalPrice[0]) + shippingPrice;
+      // onlinePayment = true;
+      // if(onlinePayment)
+      // newTotal = totalPriceWithProvision + shippingPrice;
+      // else
+      // newTotal = parseFloat(totalPrice[0]) + shippingPrice;
       $('.cash-on-delivery').hide();
       $('.pay-in-advance').show();
     }
     else
     {
-      onlinePayment = false;
-      if(onlinePayment)
-      newTotal = totalPriceWithProvision + shippingPrice;
-      else
-      newTotal = parseFloat(totalPrice[0]) + shippingPrice;
+      // onlinePayment = false;
+      // if(onlinePayment)
+      // newTotal = totalPriceWithProvision + shippingPrice;
+      // else
+      // newTotal = parseFloat(totalPrice[0]) + shippingPrice;
       if($(this).hasClass('bank-payment'))
       {
         $('.cash-on-delivery').hide();
@@ -116,7 +116,7 @@ $(() => {
         $('.pay-in-advance').hide();
       }
     }
-    $('#total').html(newTotal.toFixed(2) + ' ' + totalPrice[1]);
+    //$('#total').html(newTotal.toFixed(2) + ' ' + totalPrice[1]);
   })
 
   $("#scroll-top").on('click', function(e) {
