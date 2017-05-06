@@ -53,7 +53,7 @@
               <div class="form-check">
                 <label class="form-check-label">
                   <input class="form-check-input bank-payment" type="radio" name="paymentMethodName" value="{{ __('Payment by bank transfer') }}" required>
-                    {{ __('Payment by bank transfer') }}
+                    {{ __('Bank transfer') }}
                   </label>
                 </div>
 
@@ -70,7 +70,7 @@
           <h2><i class="fa fa-truck" aria-hidden="true"></i> {{ __('Select shipping method') }}:</h2>
           <hr>
           @foreach($shipping_methods as $sMethod)
-            <div class="form-check @if($sMethod->cash_on_delivery)cash-on-delivery @endif">
+            <div class="form-check @if($sMethod->cash_on_delivery)cash-on-delivery @else pay-in-advance @endif">
               <label class="form-check-label">
                 <input class="form-check-input" type="radio" name="shippingMethodName" data-price="{{ $sMethod->price }}" value="{{ $sMethod->title }}" required @if($previous_data['shippingMethodName'] == $sMethod->title) checked @endif>
                   {{ $sMethod->title }} ({{ $sMethod->price }})

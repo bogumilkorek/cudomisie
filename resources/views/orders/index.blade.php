@@ -13,6 +13,7 @@
               <th>{{ __('No.') }}</th>
               <th>{{ __('Products') }}</th>
               <th>{{ __('Status') }}</th>
+              <th>{{ __('Payment') }}</th>
               <th>{{ __('Shipping method') }}</th>
               <th>{{ __('Total') }}</th>
               <th>{{ __('Comments') }}</th>
@@ -44,6 +45,7 @@
                       @endforeach
 
                     </td>
+                    <td>{{ $order->paymentMethod->title }}<br /><br />{!! $order->payment_status !!}</td>
                     <td>{{ $order->shipping_method_name }} ({{ $order->shipping_cost }})</td>
                     <td>{{ $order->total_cost }}</td>
                     <td>

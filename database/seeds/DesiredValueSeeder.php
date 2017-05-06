@@ -32,9 +32,16 @@ class DesiredValueSeeder extends Seeder
       __('Package sent'),
       __('Completed'),
       __('Canceled'),
-      __('Payment verification'),
-      __('Payment verified'),
-      __('Payment cancelled'),
+      // __('Payment verification'),
+      // __('Payment verified'),
+      // __('Payment cancelled'),
+    ]);
+
+    // Insert payment methods (better readability than faker)
+    $this->insertPaymentMethods([
+      __('Online payment'),
+      __('Bank transfer'),
+      __('Cash on delivery')
     ]);
 
   // Insert custom categories and subcategories structure
@@ -70,6 +77,16 @@ class DesiredValueSeeder extends Seeder
     foreach($data as $title)
     {
       factory(App\OrderStatus::class)->create([
+        'title' => $title,
+      ]);
+    }
+  }
+
+  public function insertPaymentMethods($data) {
+
+    foreach($data as $title)
+    {
+      factory(App\PaymentMethod::class)->create([
         'title' => $title,
       ]);
     }

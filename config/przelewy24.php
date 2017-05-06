@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'testMode'  => env('TEST_MODE', false),
+    'testMode'  => env('PRZELEWY24_TEST_MODE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'merchantId'  => env('MERCHANT_ID', 0),
+    'merchantId'  => env('PRZELEWY24_MERCHANT_ID', 0),
 
     /*
     |--------------------------------------------------------------------------
@@ -62,7 +62,7 @@ return [
     |
     */
 
-    'posId'  => env('POS_ID', 0),
+    'posId'  => env('PRZELEWY24_POS_ID', 0),
 
 
     /*
@@ -72,6 +72,6 @@ return [
     |
     |
     */
-    'salt'  => env('SALT', 0),
+    'salt'  => env('PRZELEWY24_CRC', 0),
 
 ];

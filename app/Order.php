@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
+use App\Payment;
 
 class Order extends Model
 {
@@ -15,7 +16,7 @@ class Order extends Model
     return 'uuid';
   }
 
-  protected $shipping_tax, $post_tax_shipping, $total_tax, $post_tax_total;
+  protected $shipping_tax, $post_tax_shipping, $total_tax, $post_tax_total, $payment_status;
 
   protected $fillable = [
     'uuid', 'name', 'email', 'phone_number', 'address', 'comments', 'invoice_url'
@@ -43,9 +44,9 @@ class Order extends Model
     return $this->belongsTo('App\User');
   }
 
-  public function payment()
+  public function paymentMethod()
   {
-    return $this->hasOne('App\Payment');
+    return $this->belongsTo('App\PaymentMethod');
   }
 
   public function getCreatedAtAttribute($date)
@@ -72,5 +73,19 @@ class Order extends Model
   public function getPostTaxTotalAttribute()
   {
     return number_format((floatval($this->total_cost) - floatval($this->getTotalTaxAttribute())), 2) . ' ' . __('$');
+  }
+
+  public function getPaymentStatusAttribute()
+  {
+    $payment = Payment::where('session_id', $this->uuid)->first();
+    if($payment)
+    {
+      if($payment->verified)
+        return '<span class="label label-success" style="font-size: 16px">' . __('Payment verified') . '</span>';
+      else if($payment->cancelled)
+        return '<span class="label label-danger" style="font-size: 16px">' . __('Payment cancelled') . '</span>';
+      else
+        return '<span class="label label-warning" style="font-size: 16px">' . __('Payment verification') . '</span>';
+    }
   }
 }

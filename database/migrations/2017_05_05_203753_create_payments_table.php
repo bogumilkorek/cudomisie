@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('order_id')->nullable();
             $table->integer('method')->nullable();
             $table->boolean('verified')->nullable();
+            $table->boolean('cancelled')->nullable();
             $table->timestamps();
         });
     }

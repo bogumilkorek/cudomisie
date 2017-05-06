@@ -96,6 +96,7 @@ $(() => {
       else
       newTotal = parseFloat(totalPrice[0]) + shippingPrice;
       $('.cash-on-delivery').hide();
+      $('.pay-in-advance').show();
     }
     else
     {
@@ -105,9 +106,15 @@ $(() => {
       else
       newTotal = parseFloat(totalPrice[0]) + shippingPrice;
       if($(this).hasClass('bank-payment'))
-      $('.cash-on-delivery').hide();
+      {
+        $('.cash-on-delivery').hide();
+        $('.pay-in-advance').show();
+      }
       else
-      $('.cash-on-delivery').show();
+      {
+        $('.cash-on-delivery').show();
+        $('.pay-in-advance').hide();
+      }
     }
     $('#total').html(newTotal.toFixed(2) + ' ' + totalPrice[1]);
   })

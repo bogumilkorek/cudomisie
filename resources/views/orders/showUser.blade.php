@@ -34,16 +34,16 @@
       <b>{{ __('Date') }}:</b><br />{{ $order->created_at }}<br /><br />
     </p>
 
-    @if(isset(Auth::user()->id))
-      <div class="text-center">
+    <div class="text-center">
+      @if(isset(Auth::user()->id))
         <a href="{{ route('user.orders.index') }}" class="btn btn-dashed">
           <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> {{ __('Go back') }}
         </a>
-        <a href="{{ route('user.orders.invoice', $order->invoice_url) }}" class="btn btn-dashed">
-          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ __('Invoice') }}
-        </a>
-      </div>
-    @endif
+      @endif
+      <a href="{{ route('user.orders.invoice', $order->invoice_url) }}" class="btn btn-dashed">
+        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ __('Invoice') }}
+      </a>
+    </div>
   </div>
 </div>
 

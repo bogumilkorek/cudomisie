@@ -44,6 +44,7 @@ class OrderController extends Controller
     $orders = Order::orderBy('id', 'desc')
     ->with('orderStatus')
     ->with('shippingMethod')
+    ->with('paymentMethod')
     ->get();
 
     return view('orders.index')
@@ -144,14 +145,23 @@ class OrderController extends Controller
     $cashOnDelivery = ShippingMethod::where('title', $request->shippingMethodName)->first()->cash_on_delivery;
 
     if($request->paymentMethodName == __('Online payment'))
-    // 6 = payment verification
-    $order->order_status_id = 6;
+    {
+      // 1 = waiting for payment
+      $order->order_status_id = 1;
+      $order->payment_method_id = 1;
+    }
     else if($cashOnDelivery != 1)
-    // 1 = waiting for payment
-    $order->order_status_id = 1;
+    {
+      // 1 = waiting for payment
+      $order->order_status_id = 1;
+      $order->payment_method_id = 2;
+    }
     else
-    // 2 = processing
-    $order->order_status_id = 2;
+    {
+      // 2 = processing
+      $order->order_status_id = 2;
+      $order->payment_method_id = 3;
+    }
 
     $order->shipping_method_name = $request->shippingMethodName;
     $order->shipping_cost = ShippingMethod::where('title', $request->shippingMethodName)->first()->price;
@@ -180,13 +190,13 @@ class OrderController extends Controller
     $order->products()->delete();
 
     if($request->paymentMethodName == __('Online payment'))
-      $this->pay($order);
+    $this->pay($order, $request);
     else
-      return view('orders.completed')
-      ->withId($order->id)
-      ->withUuid($order->uuid)
-      ->withStatus($order->orderStatus->title)
-      ->withTotalCost($order->total_cost);
+    return view('orders.completed')
+    ->withId($order->id)
+    ->withUuid($order->uuid)
+    ->withStatus($order->paymentMethod->title)
+    ->withTotalCost($order->total_cost);
   }
 
   /**
@@ -260,12 +270,12 @@ class OrderController extends Controller
     return redirect()->route('orders.index');
   }
 
-  public function pay(Order $order)
+  public function pay(Order $order, Request $request)
   {
     $request->session()->put('order.id', $order->id);
     $request->session()->put('order.uuid', $order->uuid);
     $request->session()->put('order.total_cost', $order->total_cost);
-    $request->session()->put('order.status', $order->orderStatus->title);
+    $request->session()->put('order.status', $order->paymentMethod->title);
 
     $values = [
       'p24_session_id' => $order->uuid,
@@ -274,19 +284,21 @@ class OrderController extends Controller
       'p24_description' => 'Zakup produktu w sklepie cudomisie.pl',
       'p24_email' => $order->email,
       'p24_country' => 'PL',
-      'p24_url_return' => env('P24_URL_RETURN'),
-      'p24_url_status' => env('P24_URL_STATUS'),
+      'p24_url_return' => env('PRZELEWY24_URL_RETURN'),
+      'p24_url_status' => env('PRZELEWY24_URL_STATUS'),
     ];
 
     foreach($values as $index => $value)
-      Przelewy24::addValue($index, $value);
+    Przelewy24::addValue($index, $value);
 
     $payment = new Payment;
     $payment->session_id = $order->uuid;
     $payment->amount = floatval($order->total_cost) * 100;
     $payment->save();
-    
+
     $register = Przelewy24::trnRegister(true);
+
+    //print_r($register);
   }
 
 
@@ -313,12 +325,16 @@ class OrderController extends Controller
       {
         $payment->verified = 1;
         $order = Order::where('uuid',$request->p24_session_id)->firstOrFail();
-        // 7 = payment verified
-        $order->order_status_id = 7;
+
+        $order->order_status_id = 2;
         $order->save();
 
         $when = Carbon::now()->addSeconds(30);
         $order->notify((new OrderStatusChanged($order))->delay($when));
+      }
+      else if(isset($res["error"]) && ($res["error"] === 'err161' || $res["error"] === 'err162'))
+      {
+        $payment->cancelled = 1;
       }
 
       $payment->update();
