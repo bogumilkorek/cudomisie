@@ -10,6 +10,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - Send SMS (order shipped) using NEXMO
 - Create PDF (invoices)
 - Check if products are still available before order
+- Online payments with Przelewy24.pl
 - Buy without login or login with standard Laravel auth
 - Login with Google/Facebook/Twitter using Laravel Socialite
 - User: update profile, and view order history
@@ -37,7 +38,8 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
   - digitsToWordsTrait: translate cost in digits to written words (required for polish invoices). You need to adjust this method to your needs
 
 - Artisan Commands
-  - `php artisan image:clear`: delete "orphaned" images. As dropzone works asynchronously there might be situations where admin ads images without saving rest of the content. This command handles it.
+  - `php artisan image:clear`
+  delete "orphaned" images. As dropzone works asynchronously there might be situations where admin ads images without saving rest of the content. This command handles it.
 
 - Schedule
   - clean "orphaned" images as described above (daily)
@@ -106,6 +108,7 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 ### 5.1. Composer
 - *barryvdh/laravel-debugbar*: debug bar useful for development, it appears at the bottom of page
 - *barryvdh/laravel-dompdf*: create PDF for invoices
+- *initbizlab/laravel-przelewy24*: online payments
 - *laravel/dusk*: create browser tests
 - *laravel/socialite*: login via Google/Facebook/Twitter
 - *nexmo/laravel*: send SMS when order is shipped
