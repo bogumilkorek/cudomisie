@@ -80,8 +80,8 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 
 - Laravel Mix (*webpack.mix.js* in root directory)
   - optimize all image assets (webpack plugin) and copy them to *public/images*
-  - translate ES6, join and minify Javascript files (output: app.js and admin.js)
-  - compile SASS to CSS, join and minify CSS files (output: app.css and admin.css)
+  - translate ES6, join and minify Javascript files (output: *app.js* and *admin.js*)
+  - compile SASS to CSS, join and minify CSS files (output: *app.css* and *admin.css*)
   - add random value to asset names in production to prevent browser caching
 
 ## 3. Todo
