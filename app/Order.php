@@ -83,7 +83,7 @@ class Order extends Model
       if($payment->verified)
         return '<span class="label label-success" style="font-size: 16px">' . __('Payment verified') . '</span>';
       else if($payment->cancelled)
-        return '<span class="label label-danger" style="font-size: 16px">' . __('Payment cancelled') . '</span>';
+        return '<span class="label label-danger" style="font-size: 16px">' . __('Payment error') . '</span>';
       else
         return '<span class="label label-warning" style="font-size: 16px">' . __('Payment verification') . '</span>';
     }

@@ -16,7 +16,7 @@
         e.preventDefault();
         swal("{{ __('Error') }}", "{{ __('Field description is required') }}", "error");
       }
-      else if(!$('.dz-remove:first').length)
+      else if($('#form-with-wysiwyg').data('validate-dropzone') == true && !$('.dz-remove:first').length)
       {
         e.preventDefault();
         swal("{{ __('Error') }}", "{{ __('Add some images') }}", "error");

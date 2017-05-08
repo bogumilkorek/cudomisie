@@ -102,7 +102,7 @@
           </a>
         </li>
       @endforeach
-      <li class="text-center"><a href={{ route('cart.show') }}>{{ __('Show cart') }}</a></li>
+      <li class="text-center"><a href={{ route('cart.show') }}><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>&nbsp;&nbsp;{{ __('Show cart') }}</a></li>
     </ul>
   </li>
   <li class="dropdown">
@@ -134,7 +134,7 @@
   @if (Auth::guest())
     <li>
       <a href="{{ route('login') }}">
-        {{ __('Login') }}
+        <i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;&nbsp;{{ __('Login') }}
       </a>
     </li>
   @else

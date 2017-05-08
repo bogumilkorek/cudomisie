@@ -52,8 +52,11 @@ Route::get(__('invoice') . '/{invoice}', function($invoice)
   return response()->download($file);
 })->name('user.orders.invoice');
 
-Route::post('pay/status', 'OrderController@payStatus');
-Route::get('pay/callback', 'OrderController@payCallback');
+Route::post('pay/status', 'OrderController@paymentStatus');
+Route::get('pay/callback', 'OrderController@paymentCallback');
+Route::post('pay/check', 'OrderController@paymentCheck');
+Route::get('pay/payment-completed', 'OrderController@paymentCompleted');
+Route::get('pay/payment-error', 'OrderController@paymentError');
 
 Route::get(__('offer') . '/{category}', 'CategoryController@show')->name('user.categories.show');
 Route::get(__('offer') . '/{category}/{subcategory?}', 'CategoryController@show')->name('user.categories.show');

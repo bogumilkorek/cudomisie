@@ -11,7 +11,7 @@
         @component('alert', ['errors' => $errors])
         @endcomponent
 
-        <form method="POST" action="{{ route('products.update', $product) }}" id="form-with-wysiwyg" data-validate='["title", "categories[]", "price", "dimensions"]'>
+        <form method="POST" action="{{ route('products.update', $product) }}" id="form-with-wysiwyg" data-validate='["title", "categories[]", "price", "dimensions"]' data-validate-dropzone='true'>
           {{ csrf_field() }}
           {{ method_field('PUT') }}
 

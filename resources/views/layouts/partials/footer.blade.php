@@ -34,6 +34,10 @@
         {{ __('Contact') }}
       </a>
 
+      <a class="btn btn-dashed" href="{{ route('cart.show') }}">
+        {{ __('Cart') }}
+      </a>
+
     </div>
 
     <form method="GET" action="{{ route('user.search') }}">

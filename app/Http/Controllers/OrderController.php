@@ -29,7 +29,7 @@ class OrderController extends Controller
 
   public function __construct()
   {
-    $this->middleware(['auth', 'admin'])->except(['indexUser', 'showUser', 'createUser', 'storeUser', 'pay', 'payStatus', 'payCallback']);
+    $this->middleware(['auth', 'admin'])->except(['indexUser', 'showUser', 'createUser', 'storeUser', 'pay', 'paymentStatus', 'paymentCallback', 'paymentCheck', 'paymentError', 'paymentCompleted']);
   }
   /**
   * Display a listing of the resource.
@@ -313,7 +313,7 @@ class OrderController extends Controller
   }
 
 
-  public function payStatus(Request $request)
+  public function paymentStatus(Request $request)
   {
     if(isset($request->p24_session_id))
     {
@@ -343,16 +343,36 @@ class OrderController extends Controller
         $when = Carbon::now()->addSeconds(30);
         $order->notify((new OrderStatusChanged($order))->delay($when));
       }
-      else if(isset($res["error"]) && ($res["error"] === 'err161' || $res["error"] === 'err162'))
+      else
       {
-        $payment->cancelled = 1;
+        $payment->error = 1;
       }
 
       $payment->update();
     }
   }
 
-  public function payCallback(Request $request)
+  public function paymentCallback(Request $request)
+  {
+    $uuid = $request->session()->get('order.uuid');
+
+    if(!$uuid)
+    {
+      abort(404);
+    }
+    else
+    {
+      $payment = Payment::where('session_id', $uuid)->first();
+      if(!$payment)
+      abort(404);
+    }
+
+    return view('orders.verify')
+    ->withUuid($request->session()->get('order.uuid'));
+
+  }
+
+  public function paymentCompleted(Request $request)
   {
     $id = $request->session()->get('order.id');
 
@@ -371,5 +391,53 @@ class OrderController extends Controller
     ->withUuid($uuid)
     ->withStatus($status)
     ->withTotalCost($total_cost);
+  }
+
+  public function paymentError(Request $request)
+  {
+
+    $id = $request->session()->get('order.id');
+
+    if(!$id)
+    {
+      abort(404);
+    }
+
+    $request->session()->forget('order');
+
+    return view('orders.paymentError')
+    ->withId($id);
+  }
+
+  public function paymentCheck(Request $request)
+  {
+    if(!$request->id)
+    return [
+      'message' => 'No data provided',
+    ];
+    else
+    {
+      $payment = Payment::where('session_id', $request->id)->first();
+
+      if(!$payment)
+      return [
+        'message' => 'Payment not found',
+      ];
+      else
+      {
+        if($payment->error)
+        return [
+          'message' => 'Payment error',
+        ];
+        if(!$payment->verified)
+        return [
+          'message' => 'Payment not verified',
+        ];
+        else
+        return [
+          'message' => 'Payment verified',
+        ];
+      }
+    }
   }
 }
