@@ -20,4 +20,5 @@ class EmailController extends Controller
       alert()->success(__('Your e-mail has been sent'), __('Success'))->persistent('OK');
       return redirect()->route('user.homepage.show');
     }
+
 }

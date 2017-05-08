@@ -21,6 +21,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - Additional frontend validation including regular expressions (HTML5 + Javascript)
 - Soft delete for products and categories with ability to restore
 - Database structure allows to change products and shipping methods without messing order history
+- Send e-mail to dev when queue failed, or exception occured
 
 ## 2. Structure
 - Database seeders
@@ -85,6 +86,8 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
   - add random value to asset names in production to prevent browser caching
 
 ## 3. Todo
+- This app assumes that product total available quantity = 1 (client requirement). I will make modified version without this constraint soon.
+- Make unthemed version
 - More browser/unit tests
 - Code refactoring
 - Extend dropzone with drag and drop
@@ -93,7 +96,6 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - More complex auth with user roles
 - Product wishlist
 - Product attributes (size etc.)
-- Add Google captcha if needed
 - **Create backend API with Laravel/Lumen using JWT or Laravel Passport and frontend client with Vue.js**
 
 ## 4. Tests
