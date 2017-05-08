@@ -3,7 +3,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 
 ## 1. Features
 - CRUD for pages, blog posts, products, categories with subcategories, shipping methods
-- App can be easily translated to desired language using translation strings. Just rename *resources/lang/pl.json* to your language and translate it. If you need English language only just delete this file.
+- App can be easily translated to desired language using translation strings. Just rename *resources/lang/pl.json* according to your language and translate it. If you need English language only - just delete this file.
 - Shopping cart
 - Search system (products, pages, blog posts)
 - Send Markdown e-mails (order status change, order confirmation, contact form)
@@ -15,7 +15,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 - Login with Google/Facebook/Twitter using Laravel Socialite
 - User: update profile, and view order history
 - Image dropzone
-- Image is automacitally resized and thumbnail is created after upload
+- Image is automatically resized and thumbnail is created after upload
 - WYSIWYG (CKEditor) including file manager with image upload
 - Responsivity
 - Additional frontend validation including regular expressions (HTML5 + Javascript)
@@ -24,18 +24,18 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 
 ## 2. Structure
 - Database seeders
-  - DatabaseSeeder: run model factories and other two seeders
+  - DatabaseSeeder: run model factories and other two seeders mentioned below
   - DesiredValueSeeder: seed custom values to DB
   - PivotTableSeeder: seed pivot tables, I've done it this way to avoid creating models just for seeding purposes
 
 - View composers
   - CategoryComposer: get all categories for navigation
   - CartItemsComposer: get cart items for navigation
-  - LatestProductComposer: get 6 latest products for layout
+  - LatestProductComposer: get 6 latest products for "Latest products" section
 
 - Traits
   - CartItemsTrait: get cart items, quantities for every item, total price, and check if any item was bought in the meantime
-  - digitsToWordsTrait: translate cost in digits to written words (required for polish invoices). You need to adjust this method to your needs
+  - digitsToWordsTrait: translate cost in digits to written words (for invoices)
 
 - Artisan Commands
   - `php artisan image:clear`
@@ -74,24 +74,24 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
   - validation rules for BlogPost, Category, Email, Order, Page, Product, ShippingMethod, User (cleaner controllers)
 
 - Blade components
-  - cartItems
-  - postGrid
-  - productGrid
+  - cartItems: shows items in shopping cart
+  - postGrid: shows blog posts as a grid
+  - productGrid: shows products as a grid
 
 - Laravel Mix (*webpack.mix.js* in root directory)
   - optimize all image assets (webpack plugin) and copy them to *public/images*
   - translate ES6, join and minify Javascript files (output: app.js and admin.js)
   - compile SASS to CSS, join and minify CSS files (output: app.css and admin.css)
-  - add random value to asset names in production to prevent caching
+  - add random value to asset names in production to prevent browser caching
 
 ## 3. Todo
 - More browser/unit tests
 - Code refactoring
 - Extend dropzone with drag and drop
 - Navigation CRUD with drag and drop
-- AJAX Duplicate check when title field was focused out
+- AJAX check duplicate when title field was focused out
 - More complex auth with user roles
-- Wishlist
+- Product wishlist
 - Product attributes (size etc.)
 - Add Google captcha if needed
 - **Create backend API with Laravel/Lumen using JWT or Laravel Passport and frontend client with Vue.js**
@@ -113,24 +113,24 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 - *laravel/dusk*: create browser tests
 - *laravel/socialite*: login via Google/Facebook/Twitter
 - *nexmo/laravel*: send SMS when order is shipped
-- *unisharp/laravel-filemanager*: useful filemanager added to WYSIWYG
+- *unisharp/laravel-filemanager*: filemanager added to WYSIWYG
 - *uxweb/sweet-alert*: nice looking messages
-- *webpatser/laravel-uuid*: create unique IDs for orders
+- *webpatser/laravel-uuid*: create unique ID's for orders
 
 ### 5.2. Node.js
 - *baguettebox.js*: image gallery
 - *ckeditor*: WYSIWYG
-- *datatables.net*: additional table features (e.g. search, sort, paginate)
+- *datatables.net*: additional table features (search, sort, paginate etc.)
 - *dropzone*: drag and drop image container
 - *font-awesome*: icons
 - *imagemin-webpack-plugin*: webpack plugin for image optimization
-- *jquery-match-height*: same height for product grid
+- *jquery-match-height*: set same height for product grid instance
 - *jquery.easing*: advanced easing options
 - *select2*: advanced select/multiselect tool
 - *smartmenus*: multi level dropdown menu
 
 ## 6. Installation
-*Install Composer and Node.js if you don't have it. You will also need HTTP and MySQL server (I recommend Laravel Homestead, or XAMPP). This app uses PHP 7 syntax so PHP 7 is required as well.*
+*Install Composer and Node.js if you don't have it. You will also need HTTP and MySQL server (I recommend Laravel Homestead, or XAMPP). This app uses some PHP7 syntax so PHP7 is required as well.*
 
 - Clone repository:<br />
 `git clone https://github.com/bogumilkorek/cudomisie`
@@ -157,7 +157,7 @@ I'm planning to add more tests soon, using pure PHPUnit as well (Dusk is pretty 
 - Run DB migrations:<br />
 `php artisan migrate`
 
-- If you want to fill DB with example values:<br />
+- If you want to fill DB with example values run seeders:<br />
 `php artisan db:seed`
 
 - Compile, join and minify SASS and Javascript assets:<br />
