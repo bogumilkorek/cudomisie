@@ -39,7 +39,8 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
 
 - Artisan Commands
   - `php artisan image:clear`
-  delete "orphaned" images. As dropzone works asynchronously there might be situations where admin ads images without saving rest of the content. This command handles it.
+  
+  delete "orphaned" images. As dropzone works asynchronously there might be situations where admin adds images without saving rest of the content. This command handles it.
 
 - Schedule
   - clean "orphaned" images as described above (daily)
