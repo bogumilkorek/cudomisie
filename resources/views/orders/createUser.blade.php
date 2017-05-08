@@ -49,7 +49,7 @@
             {{ __('Online payment') }} - {{ __('provider commission') }}: {{ env('PRZELEWY24_COMMISSION') }}%
           </label>
         </div>
-        
+
         <div class="form-check">
           <label class="form-check-label">
             <input class="form-check-input bank-payment" type="radio" name="paymentMethodName" value="{{ __('Bank transfer') }}" required>
@@ -59,7 +59,7 @@
 
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="paymentMethodName" value="{{ __('Cash on delivery') }}" required>
+            <input class="form-check-input cash-on-demand" type="radio" name="paymentMethodName" value="{{ __('Cash on delivery') }}" required>
             {{ __('Cash on delivery') }}
           </label>
         </div>

@@ -19,6 +19,7 @@ use Webpatser\Uuid\Uuid;
 use Request;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Queue\Events\JobFailed;
+use Illuminate\Support\Facades\Log;
 
 class AppServiceProvider extends ServiceProvider
 {

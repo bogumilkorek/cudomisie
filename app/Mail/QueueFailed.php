@@ -7,33 +7,34 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
+use Illuminate\Queue\Events\JobFailed;
 
-class ContactForm extends Mailable implements ShouldQueue
+class QueueFailed extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+  use Queueable, SerializesModels;
 
-    public $connectionName, $job, $exeption;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
+  public $connectionName, $job, $exception;
+  /**
+  * Create a new message instance.
+  *
+  * @return void
+  */
 
-    public function __construct(JobFailed $event)
-    {
-        $this->connectionName = $event->connectionName;
-        $this->job = $event->job;
-        $this->exeption = $event->exception;
-    }
+  public function __construct(JobFailed $event)
+  {
+    $this->job = $event->job->getRawBody();
+    $this->exception = $event->exception->getMessage();
+    $this->connectionName = $event->connectionName;
+  }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->subject(env('APP_NAME') . ' - ' . __('queue failed'))
-        ->markdown('emails.dev.queueFailed');
-    }
+  /**
+  * Build the message.
+  *
+  * @return $this
+  */
+  public function build()
+  {
+    return $this->subject(env('APP_NAME') . ' - ' . __('queue failed'))
+    ->markdown('emails.dev.queueFailed');
+  }
 }

@@ -141,25 +141,25 @@
     @if(Auth::user()->admin)
       <li>
         <a href="{{ url('/admin') }}">
-          {{ __('Admin panel') }}
+            <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;{{ __('Admin panel') }}
         </a>
       </li>
     @else
       <li>
         <a href="{{ route('user.orders.index') }}">
-          {{ __('My orders') }}
+          <i class="fa fa-history" aria-hidden="true"></i>&nbsp;&nbsp;{{ __('My orders') }}
         </a>
       </li>
       <li>
         <a href="{{ route('user.profile.show') }}">
-          {{ __('Show profile') }}
+          <i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;{{ __('Show profile') }}
         </a>
       </li>
     @endif
     <li><a href="{{ route('logout') }}"
       onclick="event.preventDefault();
       document.getElementById('logout-form').submit();">
-      {{ __('Logout') }}
+        <i class="fa fa-user-times" aria-hidden="true"></i>&nbsp;&nbsp;{{ __('Logout') }}
     </a>
   </li>
   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

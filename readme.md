@@ -67,6 +67,7 @@ Laravel 5.4 + some Javascript/jQuery e-commerce website.
   - set morph map for polymorphic relation
   - automatically create slug before add and update page, product, category and blog post
   - automatically insert uuid when creating new order
+  - e-mail dev when queue failed
 
 - Middleware
   - IsAdmin: check if current user is administrator

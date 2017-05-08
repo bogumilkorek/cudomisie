@@ -34,7 +34,8 @@ class CreateOrder extends Page
   {
     return [
       '@submit' => '#submit',
-      '@shippingMethod' => 'input[type=radio]:first-of-type',
+      '@paymentMethod' => '.cash-on-demand',
+      '@shippingMethod' => 'input[name=shippingMethodName]:first-of-type',
     ];
   }
 
@@ -42,6 +43,7 @@ class CreateOrder extends Page
   {
     $browser->driver->executeScript('window.scrollTo(0, 500);');
     $browser->radio('@shippingMethod', '1')
+    ->radio('@paymentMethod', __('Cash on demand'))
     ->type('name', 'Test Client')
     ->type('email', 'test@test.com')
     ->type('phone_number', '500500500')

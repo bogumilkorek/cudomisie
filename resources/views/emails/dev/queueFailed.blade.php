@@ -1,12 +1,12 @@
 @component('mail::message')
 
-  **{{ __('Connection name') }}:**<br />
-  {{ $connectionName }}<br /><br />
+**{{ __('Job') }}:**<br />
+{{ $job }}<br /><br />
 
-  **{{ __('Job') }}:**<br />
-  {{ $job }}<br /><br />
+**{{ __('Exception') }}:**<br />
+{{ $exception }}<br /><br />
 
-  **{{ __('Exeption') }}:**<br />
-  {{ $exeption }}<br /><br />
+**{{ __('Connection') }}:**<br />
+{{ $connectionName }}<br /><br />
 
 @endcomponent
