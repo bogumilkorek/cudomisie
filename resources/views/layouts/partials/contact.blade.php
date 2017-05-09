@@ -24,7 +24,7 @@
       </div>
 
       <div class="info-card">
-        <a class="btn btn-circle" href="tel:{{ env('SELLER_PHONE') }}" title="Zadzwoń">
+        <a class="btn btn-circle" href="tel:{{ str_replace(' ', '', env('SELLER_PHONE')) }}" title="Zadzwoń">
           <i class="fa fa-phone" aria-hidden="true"></i>
         </a>
         <span>{{ env('SELLER_PHONE') }}</span>

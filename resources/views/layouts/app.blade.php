@@ -14,10 +14,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#BCE2F7">
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css" />
 
-  <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="expires" content="0">
-
 </head>
 <body>
   @component('alert', ['errors' => $errors])
