@@ -46,7 +46,7 @@
         <div class="form-check">
           <label class="form-check-label">
             <input class="form-check-input online-payment" type="radio" name="paymentMethodName" value="{{ __('Online payment') }}" required>
-            {{ __('Online payment') }} - {{ __('provider commission') }}: {{ env('PRZELEWY24_COMMISSION') }}%
+            {{ __('Online payment') }} ({{ env('ONLINE_PAYMENT_PROVIDER') }}) - {{ __('provider commission') }}: {{ env('PRZELEWY24_COMMISSION') }}%
           </label>
         </div>
 

@@ -199,7 +199,7 @@ class OrderController extends Controller
       return view('orders.completed')
       ->withId($order->id)
       ->withUuid($order->uuid)
-      ->withStatus($order->paymentMethod->title)
+      ->withStatus($request->paymentMethodName)
       ->withTotalCost($order->total_cost);
     }
   }
@@ -286,7 +286,7 @@ class OrderController extends Controller
     $request->session()->put('order.id', $order->id);
     $request->session()->put('order.uuid', $order->uuid);
     $request->session()->put('order.total_cost', $order->total_cost);
-    $request->session()->put('order.status', $order->paymentMethod->title);
+    $request->session()->put('order.status', $request->paymentMethodName);
 
     $values = [
       'p24_session_id' => $order->uuid,
