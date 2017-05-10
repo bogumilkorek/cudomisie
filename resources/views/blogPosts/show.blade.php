@@ -4,7 +4,6 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <h1>
-      <img src="{{ asset('images/cudomisie-logo-male.png') }}" alt="" title="" />
       {{ $blog_post->title }}
     </h1>
     <hr>

@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
     factory(App\User::class, 9)->create();
     factory(App\ShippingMethod::class, 5)->create();
     factory(App\Order::class, 20)->create();
+    factory(App\Payment::class, 5)->create();
 
     // Seed pivot tables
     $this->call(PivotTableSeeder::class);
