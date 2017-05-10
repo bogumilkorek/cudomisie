@@ -7,7 +7,8 @@ $factory->define(App\Payment::class, function (Faker\Generator $faker) {
     $error = 0;
 
   return [
-    'session_id' => function () {
+    'session_id' => uniqid(),
+    'order_uuid' => function () {
       return App\Order::where('payment_method_id', 1)->inRandomOrder()->first()->uuid;
     },
     'amount' => rand(100, 10000),

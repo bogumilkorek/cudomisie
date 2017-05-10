@@ -16,8 +16,9 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('session_id');
+            $table->string('order_uuid');
             $table->integer('amount');
-            $table->integer('order_id')->nullable();
+            $table->integer('provider_order_id')->nullable();
             $table->integer('method')->nullable();
             $table->boolean('verified')->nullable();
             $table->boolean('error')->nullable();

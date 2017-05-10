@@ -20,9 +20,9 @@ class PivotTableSeeder extends Seeder
       $product_id = $i;
 
       DB::table('category_product')->insert([
-          'category_id' => $category_id,
-          'product_id' => $product_id,
-        ]);
+        'category_id' => $category_id,
+        'product_id' => $product_id,
+      ]);
     }
 
 
@@ -35,33 +35,26 @@ class PivotTableSeeder extends Seeder
       $product_quantity = rand(1, 9);
 
       DB::table('order_product')->insert([
-          'order_id' => $order_id,
-          'product_id' => $product_id,
-          'product_title' => $product_title,
-          'product_price' => $product_price,
-          'product_quantity' => $product_quantity,
-        ]);
+        'order_id' => $order_id,
+        'product_id' => $product_id,
+        'product_title' => $product_title,
+        'product_price' => $product_price,
+        'product_quantity' => $product_quantity,
+      ]);
     }
 
     for($i = 1; $i <= App\Product::all()->count(); $i++)
     {
-      $product_id = $i;
-      $shipping_method_id = 1;
+      for($j = 1; $j <= App\ShippingMethod::all()->count(); $j++)
+      {
+        $product_id = $i;
+        $shipping_method_id = $j;
 
-      DB::table('product_shipping_method')->insert([
+        DB::table('product_shipping_method')->insert([
           'product_id' => $i,
-          'shipping_method_id' => $shipping_method_id,
+          'shipping_method_id' => $j,
         ]);
-    }
-    for($i = 1; $i <= App\Product::all()->count(); $i++)
-    {
-      $product_id = $i;
-      $shipping_method_id = rand(2,4);
-
-      DB::table('product_shipping_method')->insert([
-          'product_id' => $i,
-          'shipping_method_id' => $shipping_method_id,
-        ]);
+      }
     }
   }
 }

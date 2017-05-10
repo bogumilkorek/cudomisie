@@ -42,17 +42,17 @@ class CreateOrder extends Page
   public function fillForm(Browser $browser)
   {
     $browser->driver->executeScript('window.scrollTo(0, 500);');
-    $browser->radio('@shippingMethod', '1')
-    ->radio('@paymentMethod', __('Cash on demand'))
-    ->type('name', 'Test Client')
-    ->type('email', 'test@test.com')
-    ->type('phone_number', '500500500')
-    ->type('street', 'Test 3')
-    ->type('city', '00-000 Test')
-    ->type('comments', 'Test comments');
+    $browser->radio('@paymentMethod', __('Cash on demand'))
+            ->radio('@shippingMethod', '1')
+            ->type('name', 'Test Client')
+            ->type('email', 'test@test.com')
+            ->type('phone_number', '500500500')
+            ->type('street', 'Test 3')
+            ->type('city', '00-000 Test')
+            ->type('comments', 'Test comments');
     $browser->driver->executeScript('window.scrollTo(0, 1000);');
     $browser->check('accept-terms')
-    ->check('accept-usage');
+            ->check('accept-usage');
     $browser->driver->executeScript('location.href="#submit"');
   }
 }
