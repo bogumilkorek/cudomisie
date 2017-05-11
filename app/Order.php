@@ -77,13 +77,13 @@ class Order extends Model
 
   public function getPaymentStatusAttribute()
   {
-    $payment = Payment::where('session_id', $this->uuid)->first();
+    $payment = Payment::where('order_uuid', $this->uuid)->first();
     if($payment)
     {
       if($payment->verified)
         return '<span class="label label-success" style="font-size: 16px">' . __('Payment verified') . '</span>';
-      else if($payment->cancelled)
-        return '<span class="label label-danger" style="font-size: 16px">' . __('Payment error') . '</span>';
+      else if($payment->error)
+        return '<span class="label label-danger" style="font-size: 16px">' . __('Error') . '</span>';
       else
         return '<span class="label label-warning" style="font-size: 16px">' . __('Payment verification') . '</span>';
     }

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Payment;
 use App\Order;
 use Przelewy24;
+use Carbon\Carbon;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\OrderStatusChanged;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -24,7 +28,7 @@ class PaymentController extends Controller
       'p24_session_id' => $sessionId,
       'p24_amount' => $amount,
       'p24_currency' => env('PRZELEWY24_CURRENCY'),
-      'p24_description' => 'Zakup produktu w sklepie cudomisie.pl',
+      'p24_description' => env('PRZELEWY24_DESCRIPTION'),
       'p24_email' => $order->email,
       'p24_country' => env('PRZELEWY24_COUNTRY'),
       'p24_url_return' => env('PRZELEWY24_URL_RETURN'),
@@ -48,16 +52,17 @@ class PaymentController extends Controller
 
   public function paymentStatus(Request $request)
   {
+    Log::info('Payment status called');
     if(isset($request->p24_session_id))
     {
-      $payment = Payment::where('session_id',$request->p24_session_id)->firstOrFail();
-      $payment->provider_order_id = $request->p24_order_id;
-      $payment->method= $request->p24_method;
+      $payment = Payment::where('session_id', $request->p24_session_id)->firstOrFail();
+      $payment->order_id = $request->p24_order_id;
+      $payment->method = $request->p24_method;
 
       $values = [
         'p24_session_id' => $request->p24_session_id,
         'p24_amount' => $request->p24_amount,
-        'p24_currency' => env('PRZELEWY24_CURRENCY'),
+        'p24_currency' => $request->p24_currency,
         'p24_order_id' => $request->p24_order_id,
       ];
 
@@ -65,23 +70,26 @@ class PaymentController extends Controller
       Przelewy24::addValue($index, $value);
 
       $res = Przelewy24::trnVerify();
+
       if(isset($res["error"]) and $res["error"] === '0')
       {
+        Log::info('Payment verified');
         $payment->verified = 1;
         $order = Order::where('uuid', $payment->order_uuid)->firstOrFail();
 
         $order->order_status_id = 2;
-        $order->save();
+        $order->update();
 
         $when = Carbon::now()->addSeconds(30);
         $order->notify((new OrderStatusChanged($order))->delay($when));
       }
       else
       {
+        Log::info('Payment error');
         $payment->error = 1;
       }
-
       $payment->update();
+      Log::info('Payment saved');
     }
   }
 
@@ -101,7 +109,7 @@ class PaymentController extends Controller
     }
 
     return view('orders.verify')
-    ->withSessionId($request->session()->get('order.session_id'));
+    ->withSessionId($sessionId);
 
   }
 

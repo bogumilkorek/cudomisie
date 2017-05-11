@@ -2,9 +2,9 @@
 $factory->define(App\Payment::class, function (Faker\Generator $faker) {
 
   $error = 1;
-  $verified = rand(0, 1);
+  $verified = $faker->randomElement([NULL, 1]);
   if($verified)
-    $error = 0;
+    $error = NULL;
 
   return [
     'session_id' => uniqid(),

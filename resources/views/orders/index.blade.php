@@ -45,7 +45,7 @@
                       @endforeach
 
                     </td>
-                    <td>{{ $order->paymentMethod->title }}<br /><br />{!! $order->payment_status !!}</td>
+                    <td>{{ $order->paymentMethod->title }} ({{ env('ONLINE_PAYMENT_PROVIDER') }})<br /><br />{!! $order->payment_status !!}</td>
                     <td>{{ $order->shipping_method_name }} ({{ $order->shipping_cost }})</td>
                     <td>{{ $order->total_cost }}</td>
                     <td>
